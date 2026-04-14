@@ -19,6 +19,9 @@
               "font": "Times New Roman"
             }
           }
+        ],
+        "tags": [
+          "header"
         ]
       },
       {
@@ -28,7 +31,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000002"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 2,
@@ -37,7 +43,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000003"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 3,
@@ -46,7 +55,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000004"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 4,
@@ -55,13 +67,16 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000005"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 5,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_H_DC",
           "alignment": "center",
           "paraId": "00000006"
         },
@@ -75,6 +90,9 @@
             },
             "text": "DOSSIER DE COMPETENCES"
           }
+        ],
+        "tags": [
+          "header"
         ]
       },
       {
@@ -84,7 +102,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000007"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 7,
@@ -93,7 +114,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000008"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 8,
@@ -102,7 +126,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000009"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 9,
@@ -111,13 +138,16 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000000A"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 10,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_H_Trigramme",
           "alignment": "center",
           "paraId": "0000000B"
         },
@@ -131,6 +161,9 @@
             },
             "text": "JNZ"
           }
+        ],
+        "tags": [
+          "header"
         ]
       },
       {
@@ -140,13 +173,16 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000000C"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 12,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_H_Poste",
           "alignment": "center",
           "paraId": "0000000D"
         },
@@ -159,13 +195,16 @@
             },
             "text": "Data Engineer, Data Analyst"
           }
+        ],
+        "tags": [
+          "header"
         ]
       },
       {
         "index": 13,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_H_Poste",
           "alignment": "center",
           "paraId": "0000000E"
         },
@@ -178,6 +217,9 @@
             },
             "text": "Python, SQL, PostgreSQL, DBT"
           }
+        ],
+        "tags": [
+          "header"
         ]
       },
       {
@@ -187,7 +229,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000000F"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 15,
@@ -196,7 +241,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000010"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 16,
@@ -205,7 +253,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000011"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 17,
@@ -214,7 +265,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000012"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 18,
@@ -223,7 +277,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000013"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 19,
@@ -232,13 +289,16 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000014"
-        }
+        },
+        "tags": [
+          "header"
+        ]
       },
       {
         "index": 20,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_H_Poste",
           "alignment": "center",
           "section_break": "nextPage",
           "paraId": "00000015"
@@ -253,13 +313,16 @@
             },
             "text": "Expérience (I2)"
           }
+        ],
+        "tags": [
+          "header"
         ]
       },
       {
         "index": 21,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading1",
+          "style": "DC_T1_Sections",
           "alignment": "left",
           "paraId": "00000016"
         },
@@ -270,13 +333,16 @@
             },
             "text": "Domaines de compétences"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 22,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -289,13 +355,16 @@
             },
             "text": "Gestion de projets"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 23,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -310,13 +379,16 @@
             },
             "text": "Recueil des besoins"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 24,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -331,13 +403,16 @@
             },
             "text": "Participation au cahier des charges avec les métiers"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 25,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -352,13 +427,16 @@
             },
             "text": "Analyse de faisabilité et préconisations"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 26,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -373,13 +451,16 @@
             },
             "text": "Gestion des priorités et planning"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 27,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -394,13 +475,16 @@
             },
             "text": "Ecriture des livrables"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 28,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -415,13 +499,16 @@
             },
             "text": "Suivi de projets et avancements"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 29,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -436,13 +523,16 @@
             },
             "text": "Organisation des réunions"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 30,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -457,13 +547,16 @@
             },
             "text": "Coordination transverse entre services"
           }
+        ],
+        "tags": [
+          "main_skills"
         ]
       },
       {
         "index": 31,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_T1_Sections",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -478,13 +571,16 @@
             },
             "text": "Formation des équipes"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 32,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -497,13 +593,16 @@
             },
             "text": "Traitement des données"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 33,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -518,13 +617,16 @@
             },
             "text": "Conception de pipelines de données robustes"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 34,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -539,13 +641,16 @@
             },
             "text": "Traitement de données à grande échelle (Big Data):"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 35,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_3rd_bullet",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -561,13 +666,16 @@
             },
             "text": "Collecte et branchements APIs, ETLs python"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 36,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_3rd_bullet",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -583,13 +691,16 @@
             },
             "text": "Chargement sur des Data Lakes ou Data Warehouses"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 37,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_3rd_bullet",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -605,13 +716,16 @@
             },
             "text": "Stockage Google Cloud Platform, PostgreSQL, DuckDB"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 38,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_T1_Sections",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -627,13 +741,16 @@
             },
             "text": "Transformation avec Data Build Tool, SQL, Python"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 39,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -648,13 +765,16 @@
             },
             "text": "Support aux cas d’usage et analytiques"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 40,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -669,13 +789,16 @@
             },
             "text": "Réalisation de tests unitaires, configuration dynamique, retraitement régulier"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 41,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -690,13 +813,16 @@
             },
             "text": "Architecture médaillon Databricks"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 42,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -711,13 +837,16 @@
             },
             "text": "Construction de plusieurs niveaux de traitement et assemblage de tables"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 43,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -732,13 +861,16 @@
             },
             "text": "Développement de traitements dynamiques"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 44,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -753,13 +885,16 @@
             },
             "text": "Unification des données dans un lakehouse optimisé"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 45,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -774,13 +909,16 @@
             },
             "text": "Intégration d’une démarche CI/CD Databricks CLI pour les pipelines"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 46,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -795,13 +933,16 @@
             },
             "text": "Mise en place de bonnes pratiques FinOps sur Databricks"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 47,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -814,13 +955,16 @@
             },
             "text": "Visualisation"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 48,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -835,13 +979,16 @@
             },
             "text": "Développement de Dashboards PowerBI, Looker dynamiques"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 49,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -856,13 +1003,16 @@
             },
             "text": "Recherche et vulgarisation d’indicateurs clés de performance"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 50,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -877,13 +1027,16 @@
             },
             "text": "Implémentation d’une data gouvernance :"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 51,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_3rd_bullet",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -899,13 +1052,16 @@
             },
             "text": "Etude des compétences et besoins métiers"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 52,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_3rd_bullet",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -921,13 +1077,16 @@
             },
             "text": "Conception des outils et indicateurs à mettre à disposition"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 53,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_3rd_bullet",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -943,13 +1102,16 @@
             },
             "text": "Correction et optimisation des pipelines de données"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 54,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_3rd_bullet",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -965,13 +1127,16 @@
             },
             "text": "Coordination entre les services"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 55,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_T1_Sections",
           "alignment": "left",
           "ilvl": "2",
           "numId": "2",
@@ -987,13 +1152,16 @@
             },
             "text": "Ecriture des process et formation des équipes"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 56,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1008,13 +1176,16 @@
             },
             "text": "Support aux cas d’usage et analytiques"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 57,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1029,13 +1200,16 @@
             },
             "text": "Conception de modèles ML et prévisionnels"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 58,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1050,13 +1224,16 @@
             },
             "text": "Référent des données disponibles"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 59,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1071,13 +1248,16 @@
             },
             "text": "Construction des requêtes SQL ponctuelles et planifiées"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 60,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1092,13 +1272,16 @@
             },
             "text": "Intégration et développement de reverse engineering"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 61,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -1111,13 +1294,16 @@
             },
             "text": "Applicatif"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 62,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1132,13 +1318,16 @@
             },
             "text": "Etude de besoin utilisateur"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 63,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1153,13 +1342,16 @@
             },
             "text": "Développement d’application pour la délivrabilité et la visualisation de données avec le Framework Streamlit"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 64,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1174,13 +1366,16 @@
             },
             "text": "Interactions et échanges de données avec des serveurs et bases de données (Backend)"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 65,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1195,13 +1390,16 @@
             },
             "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 66,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1216,13 +1414,16 @@
             },
             "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 67,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -1235,13 +1436,16 @@
             },
             "text": "Technologies"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 68,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "2",
@@ -1256,6 +1460,9 @@
             },
             "text": "Python, Pandas, SQL, PostgreSQL, PgAdmin, Databricks, Docker, DevContainers, DBT, Docxtpl, Jinja, DuckDB, MotherDuck, Power BI, Looker"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
@@ -1265,7 +1472,10 @@
           "style": "Heading2",
           "alignment": "left",
           "paraId": "00000046"
-        }
+        },
+        "tags": [
+          "education"
+        ]
       },
       {
         "index": 70,
@@ -1274,13 +1484,16 @@
           "style": "Heading2",
           "alignment": "left",
           "paraId": "00000047"
-        }
+        },
+        "tags": [
+          "education"
+        ]
       },
       {
         "index": 71,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading1",
+          "style": "DC_T1_Sections",
           "alignment": "left",
           "paraId": "00000048"
         },
@@ -1291,6 +1504,9 @@
             },
             "text": "Formation"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
@@ -1300,7 +1516,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "00000049"
-        }
+        },
+        "tags": [
+          "education"
+        ]
       },
       {
         "index": 73,
@@ -1636,7 +1855,10 @@
           }
         ],
         "row_count": 4,
-        "col_count": 2
+        "col_count": 2,
+        "tags": [
+          "education"
+        ]
       },
       {
         "index": 74,
@@ -1645,7 +1867,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000005A"
-        }
+        },
+        "tags": [
+          "education"
+        ]
       },
       {
         "index": 75,
@@ -1670,13 +1895,16 @@
             },
             "text": " Lu, écrit, parlé, professionnel"
           }
+        ],
+        "tags": [
+          "education"
         ]
       },
       {
         "index": 76,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_T1_Sections",
           "alignment": "left",
           "paraId": "0000005C"
         },
@@ -1690,6 +1918,9 @@
             },
             "text": "Expériences Professionnelles"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -1699,7 +1930,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000005D"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 78,
@@ -1708,7 +1942,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000005E"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 79,
@@ -1801,7 +2038,10 @@
           }
         ],
         "row_count": 2,
-        "col_count": 2
+        "col_count": 2,
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 80,
@@ -1829,13 +2069,16 @@
             },
             "text": "Ma première mission au sein d’EPSYL-ALCEN s’est déroulée dans le centre d’études et d’innovation d’ACC à Bruges. Dans le cadre de mises en place de process data automatisés, j’ai rejoint l’équipe data R&D qui développe des pipelines et des applications de traitement de données pour la délivrer de manière dynamique et robuste aux autres services d’ingénierie."
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 81,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -1848,13 +2091,16 @@
             },
             "text": "Gestion de projets"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 82,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -1869,13 +2115,16 @@
             },
             "text": "Recueil des besoins, des contraintes et spécifications"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 83,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -1890,13 +2139,16 @@
             },
             "text": "Etude de faisabilité et proposition de solutions techniques "
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 84,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -1911,13 +2163,16 @@
             },
             "text": "Communication avec les équipes, organisation des points d’avancement"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 85,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -1932,13 +2187,16 @@
             },
             "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 86,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -1953,13 +2211,16 @@
             },
             "text": "Reportings"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 87,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -1972,13 +2233,16 @@
             },
             "text": "Collecte des données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 88,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -1993,13 +2257,16 @@
             },
             "text": "Etudes des sources de données, Construction et amélioration de l’architecture "
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 89,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2014,13 +2281,16 @@
             },
             "text": "Requêtes SQL sur les bases de données PostgreSQL"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 90,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2035,13 +2305,16 @@
             },
             "text": "Traitements de données en Python Pandas"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 91,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2056,13 +2329,16 @@
             },
             "text": "Construction d’un formulaire dynamique de complétion des données par l’utilisateur"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 92,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -2075,13 +2351,16 @@
             },
             "text": "Traitement des bases de données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 93,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2097,13 +2376,16 @@
             },
             "text": "Traitements des données :"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 94,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2119,13 +2401,16 @@
             },
             "text": "Stockage Serveur dédié"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 95,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2141,13 +2426,16 @@
             },
             "text": "Gestion des bases PostgreSQL"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 96,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2163,13 +2451,16 @@
             },
             "text": "Distribution dans un data model et délivrabilité dans un document éditable avec Docxtpl et Jinja*"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 97,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2184,13 +2475,16 @@
             },
             "text": "Sauvegarde des nouvelles données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 98,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2205,13 +2499,16 @@
             },
             "text": "Dashboard de suivi KPIs avec Power BI"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 99,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -2224,13 +2521,16 @@
             },
             "text": "Applicatif"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 100,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2245,13 +2545,16 @@
             },
             "text": "Construction d’une Webapp à destination d’utilisateurs internes à l’entreprise avec le Framework Streamlit"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 101,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2266,13 +2569,16 @@
             },
             "text": "Développement applicatif pour la délivrabilité et la visualisation de données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 102,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2287,13 +2593,16 @@
             },
             "text": "Interactions et échanges de données avec des serveurs et base de données (Backend)"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 103,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2308,13 +2617,16 @@
             },
             "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 104,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2329,13 +2641,16 @@
             },
             "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 105,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2350,6 +2665,9 @@
             },
             "text": "Tech Lead applicatif, reviews de code et coordination des PRs"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -2359,7 +2677,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000007D"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 107,
@@ -2385,6 +2706,9 @@
             },
             "text": ", VSCode, Azure DevOps, Jupyter Notebook, PostgreSQL, Streamlit, LucidChart"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -2399,6 +2723,9 @@
           {
             "page_break": true
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -2492,7 +2819,10 @@
           }
         ],
         "row_count": 2,
-        "col_count": 2
+        "col_count": 2,
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 110,
@@ -2520,13 +2850,16 @@
             },
             "text": "Je mène des projets en tant que Data Analyst ou Data Engineer, de manière bénévole, pour la communauté Data For Good, à destination de partenaires associatifs ou d’ONGs : MEDCAP, Eclaireur public, ODIS, Algoboost, QPPCC"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 111,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -2539,13 +2872,16 @@
             },
             "text": "Gestion de projets"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 112,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2560,13 +2896,16 @@
             },
             "text": "Recueil des besoins, des contraintes et spécifications"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 113,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2581,13 +2920,16 @@
             },
             "text": "Etude et proposition de solutions techniques "
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 114,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2602,13 +2944,16 @@
             },
             "text": "Construction et mise à jour du Kanban de projet, Méthodologie Agile"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 115,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2623,13 +2968,16 @@
             },
             "text": "Communication avec les équipes, organisation des réunions"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 116,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2644,13 +2992,16 @@
             },
             "text": "Rédaction de préconisations métiers "
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 117,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2665,13 +3016,16 @@
             },
             "text": "Reportings"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 118,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -2684,13 +3038,16 @@
             },
             "text": "Collecte des données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 119,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2705,13 +3062,16 @@
             },
             "text": "Etudes des sources possibles de collecte de données, Open Data"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 120,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2726,13 +3086,16 @@
             },
             "text": "Requêtes APIs "
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 121,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2747,13 +3110,16 @@
             },
             "text": "Conception des modèles de données "
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 122,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2768,13 +3134,16 @@
             },
             "text": "Parsing Python depuis des bases de données NoSQL"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 123,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2789,13 +3158,16 @@
             },
             "text": "Traitements de données en Python Pandas"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 124,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2810,13 +3182,16 @@
             },
             "text": "Construction d’un pipeline dynamique de données socio-économiques"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 125,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2831,13 +3206,16 @@
             },
             "text": "Extract and Load des données en process CLI avec Python"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 126,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -2850,13 +3228,16 @@
             },
             "text": "Traitement des bases de données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 127,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -2872,13 +3253,16 @@
             },
             "text": "Traitements des données :"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 128,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2894,13 +3278,16 @@
             },
             "text": "Stockage Local ou Cloud"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 129,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2916,13 +3303,16 @@
             },
             "text": "Gestion des bases PostgreSQL, Duck DB"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 130,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2938,13 +3328,16 @@
             },
             "text": "Assemblages et Transformations"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 131,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2960,13 +3353,16 @@
             },
             "text": "Séquençage DBT"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 132,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -2982,13 +3378,16 @@
             },
             "text": "Automatisation CLI ou Prefect"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 133,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3004,13 +3403,16 @@
             },
             "text": "Architecture Databricks Médaillon"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 134,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3025,13 +3427,16 @@
             },
             "text": "Construction de data visualisations avec Python"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 135,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3046,13 +3451,16 @@
             },
             "text": "Implémentation dans une application existante, tests de data visualisation, corrections"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 136,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3067,6 +3475,9 @@
             },
             "text": "Entrainement de modèles ML, graphes prévisionnels"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -3076,7 +3487,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "0000009F"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 138,
@@ -3085,7 +3499,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000A0"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 139,
@@ -3111,6 +3528,9 @@
             },
             "text": ", VSCode, Github, DBT Cloud, DBT Core, Jupyter Notebook, Google Cloud Platform, AWS S3, DuckDB, PostgreSQL, Streamlit, Slack, Mattermost, Github Issues, Notion, Outline"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -3125,6 +3545,9 @@
           {
             "page_break": true
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -3134,7 +3557,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000A3"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 142,
@@ -3227,7 +3653,10 @@
           }
         ],
         "row_count": 2,
-        "col_count": 2
+        "col_count": 2,
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 143,
@@ -3255,13 +3684,16 @@
             },
             "text": "J’ai rejoint Keyor qui est une entreprise de conception et fabrication de menuiseries afin de prendre en charge l’ensemble des projets data. J’ai notamment travaillé avec les équipes R&D sur le traitement des données techniques liées aux différents produits."
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 144,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -3274,13 +3706,16 @@
             },
             "text": "Gestion de projets"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 145,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3295,13 +3730,16 @@
             },
             "text": "Recueil des besoins"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 146,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3316,13 +3754,16 @@
             },
             "text": "Participation au cahier des charges avec les métiers"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 147,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3337,13 +3778,16 @@
             },
             "text": "Analyse de faisabilité et préconisations"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 148,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3358,13 +3802,16 @@
             },
             "text": "Ecriture des livrables"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 149,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3379,13 +3826,16 @@
             },
             "text": "Suivi de projets et avancements"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 150,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3400,13 +3850,16 @@
             },
             "text": "Echanges transverses entre services"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 151,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3421,13 +3874,16 @@
             },
             "text": "Reportings"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 152,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -3440,13 +3896,16 @@
             },
             "text": "Collecte des données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 153,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3461,13 +3920,16 @@
             },
             "text": "Collecte des données spécifiques aux métiers : multisources"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 154,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3482,13 +3944,16 @@
             },
             "text": "Réceptionner, trier, nettoyer les données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 155,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3504,13 +3969,16 @@
             },
             "text": "Implémentation d’une data gouvernance :"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 156,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3525,13 +3993,16 @@
             },
             "text": "Etude des compétences et besoins métiers"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 157,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3546,13 +4017,16 @@
             },
             "text": "Conception des outils et indicateurs à mettre à disposition"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 158,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3567,13 +4041,16 @@
             },
             "text": "Correction et optimisation des pipelines de données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 159,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3588,13 +4065,16 @@
             },
             "text": "Coordination entre les services"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 160,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3610,13 +4090,16 @@
             },
             "text": "Configuration des données R&D et BE :"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 161,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3631,13 +4114,16 @@
             },
             "text": "Données techniques produits"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 162,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3652,13 +4138,16 @@
             },
             "text": "Données commerciales sur ERP"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 163,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3673,13 +4162,16 @@
             },
             "text": "Gammes"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 164,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3694,13 +4186,16 @@
             },
             "text": "Nomenclatures…"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 165,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3715,13 +4210,16 @@
             },
             "text": "Compréhension et interprétation"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 166,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3736,13 +4234,16 @@
             },
             "text": "Homogénéisation"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 167,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -3755,13 +4256,16 @@
             },
             "text": "Automatisation"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 168,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3777,13 +4281,16 @@
             },
             "text": "Construction de pipelines selon le besoin"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 169,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3799,13 +4306,16 @@
             },
             "text": "Enrichir et croiser les multiples bases de données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 170,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3820,13 +4330,16 @@
             },
             "text": "Automatisation :"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 171,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3841,13 +4354,16 @@
             },
             "text": "Collecte des besoins "
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 172,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3862,13 +4378,16 @@
             },
             "text": "Mises à jour données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 173,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3883,13 +4402,16 @@
             },
             "text": "Traitement et tri"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 174,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_4th_bullet",
           "alignment": "left",
           "ilvl": "3",
           "numId": "4",
@@ -3904,13 +4426,16 @@
             },
             "text": "Paramétrages"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 175,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3925,13 +4450,16 @@
             },
             "text": "Ajustements et paramétrages"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 176,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3946,13 +4474,16 @@
             },
             "text": "Détection des défauts, dysfonctionnements, anomalies"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 177,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -3967,13 +4498,16 @@
             },
             "text": "Proposition de solutions correctives"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 178,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "3",
@@ -3986,13 +4520,16 @@
             },
             "text": "Visualisation"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 179,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4007,13 +4544,16 @@
             },
             "text": "Construire les différentes datavisualisations pour chaque service"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 180,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4028,13 +4568,16 @@
             },
             "text": "Développement de Dashboards PowerBI, Looker dynamiques"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 181,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4049,13 +4592,16 @@
             },
             "text": "Recherche et vulgarisation d’indicateurs de performance"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 182,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4070,13 +4616,16 @@
             },
             "text": "Support aux cas d’usage et analytiques"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 183,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4091,13 +4640,16 @@
             },
             "text": "Référent des données disponibles"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 184,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4112,6 +4664,9 @@
             },
             "text": "Intégration et développement de reverse engineering"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -4121,7 +4676,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000D2"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 186,
@@ -4147,6 +4705,9 @@
             },
             "text": "Power Query, Power BI, Excel, Qlikview, Qliksense, HerculePro, Sage X3, Quable"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -4161,6 +4722,9 @@
           {
             "page_break": true
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -4254,13 +4818,16 @@
           }
         ],
         "row_count": 2,
-        "col_count": 2
+        "col_count": 2,
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 189,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "1",
@@ -4273,13 +4840,16 @@
             },
             "text": "Chef de Projets web"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 190,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4294,13 +4864,16 @@
             },
             "text": "Concevoir un business plan et un cahier des charges de site web"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 191,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4315,13 +4888,16 @@
             },
             "text": "Mettre en place les plans de communication"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 192,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4336,13 +4912,16 @@
             },
             "text": "Lancer les campagnes SEA, Social Ads et les Emailings"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 193,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "1",
@@ -4355,13 +4934,16 @@
             },
             "text": "Webmaster e-commerce"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 194,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4376,13 +4958,16 @@
             },
             "text": "Gérer le site e-commerce existant, développer le SEO"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 195,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4397,13 +4982,16 @@
             },
             "text": "Intégrer de nouveaux produits"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 196,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4418,6 +5006,9 @@
             },
             "text": "Créer les visuels de communication web, print et vidéos"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -4427,7 +5018,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000E1"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 198,
@@ -4453,6 +5047,9 @@
             },
             "text": "Wordpress, Woocommerce, Illustrator, Mailchimp, Meta Businness Suite, Google Ads"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -4462,7 +5059,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000E3"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 200,
@@ -4471,7 +5071,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000E4"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 201,
@@ -4564,7 +5167,10 @@
           }
         ],
         "row_count": 2,
-        "col_count": 2
+        "col_count": 2,
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 202,
@@ -4573,13 +5179,16 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000E9"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 203,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "1",
@@ -4592,13 +5201,16 @@
             },
             "text": "Data Analyst"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 204,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4613,13 +5225,16 @@
             },
             "text": "Intégrer les campagnes digitales sur les différents sites web"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 205,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4634,13 +5249,16 @@
             },
             "text": "Construire les tableaux de reporting et d'analyse des données utilisateurs issues des campagnes"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 206,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4655,13 +5273,16 @@
             },
             "text": "Enrichir et nettoyer les bases de données existantes"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 207,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_1st_bullet",
           "alignment": "left",
           "ilvl": "0",
           "numId": "1",
@@ -4674,13 +5295,16 @@
             },
             "text": "Product Owner"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 208,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4695,13 +5319,16 @@
             },
             "text": "Manager le développement d'un projet de logiciel interne de requêtage de base de données"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 209,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4716,13 +5343,16 @@
             },
             "text": "Coordonner un Tech Lead et 2 développeurs"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 210,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4737,13 +5367,16 @@
             },
             "text": "Recueillir les besoins métiers"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
         "index": 211,
         "type": "Paragraph",
         "properties": {
-          "style": "Normal",
+          "style": "DC_2nd_bullet",
           "alignment": "left",
           "ilvl": "1",
           "numId": "4",
@@ -4758,6 +5391,9 @@
             },
             "text": "Construire et mettre à jour le Kanban"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -4767,7 +5403,10 @@
           "style": "Normal",
           "alignment": "left",
           "paraId": "000000F3"
-        }
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 213,
@@ -4793,6 +5432,9 @@
             },
             "text": "Google Analytics, Excel, HTML-CSS, Jira Confluence, MongoDB, Python, Javascript"
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       }
     ],
