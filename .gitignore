@@ -1,7 +1,9 @@
 /.flake8
 /.venv
+.venv/
 /.vscode
 /__pycache__/
+__pycache__/
 *.pyc
 *.pyo
 *.pyd
