@@ -1,0 +1,1493 @@
+<w:document xmlns:wpc="http://schemas.microsoft.com/office/word/2010/wordprocessingCanvas" xmlns:cx="http://schemas.microsoft.com/office/drawing/2014/chartex" xmlns:cx1="http://schemas.microsoft.com/office/drawing/2015/9/8/chartex" xmlns:cx2="http://schemas.microsoft.com/office/drawing/2015/10/21/chartex" xmlns:cx3="http://schemas.microsoft.com/office/drawing/2016/5/9/chartex" xmlns:cx4="http://schemas.microsoft.com/office/drawing/2016/5/10/chartex" xmlns:cx5="http://schemas.microsoft.com/office/drawing/2016/5/11/chartex" xmlns:cx6="http://schemas.microsoft.com/office/drawing/2016/5/12/chartex" xmlns:cx7="http://schemas.microsoft.com/office/drawing/2016/5/13/chartex" xmlns:cx8="http://schemas.microsoft.com/office/drawing/2016/5/14/chartex" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:aink="http://schemas.microsoft.com/office/drawing/2016/ink" xmlns:am3d="http://schemas.microsoft.com/office/drawing/2017/model3d" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:oel="http://schemas.microsoft.com/office/2019/extlst" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp14="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:w14="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:w15="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:w16cex="http://schemas.microsoft.com/office/word/2018/wordml/cex" xmlns:w16cid="http://schemas.microsoft.com/office/word/2016/wordml/cid" xmlns:w16="http://schemas.microsoft.com/office/word/2018/wordml" xmlns:w16du="http://schemas.microsoft.com/office/word/2023/wordml/word16du" xmlns:w16sdtdh="http://schemas.microsoft.com/office/word/2020/wordml/sdtdatahash" xmlns:w16sdtfl="http://schemas.microsoft.com/office/word/2024/wordml/sdtformatlock" xmlns:w16se="http://schemas.microsoft.com/office/word/2015/wordml/symex" xmlns:wpg="http://schemas.microsoft.com/office/word/2010/wordprocessingGroup" xmlns:wpi="http://schemas.microsoft.com/office/word/2010/wordprocessingInk" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" xmlns:wps="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" mc:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh w16sdtfl w16du wp14">
+  <w:body>
+    <w:p w14:paraId="7219F07A" w14:textId="77777777" w:rsidR="0058757C" w:rsidRDefault="0058757C" w:rsidP="009D6416">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="1322AE54" w14:textId="77777777" w:rsidR="00942D4F" w:rsidRPr="00E10F87" w:rsidRDefault="00942D4F" w:rsidP="009D6416">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="56E2561D" w14:textId="77777777" w:rsidR="006925D0" w:rsidRDefault="006925D0" w:rsidP="009D6416">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="113FB7E5" w14:textId="4806DBB1" w:rsidR="00942D4F" w:rsidRDefault="00942D4F" w:rsidP="00942D4F">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+        <w:jc w:val="center"/>
+      </w:pPr>
+      <w:r>
+        <w:rPr>
+          <w:noProof/>
+          <w:sz w:val="40"/>
+          <w:szCs w:val="40"/>
+        </w:rPr>
+        <w:drawing>
+          <wp:inline distT="0" distB="0" distL="0" distR="0" wp14:anchorId="4A26F4D6" wp14:editId="0940272F">
+            <wp:extent cx="3860165" cy="951230"/>
+            <wp:effectExtent l="0" t="0" r="6985" b="1270"/>
+            <wp:docPr id="1" name="Image 1" descr="Une image contenant Police, texte, capture d’écran, logo  Description générée automatiquement"/>
+            <wp:cNvGraphicFramePr>
+              <a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>
+            </wp:cNvGraphicFramePr>
+            <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+              <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                  <pic:nvPicPr>
+                    <pic:cNvPr id="1" name="Image 1" descr="Une image contenant Police, texte, capture d’écran, logo  Description générée automatiquement"/>
+                    <pic:cNvPicPr>
+                      <a:picLocks noChangeAspect="1" noChangeArrowheads="1"/>
+                    </pic:cNvPicPr>
+                  </pic:nvPicPr>
+                  <pic:blipFill>
+                    <a:blip r:embed="rId6"/>
+                    <a:stretch>
+                      <a:fillRect/>
+                    </a:stretch>
+                  </pic:blipFill>
+                  <pic:spPr bwMode="auto">
+                    <a:xfrm>
+                      <a:off x="0" y="0"/>
+                      <a:ext cx="3860165" cy="951230"/>
+                    </a:xfrm>
+                    <a:prstGeom prst="rect">
+                      <a:avLst/>
+                    </a:prstGeom>
+                  </pic:spPr>
+                </pic:pic>
+              </a:graphicData>
+            </a:graphic>
+          </wp:inline>
+        </w:drawing>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="16C61456" w14:textId="77777777" w:rsidR="00942D4F" w:rsidRDefault="00942D4F" w:rsidP="009D6416">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="1BD35F0F" w14:textId="77777777" w:rsidR="00942D4F" w:rsidRDefault="00942D4F" w:rsidP="009D6416">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="6FB6CA5A" w14:textId="77777777" w:rsidR="00942D4F" w:rsidRDefault="00942D4F" w:rsidP="009D6416">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="3FFFC4C5" w14:textId="77777777" w:rsidR="00942D4F" w:rsidRPr="00E10F87" w:rsidRDefault="00942D4F" w:rsidP="009D6416">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="61296568" w14:textId="426FD244" w:rsidR="00124A89" w:rsidRPr="00E10F87" w:rsidRDefault="00000000" w:rsidP="006925D0">
+      <w:pPr>
+        <w:pStyle w:val="DCHDC"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>DOSSIER DE COMPÉTENCES</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="30879D8F" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="00E10F87" w:rsidRDefault="00C457C8" w:rsidP="005447AC">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="0C243E38" w14:textId="3700C503" w:rsidR="00124A89" w:rsidRPr="00E10F87" w:rsidRDefault="00C51574" w:rsidP="006925D0">
+      <w:pPr>
+        <w:pStyle w:val="DCHTrigramme"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>MJPA</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="4F398C5D" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="00E10F87" w:rsidRDefault="00C457C8" w:rsidP="005C74C8">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="5F63C69D" w14:textId="77777777" w:rsidR="006925D0" w:rsidRPr="00E10F87" w:rsidRDefault="006925D0" w:rsidP="005C74C8">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="6573B259" w14:textId="77777777" w:rsidR="00124A89" w:rsidRPr="00E10F87" w:rsidRDefault="00000000">
+      <w:pPr>
+        <w:pStyle w:val="DCHPoste"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t xml:space="preserve">Data Engineer / Data </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>Analyst</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="1C2FC01B" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="00E10F87" w:rsidRDefault="00C457C8" w:rsidP="005C74C8">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="228DEF87" w14:textId="77777777" w:rsidR="00124A89" w:rsidRPr="00E10F87" w:rsidRDefault="00124A89" w:rsidP="005C74C8">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="1D6638C5" w14:textId="2310A440" w:rsidR="0083493E" w:rsidRPr="00E10F87" w:rsidRDefault="002A56BB" w:rsidP="002A56BB">
+      <w:pPr>
+        <w:pStyle w:val="DCHXP"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>Expérience (I2)</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="40828BE7" w14:textId="77777777" w:rsidR="005C74C8" w:rsidRPr="00E10F87" w:rsidRDefault="005C74C8" w:rsidP="005C74C8">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="164C3871" w14:textId="77777777" w:rsidR="0083493E" w:rsidRPr="00E10F87" w:rsidRDefault="0083493E" w:rsidP="005C74C8">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="4CCF6B3F" w14:textId="5B6C4367" w:rsidR="00B852AA" w:rsidRPr="00E10F87" w:rsidRDefault="00B852AA">
+      <w:pPr>
+        <w:spacing w:after="200"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:br w:type="page"/>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="6362BBAE" w14:textId="77777777" w:rsidR="00B852AA" w:rsidRPr="00E10F87" w:rsidRDefault="00B852AA" w:rsidP="005C74C8">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="3A2AD6CD" w14:textId="77777777" w:rsidR="00124A89" w:rsidRPr="00E10F87" w:rsidRDefault="00000000" w:rsidP="00C51574">
+      <w:pPr>
+        <w:pStyle w:val="DCT1Sections"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>Domaines de Compétences</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="23BC5DF7" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="005748D2">
+      <w:pPr>
+        <w:pStyle w:val="DC1stbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Gestion de projets</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="0C6D932B" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Recueil des besoins</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="62B38234" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Participation au cahier des charges avec les métiers</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="1B96FDD4" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Analyse de faisabilité et préconisations</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="55BA8493" w14:textId="76A33AA5" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Gestion des priorités et planning</w:t>
+      </w:r>
+      <w:r w:rsidR="00EE7A63" w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Ecriture des livrables</w:t>
+      </w:r>
+      <w:r w:rsidR="00EE7A63" w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Suivi de projets et avancements</w:t>
+      </w:r>
+      <w:r w:rsidR="00EE7A63" w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Organisation des réunions</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="6F7CD23E" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Coordination transverse entre services</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="229A825F" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Formation des équipes</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="1C883514" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="005748D2">
+      <w:pPr>
+        <w:pStyle w:val="DC1stbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Traitement des données</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="30690D71" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Conception de pipelines de données robustes</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="49358556" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Traitement de données à grande échelle (Big Data</w:t>
+      </w:r>
+      <w:proofErr w:type="gramStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>):</w:t>
+      </w:r>
+      <w:proofErr w:type="gramEnd"/>
+    </w:p>
+    <w:p w14:paraId="2549138E" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC4thbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Collecte et branchements APIs, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>ETLs</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> python</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="2BACC8F7" w14:textId="72FA576E" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC4thbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Chargement sur des Data Lakes ou Data </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Warehouses</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidR="00EE7A63" w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Stockage Google Cloud Platform, PostgreSQL, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>DuckDB</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidR="00EE7A63" w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Transformation avec Data </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Build</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> Tool, SQL, Python</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="1EA66A86" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Support aux cas d’usage et analytiques</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="71515265" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Réalisation de tests unitaires, configuration dynamique, retraitement régulier</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="57D2E3FA" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Architecture médaillon </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Databricks</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="787564AF" w14:textId="54CB352E" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Construction de plusieurs niveaux de traitement et assemblage de tables</w:t>
+      </w:r>
+      <w:r w:rsidR="00EE7A63" w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Développement de traitements dynamiques</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="4AA47BF1" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Unification des données dans un </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>lakehouse</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> optimisé</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="12B93704" w14:textId="7AA29843" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Intégration d’une démarche CI/CD </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Databricks</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> CLI pour les pipelines</w:t>
+      </w:r>
+      <w:r w:rsidR="00EE7A63" w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Mise en place de bonnes pratiques </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>FinOps</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> sur </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Databricks</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="6680521E" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="005748D2">
+      <w:pPr>
+        <w:pStyle w:val="DC1stbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Visualisation</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="75B2676F" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="005748D2">
+      <w:pPr>
+        <w:pStyle w:val="DC1stbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Technologies</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="58370D3A" w14:textId="77777777" w:rsidR="00411493" w:rsidRPr="00E10F87" w:rsidRDefault="00411493" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Python, Pandas, SQL, PostgreSQL, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>PgAdmin</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Databricks</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, Docker, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>DevContainers</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, DBT, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Docxtpl</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, Jinja, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>DuckDB</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>MotherDuck</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>, Power BI, Looker</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="6693E013" w14:textId="77777777" w:rsidR="00B852AA" w:rsidRPr="00E10F87" w:rsidRDefault="00B852AA" w:rsidP="00B852AA">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="6231CABA" w14:textId="36ABBE1E" w:rsidR="008E13A9" w:rsidRPr="00E10F87" w:rsidRDefault="008E13A9" w:rsidP="008E13A9">
+      <w:pPr>
+        <w:pStyle w:val="DCT1Sections"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>Formation</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="34AC5968" w14:textId="77777777" w:rsidR="000526E0" w:rsidRPr="00E10F87" w:rsidRDefault="000526E0" w:rsidP="000526E0">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblW w:w="9695" w:type="dxa"/>
+        <w:tblInd w:w="336" w:type="dxa"/>
+        <w:tblLayout w:type="fixed"/>
+        <w:tblLook w:val="0000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="0" w:noVBand="0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="1615"/>
+        <w:gridCol w:w="8080"/>
+      </w:tblGrid>
+      <w:tr w:rsidR="00682382" w:rsidRPr="00E10F87" w14:paraId="25FE2F4F" w14:textId="77777777" w:rsidTr="007B4DC0">
+        <w:trPr>
+          <w:trHeight w:val="737"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1615" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="04F706A5" w14:textId="77777777" w:rsidR="00682382" w:rsidRPr="00E10F87" w:rsidRDefault="00682382" w:rsidP="00815DF3">
+            <w:pPr>
+              <w:pStyle w:val="DCTableYear"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>2024</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="8080" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="2B3225B0" w14:textId="77777777" w:rsidR="00E7554D" w:rsidRPr="00E10F87" w:rsidRDefault="00E7554D" w:rsidP="00E7554D">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve">Lorem ipsum </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>dolor</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>sit</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>amet</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+          </w:p>
+          <w:p w14:paraId="1B30461B" w14:textId="70CD814D" w:rsidR="00682382" w:rsidRPr="00E10F87" w:rsidRDefault="00E7554D" w:rsidP="00E7554D">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve">Lorem ipsum </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>dolor</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>sit</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>amet</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="00682382" w:rsidRPr="00E10F87" w14:paraId="26548C10" w14:textId="77777777" w:rsidTr="007B4DC0">
+        <w:trPr>
+          <w:trHeight w:val="737"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1615" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="3FC66A44" w14:textId="77777777" w:rsidR="00682382" w:rsidRPr="00E10F87" w:rsidRDefault="00682382" w:rsidP="00815DF3">
+            <w:pPr>
+              <w:pStyle w:val="DCTableYear"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>2018-2020</w:t>
+            </w:r>
+          </w:p>
+          <w:p w14:paraId="2369B7B4" w14:textId="77777777" w:rsidR="000526E0" w:rsidRPr="00E10F87" w:rsidRDefault="000526E0" w:rsidP="00815DF3">
+            <w:pPr>
+              <w:pStyle w:val="DCTableYear"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="8080" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="614ED40B" w14:textId="77777777" w:rsidR="00682382" w:rsidRPr="00E10F87" w:rsidRDefault="00E7554D" w:rsidP="00E7554D">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve">Lorem ipsum </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>dolor</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>sit</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>amet</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t xml:space="preserve"> </w:t>
+            </w:r>
+          </w:p>
+          <w:p w14:paraId="41A65D42" w14:textId="4EC4E784" w:rsidR="00E7554D" w:rsidRPr="00E10F87" w:rsidRDefault="00E7554D" w:rsidP="00E7554D">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="00682382" w:rsidRPr="00E10F87" w14:paraId="6BA28C04" w14:textId="77777777" w:rsidTr="007B4DC0">
+        <w:trPr>
+          <w:trHeight w:val="737"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1615" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="148E088C" w14:textId="2AA5A169" w:rsidR="00682382" w:rsidRPr="00E10F87" w:rsidRDefault="00682382" w:rsidP="00815DF3">
+            <w:pPr>
+              <w:pStyle w:val="DCTableYear"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="8080" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="182F5A29" w14:textId="77777777" w:rsidR="00E7554D" w:rsidRPr="00E10F87" w:rsidRDefault="00E7554D" w:rsidP="00E7554D">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p w14:paraId="3CD96D61" w14:textId="77777777" w:rsidR="00ED10F4" w:rsidRPr="00E10F87" w:rsidRDefault="00ED10F4" w:rsidP="00B852AA">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="62B28A34" w14:textId="41749CC1" w:rsidR="00815DF3" w:rsidRPr="00E10F87" w:rsidRDefault="003D333B" w:rsidP="00D2142C">
+      <w:pPr>
+        <w:pStyle w:val="DCT1Sections"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>Langues</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="468F3FEA" w14:textId="77777777" w:rsidR="00815DF3" w:rsidRPr="00E10F87" w:rsidRDefault="00815DF3" w:rsidP="00B852AA">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblW w:w="9695" w:type="dxa"/>
+        <w:tblInd w:w="336" w:type="dxa"/>
+        <w:tblLayout w:type="fixed"/>
+        <w:tblLook w:val="0000" w:firstRow="0" w:lastRow="0" w:firstColumn="0" w:lastColumn="0" w:noHBand="0" w:noVBand="0"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="1615"/>
+        <w:gridCol w:w="8080"/>
+      </w:tblGrid>
+      <w:tr w:rsidR="00436586" w:rsidRPr="00E10F87" w14:paraId="7805581A" w14:textId="77777777" w:rsidTr="007B4DC0">
+        <w:trPr>
+          <w:trHeight w:val="737"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1615" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="59399E7D" w14:textId="77777777" w:rsidR="00436586" w:rsidRPr="00E10F87" w:rsidRDefault="00436586" w:rsidP="00ED10F4">
+            <w:pPr>
+              <w:pStyle w:val="DCTableBlueTitle"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00E10F87">
+              <w:lastRenderedPageBreak/>
+              <w:t>Anglais</w:t>
+            </w:r>
+          </w:p>
+          <w:p w14:paraId="26E4C15B" w14:textId="31FF6D5D" w:rsidR="00ED10F4" w:rsidRPr="00E10F87" w:rsidRDefault="00ED10F4" w:rsidP="00ED10F4">
+            <w:pPr>
+              <w:pStyle w:val="DCTableBlueTitle"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="8080" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="6C2C4255" w14:textId="77777777" w:rsidR="00436586" w:rsidRPr="00E10F87" w:rsidRDefault="004549DE" w:rsidP="00ED10F4">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00E10F87">
+              <w:t>Lu, écrit, parlé, professionnel</w:t>
+            </w:r>
+          </w:p>
+          <w:p w14:paraId="49A5C863" w14:textId="4DE2D501" w:rsidR="00ED10F4" w:rsidRPr="00E10F87" w:rsidRDefault="00ED10F4" w:rsidP="00ED10F4">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="00436586" w:rsidRPr="00E10F87" w14:paraId="1B65C88E" w14:textId="77777777" w:rsidTr="007B4DC0">
+        <w:trPr>
+          <w:trHeight w:val="737"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1615" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="615CD2C3" w14:textId="77777777" w:rsidR="00436586" w:rsidRPr="00E10F87" w:rsidRDefault="00436586" w:rsidP="00ED10F4">
+            <w:pPr>
+              <w:pStyle w:val="DCTableBlueTitle"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="8080" w:type="dxa"/>
+          </w:tcPr>
+          <w:p w14:paraId="410E7B7A" w14:textId="77777777" w:rsidR="00436586" w:rsidRPr="00E10F87" w:rsidRDefault="00436586" w:rsidP="00ED10F4">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+          </w:p>
+          <w:p w14:paraId="63A3BBBA" w14:textId="77777777" w:rsidR="00436586" w:rsidRPr="00E10F87" w:rsidRDefault="00436586" w:rsidP="00FF5710">
+            <w:pPr>
+              <w:pStyle w:val="DCTableContent"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p w14:paraId="3A58C7F8" w14:textId="77777777" w:rsidR="004549DE" w:rsidRPr="00E10F87" w:rsidRDefault="004549DE" w:rsidP="003D3DA3">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="7BC84267" w14:textId="2A63C591" w:rsidR="00B10E11" w:rsidRPr="00E10F87" w:rsidRDefault="00B10E11" w:rsidP="00B10E11">
+      <w:pPr>
+        <w:pStyle w:val="DCT1Sections"/>
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:lang w:val="fr-FR"/>
+        </w:rPr>
+        <w:t>Expériences Professionnelles</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="7A8D6BE4" w14:textId="77777777" w:rsidR="00B006BF" w:rsidRDefault="00B006BF" w:rsidP="00B852AA">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="Grilledutableau"/>
+        <w:tblW w:w="5000" w:type="pct"/>
+        <w:tblBorders>
+          <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+        </w:tblBorders>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="7356"/>
+        <w:gridCol w:w="2832"/>
+      </w:tblGrid>
+      <w:tr w:rsidR="00B006BF" w14:paraId="346513CF" w14:textId="77777777" w:rsidTr="00D07DBB">
+        <w:trPr>
+          <w:trHeight w:val="593"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3610" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="4E5D564E" w14:textId="36913BA1" w:rsidR="00B006BF" w:rsidRDefault="00B006BF" w:rsidP="00C03D4A">
+            <w:pPr>
+              <w:pStyle w:val="DCXPTitle"/>
+              <w:jc w:val="left"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00B006BF">
+              <w:t xml:space="preserve">Automotive </w:t>
+            </w:r>
+            <w:proofErr w:type="spellStart"/>
+            <w:r w:rsidRPr="00B006BF">
+              <w:t>Cells</w:t>
+            </w:r>
+            <w:proofErr w:type="spellEnd"/>
+            <w:r w:rsidRPr="00B006BF">
+              <w:t xml:space="preserve"> Company, Bruges</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1390" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="6DC4DD27" w14:textId="1A48409F" w:rsidR="00B006BF" w:rsidRDefault="00B006BF" w:rsidP="00C03D4A">
+            <w:pPr>
+              <w:pStyle w:val="DCXPDate"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00B006BF">
+              <w:t>09/2025 – 03/2026</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="00B006BF" w14:paraId="5B1E3989" w14:textId="77777777" w:rsidTr="00D07DBB">
+        <w:trPr>
+          <w:trHeight w:val="417"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3610" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="24B5C2BE" w14:textId="17B15B31" w:rsidR="00B006BF" w:rsidRPr="00B006BF" w:rsidRDefault="00B006BF" w:rsidP="00C03D4A">
+            <w:pPr>
+              <w:pStyle w:val="DCXPPoste"/>
+              <w:jc w:val="left"/>
+            </w:pPr>
+            <w:r w:rsidRPr="00B006BF">
+              <w:t>Ingénieur d’étude CDI, mission de Data Engineer</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1390" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="6BFCC4FE" w14:textId="77777777" w:rsidR="00B006BF" w:rsidRDefault="00B006BF" w:rsidP="00D07DBB">
+            <w:pPr>
+              <w:pStyle w:val="DCXPDate"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p w14:paraId="78AA52B5" w14:textId="77777777" w:rsidR="00BB0E6F" w:rsidRPr="00BB0E6F" w:rsidRDefault="00BB0E6F" w:rsidP="003859C7">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="6E75A97C" w14:textId="1E853E0E" w:rsidR="003859C7" w:rsidRPr="00E10F87" w:rsidRDefault="003859C7" w:rsidP="003859C7">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:b/>
+          <w:bCs/>
+        </w:rPr>
+        <w:t>Contexte :</w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> Ma première mission au sein d’EPSYL-ALCEN s’est déroulée dans le centre d’études et d’innovation d’ACC à Bruges. Dans le cadre de mises en place de process data automatisés, j’ai rejoint l’équipe data R&amp;D qui développe des pipelines et des applications de traitement de données pour la délivrer de manière dynamique et robuste aux autres services d’ingénierie.</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="1A737ECE" w14:textId="231818A1" w:rsidR="00C457C8" w:rsidRPr="005748D2" w:rsidRDefault="00C457C8" w:rsidP="005748D2">
+      <w:pPr>
+        <w:pStyle w:val="DC1stbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="005748D2">
+        <w:t>Traitement des données</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="5BD47469" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="001321A2" w:rsidRDefault="00C457C8" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="001321A2">
+        <w:t>Conception de pipelines de données robustes</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="0082B63E" w14:textId="1C5FCC14" w:rsidR="00C457C8" w:rsidRPr="001321A2" w:rsidRDefault="00C457C8" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="001321A2">
+        <w:t>Traitement de données à grande échelle (Big Data)</w:t>
+      </w:r>
+      <w:r w:rsidR="0032797C" w:rsidRPr="001321A2">
+        <w:t> :</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="650AF133" w14:textId="79B8E020" w:rsidR="00C457C8" w:rsidRPr="00147CD3" w:rsidRDefault="00C457C8" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve">Collecte et branchements APIs, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t>ETLs</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve"> python</w:t>
+      </w:r>
+      <w:r w:rsidR="002F7297" w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve">Chargement sur des Data Lakes ou Data </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t>Warehouses</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="37B1B518" w14:textId="274BE103" w:rsidR="00C457C8" w:rsidRPr="00147CD3" w:rsidRDefault="00C457C8" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve">Stockage Google Cloud Platform, PostgreSQL, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t>DuckDB</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidR="002F7297" w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve">Transformation avec Data </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t>Build</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve"> Tool, SQL, Python</w:t>
+      </w:r>
+      <w:r w:rsidR="00DB0E3F" w:rsidRPr="00147CD3">
+        <w:t> :</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="377D3043" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="00147CD3" w:rsidRDefault="00C457C8" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC4thbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t>Support aux cas d’usage et analytiques</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="58B14C4F" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="00147CD3" w:rsidRDefault="00C457C8" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC4thbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t>Réalisation de tests unitaires, configuration dynamique, retraitement régulier</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="24C967F7" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="00147CD3" w:rsidRDefault="00C457C8" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC4thbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t xml:space="preserve">Architecture médaillon </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00147CD3">
+        <w:t>Databricks</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="1A3D1DCC" w14:textId="77777777" w:rsidR="00006540" w:rsidRPr="00E10F87" w:rsidRDefault="00006540" w:rsidP="005748D2">
+      <w:pPr>
+        <w:pStyle w:val="DC1stbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Collecte des données</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="35ACD388" w14:textId="77777777" w:rsidR="00006540" w:rsidRPr="00E10F87" w:rsidRDefault="00006540" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Etudes des sources de données, Construction et amélioration de l’architecture </w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="423BD9A1" w14:textId="77777777" w:rsidR="00006540" w:rsidRPr="00E10F87" w:rsidRDefault="00006540" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Requêtes SQL sur les bases de données PostgreSQL</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="5A676136" w14:textId="77777777" w:rsidR="00C457C8" w:rsidRPr="00E10F87" w:rsidRDefault="00C457C8" w:rsidP="00006540">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="7F829FA6" w14:textId="521FE88A" w:rsidR="00124A89" w:rsidRPr="00E10F87" w:rsidRDefault="00AB4B20" w:rsidP="003A22BE">
+      <w:pPr>
+        <w:pStyle w:val="DCXPBlueContent"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:b/>
+          <w:bCs/>
+        </w:rPr>
+        <w:t>Environnements techniques</w:t>
+      </w:r>
+      <w:r w:rsidR="003859C7" w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:b/>
+          <w:bCs/>
+        </w:rPr>
+        <w:t> :</w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> SQL, Python, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>VSCode</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, Azure DevOps, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Jupyter</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> Notebook, PostgreSQL, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Streamlit</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>LucidChart</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="18D18F56" w14:textId="77777777" w:rsidR="00AB4B20" w:rsidRDefault="00AB4B20" w:rsidP="003A22BE">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:tbl>
+      <w:tblPr>
+        <w:tblStyle w:val="Grilledutableau"/>
+        <w:tblW w:w="5000" w:type="pct"/>
+        <w:tblBorders>
+          <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+        </w:tblBorders>
+        <w:tblLook w:val="04A0" w:firstRow="1" w:lastRow="0" w:firstColumn="1" w:lastColumn="0" w:noHBand="0" w:noVBand="1"/>
+      </w:tblPr>
+      <w:tblGrid>
+        <w:gridCol w:w="7356"/>
+        <w:gridCol w:w="2832"/>
+      </w:tblGrid>
+      <w:tr w:rsidR="002D0AD2" w14:paraId="247C1E35" w14:textId="77777777" w:rsidTr="000F2364">
+        <w:trPr>
+          <w:trHeight w:val="593"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3610" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="1433FA72" w14:textId="143B1C4B" w:rsidR="002D0AD2" w:rsidRDefault="002D0AD2" w:rsidP="000F2364">
+            <w:pPr>
+              <w:pStyle w:val="DCXPTitle"/>
+              <w:jc w:val="left"/>
+            </w:pPr>
+            <w:r w:rsidRPr="002D0AD2">
+              <w:t>KEYOR, Bordeaux</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1390" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="291BA455" w14:textId="70683B33" w:rsidR="002D0AD2" w:rsidRDefault="002D0AD2" w:rsidP="000F2364">
+            <w:pPr>
+              <w:pStyle w:val="DCXPDate"/>
+            </w:pPr>
+            <w:r w:rsidRPr="002D0AD2">
+              <w:t>06/2021 – 06/2024</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+      </w:tr>
+      <w:tr w:rsidR="002D0AD2" w14:paraId="3CD97F55" w14:textId="77777777" w:rsidTr="000F2364">
+        <w:trPr>
+          <w:trHeight w:val="417"/>
+        </w:trPr>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="3610" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="489F9C1D" w14:textId="2A83AC38" w:rsidR="002D0AD2" w:rsidRPr="00B006BF" w:rsidRDefault="002D0AD2" w:rsidP="000F2364">
+            <w:pPr>
+              <w:pStyle w:val="DCXPPoste"/>
+              <w:jc w:val="left"/>
+            </w:pPr>
+            <w:r w:rsidRPr="002D0AD2">
+              <w:t>Data Manager, CDI</w:t>
+            </w:r>
+          </w:p>
+        </w:tc>
+        <w:tc>
+          <w:tcPr>
+            <w:tcW w:w="1390" w:type="pct"/>
+            <w:vAlign w:val="center"/>
+          </w:tcPr>
+          <w:p w14:paraId="2E34DB9A" w14:textId="77777777" w:rsidR="002D0AD2" w:rsidRDefault="002D0AD2" w:rsidP="000F2364">
+            <w:pPr>
+              <w:pStyle w:val="DCXPDate"/>
+            </w:pPr>
+          </w:p>
+        </w:tc>
+      </w:tr>
+    </w:tbl>
+    <w:p w14:paraId="167150C3" w14:textId="77777777" w:rsidR="002D0AD2" w:rsidRPr="00E10F87" w:rsidRDefault="002D0AD2" w:rsidP="003A22BE">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+    </w:p>
+    <w:p w14:paraId="769C811F" w14:textId="41D09C02" w:rsidR="00316035" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="00C6226A">
+      <w:pPr>
+        <w:pStyle w:val="DCNormal"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:b/>
+          <w:bCs/>
+        </w:rPr>
+        <w:t>Contexte</w:t>
+      </w:r>
+      <w:r w:rsidR="00C6226A" w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:b/>
+          <w:bCs/>
+        </w:rPr>
+        <w:t xml:space="preserve"> : </w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">J’ai rejoint </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Keyor</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> qui est une entreprise de conception et fabrication de menuiseries afin de prendre en charge l’ensemble des projets data. J’ai notamment travaillé avec les équipes R&amp;D sur le traitement des données techniques liées aux différents produits.</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="6D127353" w14:textId="10EA7248" w:rsidR="00316035" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="005748D2">
+      <w:pPr>
+        <w:pStyle w:val="DC1stbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Gestion de projets</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="2564B99A" w14:textId="77777777" w:rsidR="00E10F87" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Recueil des besoins</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="49EB2957" w14:textId="6F2624F5" w:rsidR="00316035" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Participation au cahier des charges avec les métiers</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="3CD0C179" w14:textId="77777777" w:rsidR="00E10F87" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:lastRenderedPageBreak/>
+        <w:t>Analyse de faisabilité et préconisations</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="360676D3" w14:textId="77777777" w:rsidR="00E10F87" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Ecriture des livrables</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="12E0CB5E" w14:textId="77777777" w:rsidR="00E10F87" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Suivi de projets et avancements</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="3DEAC689" w14:textId="72CF3994" w:rsidR="00E10F87" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Echanges transverses entre services</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="24266CD8" w14:textId="77777777" w:rsidR="00E10F87" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Reportings</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="3E5F9616" w14:textId="548241E2" w:rsidR="00316035" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Collecte des données</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="740DAB9F" w14:textId="03301E39" w:rsidR="00316035" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">Collecte des données spécifiques aux métiers : </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>multisources</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:p w14:paraId="5C5D0692" w14:textId="77777777" w:rsidR="00E10F87" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="00147CD3">
+      <w:pPr>
+        <w:pStyle w:val="DC3rdbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Réceptionner, trier, nettoyer les données</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="380474E4" w14:textId="367DE896" w:rsidR="00316035" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Implémentation d</w:t>
+      </w:r>
+      <w:r w:rsidR="00E10F87" w:rsidRPr="00E10F87">
+        <w:t>’</w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>une data gouvernance :</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="1E052B97" w14:textId="45869768" w:rsidR="00316035" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Etude des compétences et besoins métiers</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="2746A1D0" w14:textId="08644FD9" w:rsidR="00AB4B20" w:rsidRPr="00E10F87" w:rsidRDefault="00316035" w:rsidP="001321A2">
+      <w:pPr>
+        <w:pStyle w:val="DC2ndbullet"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Conception des outils et indicateurs à mettre à disposition</w:t>
+      </w:r>
+    </w:p>
+    <w:p w14:paraId="1D37DA72" w14:textId="21C7CB33" w:rsidR="00AB4B20" w:rsidRPr="00E10F87" w:rsidRDefault="00616A68" w:rsidP="00E10F87">
+      <w:pPr>
+        <w:pStyle w:val="DCXPBlueContent"/>
+      </w:pPr>
+      <w:r w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:b/>
+          <w:bCs/>
+        </w:rPr>
+        <w:t>Environnements techniques</w:t>
+      </w:r>
+      <w:r w:rsidR="00E10F87" w:rsidRPr="00E10F87">
+        <w:rPr>
+          <w:b/>
+          <w:bCs/>
+        </w:rPr>
+        <w:t> </w:t>
+      </w:r>
+      <w:r w:rsidR="00E10F87" w:rsidRPr="00E10F87">
+        <w:t>:</w:t>
+      </w:r>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve"> Power Query, Power BI, Excel, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Qlikview</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Qliksense</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>HerculePro</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t xml:space="preserve">, Sage X3, </w:t>
+      </w:r>
+      <w:proofErr w:type="spellStart"/>
+      <w:r w:rsidRPr="00E10F87">
+        <w:t>Quable</w:t>
+      </w:r>
+      <w:proofErr w:type="spellEnd"/>
+    </w:p>
+    <w:sectPr w:rsidR="00AB4B20" w:rsidRPr="00E10F87" w:rsidSect="00B86718">
+      <w:pgSz w:w="12240" w:h="15840"/>
+      <w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="720" w:footer="720" w:gutter="0"/>
+      <w:cols w:space="720"/>
+      <w:docGrid w:linePitch="360"/>
+    </w:sectPr>
+  </w:body>
+</w:document>

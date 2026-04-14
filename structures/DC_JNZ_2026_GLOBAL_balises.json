@@ -1,0 +1,4557 @@
+{
+  "document": {
+    "type": "Document",
+    "source": "DC_JNZ_2026_GLOBAL.xml",
+    "content": [
+      {
+        "index": 0,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000001"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Times New Roman"
+            }
+          }
+        ]
+      },
+      {
+        "index": 1,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000002"
+        }
+      },
+      {
+        "index": 2,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000003"
+        }
+      },
+      {
+        "index": 3,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000004"
+        }
+      },
+      {
+        "index": 4,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000005"
+        }
+      },
+      {
+        "index": 5,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "center",
+          "paraId": "00000006"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "40",
+              "color": "538cd3",
+              "font": "Arial"
+            },
+            "text": "DOSSIER DE COMPETENCES"
+          }
+        ]
+      },
+      {
+        "index": 6,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000007"
+        }
+      },
+      {
+        "index": 7,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000008"
+        }
+      },
+      {
+        "index": 8,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000009"
+        }
+      },
+      {
+        "index": 9,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000000A"
+        }
+      },
+      {
+        "index": 10,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "center",
+          "paraId": "0000000B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "40",
+              "color": "f69545",
+              "font": "Arial"
+            },
+            "text": "JNZ"
+          }
+        ]
+      },
+      {
+        "index": 11,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000000C"
+        }
+      },
+      {
+        "index": 12,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "center",
+          "paraId": "0000000D"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "40",
+              "font": "Arial"
+            },
+            "text": "Data Engineer, Data Analyst"
+          }
+        ]
+      },
+      {
+        "index": 13,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "center",
+          "paraId": "0000000E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "40",
+              "font": "Arial"
+            },
+            "text": "Python, SQL, PostgreSQL, DBT"
+          }
+        ]
+      },
+      {
+        "index": 14,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000000F"
+        }
+      },
+      {
+        "index": 15,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000010"
+        }
+      },
+      {
+        "index": 16,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000011"
+        }
+      },
+      {
+        "index": 17,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000012"
+        }
+      },
+      {
+        "index": 18,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000013"
+        }
+      },
+      {
+        "index": 19,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000014"
+        }
+      },
+      {
+        "index": 20,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "center",
+          "section_break": "nextPage",
+          "paraId": "00000015"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "40",
+              "color": "f69545",
+              "font": "Arial"
+            },
+            "text": "Expérience (I2)"
+          }
+        ]
+      },
+      {
+        "index": 21,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading1",
+          "paraId": "00000016"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "538cd4"
+            },
+            "text": "Domaines de compétences"
+          }
+        ]
+      },
+      {
+        "index": 22,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000017"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Gestion de projets"
+          }
+        ]
+      },
+      {
+        "index": 23,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000018"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Recueil des besoins"
+          }
+        ]
+      },
+      {
+        "index": 24,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000019"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Participation au cahier des charges avec les métiers"
+          }
+        ]
+      },
+      {
+        "index": 25,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000001A"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Analyse de faisabilité et préconisations"
+          }
+        ]
+      },
+      {
+        "index": 26,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000001B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Gestion des priorités et planning"
+          }
+        ]
+      },
+      {
+        "index": 27,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000001C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Ecriture des livrables"
+          }
+        ]
+      },
+      {
+        "index": 28,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000001D"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Suivi de projets et avancements"
+          }
+        ]
+      },
+      {
+        "index": 29,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000001E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Organisation des réunions"
+          }
+        ]
+      },
+      {
+        "index": 30,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000001F"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Coordination transverse entre services"
+          }
+        ]
+      },
+      {
+        "index": 31,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000020"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Formation des équipes"
+          }
+        ]
+      },
+      {
+        "index": 32,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000021"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Traitement des données"
+          }
+        ]
+      },
+      {
+        "index": 33,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000022"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Conception de pipelines de données robustes"
+          }
+        ]
+      },
+      {
+        "index": 34,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000023"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Traitement de données à grande échelle (Big Data):"
+          }
+        ]
+      },
+      {
+        "index": 35,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000024"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Collecte et branchements APIs, ETLs python"
+          }
+        ]
+      },
+      {
+        "index": 36,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000025"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Chargement sur des Data Lakes ou Data Warehouses"
+          }
+        ]
+      },
+      {
+        "index": 37,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000026"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Stockage Google Cloud Platform, PostgreSQL, DuckDB"
+          }
+        ]
+      },
+      {
+        "index": 38,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000027"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Transformation avec Data Build Tool, SQL, Python"
+          }
+        ]
+      },
+      {
+        "index": 39,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000028"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Support aux cas d’usage et analytiques"
+          }
+        ]
+      },
+      {
+        "index": 40,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000029"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Réalisation de tests unitaires, configuration dynamique, retraitement régulier"
+          }
+        ]
+      },
+      {
+        "index": 41,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000002A"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Architecture médaillon Databricks"
+          }
+        ]
+      },
+      {
+        "index": 42,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000002B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction de plusieurs niveaux de traitement et assemblage de tables"
+          }
+        ]
+      },
+      {
+        "index": 43,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000002C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Développement de traitements dynamiques"
+          }
+        ]
+      },
+      {
+        "index": 44,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000002D"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Unification des données dans un lakehouse optimisé"
+          }
+        ]
+      },
+      {
+        "index": 45,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000002E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Intégration d’une démarche CI/CD Databricks CLI pour les pipelines"
+          }
+        ]
+      },
+      {
+        "index": 46,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000002F"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Mise en place de bonnes pratiques FinOps sur Databricks"
+          }
+        ]
+      },
+      {
+        "index": 47,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000030"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Visualisation"
+          }
+        ]
+      },
+      {
+        "index": 48,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000031"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Développement de Dashboards PowerBI, Looker dynamiques"
+          }
+        ]
+      },
+      {
+        "index": 49,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000032"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Recherche et vulgarisation d’indicateurs clés de performance"
+          }
+        ]
+      },
+      {
+        "index": 50,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000033"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Implémentation d’une data gouvernance :"
+          }
+        ]
+      },
+      {
+        "index": 51,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000034"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Etude des compétences et besoins métiers"
+          }
+        ]
+      },
+      {
+        "index": 52,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000035"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Conception des outils et indicateurs à mettre à disposition"
+          }
+        ]
+      },
+      {
+        "index": 53,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000036"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Correction et optimisation des pipelines de données"
+          }
+        ]
+      },
+      {
+        "index": 54,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000037"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Coordination entre les services"
+          }
+        ]
+      },
+      {
+        "index": 55,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "2",
+          "numId": "2",
+          "paraId": "00000038"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Ecriture des process et formation des équipes"
+          }
+        ]
+      },
+      {
+        "index": 56,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000039"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Support aux cas d’usage et analytiques"
+          }
+        ]
+      },
+      {
+        "index": 57,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000003A"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Conception de modèles ML et prévisionnels"
+          }
+        ]
+      },
+      {
+        "index": 58,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000003B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Référent des données disponibles"
+          }
+        ]
+      },
+      {
+        "index": 59,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000003C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction des requêtes SQL ponctuelles et planifiées"
+          }
+        ]
+      },
+      {
+        "index": 60,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000003D"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Intégration et développement de reverse engineering"
+          }
+        ]
+      },
+      {
+        "index": 61,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "0000003E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Applicatif"
+          }
+        ]
+      },
+      {
+        "index": 62,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "0000003F"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Etude de besoin utilisateur"
+          }
+        ]
+      },
+      {
+        "index": 63,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000040"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Développement d’application pour la délivrabilité et la visualisation de données avec le Framework Streamlit"
+          }
+        ]
+      },
+      {
+        "index": 64,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000041"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Interactions et échanges de données avec des serveurs et bases de données (Backend)"
+          }
+        ]
+      },
+      {
+        "index": 65,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000042"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
+          }
+        ]
+      },
+      {
+        "index": 66,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000043"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
+          }
+        ]
+      },
+      {
+        "index": 67,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000044"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Technologies"
+          }
+        ]
+      },
+      {
+        "index": 68,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "2",
+          "paraId": "00000045"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Python, Pandas, SQL, PostgreSQL, PgAdmin, Databricks, Docker, DevContainers, DBT, Docxtpl, Jinja, DuckDB, MotherDuck, Power BI, Looker"
+          }
+        ]
+      },
+      {
+        "index": 69,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "paraId": "00000046"
+        }
+      },
+      {
+        "index": 70,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "paraId": "00000047"
+        }
+      },
+      {
+        "index": 71,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading1",
+          "paraId": "00000048"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "538cd4"
+            },
+            "text": "Formation"
+          }
+        ]
+      },
+      {
+        "index": 72,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000049"
+        }
+      },
+      {
+        "index": 73,
+        "type": "Table",
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "0000004A"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "22",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "2024"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "0000004B"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Formation Concepteur Développeur en IA et analyse Big Data - Option Data analyse"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 1,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "0000004C"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Le Wagon Bordeaux"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "0000004D"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "0000004E"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "22",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "2018-2020"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "0000004F"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Master Manager en stratégie digitale et MBA Web Business"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 1,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000050"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "ESCEN Bordeaux"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000051"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000052"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "22",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "2017-2018"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000053"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Bachelor Webmarketing et sites e-commerce"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 1,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000054"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "ESCEN Bordeaux"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000055"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000056"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "22",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "2014-2016"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000057"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "DUT GEA spécialité gestion financière et comptable"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 1,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000058"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "IUT Bordeaux Montesquieu"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000059"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "row_count": 4,
+        "col_count": 2
+      },
+      {
+        "index": 74,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000005A"
+        }
+      },
+      {
+        "index": 75,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading1",
+          "section_break": "nextPage",
+          "paraId": "0000005B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "538cd4"
+            },
+            "text": "Anglais :"
+          },
+          {
+            "properties": {
+              "size": "22",
+              "color": "000000"
+            },
+            "text": " Lu, écrit, parlé, professionnel"
+          }
+        ]
+      },
+      {
+        "index": 76,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "0000005C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "32",
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Expériences Professionnelles"
+          }
+        ]
+      },
+      {
+        "index": 77,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000005D"
+        }
+      },
+      {
+        "index": 78,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000005E"
+        }
+      },
+      {
+        "index": 79,
+        "type": "Table",
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "0000005F"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "34",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "Automotive Cells Company"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000060"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "italic": true,
+                          "size": "24",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "09/2025 – 03/2026"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000061"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Ingénieur d’étude CDI, mission de Data Engineer"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "row_count": 2,
+        "col_count": 2
+      },
+      {
+        "index": 80,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000063"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Contexte : "
+          },
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Ma première mission au sein d’EPSYL-ALCEN s’est déroulée dans le centre d’études et d’innovation d’ACC à Bruges. Dans le cadre de mises en place de process data automatisés, j’ai rejoint l’équipe data R&D qui développe des pipelines et des applications de traitement de données pour la délivrer de manière dynamique et robuste aux autres services d’ingénierie."
+          }
+        ]
+      },
+      {
+        "index": 81,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000064"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Gestion de projets"
+          }
+        ]
+      },
+      {
+        "index": 82,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000065"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Recueil des besoins, des contraintes et spécifications"
+          }
+        ]
+      },
+      {
+        "index": 83,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000066"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Etude de faisabilité et proposition de solutions techniques "
+          }
+        ]
+      },
+      {
+        "index": 84,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000067"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Communication avec les équipes, organisation des points d’avancement"
+          }
+        ]
+      },
+      {
+        "index": 85,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000068"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes"
+          }
+        ]
+      },
+      {
+        "index": 86,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000069"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Reportings"
+          }
+        ]
+      },
+      {
+        "index": 87,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "0000006A"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Collecte des données"
+          }
+        ]
+      },
+      {
+        "index": 88,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000006B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Etudes des sources de données, Construction et amélioration de l’architecture "
+          }
+        ]
+      },
+      {
+        "index": 89,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000006C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Requêtes SQL sur les bases de données PostgreSQL"
+          }
+        ]
+      },
+      {
+        "index": 90,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000006D"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Traitements de données en Python Pandas"
+          }
+        ]
+      },
+      {
+        "index": 91,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000006E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction d’un formulaire dynamique de complétion des données par l’utilisateur"
+          }
+        ]
+      },
+      {
+        "index": 92,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "0000006F"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Traitement des bases de données"
+          }
+        ]
+      },
+      {
+        "index": 93,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000070"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Traitements des données :"
+          }
+        ]
+      },
+      {
+        "index": 94,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "00000071"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Stockage Serveur dédié"
+          }
+        ]
+      },
+      {
+        "index": 95,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "00000072"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Gestion des bases PostgreSQL"
+          }
+        ]
+      },
+      {
+        "index": 96,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "00000073"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Distribution dans un data model et délivrabilité dans un document éditable avec Docxtpl et Jinja*"
+          }
+        ]
+      },
+      {
+        "index": 97,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000074"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Sauvegarde des nouvelles données"
+          }
+        ]
+      },
+      {
+        "index": 98,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000075"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Dashboard de suivi KPIs avec Power BI"
+          }
+        ]
+      },
+      {
+        "index": 99,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000076"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Applicatif"
+          }
+        ]
+      },
+      {
+        "index": 100,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000077"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction d’une Webapp à destination d’utilisateurs internes à l’entreprise avec le Framework Streamlit"
+          }
+        ]
+      },
+      {
+        "index": 101,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000078"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Développement applicatif pour la délivrabilité et la visualisation de données"
+          }
+        ]
+      },
+      {
+        "index": 102,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000079"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Interactions et échanges de données avec des serveurs et base de données (Backend)"
+          }
+        ]
+      },
+      {
+        "index": 103,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000007A"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
+          }
+        ]
+      },
+      {
+        "index": 104,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000007B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
+          }
+        ]
+      },
+      {
+        "index": 105,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000007C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Tech Lead applicatif, reviews de code et coordination des PRs"
+          }
+        ]
+      },
+      {
+        "index": 106,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000007D"
+        }
+      },
+      {
+        "index": 107,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "0000007E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Environnements techniques : SQL, Python"
+          },
+          {
+            "properties": {
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": ", VSCode, Azure DevOps, Jupyter Notebook, PostgreSQL, Streamlit, LucidChart"
+          }
+        ]
+      },
+      {
+        "index": 108,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "0000007F"
+        },
+        "runs": [
+          {
+            "page_break": true
+          }
+        ]
+      },
+      {
+        "index": 109,
+        "type": "Table",
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000080"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "34",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "Data For Good"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000081"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "italic": true,
+                          "size": "24",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "11/2024 – 04/2026"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "00000082"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Data Analyst, bénévole"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "row_count": 2,
+        "col_count": 2
+      },
+      {
+        "index": 110,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "00000084"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Contexte : "
+          },
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Je mène des projets en tant que Data Analyst ou Data Engineer, de manière bénévole, pour la communauté Data For Good, à destination de partenaires associatifs ou d’ONGs : MEDCAP, Eclaireur public, ODIS, Algoboost, QPPCC"
+          }
+        ]
+      },
+      {
+        "index": 111,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000085"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Gestion de projets"
+          }
+        ]
+      },
+      {
+        "index": 112,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000086"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Recueil des besoins, des contraintes et spécifications"
+          }
+        ]
+      },
+      {
+        "index": 113,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000087"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Etude et proposition de solutions techniques "
+          }
+        ]
+      },
+      {
+        "index": 114,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000088"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction et mise à jour du Kanban de projet, Méthodologie Agile"
+          }
+        ]
+      },
+      {
+        "index": 115,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000089"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Communication avec les équipes, organisation des réunions"
+          }
+        ]
+      },
+      {
+        "index": 116,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000008A"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Rédaction de préconisations métiers "
+          }
+        ]
+      },
+      {
+        "index": 117,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000008B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Reportings"
+          }
+        ]
+      },
+      {
+        "index": 118,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "0000008C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Collecte des données"
+          }
+        ]
+      },
+      {
+        "index": 119,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000008D"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Etudes des sources possibles de collecte de données, Open Data"
+          }
+        ]
+      },
+      {
+        "index": 120,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000008E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Requêtes APIs "
+          }
+        ]
+      },
+      {
+        "index": 121,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000008F"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Conception des modèles de données "
+          }
+        ]
+      },
+      {
+        "index": 122,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000090"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Parsing Python depuis des bases de données NoSQL"
+          }
+        ]
+      },
+      {
+        "index": 123,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000091"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Traitements de données en Python Pandas"
+          }
+        ]
+      },
+      {
+        "index": 124,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000092"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction d’un pipeline dynamique de données socio-économiques"
+          }
+        ]
+      },
+      {
+        "index": 125,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000093"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Extract and Load des données en process CLI avec Python"
+          }
+        ]
+      },
+      {
+        "index": 126,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "00000094"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Traitement des bases de données"
+          }
+        ]
+      },
+      {
+        "index": 127,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "00000095"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Traitements des données :"
+          }
+        ]
+      },
+      {
+        "index": 128,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "00000096"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Stockage Local ou Cloud"
+          }
+        ]
+      },
+      {
+        "index": 129,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "00000097"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Gestion des bases PostgreSQL, Duck DB"
+          }
+        ]
+      },
+      {
+        "index": 130,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "00000098"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Assemblages et Transformations"
+          }
+        ]
+      },
+      {
+        "index": 131,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "00000099"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Séquençage DBT"
+          }
+        ]
+      },
+      {
+        "index": 132,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "0000009A"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Automatisation CLI ou Prefect"
+          }
+        ]
+      },
+      {
+        "index": 133,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "0000009B"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Architecture Databricks Médaillon"
+          }
+        ]
+      },
+      {
+        "index": 134,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000009C"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction de data visualisations avec Python"
+          }
+        ]
+      },
+      {
+        "index": 135,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000009D"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Implémentation dans une application existante, tests de data visualisation, corrections"
+          }
+        ]
+      },
+      {
+        "index": 136,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "0000009E"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Entrainement de modèles ML, graphes prévisionnels"
+          }
+        ]
+      },
+      {
+        "index": 137,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "0000009F"
+        }
+      },
+      {
+        "index": 138,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000A0"
+        }
+      },
+      {
+        "index": 139,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "000000A1"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Environnements techniques : SQL, Python"
+          },
+          {
+            "properties": {
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": ", VSCode, Github, DBT Cloud, DBT Core, Jupyter Notebook, Google Cloud Platform, AWS S3, DuckDB, PostgreSQL, Streamlit, Slack, Mattermost, Github Issues, Notion, Outline"
+          }
+        ]
+      },
+      {
+        "index": 140,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "000000A2"
+        },
+        "runs": [
+          {
+            "page_break": true
+          }
+        ]
+      },
+      {
+        "index": 141,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000A3"
+        }
+      },
+      {
+        "index": 142,
+        "type": "Table",
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000A4"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "34",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "KEYOR, Bordeaux"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000A5"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "italic": true,
+                          "size": "24",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "06/2021 – 06/2024"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000A6"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Data Manager, CDI"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "row_count": 2,
+        "col_count": 2
+      },
+      {
+        "index": 143,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000A8"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Contexte : "
+          },
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "J’ai rejoint Keyor qui est une entreprise de conception et fabrication de menuiseries afin de prendre en charge l’ensemble des projets data. J’ai notamment travaillé avec les équipes R&D sur le traitement des données techniques liées aux différents produits."
+          }
+        ]
+      },
+      {
+        "index": 144,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "000000A9"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Gestion de projets"
+          }
+        ]
+      },
+      {
+        "index": 145,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000AA"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Recueil des besoins"
+          }
+        ]
+      },
+      {
+        "index": 146,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000AB"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Participation au cahier des charges avec les métiers"
+          }
+        ]
+      },
+      {
+        "index": 147,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000AC"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Analyse de faisabilité et préconisations"
+          }
+        ]
+      },
+      {
+        "index": 148,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000AD"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Ecriture des livrables"
+          }
+        ]
+      },
+      {
+        "index": 149,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000AE"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Suivi de projets et avancements"
+          }
+        ]
+      },
+      {
+        "index": 150,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000AF"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Echanges transverses entre services"
+          }
+        ]
+      },
+      {
+        "index": 151,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000B0"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Reportings"
+          }
+        ]
+      },
+      {
+        "index": 152,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "000000B1"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Collecte des données"
+          }
+        ]
+      },
+      {
+        "index": 153,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000B2"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Collecte des données spécifiques aux métiers : multisources"
+          }
+        ]
+      },
+      {
+        "index": 154,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000B3"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Réceptionner, trier, nettoyer les données"
+          }
+        ]
+      },
+      {
+        "index": 155,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000B4"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Implémentation d’une data gouvernance :"
+          }
+        ]
+      },
+      {
+        "index": 156,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000B5"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Etude des compétences et besoins métiers"
+          }
+        ]
+      },
+      {
+        "index": 157,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000B6"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Conception des outils et indicateurs à mettre à disposition"
+          }
+        ]
+      },
+      {
+        "index": 158,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000B7"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Correction et optimisation des pipelines de données"
+          }
+        ]
+      },
+      {
+        "index": 159,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000B8"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Coordination entre les services"
+          }
+        ]
+      },
+      {
+        "index": 160,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000B9"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Configuration des données R&D et BE :"
+          }
+        ]
+      },
+      {
+        "index": 161,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000BA"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Données techniques produits"
+          }
+        ]
+      },
+      {
+        "index": 162,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000BB"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Données commerciales sur ERP"
+          }
+        ]
+      },
+      {
+        "index": 163,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000BC"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Gammes"
+          }
+        ]
+      },
+      {
+        "index": 164,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000BD"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Nomenclatures…"
+          }
+        ]
+      },
+      {
+        "index": 165,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000BE"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Compréhension et interprétation"
+          }
+        ]
+      },
+      {
+        "index": 166,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000BF"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Homogénéisation"
+          }
+        ]
+      },
+      {
+        "index": 167,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "000000C0"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Automatisation"
+          }
+        ]
+      },
+      {
+        "index": 168,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000C1"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construction de pipelines selon le besoin"
+          }
+        ]
+      },
+      {
+        "index": 169,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000C2"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Enrichir et croiser les multiples bases de données"
+          }
+        ]
+      },
+      {
+        "index": 170,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000C3"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Automatisation :"
+          }
+        ]
+      },
+      {
+        "index": 171,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000C4"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Collecte des besoins "
+          }
+        ]
+      },
+      {
+        "index": 172,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000C5"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Mises à jour données"
+          }
+        ]
+      },
+      {
+        "index": 173,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000C6"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Traitement et tri"
+          }
+        ]
+      },
+      {
+        "index": 174,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "000000C7"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Paramétrages"
+          }
+        ]
+      },
+      {
+        "index": 175,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000C8"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Ajustements et paramétrages"
+          }
+        ]
+      },
+      {
+        "index": 176,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000C9"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Détection des défauts, dysfonctionnements, anomalies"
+          }
+        ]
+      },
+      {
+        "index": 177,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000CA"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Proposition de solutions correctives"
+          }
+        ]
+      },
+      {
+        "index": 178,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "000000CB"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Visualisation"
+          }
+        ]
+      },
+      {
+        "index": 179,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000CC"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construire les différentes datavisualisations pour chaque service"
+          }
+        ]
+      },
+      {
+        "index": 180,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000CD"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Développement de Dashboards PowerBI, Looker dynamiques"
+          }
+        ]
+      },
+      {
+        "index": 181,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000CE"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Recherche et vulgarisation d’indicateurs de performance"
+          }
+        ]
+      },
+      {
+        "index": 182,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000CF"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Support aux cas d’usage et analytiques"
+          }
+        ]
+      },
+      {
+        "index": 183,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000D0"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Référent des données disponibles"
+          }
+        ]
+      },
+      {
+        "index": 184,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000D1"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Intégration et développement de reverse engineering"
+          }
+        ]
+      },
+      {
+        "index": 185,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000D2"
+        }
+      },
+      {
+        "index": 186,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "000000D3"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Environnements techniques : "
+          },
+          {
+            "properties": {
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Power Query, Power BI, Excel, Qlikview, Qliksense, HerculePro, Sage X3, Quable"
+          }
+        ]
+      },
+      {
+        "index": 187,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "000000D4"
+        },
+        "runs": [
+          {
+            "page_break": true
+          }
+        ]
+      },
+      {
+        "index": 188,
+        "type": "Table",
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000D5"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "34",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "Vignobles Bardet, Vignonet"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000D6"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "italic": true,
+                          "size": "24",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "09/2019 – 04/2020"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000D7"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Gestion de Projets Web, Alternance"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "row_count": 2,
+        "col_count": 2
+      },
+      {
+        "index": 189,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "1",
+          "paraId": "000000D9"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Chef de Projets web"
+          }
+        ]
+      },
+      {
+        "index": 190,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000DA"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Concevoir un business plan et un cahier des charges de site web"
+          }
+        ]
+      },
+      {
+        "index": 191,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000DB"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Mettre en place les plans de communication"
+          }
+        ]
+      },
+      {
+        "index": 192,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000DC"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Lancer les campagnes SEA, Social Ads et les Emailings"
+          }
+        ]
+      },
+      {
+        "index": 193,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "1",
+          "paraId": "000000DD"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Webmaster e-commerce"
+          }
+        ]
+      },
+      {
+        "index": 194,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000DE"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Gérer le site e-commerce existant, développer le SEO"
+          }
+        ]
+      },
+      {
+        "index": 195,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000DF"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Intégrer de nouveaux produits"
+          }
+        ]
+      },
+      {
+        "index": 196,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000E0"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Créer les visuels de communication web, print et vidéos"
+          }
+        ]
+      },
+      {
+        "index": 197,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000E1"
+        }
+      },
+      {
+        "index": 198,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "000000E2"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Environnements techniques : "
+          },
+          {
+            "properties": {
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Wordpress, Woocommerce, Illustrator, Mailchimp, Meta Businness Suite, Google Ads"
+          }
+        ]
+      },
+      {
+        "index": 199,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000E3"
+        }
+      },
+      {
+        "index": 200,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000E4"
+        }
+      },
+      {
+        "index": 201,
+        "type": "Table",
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000E5"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "size": "34",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "Actiplay (Klarsen), Bordeaux"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000E6"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "italic": true,
+                          "size": "24",
+                          "color": "808080",
+                          "font": "Arial"
+                        },
+                        "text": "09/2018 – 04/2019"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "alignment": "left",
+                      "paraId": "000000E7"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "size": "20",
+                          "color": "000000",
+                          "font": "Arial"
+                        },
+                        "text": "Data analyst, Alternance"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "row_count": 2,
+        "col_count": 2
+      },
+      {
+        "index": 202,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000E9"
+        }
+      },
+      {
+        "index": 203,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "1",
+          "paraId": "000000EA"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Data Analyst"
+          }
+        ]
+      },
+      {
+        "index": 204,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000EB"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Intégrer les campagnes digitales sur les différents sites web"
+          }
+        ]
+      },
+      {
+        "index": 205,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000EC"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construire les tableaux de reporting et d'analyse des données utilisateurs issues des campagnes"
+          }
+        ]
+      },
+      {
+        "index": 206,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000ED"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Enrichir et nettoyer les bases de données existantes"
+          }
+        ]
+      },
+      {
+        "index": 207,
+        "type": "Paragraph",
+        "properties": {
+          "style": "Heading2",
+          "ilvl": "0",
+          "numId": "1",
+          "paraId": "000000EE"
+        },
+        "runs": [
+          {
+            "properties": {
+              "color": "ec7c2f"
+            },
+            "text": "Product Owner"
+          }
+        ]
+      },
+      {
+        "index": 208,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000EF"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Manager le développement d'un projet de logiciel interne de requêtage de base de données"
+          }
+        ]
+      },
+      {
+        "index": 209,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000F0"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Coordonner un Tech Lead et 2 développeurs"
+          }
+        ]
+      },
+      {
+        "index": 210,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000F1"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Recueillir les besoins métiers"
+          }
+        ]
+      },
+      {
+        "index": 211,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "000000F2"
+        },
+        "runs": [
+          {
+            "properties": {
+              "size": "20",
+              "color": "000000",
+              "font": "Arial"
+            },
+            "text": "Construire et mettre à jour le Kanban"
+          }
+        ]
+      },
+      {
+        "index": 212,
+        "type": "Paragraph",
+        "properties": {
+          "alignment": "left",
+          "paraId": "000000F3"
+        }
+      },
+      {
+        "index": 213,
+        "type": "Paragraph",
+        "properties": {
+          "paraId": "000000F4"
+        },
+        "runs": [
+          {
+            "properties": {
+              "bold": true,
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Environnements techniques : "
+          },
+          {
+            "properties": {
+              "color": "538cd4",
+              "font": "Arial"
+            },
+            "text": "Google Analytics, Excel, HTML-CSS, Jira Confluence, MongoDB, Python, Javascript"
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "total_elements": 214,
+      "paragraphs": 208,
+      "tables": 6
+    }
+  }
+}
