@@ -11,8 +11,6 @@ import json
 import zipfile
 from pathlib import Path
 from typing import Dict, Any, List
-from .extract_xml_raw import extract_page_dimensions_from_template, calculate_table_widths
-
 
 # ===== NAMESPACES =====
 NS = {
@@ -30,19 +28,131 @@ KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience p
 KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
 
-# ===== DIMENSIONS DES TABLES =====
-CM_TO_TWIPS = 567  # 1 cm en twips
+def extract_page_dimensions_from_template(template_path: str = None) -> dict:
+    """
+    Extrait les dimensions de page du fichier TEMPLATE.docx.
+    
+    Récupère:
+    - Largeur de page (w:w)
+    - Hauteur de page (w:h)
+    - Marges: top, bottom, left, right
+    
+    Args:
+        template_path (str): Chemin du TEMPLATE.docx
+        
+    Returns:
+        dict avec keys: page_width, page_height, usable_width, top_margin, bottom_margin, 
+                        left_margin, right_margin (en twips)
+    """
+    if template_path is None:
+        template_path = 'assets/TEMPLATE.docx'
+    
+    template_path = Path(template_path)
+    
+    # Valeurs par défaut (A4 avec marges 2cm converties en twips)
+    defaults = {
+        'page_width': 12240,
+        'page_height': 15840,
+        'usable_width': 9972,  # page_width - left_margin - right_margin
+        'top_margin': 2 * 567,  # 2 cm en twips
+        'bottom_margin': 2 * 567,  # 2 cm en twips
+        'left_margin': 2 * 567,  # 2 cm en twips
+        'right_margin': 2 * 567,  # 2 cm en twips
+        'col_fixed_width': 4 * 567  # 4 cm en twips
+    }
+    
+    if not template_path.exists():
+        print(f"⚠️ Template non trouvé: {template_path}, utilisation des valeurs par défaut")
+        return defaults
+    
+    try:
+        with zipfile.ZipFile(template_path, 'r') as zip_ref:
+            with zip_ref.open('word/document.xml') as f:
+                content = f.read().decode('utf-8')
+                
+                dimensions = {}
+                
+                # Extraire pgSz (page size)
+                import re
+                if 'pgSz' in content:
+                    start = content.find('<w:pgSz')
+                    end = content.find('/>', start)
+                    if start != -1:
+                        pgSz_line = content[start:end+2]
+                        width_match = re.search(r'w:w="(\d+)"', pgSz_line)
+                        height_match = re.search(r'w:h="(\d+)"', pgSz_line)
+                        if width_match:
+                            dimensions['page_width'] = int(width_match.group(1))
+                        if height_match:
+                            dimensions['page_height'] = int(height_match.group(1))
+                
+                # Extraire pgMar (page margins)
+                if 'pgMar' in content:
+                    start = content.find('<w:pgMar')
+                    end = content.find('/>', start)
+                    if start != -1:
+                        pgMar_line = content[start:end+2]
+                        top_match = re.search(r'w:top="(\d+)"', pgMar_line)
+                        bottom_match = re.search(r'w:bottom="(\d+)"', pgMar_line)
+                        left_match = re.search(r'w:left="(\d+)"', pgMar_line)
+                        right_match = re.search(r'w:right="(\d+)"', pgMar_line)
+                        
+                        if top_match:
+                            dimensions['top_margin'] = int(top_match.group(1))
+                        if bottom_match:
+                            dimensions['bottom_margin'] = int(bottom_match.group(1))
+                        if left_match:
+                            dimensions['left_margin'] = int(left_match.group(1))
+                        if right_match:
+                            dimensions['right_margin'] = int(right_match.group(1))
+                
+                # Ajouter largeur colonne fixe
+                dimensions['col_fixed_width'] = 4 * 567
+                
+                # Fusionner avec les valeurs par défaut
+                result = defaults.copy()
+                result.update(dimensions)
+                result['usable_width'] = result['page_width'] - result['left_margin'] - result['right_margin']
+                
+                print(f"✅ Dimensions extraites du TEMPLATE:")
+                return result
+    
+    except Exception as e:
+        print(f"❌ Erreur lors de la lecture du template: {e}")
+        return defaults
 
-# Obtenir les dimensions depuis le template (remplissage paresseux)
-_PAGE_DIMENSIONS = None
-
-def get_page_dimensions():
-    """Récupère et cache les dimensions du template"""
-    global _PAGE_DIMENSIONS
-    if _PAGE_DIMENSIONS is None:
-        _PAGE_DIMENSIONS = extract_page_dimensions_from_template()
-    return _PAGE_DIMENSIONS
-
+def calculate_table_widths(page_dims: dict = None) -> tuple:
+    """
+    Calcule les largeurs des colonnes pour les 2 types de tables.
+    
+    Type 1 (education): Col1 = 4cm (étroite), Col2 = reste (large)
+    Type 2 (professional): Col1 = reste (large), Col2 = 4cm (étroite)
+    
+    Args:
+        page_dims (dict): Dimensions de page avec left_margin, right_margin, page_width
+        
+    Returns:
+        tuple: (col_fixed_width, usable_width, type1_widths, type2_widths)
+               où type1_widths et type2_widths sont des tuples (col1, col2)
+    """
+    if page_dims is None:
+        page_dims = extract_page_dimensions_from_template()
+    
+    col_fixed_width = page_dims['col_fixed_width']
+    usable_width = page_dims['usable_width']
+    
+    # Type 1 (Education): Col1 = 4cm, Col2 = reste
+    type1_col1 = col_fixed_width
+    type1_col2 = usable_width - col_fixed_width
+    
+    # Type 2 (Professional): Col1 = reste, Col2 = 4cm
+    type2_col1 = usable_width - col_fixed_width
+    type2_col2 = col_fixed_width
+    
+    return (col_fixed_width, usable_width, 
+            (type1_col1, type1_col2), 
+            (type2_col1, type2_col2))
+    
 def extract_run_properties(run, ns: Dict) -> Dict[str, Any]:
     """Extrait les propriétés d'un run (texte formaté)"""
     props = {}
@@ -129,7 +239,6 @@ def extract_paragraph_properties(paragraph, ns: Dict) -> Dict[str, Any]:
         props['paraId'] = para_id
     
     return props
-
 
 def extract_runs_from_paragraph(paragraph, ns: Dict) -> List[Dict[str, Any]]:
     """Extrait tous les runs d'un paragraphe"""
@@ -568,8 +677,11 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
 
 def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
     """
-    Ajoute les dimensions manquantes aux tables existantes selon leur section.
-    Utilise les dimensions de page extraites du template.
+    Ajoute et normalise les dimensions des tables existantes selon leur section.
+    
+    - Largeur totale : normalisée à usable_width (9972 twips)
+    - Largeurs colonnes : différentes selon la section (education vs professional_experience)
+    - Hauteur lignes : défaut si absent
     
     Args:
         data: Structure du document JSON
@@ -581,7 +693,7 @@ def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360
     
     content = data.get('document', {}).get('content', [])
     current_section = None
-    _, usable_width, _, _ = calculate_table_widths(page_dims)
+    col_fixed_width, usable_width, _, _ = calculate_table_widths(page_dims)
     
     for element in content:
         # Tracer la section courante en fonction des tags
@@ -592,17 +704,27 @@ def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360
             elif 'professional_experience' in tags:
                 current_section = 'professional_experience'
         
-        # Appliquer les dimensions aux tables 2x2
+        # Appliquer les dimensions aux tables
         if element.get('type') == 'Table':
             col1_width, col2_width = get_table_widths_for_section(current_section, page_dims)
             
-            # Traiter les tables 2x2 (priorité)
+            # Vérifier le nombre de colonnes (dimension principale)
             row_count = len(element.get('rows', []))
-            if row_count == 2:
+            if row_count > 0:
                 first_row = element['rows'][0]
                 cell_count = len(first_row.get('cells', []))
                 
+                # Créer les propriétés si n'existent pas
+                if 'properties' not in element:
+                    element['properties'] = {}
+                
+                element['properties']['section'] = current_section
+                
                 if cell_count == 2:
+                    # Table avec 2 colonnes (2xN) : appliquer les largeurs différenciées
+                    element['properties']['table_width'] = str(usable_width)
+                    element['properties']['table_width_type'] = 'dxa'
+                    
                     for row in element.get('rows', []):
                         if 'height' not in row:
                             row['height'] = default_row_height
@@ -613,33 +735,17 @@ def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360
                             if 'width' not in cells[1]:
                                 cells[1]['width'] = col2_width
                 else:
-                    # Tables avec autre nombre de colonnes
+                    # Table avec autre nombre de colonnes : colonnes égales
+                    element['properties']['table_width'] = str(usable_width)
+                    element['properties']['table_width_type'] = 'dxa'
+                    
                     equal_width = usable_width // cell_count
                     for row in element.get('rows', []):
                         if 'height' not in row:
                             row['height'] = default_row_height
-                        for cell in row.get('cells', []):
+                        for col_idx, cell in enumerate(row.get('cells', [])):
                             if 'width' not in cell:
                                 cell['width'] = equal_width
-            
-            # Tracker la section
-            if 'properties' not in element:
-                element['properties'] = {}
-            if 'section' not in element['properties']:
-                element['properties']['section'] = current_section
-    
-    for element in content:
-        # Tracer la section courante en fonction des tags
-        if element.get('type') == 'Paragraph':
-            tags = element.get('tags', [])
-            if 'education' in tags:
-                current_section = 'education'
-            elif 'professional_experience' in tags:
-                current_section = 'professional_experience'
-        
-        # Appliquer les dimensions aux tables 2x2
-        if element.get('type') == 'Table':
-            col1_width, col2_width = get_table_widths_for_section(current_section, page_dims)
             
             # Traiter les tables 2x2 (priorité)
             row_count = len(element.get('rows', []))
