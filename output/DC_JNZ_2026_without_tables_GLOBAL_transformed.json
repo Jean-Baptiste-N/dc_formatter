@@ -1799,6 +1799,17 @@
       },
       {
         "index": 77,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal",
+          "paraId": "744E9F97"
+        },
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 78,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1886,12 +1897,20 @@
                 "width": 7704,
                 "paragraphs": [
                   {
-                    "index": 78,
+                    "index": 81,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Poste",
-                      "paraId": "744E9F98"
+                      "paraId": "29620DD3"
                     },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true
+                        },
+                        "text": "Ingénieur d’étude CDI, mission de Data Engineer"
+                      }
+                    ],
                     "tags": [
                       "professional_experience"
                     ]
@@ -1905,25 +1924,6 @@
               }
             ]
           }
-        ]
-      },
-      {
-        "index": 81,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "29620DD3"
-        },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            },
-            "text": "Ingénieur d’étude CDI, mission de Data Engineer"
-          }
-        ],
-        "tags": [
-          "professional_experience"
         ]
       },
       {
@@ -1994,7 +1994,8 @@
           "style": "DC_2nd_bullet",
           "ilvl": "1",
           "numId": "4",
-          "paraId": "744E9FA1"
+          "paraId": "744E9FA1",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -2008,102 +2009,78 @@
       },
       {
         "index": 86,
-        "type": "Table",
-        "auto_generated": true,
+        "type": "Paragraph",
         "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FA2"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
+        "runs": [
           {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 87,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Title",
-                      "paraId": "744E9FA3"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 88,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FA4"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Reportings"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
-                    "index": 89,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FA5"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Collecte des données"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
+            "properties": {},
+            "text": "Communication avec les équipes, organisation des points d’avancement"
           }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 87,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FA3"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes"
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 88,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FA4"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Reportings"
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 89,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "744E9FA5"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Collecte des données"
+          }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -2508,7 +2485,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744E9FB9"
+          "paraId": "744E9FB9",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -2756,7 +2734,8 @@
           "style": "DC_2nd_bullet",
           "ilvl": "1",
           "numId": "4",
-          "paraId": "744E9FC3"
+          "paraId": "744E9FC3",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -2770,102 +2749,78 @@
       },
       {
         "index": 118,
-        "type": "Table",
-        "auto_generated": true,
+        "type": "Paragraph",
         "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FC4"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
+        "runs": [
           {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 119,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Title",
-                      "paraId": "744E9FC5"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Communication avec les équipes, organisation des réunions"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 120,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FC6"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Rédaction de préconisations métiers "
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
-                    "index": 121,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FC7"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Reportings"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
+            "properties": {},
+            "text": "Construction et mise à jour du Kanban de projet, Méthodologie Agile"
           }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 119,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FC5"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Communication avec les équipes, organisation des réunions"
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 120,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FC6"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Rédaction de préconisations métiers "
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 121,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FC7"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Reportings"
+          }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -3300,7 +3255,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744E9FDD"
+          "paraId": "744E9FDD",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -3500,7 +3456,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744E9FE5"
+          "paraId": "744E9FE5",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -3528,102 +3485,78 @@
       },
       {
         "index": 150,
-        "type": "Table",
-        "auto_generated": true,
+        "type": "Paragraph",
         "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "3",
+          "paraId": "744E9FE6"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
+        "runs": [
           {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 151,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Title",
-                      "paraId": "744E9FE7"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Recueil des besoins"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 152,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FE8"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Participation au cahier des charges avec les métiers"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
-                    "index": 153,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FE9"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Analyse de faisabilité et préconisations"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
+            "properties": {},
+            "text": "Gestion de projets"
           }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 151,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FE7"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Recueil des besoins"
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 152,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FE8"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Participation au cahier des charges avec les métiers"
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 153,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FE9"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Analyse de faisabilité et préconisations"
+          }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -3888,7 +3821,8 @@
           "style": "DC_4th_bullet",
           "ilvl": "3",
           "numId": "4",
-          "paraId": "744E9FF7"
+          "paraId": "744E9FF7",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -3902,102 +3836,78 @@
       },
       {
         "index": 168,
-        "type": "Table",
-        "auto_generated": true,
+        "type": "Paragraph",
         "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "style": "DC_4th_bullet",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "744E9FF8"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
+        "runs": [
           {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 169,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Title",
-                      "paraId": "744E9FF9"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Gammes"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 7704,
-                "paragraphs": [
-                  {
-                    "index": 170,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FFA"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Nomenclatures…"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
-                    "index": 171,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FFB"
-                    },
-                    "runs": [
-                      {
-                        "properties": {},
-                        "text": "Compréhension et interprétation"
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
-              }
-            ]
+            "properties": {},
+            "text": "Données commerciales sur ERP"
           }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 169,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_4th_bullet",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "744E9FF9"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Gammes"
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 170,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_4th_bullet",
+          "ilvl": "3",
+          "numId": "4",
+          "paraId": "744E9FFA"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Nomenclatures…"
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 171,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "4",
+          "paraId": "744E9FFB"
+        },
+        "runs": [
+          {
+            "properties": {},
+            "text": "Compréhension et interprétation"
+          }
+        ],
+        "tags": [
+          "professional_experience"
         ]
       },
       {
@@ -4397,7 +4307,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744EA010"
+          "paraId": "744EA010",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -4730,7 +4641,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744EA020"
+          "paraId": "744EA020",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {
@@ -5194,7 +5106,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744EA033"
+          "paraId": "744EA033",
+          "styles": "DC_XP_BlueContent"
         },
         "runs": [
           {

@@ -757,13 +757,13 @@ def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360
 
 def transform_into_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
     """
-    Transforme les éléments en tableaux structurés (si applicable).
+    Crée des tables 2x2 :
+    1. Après le header "Expériences Professionnelles" (pour le job entry)
+    2. Quand on détecte KEYWORDS_TECHNICAL_SKILLS 
+    3. SAUF pour les paragraphes avec ilvl (listes/bullets)
+    4. SAUF pour les paragraphes commençant par "Contexte"
     
-    Détecte les paragraphes contenant des mots-clés techniques.
-    Si l'élément suivant n'est pas une table, crée une table 2x2 à sa place.
-    Ajoute également les dimensions à toutes les tables existantes selon leur section.
-    
-    Les dimensions sont extraites automatiquement du TEMPLATE.docx.
+    Ajoute aussi les dimensions à toutes les tables existantes.
     
     Args:
         data: Structure du document JSON
@@ -778,47 +778,59 @@ def transform_into_tables(data: Dict[str, Any], row_height: int = 360, page_dims
     # Étape 1 : Ajouter les dimensions à toutes les tables existantes
     add_dimensions_to_tables(data, row_height, page_dims)
     
-    # Étape 2 : Détecter les paragraphes techniques et créer des tables
+    # Étape 2 : Créer des tables selon les conditions
     new_content = []
+    just_after_prof_exp_header = False
     current_section = None
-    i = 0
     
+    i = 0
     while i < len(content):
         element = content[i]
         new_content.append(element)
         
-        # Tracer la section courante
         if element.get('type') == 'Paragraph':
-            tags = element.get('tags', [])
-            if 'education' in tags:
-                current_section = 'education'
-            elif 'professional_experience' in tags:
-                current_section = 'professional_experience'
-            
-            # Vérifier si le paragraphe contient des mots-clés techniques
             text = get_text_from_element(element).lower()
-            if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS) or any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-                # Vérifier s'il y a un élément suivant
-                if i + 1 < len(content):
-                    next_element = content[i + 1]
-                    
-                    # Si l'élément suivant n'est pas une table, le créer
-                    if next_element.get('type') != 'Table':
-                        # Créer une table 2x2 avec dimensions selon la section
-                        new_table = create_empty_table_2x2(
-                            len(new_content), 
-                            row_height, 
-                            section=current_section,
-                            page_dims=page_dims,
-                            auto_generated=True
-                        )
-                        new_content.append(new_table)
-                        i += 2
-                        continue
+            has_ilvl = element.get('properties', {}).get('ilvl') is not None
+            
+            # Détecter le header "Expériences Professionnelles"
+            if any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                current_section = 'professional_experience'
+                just_after_prof_exp_header = True
+                i += 1
+                continue
+            
+            # Condition pour créer une table
+            should_create_table = False
+            
+            # Cas 1 : First paragraph after "Expériences Professionnelles" header
+            if just_after_prof_exp_header and not has_ilvl:
+                should_create_table = True
+                just_after_prof_exp_header = False
+            
+            # Cas 2 : Paragraph with KEYWORDS_TECHNICAL_SKILLS and no ilvl
+            # SAUF si le paragraphe commence par "Contexte"
+            elif current_section == 'professional_experience' and not has_ilvl:
+                if not text.startswith('contexte'):  # Exclure les paragraphes commençant par "Contexte"
+                    if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
+                        should_create_table = True
+            
+            if should_create_table and i + 1 < len(content):
+                next_element = content[i + 1]
+                # Créer table si l'élément suivant n'est pas déjà une table
+                if next_element.get('type') != 'Table':
+                    new_table = create_empty_table_2x2(
+                        len(new_content), 
+                        row_height, 
+                        section=current_section,
+                        page_dims=page_dims,
+                        auto_generated=True
+                    )
+                    new_content.append(new_table)
+                    i += 2
+                    continue
         
         i += 1
     
-    # Mettre à jour le contenu du document
     data['document']['content'] = new_content
 
 def clean_paragraph_for_table(para: Dict[str, Any]) -> None:
@@ -1045,7 +1057,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         text = get_text_from_element(itag).lower() if itag else ""
         props = itag.get('properties', {})
         
-        if 'experience-professionnelle' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
+        if 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
             props['styles'] = 'DC_XP_BlueContent'
             
     # Appliquer les styles des listes
