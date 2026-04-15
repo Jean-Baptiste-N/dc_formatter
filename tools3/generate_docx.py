@@ -11,7 +11,7 @@ from argparse import ArgumentParser
 
 from docx import Document
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK_TYPE
-from docx.shared import Pt, RGBColor
+from docx.shared import Pt, RGBColor, Cm
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 
@@ -47,11 +47,17 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
     if 'alignment' in props:
         para.alignment = parse_alignment(props['alignment'])
     
-    # Style (avec gestion d'erreur si le style n'existe pas)
+    # Style (accéder à l'objet Style directement pour éviter le deprecated warning)
     if 'style' in props:
         try:
-            para.style = props['style']
-        except KeyError:
+            style_name = props['style']
+            # Obtenir l'objet Style du document
+            if style_name in doc.styles:
+                para.style = doc.styles[style_name]  # Utiliser l'objet Style, pas le nom
+            else:
+                # Essayer d'assigner par nom si l'objet n'existe pas
+                para.style = style_name
+        except (KeyError, KeyError):
             pass  # Ignorer si le style n'existe pas
     
     # Ajouter les runs
@@ -137,33 +143,178 @@ def add_table_from_json(doc: Document, table_data: dict):
     table = doc.add_table(rows=len(rows), cols=col_count)
     table.style = 'Table Grid'
     
+    # Appliquer les propriétés du tableau
+    props = table_data.get('properties', {})
+    if 'table_width' in props:
+        # Appliquer la largeur du tableau (en twips)
+        # Conversion: 1 twip = 2.54 cm / 1440 = 0.00176389 cm
+        try:
+            width_twips = int(props['table_width'])
+            width_cm = (width_twips * 2.54) / 1440
+            table.width = Cm(width_cm)
+        except (ValueError, TypeError):
+            pass
+    
     # Remplir les cellules
     for row_idx, row_data in enumerate(rows):
+        row = table.rows[row_idx]
+        
+        # Appliquer la hauteur de la ligne si elle existe
+        if 'height' in row_data:
+            try:
+                height_twips = int(row_data['height'])
+                height_cm = (height_twips * 2.54) / 1440
+                row.height = Cm(height_cm)
+            except (ValueError, TypeError):
+                pass
+        
         for col_idx, cell_data in enumerate(row_data.get('cells', [])):
-            cell = table.rows[row_idx].cells[col_idx]
+            cell = row.cells[col_idx]
+            
+            # Appliquer la largeur de la cellule si elle existe
+            if 'width' in cell_data:
+                try:
+                    width_twips = int(cell_data['width'])
+                    width_cm = (width_twips * 2.54) / 1440
+                    cell.width = Cm(width_cm)
+                except (ValueError, TypeError):
+                    pass
             
             # Ajouter les paragraphes de la cellule
-            for para_data in cell_data.get('paragraphs', []):
-                if para_idx := para_data.get('index'):
-                    # Première cellule: réutiliser le paragraphe existant
-                    if para_idx == 0:
-                        para = cell.paragraphs[0]
-                    else:
-                        para = cell.add_paragraph()
-                else:
-                    para = cell.paragraphs[0] if cell.paragraphs else cell.add_paragraph()
+            paragraphs_list = cell_data.get('paragraphs', [])
+            
+            if paragraphs_list:
+                # Réutiliser le premier paragraphe existant pour le premier contenu
+                para = cell.paragraphs[0]
+                para_data = paragraphs_list[0]
+                
+                # Appliquer les propriétés du paragraphe
+                para_props = para_data.get('properties', {})
+                
+                # Style
+                if 'style' in para_props:
+                    try:
+                        if para_props['style'] in doc.styles:
+                            para.style = doc.styles[para_props['style']]
+                        else:
+                            para.style = para_props['style']
+                    except (KeyError, TypeError):
+                        pass
+                
+                # Alignment
+                if 'alignment' in para_props:
+                    para.alignment = parse_alignment(para_props['alignment'])
                 
                 # Ajouter les runs
                 if 'runs' in para_data:
                     for run_data in para_data['runs']:
+                        # Ignorer les page breaks dans les tables
+                        if run_data.get('page_break'):
+                            continue
+                        
                         run_text = run_data.get('text', '')
                         run = para.add_run(run_text)
                         
+                        # Appliquer les propriétés du run
                         run_props = run_data.get('properties', {})
                         if run_props.get('bold'):
                             run.bold = True
                         if run_props.get('italic'):
                             run.italic = True
+                        
+                        # Size (en points)
+                        if 'size' in run_props:
+                            try:
+                                size_half_pt = int(run_props['size'])
+                                run.font.size = Pt(size_half_pt / 2)
+                            except:
+                                pass
+                        
+                        # Color
+                        if 'color' in run_props:
+                            try:
+                                color_hex = run_props['color']
+                                run.font.color.rgb = RGBColor(
+                                    int(color_hex[0:2], 16),
+                                    int(color_hex[2:4], 16),
+                                    int(color_hex[4:6], 16)
+                                )
+                            except:
+                                pass
+                        
+                        # Font
+                        if 'font' in run_props:
+                            run.font.name = run_props['font']
+                
+                # Texte simple si pas de runs
+                elif 'text' in para_data:
+                    para.add_run(para_data['text'])
+                
+                # Ajouter les paragraphes restants
+                for para_data in paragraphs_list[1:]:
+                    para = cell.add_paragraph()
+                    
+                    # Appliquer les propriétés du paragraphe
+                    para_props = para_data.get('properties', {})
+                    
+                    # Style
+                    if 'style' in para_props:
+                        try:
+                            if para_props['style'] in doc.styles:
+                                para.style = doc.styles[para_props['style']]
+                            else:
+                                para.style = para_props['style']
+                        except (KeyError, TypeError):
+                            pass
+                    
+                    # Alignment
+                    if 'alignment' in para_props:
+                        para.alignment = parse_alignment(para_props['alignment'])
+                    
+                    # Ajouter les runs
+                    if 'runs' in para_data:
+                        for run_data in para_data['runs']:
+                            # Ignorer les page breaks dans les tables
+                            if run_data.get('page_break'):
+                                continue
+                            
+                            run_text = run_data.get('text', '')
+                            run = para.add_run(run_text)
+                            
+                            # Appliquer les propriétés du run
+                            run_props = run_data.get('properties', {})
+                            if run_props.get('bold'):
+                                run.bold = True
+                            if run_props.get('italic'):
+                                run.italic = True
+                            
+                            # Size (en points)
+                            if 'size' in run_props:
+                                try:
+                                    size_half_pt = int(run_props['size'])
+                                    run.font.size = Pt(size_half_pt / 2)
+                                except:
+                                    pass
+                            
+                            # Color
+                            if 'color' in run_props:
+                                try:
+                                    color_hex = run_props['color']
+                                    run.font.color.rgb = RGBColor(
+                                        int(color_hex[0:2], 16),
+                                        int(color_hex[2:4], 16),
+                                        int(color_hex[4:6], 16)
+                                    )
+                                except:
+                                    pass
+                            
+                            # Font
+                            if 'font' in run_props:
+                                run.font.name = run_props['font']
+                    
+                    # Texte simple si pas de runs
+                    elif 'text' in para_data:
+                        para.add_run(para_data['text'])
 
 
 def json_to_docx(json_file: str, template_file: str, output_dir: str = 'renders') -> str:

@@ -218,7 +218,7 @@ def export_all_xml(docx_file, output_folder='structures'):
     return str(output_file)
 
 
-def main(docx_path, output_folder='structures', export_docxml=False, export_allxml=False, export_template=False):
+def main(docx_path, output_folder='structures', export_docxml=False, export_allxml=False):
     """Fonction principale pour extraire tous les XML et exporter"""
     
     if export_docxml:
@@ -265,4 +265,4 @@ if __name__ == "__main__":
         args.export_docxml = False
         args.export_allxml = True
     
-    main(args.docx_file, args.output, args.export_docxml, args.export_allxml, args.export_template)
+    main(args.docx_file, args.output, args.export_docxml, args.export_allxml)
