@@ -5,10 +5,13 @@ Sortie: fichier _balises.json
 """
 
 from argparse import ArgumentParser
+import re
 import xml.etree.ElementTree as ET
 import json
+import zipfile
 from pathlib import Path
 from typing import Dict, Any, List
+from .extract_xml_raw import extract_page_dimensions_from_template, calculate_table_widths
 
 
 # ===== NAMESPACES =====
@@ -24,6 +27,21 @@ KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", 
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
+KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
+KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
+
+# ===== DIMENSIONS DES TABLES =====
+CM_TO_TWIPS = 567  # 1 cm en twips
+
+# Obtenir les dimensions depuis le template (remplissage paresseux)
+_PAGE_DIMENSIONS = None
+
+def get_page_dimensions():
+    """Récupère et cache les dimensions du template"""
+    global _PAGE_DIMENSIONS
+    if _PAGE_DIMENSIONS is None:
+        _PAGE_DIMENSIONS = extract_page_dimensions_from_template()
+    return _PAGE_DIMENSIONS
 
 def extract_run_properties(run, ns: Dict) -> Dict[str, Any]:
     """Extrait les propriétés d'un run (texte formaté)"""
@@ -173,13 +191,63 @@ def parse_paragraph(paragraph, ns: Dict, index: int) -> Dict[str, Any]:
     return para_obj
 
 
+def extract_table_properties(table, ns: Dict) -> Dict[str, Any]:
+    """Extrait les propriétés du tableau (largeur globale, etc.)"""
+    tblPr = table.find('w:tblPr', ns)
+    props = {}
+    
+    if tblPr is not None:
+        # Largeur du tableau
+        tblW = tblPr.find('w:tblW', ns)
+        if tblW is not None:
+            props['table_width'] = tblW.get(f'{{{ns["w"]}}}w')
+            props['table_width_type'] = tblW.get(f'{{{ns["w"]}}}type', 'dxa')
+    
+    return props
+
+
+def extract_cell_width(cell, ns: Dict) -> int:
+    """Extrait la largeur d'une cellule en twips"""
+    tcPr = cell.find('w:tcPr', ns)
+    if tcPr is not None:
+        tcW = tcPr.find('w:tcW', ns)
+        if tcW is not None:
+            width = tcW.get(f'{{{ns["w"]}}}w')
+            if width:
+                try:
+                    return int(width)
+                except ValueError:
+                    return None
+    return None
+
+
+def extract_row_height(row, ns: Dict) -> int:
+    """Extrait la hauteur d'une ligne"""
+    trPr = row.find('w:trPr', ns)
+    if trPr is not None:
+        trHeight = trPr.find('w:trHeight', ns)
+        if trHeight is not None:
+            height = trHeight.get(f'{{{ns["w"]}}}val')
+            if height:
+                try:
+                    return int(height)
+                except ValueError:
+                    return None
+    return None
+
+
 def parse_table(table, ns: Dict, index: int) -> Dict[str, Any]:
-    """Parse un tableau"""
+    """Parse un tableau avec extraction des dimensions"""
     table_obj = {
         'index': index,
         'type': 'Table',
         'rows': []
     }
+    
+    # Extraire les propriétés du tableau
+    table_props = extract_table_properties(table, ns)
+    if table_props:
+        table_obj['properties'] = table_props
     
     rows = table.findall('w:tr', ns)
     table_obj['row_count'] = len(rows)
@@ -190,12 +258,22 @@ def parse_table(table, ns: Dict, index: int) -> Dict[str, Any]:
             'cells': []
         }
         
+        # Extraire la hauteur de la ligne
+        row_height = extract_row_height(row, ns)
+        if row_height is not None:
+            row_obj['height'] = row_height
+        
         cells = row.findall('w:tc', ns)
         for col_idx, cell in enumerate(cells):
             cell_obj = {
                 'col_index': col_idx,
                 'paragraphs': []
             }
+            
+            # Extraire la largeur de la cellule
+            cell_width = extract_cell_width(cell, ns)
+            if cell_width is not None:
+                cell_obj['width'] = cell_width
             
             for para_idx, para in enumerate(cell.findall('w:p', ns)):
                 cell_obj['paragraphs'].append(
@@ -362,6 +440,306 @@ def apply_section_tags(data: Dict[str, Any]) -> None:
         if current_section not in element['tags']:
             element['tags'].append(current_section)
 
+def get_table_widths_for_section(section: str = None, page_dims: Dict[str, int] = None) -> tuple:
+    """
+    Retourne les largeurs des colonnes selon la section.
+    Calcule automatiquement basé sur les dimensions du template.
+    
+    Args:
+        section: 'education', 'professional_experience', ou None (défaut)
+        page_dims: Dimensions de page (si None, utilise get_page_dimensions())
+    
+    Returns:
+        Tuple (col1_width, col2_width) en twips
+    """
+    if page_dims is None:
+        page_dims = get_page_dimensions()
+    
+    _, usable_width, type1_widths, type2_widths = calculate_table_widths(page_dims)
+    
+    if section == 'education':
+        return type1_widths
+    elif section == 'professional_experience':
+        return type2_widths
+    else:
+        return (usable_width // 2, usable_width // 2)
+
+
+def create_empty_table_2x2(index: int, row_height: int = 360, 
+                           col1_width: int = None, col2_width: int = None,
+                           section: str = None, page_dims: Dict[str, int] = None) -> Dict[str, Any]:
+    """
+    Crée une table 2x2 vide avec dimensions spécifiques par colonne.
+    Les dimensions sont calculées selon la section et les marges du template.
+    
+    Args:
+        index: Index dans le document
+        row_height: Hauteur de la ligne en twips
+        col1_width: Largeur colonne 1 (twips) - si None, utilisé section+page_dims
+        col2_width: Largeur colonne 2 (twips) - si None, utilisé section+page_dims
+        section: 'education' ou 'professional_experience'
+        page_dims: Dimensions de page extraites du template
+    
+    Returns:
+        Table 2x2 structurée avec dimensions
+    """
+    if page_dims is None:
+        page_dims = get_page_dimensions()
+    
+    if col1_width is None or col2_width is None:
+        col1_width, col2_width = get_table_widths_for_section(section, page_dims)
+    
+    table_total_width = col1_width + col2_width
+    
+    return {
+        'index': index,
+        'type': 'Table',
+        'properties': {
+            'table_width': str(table_total_width),
+            'table_width_type': 'dxa',
+            'section': section
+        },
+        'row_count': 2,
+        'col_count': 2,
+        'rows': [
+            {
+                'row_index': 0,
+                'height': row_height,
+                'cells': [
+                    {
+                        'col_index': 0,
+                        'width': col1_width,
+                        'paragraphs': [
+                            {
+                                'index': 0,
+                                'type': 'Paragraph',
+                                'text': '',
+                                'runs': []
+                            }
+                        ]
+                    },
+                    {
+                        'col_index': 1,
+                        'width': col2_width,
+                        'paragraphs': [
+                            {
+                                'index': 0,
+                                'type': 'Paragraph',
+                                'text': '',
+                                'runs': []
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                'row_index': 1,
+                'height': row_height,
+                'cells': [
+                    {
+                        'col_index': 0,
+                        'width': col1_width,
+                        'paragraphs': [
+                            {
+                                'index': 0,
+                                'type': 'Paragraph',
+                                'text': '',
+                                'runs': []
+                            }
+                        ]
+                    },
+                    {
+                        'col_index': 1,
+                        'width': col2_width,
+                        'paragraphs': [
+                            {
+                                'index': 0,
+                                'type': 'Paragraph',
+                                'text': '',
+                                'runs': []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+
+def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
+    """
+    Ajoute les dimensions manquantes aux tables existantes selon leur section.
+    Utilise les dimensions de page extraites du template.
+    
+    Args:
+        data: Structure du document JSON
+        default_row_height: Hauteur par défaut de chaque ligne
+        page_dims: Dimensions de page (si None, utilise get_page_dimensions())
+    """
+    if page_dims is None:
+        page_dims = get_page_dimensions()
+    
+    content = data.get('document', {}).get('content', [])
+    current_section = None
+    _, usable_width, _, _ = calculate_table_widths(page_dims)
+    
+    for element in content:
+        # Tracer la section courante en fonction des tags
+        if element.get('type') == 'Paragraph':
+            tags = element.get('tags', [])
+            if 'education' in tags:
+                current_section = 'education'
+            elif 'professional_experience' in tags:
+                current_section = 'professional_experience'
+        
+        # Appliquer les dimensions aux tables 2x2
+        if element.get('type') == 'Table':
+            col1_width, col2_width = get_table_widths_for_section(current_section, page_dims)
+            
+            # Traiter les tables 2x2 (priorité)
+            row_count = len(element.get('rows', []))
+            if row_count == 2:
+                first_row = element['rows'][0]
+                cell_count = len(first_row.get('cells', []))
+                
+                if cell_count == 2:
+                    for row in element.get('rows', []):
+                        if 'height' not in row:
+                            row['height'] = default_row_height
+                        cells = row.get('cells', [])
+                        if len(cells) >= 2:
+                            if 'width' not in cells[0]:
+                                cells[0]['width'] = col1_width
+                            if 'width' not in cells[1]:
+                                cells[1]['width'] = col2_width
+                else:
+                    # Tables avec autre nombre de colonnes
+                    equal_width = usable_width // cell_count
+                    for row in element.get('rows', []):
+                        if 'height' not in row:
+                            row['height'] = default_row_height
+                        for cell in row.get('cells', []):
+                            if 'width' not in cell:
+                                cell['width'] = equal_width
+            
+            # Tracker la section
+            if 'properties' not in element:
+                element['properties'] = {}
+            if 'section' not in element['properties']:
+                element['properties']['section'] = current_section
+    
+    for element in content:
+        # Tracer la section courante en fonction des tags
+        if element.get('type') == 'Paragraph':
+            tags = element.get('tags', [])
+            if 'education' in tags:
+                current_section = 'education'
+            elif 'professional_experience' in tags:
+                current_section = 'professional_experience'
+        
+        # Appliquer les dimensions aux tables 2x2
+        if element.get('type') == 'Table':
+            col1_width, col2_width = get_table_widths_for_section(current_section, page_dims)
+            
+            # Traiter les tables 2x2 (priorité)
+            row_count = len(element.get('rows', []))
+            if row_count == 2:
+                first_row = element['rows'][0]
+                cell_count = len(first_row.get('cells', []))
+                
+                if cell_count == 2:
+                    for row in element.get('rows', []):
+                        if 'height' not in row:
+                            row['height'] = default_row_height
+                        cells = row.get('cells', [])
+                        if len(cells) >= 2:
+                            if 'width' not in cells[0]:
+                                cells[0]['width'] = col1_width
+                            if 'width' not in cells[1]:
+                                cells[1]['width'] = col2_width
+                else:
+                    # Tables avec autre nombre de colonnes
+                    equal_width = usable_width // cell_count
+                    for row in element.get('rows', []):
+                        if 'height' not in row:
+                            row['height'] = default_row_height
+                        for cell in row.get('cells', []):
+                            if 'width' not in cell:
+                                cell['width'] = equal_width
+            
+            # Tracker la section
+            if 'properties' not in element:
+                element['properties'] = {}
+            if 'section' not in element['properties']:
+                element['properties']['section'] = current_section
+
+
+def transform_into_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
+    """
+    Transforme les éléments en tableaux structurés (si applicable).
+    
+    Détecte les paragraphes contenant des mots-clés techniques.
+    Si l'élément suivant n'est pas une table, crée une table 2x2 à sa place.
+    Ajoute également les dimensions à toutes les tables existantes selon leur section.
+    
+    Les dimensions sont extraites automatiquement du TEMPLATE.docx.
+    
+    Args:
+        data: Structure du document JSON
+        row_height: Hauteur des lignes en twips
+        page_dims: Dimensions de page (si None, utilise get_page_dimensions())
+    """
+    if page_dims is None:
+        page_dims = get_page_dimensions()
+    
+    content = data.get('document', {}).get('content', [])
+    
+    # Étape 1 : Ajouter les dimensions à toutes les tables existantes
+    add_dimensions_to_tables(data, row_height, page_dims)
+    
+    # Étape 2 : Détecter les paragraphes techniques et créer des tables
+    new_content = []
+    current_section = None
+    i = 0
+    
+    while i < len(content):
+        element = content[i]
+        new_content.append(element)
+        
+        # Tracer la section courante
+        if element.get('type') == 'Paragraph':
+            tags = element.get('tags', [])
+            if 'education' in tags:
+                current_section = 'education'
+            elif 'professional_experience' in tags:
+                current_section = 'professional_experience'
+            
+            # Vérifier si le paragraphe contient des mots-clés techniques
+            text = get_text_from_element(element).lower()
+            if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
+                # Vérifier s'il y a un élément suivant
+                if i + 1 < len(content):
+                    next_element = content[i + 1]
+                    
+                    # Si l'élément suivant n'est pas une table, le créer
+                    if next_element.get('type') != 'Table':
+                        # Créer une table 2x2 avec dimensions selon la section
+                        new_table = create_empty_table_2x2(
+                            len(new_content), 
+                            row_height, 
+                            section=current_section,
+                            page_dims=page_dims
+                        )
+                        new_content.append(new_table)
+                        i += 2
+                        continue
+        
+        i += 1
+    
+    # Mettre à jour le contenu du document
+    data['document']['content'] = new_content
+    
+    
 def apply_styles_in_json(data: Dict[str, Any]) -> None:
     """
     Applique les styles par défaut dans les données JSON.
@@ -370,6 +748,42 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
     Args:
         data (Dict): Structure JSON à modifier
     """
+    # Appliquer les styles des titres
+    for itag in data.get('document', {}).get('content', []):
+        if 'tags' not in itag:
+            continue
+        tags = itag['tags']
+        text = get_text_from_element(itag).lower() if itag else ""
+        props = itag.get('properties', {})
+        
+        if 'header' in tags and any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
+            props['style'] = 'DC_H_DC'
+        elif 'main_skills' in tags and any(keyword in text for keyword in KEYWORDS_MAIN_SKILLS):
+            props['style'] = 'DC_T1_Sections'
+        elif 'education' in tags and any(keyword in text for keyword in KEYWORDS_EDUCATION):
+            props['style'] = 'DC_T1_Sections'
+        elif 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+            props['style'] = 'DC_T1_Sections'
+        
+        if 'header' in tags and 'DC_H_DC' not in props.get('style', '') and len(text) > 0 and len(text) <= 5:
+            props['style'] = 'DC_H_Trigramme'
+        elif 'header' in tags and 'DC_H_DC' not in props.get('style', '') and any(keyword in text for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5:
+            props['style'] = 'DC_H_XP'
+        
+        if 'header' in tags and 'DC_H_XP' not in props.get('style', '') and 'DC_H_DC' not in props.get('style', '') and len(text) > 5:
+            props['style'] = 'DC_H_Poste'
+
+    # Appliquer le highlight pour les compétences techniques
+    for itag in data.get('document', {}).get('content', []):
+        if 'tags' not in itag:
+            continue
+        tags = itag['tags']
+        text = get_text_from_element(itag).lower() if itag else ""
+        props = itag.get('properties', {})
+        
+        if 'experience-professionnelle' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
+            props['styles'] = 'DC_XP_BlueContent'
+            
     # Appliquer les styles des listes
     for ilist in data.get('document', {}).get('content', []):
         if 'properties' not in ilist:
@@ -391,40 +805,27 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             props['style'] = 'DC_4th_bullet'
         else:
             props['style'] = 'DC_Normal'  # fallback
+            
+    # Appliquer le style Normal pour le reste et les éléments sans style
+    for element in data.get('document', {}).get('content', []):
+        props = element.get('properties', {})
+        if 'style' not in props or 'style' in props and props['style'] == 'Normal':
+            props['style'] = 'DC_Normal'
+        else:
+            pass  # ne pas écraser les styles déjà appliqués
 
-    # Appliquer les styles des titres
-    for itag in data.get('document', {}).get('content', []):
-        if 'tags' not in itag:
-            continue
-        tags = itag['tags']
-        text = get_text_from_element(itag).lower() if itag else ""
-        props = itag.get('properties', {})
-        
-        if 'header' in tags and any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
-            props['style'] = 'DC_H_DC'
-        elif 'main_skills' in tags and any(keyword in text for keyword in KEYWORDS_MAIN_SKILLS):
-            props['style'] = 'DC_T1_Sections'
-        elif 'education' in tags and any(keyword in text for keyword in KEYWORDS_EDUCATION):
-            props['style'] = 'DC_T1_Sections'
-        elif 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-            props['style'] = 'DC_T1_Sections'
-        
-        if 'header' in tags and 'DC_H_DC' not in props.get('style', '') and len(text) > 0 and len(text) <= 5:
-            props['style'] = 'DC_H_Trigramme'
-        elif 'header' in tags and 'DC_H_DC' not in props.get('style', '') and 'experience' in text and len(text) > 5:
-            props['style'] = 'DC_H_XP'
-        
-        if 'header' in tags and 'DC_H_XP' not in props.get('style', '') and 'DC_H_DC' not in props.get('style', '') and len(text) > 5:
-            props['style'] = 'DC_H_Poste'
 
-def apply_tags_and_styles(raw_json_file: str, output_dir: str = None) -> str:
+def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_path: str = None) -> str:
     """
     Charge un JSON brut, applique les tags de section et les styles,
     puis enregistre le résultat transformé.
     
+    Les dimensions des tables sont extraites automatiquement du TEMPLATE.docx.
+    
     Args:
         raw_json_file (str): Chemin du fichier JSON RAW
         output_dir (str): Répertoire de sortie (optionnel, défaut: output/)
+        template_path (str): Chemin du TEMPLATE.docx (optionnel)
         
     Returns:
         str: Chemin du fichier créé
@@ -447,17 +848,29 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str = None) -> str:
     with open(input_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
+    # Extraire les dimensions depuis le template
+    if template_path is None:
+        template_path = 'assets/TEMPLATE.docx'
+    page_dims = extract_page_dimensions_from_template(template_path)
+    
+    # Stocker les dimensions dans le document pour utilisation ultérieure
+    if 'page_dimensions' not in data:
+        data['page_dimensions'] = page_dims
+    
     # Appliquer les tags de section
     apply_section_tags(data)
     
     # Appliquer les styles
     apply_styles_in_json(data)
     
+    # Appliquer les tables et dimensions
+    transform_into_tables(data, page_dims=page_dims)
+    
     # Sauvegarder le JSON transformé
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     
-    print(f"✅ {output_file.name} créé (avec tags et styles)")
+    print(f"✅ {output_file.name} créé (avec tags, styles et dimensions des tables)")
     
     return str(output_file)
 

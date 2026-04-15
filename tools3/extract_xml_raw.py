@@ -218,7 +218,133 @@ def export_all_xml(docx_file, output_folder='structures'):
     return str(output_file)
 
 
-def main(docx_path, output_folder='structures', export_docxml=False, export_allxml=False):
+    
+def extract_page_dimensions_from_template(template_path: str = None) -> dict:
+    """
+    Extrait les dimensions de page du fichier TEMPLATE.docx.
+    
+    Récupère:
+    - Largeur de page (w:w)
+    - Hauteur de page (w:h)
+    - Marges: top, bottom, left, right
+    
+    Args:
+        template_path (str): Chemin du TEMPLATE.docx
+        
+    Returns:
+        dict avec keys: page_width, page_height, top_margin, bottom_margin, 
+                        left_margin, right_margin (en twips)
+    """
+    if template_path is None:
+        template_path = 'assets/TEMPLATE.docx'
+    
+    template_path = Path(template_path)
+    
+    # Valeurs par défaut (A4 avec marges 2cm converties en twips)
+    defaults = {
+        'page_width': 12240,
+        'page_height': 15840,
+        'top_margin': 2 * 567,  # 2 cm en twips
+        'bottom_margin': 2 * 567,  # 2 cm en twips
+        'left_margin': 2 * 567,  # 2 cm en twips
+        'right_margin': 2 * 567,  # 2 cm en twips
+        'col_fixed_width': 4 * 567  # 4 cm en twips
+    }
+    
+    if not template_path.exists():
+        print(f"⚠️ Template non trouvé: {template_path}, utilisation des valeurs par défaut")
+        return defaults
+    
+    try:
+        with zipfile.ZipFile(template_path, 'r') as zip_ref:
+            with zip_ref.open('word/document.xml') as f:
+                content = f.read().decode('utf-8')
+                
+                dimensions = {}
+                
+                # Extraire pgSz (page size)
+                import re
+                if 'pgSz' in content:
+                    start = content.find('<w:pgSz')
+                    end = content.find('/>', start)
+                    if start != -1:
+                        pgSz_line = content[start:end+2]
+                        width_match = re.search(r'w:w="(\d+)"', pgSz_line)
+                        height_match = re.search(r'w:h="(\d+)"', pgSz_line)
+                        if width_match:
+                            dimensions['page_width'] = int(width_match.group(1))
+                        if height_match:
+                            dimensions['page_height'] = int(height_match.group(1))
+                
+                # Extraire pgMar (page margins)
+                if 'pgMar' in content:
+                    start = content.find('<w:pgMar')
+                    end = content.find('/>', start)
+                    if start != -1:
+                        pgMar_line = content[start:end+2]
+                        top_match = re.search(r'w:top="(\d+)"', pgMar_line)
+                        bottom_match = re.search(r'w:bottom="(\d+)"', pgMar_line)
+                        left_match = re.search(r'w:left="(\d+)"', pgMar_line)
+                        right_match = re.search(r'w:right="(\d+)"', pgMar_line)
+                        
+                        if top_match:
+                            dimensions['top_margin'] = int(top_match.group(1))
+                        if bottom_match:
+                            dimensions['bottom_margin'] = int(bottom_match.group(1))
+                        if left_match:
+                            dimensions['left_margin'] = int(left_match.group(1))
+                        if right_match:
+                            dimensions['right_margin'] = int(right_match.group(1))
+                
+                # Ajouter largeur colonne fixe
+                dimensions['col_fixed_width'] = 4 * 567
+                
+                # Fusionner avec les valeurs par défaut
+                result = defaults.copy()
+                result.update(dimensions)
+                
+                print(f"✅ Dimensions extraites du TEMPLATE:")
+                return result
+    
+    except Exception as e:
+        print(f"❌ Erreur lors de la lecture du template: {e}")
+        return defaults
+
+
+def calculate_table_widths(page_dims: dict = None) -> tuple:
+    """
+    Calcule les largeurs des colonnes pour les 2 types de tables.
+    
+    Type 1 (education): Col1 = 4cm (étroite), Col2 = reste (large)
+    Type 2 (professional): Col1 = reste (large), Col2 = 4cm (étroite)
+    
+    Args:
+        page_dims (dict): Dimensions de page avec left_margin, right_margin, page_width
+        
+    Returns:
+        tuple: (col_fixed_width, usable_width, type1_widths, type2_widths)
+               où type1_widths et type2_widths sont des tuples (col1, col2)
+    """
+    if page_dims is None:
+        page_dims = extract_page_dimensions_from_template()
+    
+    col_fixed_width = page_dims['col_fixed_width']
+    usable_width = page_dims['page_width'] - page_dims['left_margin'] - page_dims['right_margin']
+    
+    # Type 1 (Education): Col1 = 4cm, Col2 = reste
+    type1_col1 = col_fixed_width
+    type1_col2 = usable_width - col_fixed_width
+    
+    # Type 2 (Professional): Col1 = reste, Col2 = 4cm
+    type2_col1 = usable_width - col_fixed_width
+    type2_col2 = col_fixed_width
+    
+    return (col_fixed_width, usable_width, 
+            (type1_col1, type1_col2), 
+            (type2_col1, type2_col2))
+    
+
+def main(docx_path, output_folder='structures', export_docxml=False, export_allxml=False, export_template=False):
     """Fonction principale pour extraire tous les XML et exporter"""
     
     if export_docxml:
@@ -226,9 +352,12 @@ def main(docx_path, output_folder='structures', export_docxml=False, export_allx
         extract_document_xml(docx_path, output_folder)
     
     if export_allxml:
-        # 2. Extraire tous les XML et créer le global
+        # 2. Extraire tous les XML et créer un global
         export_all_xml(docx_path, output_folder)
-    
+        
+    if export_template:
+        # 3. Extraire les dimensions de page du TEMPLATE
+        extract_page_dimensions_from_template()
     
 if __name__ == "__main__":
     
@@ -254,6 +383,12 @@ if __name__ == "__main__":
     )
     
     parser.add_argument(
+        "--export_template",
+        action="store_true",
+        help="Extraire les dimensions de page du TEMPLATE.docx"
+    )
+    
+    parser.add_argument(
         "-o", "--output",
         default="structures",
         help="Dossier de sortie (défaut: structures)"
@@ -261,8 +396,9 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
     
-    if not args.export_docxml and not args.export_allxml:
+    if not args.export_docxml and not args.export_allxml and not args.export_template:
         args.export_docxml = False
         args.export_allxml = True
+        args.export_template = False
     
-    main(args.docx_file, args.output, args.export_docxml, args.export_allxml)
+    main(args.docx_file, args.output, args.export_docxml, args.export_allxml, args.export_template)
