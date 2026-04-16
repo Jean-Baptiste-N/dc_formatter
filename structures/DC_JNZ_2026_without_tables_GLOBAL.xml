@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<docx xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://schemas.openxmlformats.org/package/2006/content-types" xmlns:ns1="http://customooxmlschemas.google.com/" xmlns:ns10="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" xmlns:ns11="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:ns12="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ns13="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:ns14="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:ns15="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:ns16="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:ns17="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:ns18="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:ns19="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" xmlns:ns2="http://schemas.openxmlformats.org/officeDocument/2006/bibliography" xmlns:ns20="urn:schemas-microsoft-com:vml" xmlns:ns21="urn:schemas-microsoft-com:office:office" xmlns:ns22="urn:schemas-microsoft-com:office:word" xmlns:ns23="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:ns24="http://schemas.microsoft.com/office/word/2016/wordml/cid" xmlns:ns25="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:ns3="http://schemas.openxmlformats.org/officeDocument/2006/customXml" xmlns:ns4="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:ns5="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ns7="http://purl.org/dc/terms/" xmlns:ns9="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" source="DC_JNZ_2026_without_tables.docx" export-date="2026-04-15T15:39:43.397205" xml-files="20">
+<docx xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://schemas.openxmlformats.org/package/2006/content-types" xmlns:ns1="http://schemas.openxmlformats.org/officeDocument/2006/bibliography" xmlns:ns10="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" xmlns:ns11="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:ns12="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:ns13="http://schemas.microsoft.com/office/word/2010/wordml" xmlns:ns14="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:ns15="http://schemas.microsoft.com/office/word/2010/wordprocessingDrawing" xmlns:ns16="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:ns17="http://schemas.openxmlformats.org/drawingml/2006/picture" xmlns:ns18="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:ns19="http://schemas.microsoft.com/office/word/2010/wordprocessingShape" xmlns:ns2="http://customooxmlschemas.google.com/" xmlns:ns20="urn:schemas-microsoft-com:vml" xmlns:ns21="urn:schemas-microsoft-com:office:office" xmlns:ns22="urn:schemas-microsoft-com:office:word" xmlns:ns23="http://schemas.microsoft.com/office/word/2012/wordml" xmlns:ns24="http://schemas.microsoft.com/office/word/2016/wordml/cid" xmlns:ns25="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:ns3="http://schemas.openxmlformats.org/officeDocument/2006/customXml" xmlns:ns4="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:ns5="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:ns7="http://purl.org/dc/terms/" xmlns:ns9="http://schemas.openxmlformats.org/officeDocument/2006/custom-properties" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" source="DC_JNZ_2026_without_tables.docx" export-date="2026-04-16T17:39:56.054374" xml-files="20">
   <xml-file path="[Content_Types].xml" tag="{http://schemas.openxmlformats.org/package/2006/content-types}Types">
     <ns0:Types>
       <ns0:Default Extension="odttf" ContentType="application/vnd.openxmlformats-officedocument.obfuscatedFont"/>
@@ -25,15 +25,22 @@
       <ns0:Override PartName="/docProps/custom.xml" ContentType="application/vnd.openxmlformats-officedocument.custom-properties+xml"/>
     </ns0:Types>
   </xml-file>
-  <xml-file path="customXml/item1.xml" tag="{http://customooxmlschemas.google.com/}gDocsCustomXmlDataStorage">
-    <ns1:gDocsCustomXmlDataStorage uri="GoogleDocsCustomDataVersion2">
-      <ns1:docsCustomData roundtripDataSignature="AMtx7miS+7w8nd6DyPhZq+4YfwY3WcInYw==">CgMxLjAyD2lkLjhtcGRqZTN3eGFkZjIPaWQuMTRnYThyZTA3d3F6Mg9pZC4zZDJ5ZTFhMDA1NnQyD2lkLmYyeTlsaTN0NTVsNjIPaWQuZTNpd2NqOWpic2U1Mg9pZC42NmNmam9tYm95bTUyD2lkLnA2NHBqNXNrbm9iODIPaWQuamhzODNkejU4azh1Mg9pZC5qbTVja2F0Z3RkYmYyD2lkLnhvMW9xcWY2eGVhbDIPaWQuM3R4YWRsYzBibHBxMg9pZC5pYndmMjNyNTEzMnEyD2lkLm5reHg1OXdreW1rYjIPaWQuN3NyNmx5OHZsZmtmMg9pZC41ZGVpNzBzNjBtMmc4AHIhMWRzUHpoT1cxa0pxNTFodnVkeHY1QmVNdjNVUjhxV0dw</ns1:docsCustomData>
-    </ns1:gDocsCustomXmlDataStorage>
+  <xml-file path="customXml/item1.xml" tag="{http://schemas.openxmlformats.org/officeDocument/2006/bibliography}Sources">
+    <ns1:Sources SelectedStyle="\APASixthEditionOfficeOnline.xsl" StyleName="APA" Version="6"/>
   </xml-file>
-  <xml-file path="customXml/item2.xml" tag="{http://schemas.openxmlformats.org/officeDocument/2006/bibliography}Sources">
-    <ns2:Sources SelectedStyle="\APASixthEditionOfficeOnline.xsl" StyleName="APA" Version="6"/>
+  <xml-file path="customXml/item2.xml" tag="{http://customooxmlschemas.google.com/}gDocsCustomXmlDataStorage">
+    <ns2:gDocsCustomXmlDataStorage uri="GoogleDocsCustomDataVersion2">
+      <ns2:docsCustomData roundtripDataSignature="AMtx7miS+7w8nd6DyPhZq+4YfwY3WcInYw==">CgMxLjAyD2lkLjhtcGRqZTN3eGFkZjIPaWQuMTRnYThyZTA3d3F6Mg9pZC4zZDJ5ZTFhMDA1NnQyD2lkLmYyeTlsaTN0NTVsNjIPaWQuZTNpd2NqOWpic2U1Mg9pZC42NmNmam9tYm95bTUyD2lkLnA2NHBqNXNrbm9iODIPaWQuamhzODNkejU4azh1Mg9pZC5qbTVja2F0Z3RkYmYyD2lkLnhvMW9xcWY2eGVhbDIPaWQuM3R4YWRsYzBibHBxMg9pZC5pYndmMjNyNTEzMnEyD2lkLm5reHg1OXdreW1rYjIPaWQuN3NyNmx5OHZsZmtmMg9pZC41ZGVpNzBzNjBtMmc4AHIhMWRzUHpoT1cxa0pxNTFodnVkeHY1QmVNdjNVUjhxV0dw</ns2:docsCustomData>
+    </ns2:gDocsCustomXmlDataStorage>
   </xml-file>
   <xml-file path="customXml/itemProps1.xml" tag="{http://schemas.openxmlformats.org/officeDocument/2006/customXml}datastoreItem">
+    <ns3:datastoreItem ns3:itemID="{204CCEA3-C777-44D5-B17E-2CF419200CF0}">
+      <ns3:schemaRefs>
+        <ns3:schemaRef ns3:uri="http://schemas.openxmlformats.org/officeDocument/2006/bibliography"/>
+      </ns3:schemaRefs>
+    </ns3:datastoreItem>
+  </xml-file>
+  <xml-file path="customXml/itemProps2.xml" tag="{http://schemas.openxmlformats.org/officeDocument/2006/customXml}datastoreItem">
     <ns3:datastoreItem ns3:itemID="{11111111-1234-1234-1234-123412341234}">
       <ns3:schemaRefs>
         <ns3:schemaRef ns3:uri="http://customooxmlschemas.google.com/"/>
@@ -41,20 +48,13 @@
       </ns3:schemaRefs>
     </ns3:datastoreItem>
   </xml-file>
-  <xml-file path="customXml/itemProps2.xml" tag="{http://schemas.openxmlformats.org/officeDocument/2006/customXml}datastoreItem">
-    <ns3:datastoreItem ns3:itemID="{204CCEA3-C777-44D5-B17E-2CF419200CF0}">
-      <ns3:schemaRefs>
-        <ns3:schemaRef ns3:uri="http://schemas.openxmlformats.org/officeDocument/2006/bibliography"/>
-      </ns3:schemaRefs>
-    </ns3:datastoreItem>
-  </xml-file>
   <xml-file path="docProps/app.xml" tag="{http://schemas.openxmlformats.org/officeDocument/2006/extended-properties}Properties">
     <ns4:Properties>
       <ns4:Template>Normal</ns4:Template>
-      <ns4:TotalTime>64</ns4:TotalTime>
+      <ns4:TotalTime>227</ns4:TotalTime>
       <ns4:Pages>7</ns4:Pages>
       <ns4:Words>1416</ns4:Words>
-      <ns4:Characters>7793</ns4:Characters>
+      <ns4:Characters>7792</ns4:Characters>
       <ns4:Application>Microsoft Office Word</ns4:Application>
       <ns4:DocSecurity>0</ns4:DocSecurity>
       <ns4:Lines>64</ns4:Lines>
@@ -62,7 +62,7 @@
       <ns4:ScaleCrop>false</ns4:ScaleCrop>
       <ns4:Company/>
       <ns4:LinksUpToDate>false</ns4:LinksUpToDate>
-      <ns4:CharactersWithSpaces>9191</ns4:CharactersWithSpaces>
+      <ns4:CharactersWithSpaces>9190</ns4:CharactersWithSpaces>
       <ns4:SharedDoc>false</ns4:SharedDoc>
       <ns4:HyperlinksChanged>false</ns4:HyperlinksChanged>
       <ns4:AppVersion>16.0000</ns4:AppVersion>
@@ -72,9 +72,9 @@
     <ns5:coreProperties>
       <dc:creator>Anais Predalle</dc:creator>
       <ns5:lastModifiedBy>Jean-Baptiste Nez</ns5:lastModifiedBy>
-      <ns5:revision>6</ns5:revision>
+      <ns5:revision>8</ns5:revision>
       <ns7:created xsi:type="dcterms:W3CDTF">2026-02-26T20:30:00Z</ns7:created>
-      <ns7:modified xsi:type="dcterms:W3CDTF">2026-04-15T12:59:00Z</ns7:modified>
+      <ns7:modified xsi:type="dcterms:W3CDTF">2026-04-16T14:44:00Z</ns7:modified>
     </ns5:coreProperties>
   </xml-file>
   <xml-file path="docProps/custom.xml" tag="{http://schemas.openxmlformats.org/officeDocument/2006/custom-properties}Properties">
@@ -3084,15 +3084,7 @@
               <ns11:sz ns11:val="34"/>
               <ns11:szCs ns11:val="34"/>
             </ns11:rPr>
-            <ns11:t xml:space="preserve"> Compan</ns11:t>
-          </ns11:r>
-          <ns11:r>
-            <ns11:rPr>
-              <ns11:color ns11:val="808080"/>
-              <ns11:sz ns11:val="34"/>
-              <ns11:szCs ns11:val="34"/>
-            </ns11:rPr>
-            <ns11:t>y</ns11:t>
+            <ns11:t xml:space="preserve"> Company</ns11:t>
           </ns11:r>
         </ns11:p>
         <ns11:p ns13:paraId="5063DDCD" ns13:textId="4AF41560" ns11:rsidR="00C07045" ns11:rsidRDefault="00C07045">
@@ -6898,11 +6890,21 @@
           </ns11:r>
           <ns11:proofErr ns11:type="spellEnd"/>
         </ns11:p>
-        <ns11:p ns13:paraId="744EA011" ns13:textId="77777777" ns11:rsidR="003F1EFE" ns11:rsidRDefault="00000000">
+        <ns11:p ns13:paraId="3A911255" ns13:textId="43B5779C" ns11:rsidR="00C0713E" ns11:rsidRPr="00843899" ns11:rsidRDefault="00000000" ns11:rsidP="00843899">
           <ns11:pPr>
+            <ns11:pBdr>
+              <ns11:top ns11:val="nil"/>
+              <ns11:left ns11:val="nil"/>
+              <ns11:bottom ns11:val="nil"/>
+              <ns11:right ns11:val="nil"/>
+              <ns11:between ns11:val="nil"/>
+            </ns11:pBdr>
+            <ns11:spacing ns11:before="140" ns11:line="259" ns11:lineRule="auto"/>
+            <ns11:ind ns11:left="424"/>
             <ns11:rPr>
               <ns11:b/>
               <ns11:bCs/>
+              <ns11:color ns11:val="000000"/>
               <ns11:sz ns11:val="20"/>
               <ns11:szCs ns11:val="20"/>
             </ns11:rPr>
@@ -6910,24 +6912,12 @@
           <ns11:r>
             <ns11:br ns11:type="page"/>
           </ns11:r>
-        </ns11:p>
-        <ns11:p ns13:paraId="3A911255" ns13:textId="5A94203F" ns11:rsidR="00C0713E" ns11:rsidRPr="00C0713E" ns11:rsidRDefault="00D164E9">
-          <ns11:pPr>
-            <ns11:pStyle ns11:val="Titre2"/>
-            <ns11:numPr>
-              <ns11:ilvl ns11:val="0"/>
-              <ns11:numId ns11:val="1"/>
-            </ns11:numPr>
-            <ns11:tabs>
-              <ns11:tab ns11:val="left" ns11:pos="1354"/>
-            </ns11:tabs>
-            <ns11:spacing ns11:before="251"/>
-            <ns11:ind ns11:left="1354"/>
-          </ns11:pPr>
           <ns11:bookmarkStart ns11:id="11" ns11:name="bookmark=id.ibwf23r5132q" ns11:colFirst="0" ns11:colLast="0"/>
           <ns11:bookmarkEnd ns11:id="11"/>
-          <ns11:r>
+          <ns11:r ns11:rsidR="00D164E9" ns11:rsidRPr="00843899">
             <ns11:rPr>
+              <ns11:b/>
+              <ns11:bCs/>
               <ns11:color ns11:val="000000"/>
               <ns11:sz ns11:val="20"/>
               <ns11:szCs ns11:val="20"/>
@@ -6936,20 +6926,24 @@
             <ns11:t>Gestion de Projets Web, Alternance</ns11:t>
           </ns11:r>
         </ns11:p>
-        <ns11:p ns13:paraId="413443AF" ns13:textId="2BF5359F" ns11:rsidR="00C0713E" ns11:rsidRPr="00C0713E" ns11:rsidRDefault="00D164E9">
+        <ns11:p ns13:paraId="218A148C" ns13:textId="77777777" ns11:rsidR="00C73DA5" ns11:rsidRPr="00843899" ns11:rsidRDefault="00D164E9" ns11:rsidP="00843899">
           <ns11:pPr>
-            <ns11:pStyle ns11:val="Titre2"/>
-            <ns11:numPr>
-              <ns11:ilvl ns11:val="0"/>
-              <ns11:numId ns11:val="1"/>
-            </ns11:numPr>
-            <ns11:tabs>
-              <ns11:tab ns11:val="left" ns11:pos="1354"/>
-            </ns11:tabs>
-            <ns11:spacing ns11:before="251"/>
-            <ns11:ind ns11:left="1354"/>
+            <ns11:pBdr>
+              <ns11:top ns11:val="nil"/>
+              <ns11:left ns11:val="nil"/>
+              <ns11:bottom ns11:val="nil"/>
+              <ns11:right ns11:val="nil"/>
+              <ns11:between ns11:val="nil"/>
+            </ns11:pBdr>
+            <ns11:spacing ns11:before="140" ns11:line="259" ns11:lineRule="auto"/>
+            <ns11:ind ns11:left="424"/>
+            <ns11:rPr>
+              <ns11:color ns11:val="808080"/>
+              <ns11:sz ns11:val="34"/>
+              <ns11:szCs ns11:val="34"/>
+            </ns11:rPr>
           </ns11:pPr>
-          <ns11:r>
+          <ns11:r ns11:rsidRPr="00843899">
             <ns11:rPr>
               <ns11:color ns11:val="808080"/>
               <ns11:sz ns11:val="34"/>
@@ -6958,24 +6952,36 @@
             <ns11:t>Vignobles Bardet, Vignonet</ns11:t>
           </ns11:r>
         </ns11:p>
-        <ns11:p ns13:paraId="08EB1E55" ns13:textId="7CCCFEE9" ns11:rsidR="00C0713E" ns11:rsidRPr="00C0713E" ns11:rsidRDefault="00D164E9">
+        <ns11:p ns13:paraId="08EB1E55" ns13:textId="7D68336F" ns11:rsidR="00C0713E" ns11:rsidRPr="00843899" ns11:rsidRDefault="00D164E9" ns11:rsidP="00843899">
           <ns11:pPr>
-            <ns11:pStyle ns11:val="Titre2"/>
-            <ns11:numPr>
-              <ns11:ilvl ns11:val="0"/>
-              <ns11:numId ns11:val="1"/>
-            </ns11:numPr>
-            <ns11:tabs>
-              <ns11:tab ns11:val="left" ns11:pos="1354"/>
-            </ns11:tabs>
-            <ns11:spacing ns11:before="251"/>
-            <ns11:ind ns11:left="1354"/>
-          </ns11:pPr>
-          <ns11:r>
+            <ns11:pBdr>
+              <ns11:top ns11:val="nil"/>
+              <ns11:left ns11:val="nil"/>
+              <ns11:bottom ns11:val="nil"/>
+              <ns11:right ns11:val="nil"/>
+              <ns11:between ns11:val="nil"/>
+            </ns11:pBdr>
+            <ns11:spacing ns11:before="140" ns11:line="259" ns11:lineRule="auto"/>
+            <ns11:ind ns11:left="424"/>
             <ns11:rPr>
+              <ns11:b/>
+              <ns11:bCs/>
               <ns11:i/>
               <ns11:iCs/>
               <ns11:color ns11:val="808080"/>
+              <ns11:sz ns11:val="24"/>
+              <ns11:szCs ns11:val="24"/>
+            </ns11:rPr>
+          </ns11:pPr>
+          <ns11:r ns11:rsidRPr="00843899">
+            <ns11:rPr>
+              <ns11:b/>
+              <ns11:bCs/>
+              <ns11:i/>
+              <ns11:iCs/>
+              <ns11:color ns11:val="808080"/>
+              <ns11:sz ns11:val="24"/>
+              <ns11:szCs ns11:val="24"/>
             </ns11:rPr>
             <ns11:t>09/2019 – 04/2020</ns11:t>
           </ns11:r>
@@ -7926,14 +7932,14 @@
   <xml-file path="word/endnotes.xml" tag="{http://schemas.openxmlformats.org/wordprocessingml/2006/main}endnotes">
     <ns11:endnotes ns12:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh w16sdtfl w16du wp14">
       <ns11:endnote ns11:type="separator" ns11:id="-1">
-        <ns11:p ns13:paraId="09A3CBD8" ns13:textId="77777777" ns11:rsidR="00992A47" ns11:rsidRDefault="00992A47">
+        <ns11:p ns13:paraId="49DC392B" ns13:textId="77777777" ns11:rsidR="00E65F36" ns11:rsidRDefault="00E65F36">
           <ns11:r>
             <ns11:separator/>
           </ns11:r>
         </ns11:p>
       </ns11:endnote>
       <ns11:endnote ns11:type="continuationSeparator" ns11:id="0">
-        <ns11:p ns13:paraId="1F086028" ns13:textId="77777777" ns11:rsidR="00992A47" ns11:rsidRDefault="00992A47">
+        <ns11:p ns13:paraId="66C81CFD" ns13:textId="77777777" ns11:rsidR="00E65F36" ns11:rsidRDefault="00E65F36">
           <ns11:r>
             <ns11:continuationSeparator/>
           </ns11:r>
@@ -7955,7 +7961,7 @@
         <ns11:charset ns11:val="01"/>
         <ns11:family ns11:val="swiss"/>
         <ns11:pitch ns11:val="variable"/>
-        <ns11:embedRegular ns18:id="rId1" ns11:fontKey="{FFCDF4A0-BAEC-4BBA-A5F8-0E389A43DF14}"/>
+        <ns11:embedRegular ns18:id="rId1" ns11:fontKey="{7961C2C7-FBE8-40AD-BF46-F1CD5B75C364}"/>
       </ns11:font>
       <ns11:font ns11:name="Courier New">
         <ns11:panose1 ns11:val="02070309020205020404"/>
@@ -7984,14 +7990,14 @@
         <ns11:family ns11:val="roman"/>
         <ns11:pitch ns11:val="variable"/>
         <ns11:sig ns11:usb0="00000287" ns11:usb1="00000000" ns11:usb2="00000000" ns11:usb3="00000000" ns11:csb0="0000009F" ns11:csb1="00000000"/>
-        <ns11:embedItalic ns18:id="rId2" ns11:fontKey="{F2A33021-4174-4AA7-B31C-46EC84D22935}"/>
+        <ns11:embedItalic ns18:id="rId2" ns11:fontKey="{FD1FE24F-2FFF-4537-9EC4-74F2BA38D098}"/>
       </ns11:font>
       <ns11:font ns11:name="Aptos">
         <ns11:charset ns11:val="00"/>
         <ns11:family ns11:val="swiss"/>
         <ns11:pitch ns11:val="variable"/>
         <ns11:sig ns11:usb0="20000287" ns11:usb1="00000003" ns11:usb2="00000000" ns11:usb3="00000000" ns11:csb0="0000019F" ns11:csb1="00000000"/>
-        <ns11:embedRegular ns18:id="rId3" ns11:fontKey="{9526C915-3C70-4F45-A1CA-F7F8DCD8D9E7}"/>
+        <ns11:embedRegular ns18:id="rId3" ns11:fontKey="{CF7F0A03-C2A0-4DDA-89CF-42C69865D8ED}"/>
       </ns11:font>
       <ns11:font ns11:name="Cambria">
         <ns11:panose1 ns11:val="02040503050406030204"/>
@@ -7999,7 +8005,7 @@
         <ns11:family ns11:val="roman"/>
         <ns11:pitch ns11:val="variable"/>
         <ns11:sig ns11:usb0="E00006FF" ns11:usb1="420024FF" ns11:usb2="02000000" ns11:usb3="00000000" ns11:csb0="0000019F" ns11:csb1="00000000"/>
-        <ns11:embedRegular ns18:id="rId4" ns11:fontKey="{048C4E14-E187-4DA4-A8AA-06541E7FA33E}"/>
+        <ns11:embedRegular ns18:id="rId4" ns11:fontKey="{207191F3-A97B-4DF4-8C3B-CA67C9E73A65}"/>
       </ns11:font>
       <ns11:font ns11:name="Calibri">
         <ns11:panose1 ns11:val="020F0502020204030204"/>
@@ -8007,21 +8013,21 @@
         <ns11:family ns11:val="swiss"/>
         <ns11:pitch ns11:val="variable"/>
         <ns11:sig ns11:usb0="E4002EFF" ns11:usb1="C200247B" ns11:usb2="00000009" ns11:usb3="00000000" ns11:csb0="000001FF" ns11:csb1="00000000"/>
-        <ns11:embedRegular ns18:id="rId5" ns11:fontKey="{BC606B15-7FBE-471C-AFA9-574265F6E2BE}"/>
+        <ns11:embedRegular ns18:id="rId5" ns11:fontKey="{83007DFC-07CF-4005-A8D7-5C228020722C}"/>
       </ns11:font>
     </ns11:fonts>
   </xml-file>
   <xml-file path="word/footnotes.xml" tag="{http://schemas.openxmlformats.org/wordprocessingml/2006/main}footnotes">
     <ns11:footnotes ns12:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh w16sdtfl w16du wp14">
       <ns11:footnote ns11:type="separator" ns11:id="-1">
-        <ns11:p ns13:paraId="1D5C2062" ns13:textId="77777777" ns11:rsidR="00992A47" ns11:rsidRDefault="00992A47">
+        <ns11:p ns13:paraId="560A1EEB" ns13:textId="77777777" ns11:rsidR="00E65F36" ns11:rsidRDefault="00E65F36">
           <ns11:r>
             <ns11:separator/>
           </ns11:r>
         </ns11:p>
       </ns11:footnote>
       <ns11:footnote ns11:type="continuationSeparator" ns11:id="0">
-        <ns11:p ns13:paraId="7A24D455" ns13:textId="77777777" ns11:rsidR="00992A47" ns11:rsidRDefault="00992A47">
+        <ns11:p ns13:paraId="05CCA86E" ns13:textId="77777777" ns11:rsidR="00E65F36" ns11:rsidRDefault="00E65F36">
           <ns11:r>
             <ns11:continuationSeparator/>
           </ns11:r>
@@ -8843,7 +8849,7 @@
   </xml-file>
   <xml-file path="word/settings.xml" tag="{http://schemas.openxmlformats.org/wordprocessingml/2006/main}settings">
     <ns11:settings ns12:Ignorable="w14 w15 w16se w16cid w16 w16cex w16sdtdh w16sdtfl w16du">
-      <ns11:zoom ns11:percent="120"/>
+      <ns11:zoom ns11:percent="90"/>
       <ns11:embedTrueTypeFonts/>
       <ns11:proofState ns11:spelling="clean" ns11:grammar="clean"/>
       <ns11:defaultTabStop ns11:val="720"/>
@@ -8873,6 +8879,7 @@
         <ns11:rsid ns11:val="000D7637"/>
         <ns11:rsid ns11:val="001E11EE"/>
         <ns11:rsid ns11:val="003F1EFE"/>
+        <ns11:rsid ns11:val="00843899"/>
         <ns11:rsid ns11:val="00992A47"/>
         <ns11:rsid ns11:val="009B2696"/>
         <ns11:rsid ns11:val="00AF5E9D"/>
@@ -8880,7 +8887,10 @@
         <ns11:rsid ns11:val="00C07045"/>
         <ns11:rsid ns11:val="00C0713E"/>
         <ns11:rsid ns11:val="00C15A12"/>
+        <ns11:rsid ns11:val="00C73DA5"/>
         <ns11:rsid ns11:val="00D164E9"/>
+        <ns11:rsid ns11:val="00E65F36"/>
+        <ns11:rsid ns11:val="00F332A6"/>
       </ns11:rsids>
       <ns25:mathPr>
         <ns25:mathFont ns25:val="Cambria Math"/>

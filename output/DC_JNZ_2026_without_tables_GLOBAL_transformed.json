@@ -1419,14 +1419,12 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F80"
                     },
                     "runs": [
                       {
                         "properties": {
-                          "bold": true,
-                          "color": "000000"
+                          "bold": true
                         },
                         "text": "2024"
                       }
@@ -1443,15 +1441,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F81"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "Formation Concepteur Développeur en IA et analyse Big Data - Option Data analyse"
                       }
                     ]
@@ -1461,15 +1455,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F82"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "Le Wagon Bordeaux"
                       }
                     ]
@@ -1479,7 +1469,6 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F83"
                     }
                   }
@@ -1500,14 +1489,12 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F85"
                     },
                     "runs": [
                       {
                         "properties": {
-                          "bold": true,
-                          "color": "000000"
+                          "bold": true
                         },
                         "text": "2018-2020"
                       }
@@ -1524,15 +1511,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F86"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "Master Manager en stratégie digitale et MBA Web Business"
                       }
                     ]
@@ -1542,15 +1525,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F87"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "ESCEN Bordeaux"
                       }
                     ]
@@ -1560,7 +1539,6 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F88"
                     }
                   }
@@ -1581,14 +1559,12 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F8A"
                     },
                     "runs": [
                       {
                         "properties": {
-                          "bold": true,
-                          "color": "000000"
+                          "bold": true
                         },
                         "text": "2017-2018"
                       }
@@ -1605,15 +1581,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F8B"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "Bachelor Webmarketing et sites e-commerce"
                       }
                     ]
@@ -1623,15 +1595,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F8C"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "ESCEN Bordeaux"
                       }
                     ]
@@ -1641,7 +1609,6 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F8D"
                     }
                   }
@@ -1662,14 +1629,12 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F8F"
                     },
                     "runs": [
                       {
                         "properties": {
-                          "bold": true,
-                          "color": "000000"
+                          "bold": true
                         },
                         "text": "2014-2016"
                       }
@@ -1686,15 +1651,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F90"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "DUT GEA spécialité gestion financière et comptable"
                       }
                     ]
@@ -1704,15 +1665,11 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F91"
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000"
-                        },
+                        "properties": {},
                         "text": "IUT Bordeaux Montesquieu"
                       }
                     ]
@@ -1722,7 +1679,6 @@
                     "type": "Paragraph",
                     "properties": {
                       "style": "Normal",
-                      "alignment": "left",
                       "paraId": "744E9F92"
                     }
                   }
@@ -1809,6 +1765,13 @@
         ]
       },
       {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
         "index": 78,
         "type": "Table",
         "auto_generated": true,
@@ -1816,7 +1779,18 @@
           "table_width": "9972",
           "table_width_type": "dxa",
           "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "12",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Normal"
         },
         "row_count": 2,
         "col_count": 2,
@@ -1827,7 +1801,11 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
                     "index": 79,
@@ -1847,11 +1825,7 @@
                       },
                       {
                         "properties": {},
-                        "text": " Compan"
-                      },
-                      {
-                        "properties": {},
-                        "text": "y"
+                        "text": " Company"
                       }
                     ],
                     "tags": [
@@ -1862,7 +1836,11 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
                     "index": 80,
@@ -1894,8 +1872,23 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
+                  {
+                    "index": 78,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste",
+                      "paraId": "744E9F98"
+                    },
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  },
                   {
                     "index": 81,
                     "type": "Paragraph",
@@ -1919,12 +1912,23 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": []
               }
             ]
           }
         ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 82,
@@ -1994,8 +1998,7 @@
           "style": "DC_2nd_bullet",
           "ilvl": "1",
           "numId": "4",
-          "paraId": "744E9FA1",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744E9FA1"
         },
         "runs": [
           {
@@ -2485,8 +2488,7 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744E9FB9",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744E9FB9"
         },
         "runs": [
           {
@@ -2533,14 +2535,32 @@
         ]
       },
       {
-        "index": 110,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 111,
         "type": "Table",
         "auto_generated": true,
         "properties": {
           "table_width": "9972",
           "table_width_type": "dxa",
           "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "12",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Normal"
         },
         "row_count": 2,
         "col_count": 2,
@@ -2551,7 +2571,11 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
                     "index": 111,
@@ -2574,7 +2598,11 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
                     "index": 112,
@@ -2606,8 +2634,28 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
+                  {
+                    "index": 110,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste",
+                      "paraId": "744E9FBA"
+                    },
+                    "runs": [
+                      {
+                        "page_break": true
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  },
                   {
                     "index": 113,
                     "type": "Paragraph",
@@ -2643,12 +2691,23 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": []
               }
             ]
           }
         ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 114,
@@ -2734,8 +2793,7 @@
           "style": "DC_2nd_bullet",
           "ilvl": "1",
           "numId": "4",
-          "paraId": "744E9FC3",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744E9FC3"
         },
         "runs": [
           {
@@ -3255,8 +3313,7 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744E9FDD",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744E9FDD"
         },
         "runs": [
           {
@@ -3335,14 +3392,32 @@
         ]
       },
       {
-        "index": 144,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 146,
         "type": "Table",
         "auto_generated": true,
         "properties": {
           "table_width": "9972",
           "table_width_type": "dxa",
           "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "12",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Normal"
         },
         "row_count": 2,
         "col_count": 2,
@@ -3353,7 +3428,11 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
                     "index": 147,
@@ -3376,7 +3455,11 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
                     "index": 146,
@@ -3408,8 +3491,28 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
+                  {
+                    "index": 144,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste",
+                      "paraId": "744E9FDE"
+                    },
+                    "runs": [
+                      {
+                        "page_break": true
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  },
                   {
                     "index": 145,
                     "type": "Paragraph",
@@ -3420,12 +3523,35 @@
                     "tags": [
                       "professional_experience"
                     ]
+                  },
+                  {
+                    "index": 148,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste",
+                      "paraId": "702D7665"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true
+                        },
+                        "text": "Data Manager, CDI"
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
                   }
                 ]
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": []
               }
             ]
@@ -3433,31 +3559,18 @@
         ]
       },
       {
-        "index": 148,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "702D7665"
+          "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            },
-            "text": "Data Manager, CDI"
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
         "index": 149,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744E9FE5",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744E9FE5"
         },
         "runs": [
           {
@@ -3821,8 +3934,7 @@
           "style": "DC_4th_bullet",
           "ilvl": "3",
           "numId": "4",
-          "paraId": "744E9FF7",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744E9FF7"
         },
         "runs": [
           {
@@ -4307,8 +4419,7 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744EA010",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744EA010"
         },
         "runs": [
           {
@@ -4355,14 +4466,32 @@
         ]
       },
       {
-        "index": 193,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 196,
         "type": "Table",
         "auto_generated": true,
         "properties": {
           "table_width": "9972",
           "table_width_type": "dxa",
           "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "12",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Normal"
         },
         "row_count": 2,
         "col_count": 2,
@@ -4373,14 +4502,18 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 195,
+                    "index": 194,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Title",
-                      "paraId": "413443AF"
+                      "paraId": "218A148C"
                     },
                     "runs": [
                       {
@@ -4396,10 +4529,14 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 196,
+                    "index": 195,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Date",
@@ -4408,6 +4545,7 @@
                     "runs": [
                       {
                         "properties": {
+                          "bold": true,
                           "italic": true
                         },
                         "text": "09/2019 – 04/2020"
@@ -4427,10 +4565,14 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 194,
+                    "index": 193,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Poste",
@@ -4438,7 +4580,12 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
+                        "page_break": true
+                      },
+                      {
+                        "properties": {
+                          "bold": true
+                        },
                         "text": "Gestion de Projets Web, Alternance"
                       }
                     ],
@@ -4450,7 +4597,11 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": []
               }
             ]
@@ -4458,7 +4609,14 @@
         ]
       },
       {
-        "index": 197,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 196,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -4477,7 +4635,7 @@
         ]
       },
       {
-        "index": 198,
+        "index": 197,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4496,7 +4654,7 @@
         ]
       },
       {
-        "index": 199,
+        "index": 198,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4515,7 +4673,7 @@
         ]
       },
       {
-        "index": 200,
+        "index": 199,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4542,7 +4700,7 @@
         ]
       },
       {
-        "index": 201,
+        "index": 200,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -4561,7 +4719,7 @@
         ]
       },
       {
-        "index": 202,
+        "index": 201,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4580,7 +4738,7 @@
         ]
       },
       {
-        "index": 203,
+        "index": 202,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4599,7 +4757,7 @@
         ]
       },
       {
-        "index": 204,
+        "index": 203,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4626,7 +4784,7 @@
         ]
       },
       {
-        "index": 205,
+        "index": 204,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
@@ -4637,12 +4795,11 @@
         ]
       },
       {
-        "index": 206,
+        "index": 205,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744EA020",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744EA020"
         },
         "runs": [
           {
@@ -4689,14 +4846,32 @@
         ]
       },
       {
-        "index": 207,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 210,
         "type": "Table",
         "auto_generated": true,
         "properties": {
           "table_width": "9972",
           "table_width_type": "dxa",
           "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "12",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Normal"
         },
         "row_count": 2,
         "col_count": 2,
@@ -4707,13 +4882,66 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
-                "paragraphs": []
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Title",
+                      "paraId": "744EA023"
+                    },
+                    "runs": [
+                      {
+                        "properties": {},
+                        "text": "Actiplay"
+                      },
+                      {
+                        "properties": {},
+                        "text": " ("
+                      },
+                      {
+                        "properties": {},
+                        "text": "Klarsen"
+                      },
+                      {
+                        "properties": {},
+                        "text": "), Bordeaux"
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Date",
+                      "paraId": "744EA024"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true,
+                          "italic": true
+                        },
+                        "text": "09/2018 – 04/2019"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -4723,14 +4951,68 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
+                "width": 7137,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 208,
+                    "index": 206,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste",
+                      "paraId": "744EA021"
+                    },
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  },
+                  {
+                    "index": 207,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Poste",
                       "paraId": "744EA022"
+                    },
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste",
+                      "paraId": "744EA026"
+                    },
+                    "runs": [
+                      {
+                        "properties": {
+                          "bold": true
+                        },
+                        "text": "Data "
+                      },
+                      {
+                        "properties": {
+                          "bold": true
+                        },
+                        "text": "analyst"
+                      },
+                      {
+                        "properties": {
+                          "bold": true
+                        },
+                        "text": ", Alternance"
+                      }
+                    ]
+                  },
+                  {
+                    "index": 209,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste",
+                      "paraId": "744EA028"
                     },
                     "tags": [
                       "professional_experience"
@@ -4740,7 +5022,11 @@
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": []
               }
             ]
@@ -4748,159 +5034,14 @@
         ]
       },
       {
-        "index": 209,
-        "type": "Table",
-        "rows": [
-          {
-            "row_index": 0,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Title",
-                      "alignment": "left",
-                      "paraId": "744EA023"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080"
-                        },
-                        "text": "Actiplay"
-                      },
-                      {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080"
-                        },
-                        "text": " ("
-                      },
-                      {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080"
-                        },
-                        "text": "Klarsen"
-                      },
-                      {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080"
-                        },
-                        "text": "), Bordeaux"
-                      }
-                    ]
-                  }
-                ],
-                "width": 5959
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Date",
-                      "alignment": "left",
-                      "paraId": "744EA024"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "italic": true,
-                          "size": "24",
-                          "color": "808080"
-                        },
-                        "text": "09/2018 – 04/2019"
-                      }
-                    ]
-                  }
-                ],
-                "width": 3660
-              }
-            ],
-            "height": 453
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "alignment": "left",
-                      "paraId": "744EA026"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000"
-                        },
-                        "text": "Data "
-                      },
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000"
-                        },
-                        "text": "analyst"
-                      },
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000"
-                        },
-                        "text": ", Alternance"
-                      }
-                    ]
-                  }
-                ],
-                "width": 9619
-              }
-            ],
-            "height": 394
-          }
-        ],
+        "type": "Paragraph",
         "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "style": "DC_Normal"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
         "index": 210,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744EA028"
-        },
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 211,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -4923,7 +5064,7 @@
         ]
       },
       {
-        "index": 212,
+        "index": 211,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4942,7 +5083,7 @@
         ]
       },
       {
-        "index": 213,
+        "index": 212,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4977,7 +5118,7 @@
         ]
       },
       {
-        "index": 214,
+        "index": 213,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4996,7 +5137,7 @@
         ]
       },
       {
-        "index": 215,
+        "index": 214,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -5015,7 +5156,7 @@
         ]
       },
       {
-        "index": 216,
+        "index": 215,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -5034,7 +5175,7 @@
         ]
       },
       {
-        "index": 217,
+        "index": 216,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -5053,7 +5194,7 @@
         ]
       },
       {
-        "index": 218,
+        "index": 217,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -5072,7 +5213,7 @@
         ]
       },
       {
-        "index": 219,
+        "index": 218,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -5091,7 +5232,7 @@
         ]
       },
       {
-        "index": 220,
+        "index": 219,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
@@ -5102,12 +5243,11 @@
         ]
       },
       {
-        "index": 221,
+        "index": 220,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "744EA033",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "744EA033"
         },
         "runs": [
           {
@@ -5127,8 +5267,8 @@
       }
     ],
     "stats": {
-      "total_elements": 222,
-      "paragraphs": 220,
+      "total_elements": 221,
+      "paragraphs": 219,
       "tables": 2
     }
   },
@@ -5140,6 +5280,6 @@
     "bottom_margin": 1134,
     "left_margin": 1134,
     "right_margin": 1134,
-    "col_fixed_width": 2268
+    "col_fixed_width": 2835
   }
 }

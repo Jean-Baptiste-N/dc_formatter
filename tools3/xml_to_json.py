@@ -107,7 +107,7 @@ def extract_page_dimensions_from_template(template_path: str = None) -> dict:
                             dimensions['right_margin'] = int(right_match.group(1))
                 
                 # Ajouter largeur colonne fixe
-                dimensions['col_fixed_width'] = 4 * 567
+                dimensions['col_fixed_width'] = 5 * 567
                 
                 # Fusionner avec les valeurs par défaut
                 result = defaults.copy()
@@ -609,7 +609,15 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
         'properties': {
             'table_width': str(table_total_width),
             'table_width_type': 'dxa',
-            'section': section
+            'section': section,
+            'borders': {
+                'top': None,
+                'bottom': {'size': '12', 'color': '000000'},
+                'left': None,
+                'right': None,
+                'insideH': None,
+                'insideV': None
+            }
         },
         'row_count': 2,
         'col_count': 2,
@@ -621,11 +629,19 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
                     {
                         'col_index': 0,
                         'width': col1_width,
+                        'properties': {
+                            'hAlign': 'left',
+                            'vAlign': 'center'
+                        },
                         'paragraphs': []
                     },
                     {
                         'col_index': 1,
                         'width': col2_width,
+                        'properties': {
+                            'hAlign': 'right',
+                            'vAlign': 'center'
+                        },
                         'paragraphs': []
                     }
                 ]
@@ -637,11 +653,19 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
                     {
                         'col_index': 0,
                         'width': col1_width,
+                        'properties': {
+                            'hAlign': 'left',
+                            'vAlign': 'center'
+                        },
                         'paragraphs': []
                     },
                     {
                         'col_index': 1,
                         'width': col2_width,
+                        'properties': {
+                            'hAlign': 'right',
+                            'vAlign': 'center'
+                        },
                         'paragraphs': []
                     }
                 ]
@@ -755,7 +779,7 @@ def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360
                 element['properties']['section'] = current_section
 
 
-def transform_into_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
+def transform_into_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
     """
     Crée des tables 2x2 :
     1. Après le header "Expériences Professionnelles" (pour le job entry)
@@ -826,7 +850,7 @@ def transform_into_tables(data: Dict[str, Any], row_height: int = 360, page_dims
                         auto_generated=True
                     )
                     new_content.append(new_table)
-                    i += 2
+                    i += 1
                     continue
         
         i += 1
@@ -871,60 +895,86 @@ def clean_paragraph_for_table(para: Dict[str, Any]) -> None:
 
 def insert_text_into_tables(data: Dict[str, Any]) -> None:
     """
-    Insère le texte des éléments d'origine dans les cellules des tableaux créés.
-    Supprime ensuite les paragraphes qui ont été déplacés de leur emplacement d'origine.
+    Insère le texte dans les cellules des tableaux.
     
-    Pour les tables professional_experience créées automatiquement:
-    - Lit les 3 paragraphes suivants (ou jusqu'au mot "contexte")
-    - Paragraphe avec la size la plus haute -> cell[0][0]
-    - Paragraphe contenant "%20%" ou "%/20%" ou "%-20%" -> cell[0][1]
-    - Autres paragraphes -> cell[1][0]
-    - Supprime ensuite ces paragraphes du contenu principal
+    Logique:
+    1. Pour chaque table AUTO professional_experience:
+    2. Lire jusqu'à 3 paragraphes après (chercher table EXISTING ou paragraphes)
+    3. Si on rencontre une table EXISTING: l'extraire et la marquer pour suppression
+    4. Fusionner contenu extrait + paragraphes lus
+    5. Distribuer dans les cellules
     """
     content = data.get('document', {}).get('content', [])
-    indices_to_remove = []  # Collecter les indices à supprimer
+    indices_to_remove = []
     
-    # Itérer uniquement sur les tables (sans modifier la liste pendant l'itération)
     i = 0
     while i < len(content):
-        
         element = content[i]
         
         if element.get('type') == 'Table' and element.get('auto_generated'):
             section = element.get('properties', {}).get('section')
             
             if section == 'professional_experience':
-                # Lire les 3 paragraphes suivants ou jusqu'à "contexte" ou une autre table
-                following_paragraphs = []
-                following_indices = []  # Tracker les indices des paragraphes trouvés
+                all_paragraphs = []
+                
+                # Lire les éléments après la table AUTO (chercher table EXISTING ou paragraphes)
                 j = i + 1
                 para_count = 0
                 
                 while j < len(content) and para_count < 3:
                     next_elem = content[j]
+                    elem_type = next_elem.get('type')
                     
-                    # Arrêter si on rencontre une autre table
-                    if next_elem.get('type') == 'Table':
+                    # Si on rencontre une table EXISTING: l'extraire
+                    if elem_type == 'Table' and not next_elem.get('auto_generated'):
+                        # Extraire TOUS les paragraphes de cette table EXISTING
+                        for row in next_elem.get('rows', []):
+                            for cell in row.get('cells', []):
+                                all_paragraphs.extend(cell.get('paragraphs', []))
+                        # Marquer cette table pour suppression
+                        indices_to_remove.append(j)
+                        # IMPORTANT: Continuer à lire les paragraphes APRÈS cette table
+                        j += 1
+                        continue
+                    
+                    # Si c'est un paragraphe: l'ajouter
+                    if elem_type == 'Paragraph':
+                        props = next_elem.get('properties', {})
+                        text = get_text_from_element(next_elem)
+                        
+                        # ARRÊTER si ilvl (c'est une liste/puce - style différent)
+                        if props.get('ilvl') is not None:
+                            break
+                        
+                        # SKIP si c'est un titre (KEYWORDS_TECHNICAL_SKILLS) - le laisser en place
+                        if any(keyword in text.lower() for keyword in KEYWORDS_TECHNICAL_SKILLS):
+                            break
+                        
+                        # ARRÊTER si contexte
+                        if 'contexte' in text.lower():
+                            break
+                        
+                        # Ajouter le paragraphe (même s'il est vide)
+                        all_paragraphs.append(next_elem)
+                        indices_to_remove.append(j)
+                        
+                        # Compter seulement les paragraphes NON VIDES
+                        if text.strip():
+                            para_count += 1
+                    elif elem_type == 'Table':
+                        # Table AUTO ou autre: arrêter
                         break
                     
-                    if next_elem.get('type') == 'Paragraph':
-                        text = get_text_from_element(next_elem)
-                        if 'contexte' in text.lower():
-                            # Arrêter avant d'inclure le paragraphe contexte
-                            break
-                        following_paragraphs.append(next_elem)
-                        following_indices.append(j)
-                        para_count += 1
                     j += 1
                 
-                # Analyser et distribuer les paragraphes
-                if following_paragraphs:
-                    # Trouver le paragraphe avec la plus haute size
+                # Étape 2 : Distribuer dans les cellules
+                if all_paragraphs:
+                    # Trouver max size
                     max_size_para = None
                     max_size = 0
-                    remaining_paras = list(following_paragraphs)
+                    remaining = list(all_paragraphs)
                     
-                    for para in following_paragraphs:
+                    for para in all_paragraphs:
                         if para.get('runs'):
                             for run in para['runs']:
                                 size_str = run.get('properties', {}).get('size')
@@ -937,43 +987,56 @@ def insert_text_into_tables(data: Dict[str, Any]) -> None:
                                     except ValueError:
                                         pass
                     
-                    if max_size_para and max_size_para in remaining_paras:
-                        remaining_paras.remove(max_size_para)
-                        # Placer dans cell[0][0] - nettoyer et remplacer la liste
+                    if max_size_para and max_size_para in remaining:
+                        remaining.remove(max_size_para)
                         clean_paragraph_for_table(max_size_para)
                         element['rows'][0]['cells'][0]['paragraphs'] = [max_size_para]
                     
-                    # Trouver le paragraphe contenant "20" ou variantes
+                    # Trouver date (contient "20")
                     date_para = None
-                    for para in remaining_paras:
+                    for para in remaining:
                         text = get_text_from_element(para)
                         if ' 20' in text or '/20' in text or '-20' in text:
                             date_para = para
                             break
                     
-                    if date_para and date_para in remaining_paras:
-                        remaining_paras.remove(date_para)
-                        # Placer dans cell[0][1] - nettoyer et remplacer la liste
+                    if date_para and date_para in remaining:
+                        remaining.remove(date_para)
                         clean_paragraph_for_table(date_para)
                         element['rows'][0]['cells'][1]['paragraphs'] = [date_para]
                     
-                    # Placer les autres paragraphes dans cell[1][0] - nettoyer et remplacer la liste
-                    if remaining_paras:
-                        for para in remaining_paras:
+                    # Placer le reste dans cell[1][0]
+                    if remaining:
+                        for para in remaining:
                             clean_paragraph_for_table(para)
-                        element['rows'][1]['cells'][0]['paragraphs'] = remaining_paras
-                    # Sinon, laisser cell[1][0] vide (pas de paragraphe par défaut)
-                    
-                    # Marquer tous les paragraphes utilisés pour suppression
-                    indices_to_remove.extend(following_indices)
+                        element['rows'][1]['cells'][0]['paragraphs'] = remaining
         
         i += 1
     
-    # Supprimer les paragraphes du contenu principal (en allant de la fin vers le début)
+    # Supprimer en allant de la fin vers le début pour préserver les indices
     for idx in sorted(indices_to_remove, reverse=True):
         if idx < len(content):
             del content[idx]
     
+    # Ajouter 1 paragraphe vide avant et 1 après chaque table AUTO professional_experience
+    # (après les traitements/suppressions, pour qu'ils ne soient pas relus)
+    new_content = []
+    for element in content:
+        if element.get('type') == 'Table' and element.get('auto_generated'):
+            section = element.get('properties', {}).get('section')
+            if section == 'professional_experience':
+                # Ajouter 1 paragraphe vide juste avant la table
+                new_content.append({'type': 'Paragraph', 'properties': {}, 'runs': []})
+        new_content.append(element)
+        if element.get('type') == 'Table' and element.get('auto_generated'):
+            section = element.get('properties', {}).get('section')
+            if section == 'professional_experience':
+                # Ajouter 1 paragraphe vide juste après la table
+                new_content.append({'type': 'Paragraph', 'properties': {}, 'runs': []})
+    
+    data['document']['content'] = new_content
+
+
 def apply_styles_in_json(data: Dict[str, Any]) -> None:
     """
     Applique les styles par défaut dans les données JSON.
@@ -1013,7 +1076,6 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             if section == 'education':
                 itable['properties']['style'] = 'DC_Table_Education'
             elif section == 'professional_experience':
-                itable['properties']['style'] = 'DC_Table_Experience'
                 rows = itable.get('rows', [])
                 # Appliquer le style DC_XP_Title aux paragraphes dans cell[0][0]
                 if len(rows) > 0:
@@ -1057,8 +1119,8 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         text = get_text_from_element(itag).lower() if itag else ""
         props = itag.get('properties', {})
         
-        if 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
-            props['styles'] = 'DC_XP_BlueContent'
+        if 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS) and not any(keyword in text for keyword in 'contexte'):
+            props['style'] = 'DC_XP_BlueContent'
             
     # Appliquer les styles des listes
     for ilist in data.get('document', {}).get('content', []):
@@ -1106,6 +1168,36 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                     if 'italic' in run_props:
                         kept_props['italic'] = run_props['italic']
                     run['properties'] = kept_props
+    
+    # Nettoyer aussi les propriétés des paragraphes à l'intérieur des tables
+    # (pour les tables EXISTANTES et AUTO-GÉNÉRÉES)
+    for element in data.get('document', {}).get('content', []):
+        if element.get('type') == 'Table':
+            for row in element.get('rows', []):
+                for cell in row.get('cells', []):
+                    for para in cell.get('paragraphs', []):
+                        if 'properties' not in para:
+                            continue
+                        para_props = para['properties']
+                        
+                        # Nettoyer size, alignment, color, font si un style a été appliqué
+                        if para_props.get('style'):
+                            para_props.pop('size', None)
+                            para_props.pop('alignment', None)
+                            para_props.pop('color', None)
+                            para_props.pop('font', None)
+                        
+                        # Nettoyer aussi les runs (garder bold/italic uniquement)
+                        if 'runs' in para:
+                            for run in para['runs']:
+                                if 'properties' in run:
+                                    run_props = run['properties']
+                                    kept_props = {}
+                                    if 'bold' in run_props:
+                                        kept_props['bold'] = run_props['bold']
+                                    if 'italic' in run_props:
+                                        kept_props['italic'] = run_props['italic']
+                                    run['properties'] = kept_props
 
 
 def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_path: str = None) -> str:
@@ -1154,7 +1246,7 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_p
     apply_section_tags(data)
     
     # Appliquer les tables et dimensions
-    transform_into_tables(data, page_dims=page_dims)
+    transform_into_xp_tables(data, page_dims=page_dims)
     
     # Insérer le texte dans les tables créées
     insert_text_into_tables(data)

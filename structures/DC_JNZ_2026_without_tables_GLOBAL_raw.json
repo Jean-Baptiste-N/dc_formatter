@@ -1927,14 +1927,7 @@
               "size": "34",
               "color": "808080"
             },
-            "text": " Compan"
-          },
-          {
-            "properties": {
-              "size": "34",
-              "color": "808080"
-            },
-            "text": "y"
+            "text": " Company"
           }
         ]
       },
@@ -4534,27 +4527,15 @@
         "properties": {
           "style": "Normal",
           "alignment": "left",
-          "paraId": "744EA011"
-        },
-        "runs": [
-          {
-            "page_break": true
-          }
-        ]
-      },
-      {
-        "index": 194,
-        "type": "Paragraph",
-        "properties": {
-          "style": "Titre2",
-          "alignment": "left",
-          "ilvl": "0",
-          "numId": "1",
           "paraId": "3A911255"
         },
         "runs": [
           {
+            "page_break": true
+          },
+          {
             "properties": {
+              "bold": true,
               "size": "20",
               "color": "000000"
             },
@@ -4563,14 +4544,12 @@
         ]
       },
       {
-        "index": 195,
+        "index": 194,
         "type": "Paragraph",
         "properties": {
-          "style": "Titre2",
+          "style": "Normal",
           "alignment": "left",
-          "ilvl": "0",
-          "numId": "1",
-          "paraId": "413443AF"
+          "paraId": "218A148C"
         },
         "runs": [
           {
@@ -4583,19 +4562,19 @@
         ]
       },
       {
-        "index": 196,
+        "index": 195,
         "type": "Paragraph",
         "properties": {
-          "style": "Titre2",
+          "style": "Normal",
           "alignment": "left",
-          "ilvl": "0",
-          "numId": "1",
           "paraId": "08EB1E55"
         },
         "runs": [
           {
             "properties": {
+              "bold": true,
               "italic": true,
+              "size": "24",
               "color": "808080"
             },
             "text": "09/2019 – 04/2020"
@@ -4603,7 +4582,7 @@
         ]
       },
       {
-        "index": 197,
+        "index": 196,
         "type": "Paragraph",
         "properties": {
           "style": "Titre2",
@@ -4622,7 +4601,7 @@
         ]
       },
       {
-        "index": 198,
+        "index": 197,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4642,7 +4621,7 @@
         ]
       },
       {
-        "index": 199,
+        "index": 198,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4662,7 +4641,7 @@
         ]
       },
       {
-        "index": 200,
+        "index": 199,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4696,7 +4675,7 @@
         ]
       },
       {
-        "index": 201,
+        "index": 200,
         "type": "Paragraph",
         "properties": {
           "style": "Titre2",
@@ -4715,7 +4694,7 @@
         ]
       },
       {
-        "index": 202,
+        "index": 201,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4735,7 +4714,7 @@
         ]
       },
       {
-        "index": 203,
+        "index": 202,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4755,7 +4734,7 @@
         ]
       },
       {
-        "index": 204,
+        "index": 203,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4789,7 +4768,7 @@
         ]
       },
       {
-        "index": 205,
+        "index": 204,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4798,7 +4777,7 @@
         }
       },
       {
-        "index": 206,
+        "index": 205,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4864,7 +4843,7 @@
         ]
       },
       {
-        "index": 207,
+        "index": 206,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4873,7 +4852,7 @@
         }
       },
       {
-        "index": 208,
+        "index": 207,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -4882,7 +4861,7 @@
         }
       },
       {
-        "index": 209,
+        "index": 208,
         "type": "Table",
         "rows": [
           {
@@ -5018,7 +4997,7 @@
         "col_count": 2
       },
       {
-        "index": 210,
+        "index": 209,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5027,7 +5006,7 @@
         }
       },
       {
-        "index": 211,
+        "index": 210,
         "type": "Paragraph",
         "properties": {
           "style": "Titre2",
@@ -5052,7 +5031,7 @@
         ]
       },
       {
-        "index": 212,
+        "index": 211,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5072,7 +5051,7 @@
         ]
       },
       {
-        "index": 213,
+        "index": 212,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5120,7 +5099,7 @@
         ]
       },
       {
-        "index": 214,
+        "index": 213,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5140,7 +5119,7 @@
         ]
       },
       {
-        "index": 215,
+        "index": 214,
         "type": "Paragraph",
         "properties": {
           "style": "Titre2",
@@ -5159,7 +5138,7 @@
         ]
       },
       {
-        "index": 216,
+        "index": 215,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5179,7 +5158,7 @@
         ]
       },
       {
-        "index": 217,
+        "index": 216,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5199,7 +5178,7 @@
         ]
       },
       {
-        "index": 218,
+        "index": 217,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5219,7 +5198,7 @@
         ]
       },
       {
-        "index": 219,
+        "index": 218,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5239,7 +5218,7 @@
         ]
       },
       {
-        "index": 220,
+        "index": 219,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5248,7 +5227,7 @@
         }
       },
       {
-        "index": 221,
+        "index": 220,
         "type": "Paragraph",
         "properties": {
           "style": "Normal",
@@ -5273,8 +5252,8 @@
       }
     ],
     "stats": {
-      "total_elements": 222,
-      "paragraphs": 220,
+      "total_elements": 221,
+      "paragraphs": 219,
       "tables": 2
     }
   }

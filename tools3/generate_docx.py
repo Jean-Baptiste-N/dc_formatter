@@ -130,6 +130,47 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
         para.add_run(para_data['text'])
 
 
+def set_table_borders(table, borders_data):
+    """
+    Applique les bordures à une table Word.
+    
+    borders_data: {
+        'top': {'size': '12', 'color': '000000'} or None,
+        'bottom': {'size': '12', 'color': '000000'} or None,
+        'left': ..., 'right': ..., 'insideH': ..., 'insideV': ...
+    }
+    """
+    from docx.oxml import parse_xml
+    from docx.oxml.ns import nsdecls
+    
+    # Accéder à la propriété tbl de la table
+    tbl = table._element
+    tblPr = tbl.tblPr
+    
+    # Créer/récupérer les propriétés de bordure (tblBorders)
+    tblBorders = tblPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}tblBorders')
+    if tblBorders is not None:
+        tblPr.remove(tblBorders)
+    
+    # Construire le XML des bordures
+    borders_xml = f'<w:tblBorders {nsdecls("w")}>'
+    
+    for side in ['top', 'left', 'bottom', 'right', 'insideH', 'insideV']:
+        border_info = borders_data.get(side)
+        if border_info is None:
+            # Pas de bordure
+            borders_xml += f'<w:{side} w:val="none" w:sz="0" w:space="0" w:color="auto"/>'
+        else:
+            size = border_info.get('size', '12')
+            color = border_info.get('color', '000000')
+            borders_xml += f'<w:{side} w:val="single" w:sz="{size}" w:space="0" w:color="{color}"/>'
+    
+    borders_xml += '</w:tblBorders>'
+    
+    tblBorders_elem = parse_xml(borders_xml)
+    tblPr.append(tblBorders_elem)
+
+
 def add_table_from_json(doc: Document, table_data: dict):
     """Ajoute un tableau au document à partir des données JSON"""
     rows = table_data.get('rows', [])
@@ -145,6 +186,12 @@ def add_table_from_json(doc: Document, table_data: dict):
     
     # Appliquer les propriétés du tableau
     props = table_data.get('properties', {})
+    
+    # Appliquer les bordures si définies dans les propriétés
+    borders_data = props.get('borders')
+    if borders_data:
+        set_table_borders(table, borders_data)
+    
     if 'table_width' in props:
         # Appliquer la largeur du tableau (en twips)
         # Conversion: 1 twip = 2.54 cm / 1440 = 0.00176389 cm
@@ -170,6 +217,18 @@ def add_table_from_json(doc: Document, table_data: dict):
         
         for col_idx, cell_data in enumerate(row_data.get('cells', [])):
             cell = row.cells[col_idx]
+            
+            # Appliquer l'alignement de la cellule (horizontal et vertical)
+            cell_props = cell_data.get('properties', {})
+            if 'vAlign' in cell_props:
+                # Alignement vertical : 'top', 'center', 'bottom'
+                v_align = cell_props['vAlign'].lower()
+                if v_align == 'center':
+                    cell.vertical_alignment = 1  # WD_ALIGN_VERTICAL.CENTER
+                elif v_align == 'bottom':
+                    cell.vertical_alignment = 2  # WD_ALIGN_VERTICAL.BOTTOM
+                else:  # top
+                    cell.vertical_alignment = 0  # WD_ALIGN_VERTICAL.TOP
             
             # Appliquer la largeur de la cellule si elle existe
             if 'width' in cell_data:
@@ -201,9 +260,11 @@ def add_table_from_json(doc: Document, table_data: dict):
                     except (KeyError, TypeError):
                         pass
                 
-                # Alignment
+                # Alignment (hériter de hAlign de la cellule si pas d'alignment explicite)
                 if 'alignment' in para_props:
                     para.alignment = parse_alignment(para_props['alignment'])
+                elif 'hAlign' in cell_props:
+                    para.alignment = parse_alignment(cell_props['hAlign'])
                 
                 # Ajouter les runs
                 if 'runs' in para_data:
@@ -267,9 +328,11 @@ def add_table_from_json(doc: Document, table_data: dict):
                         except (KeyError, TypeError):
                             pass
                     
-                    # Alignment
+                    # Alignment (hériter de hAlign de la cellule si pas d'alignment explicite)
                     if 'alignment' in para_props:
                         para.alignment = parse_alignment(para_props['alignment'])
+                    elif 'hAlign' in cell_props:
+                        para.alignment = parse_alignment(cell_props['hAlign'])
                     
                     # Ajouter les runs
                     if 'runs' in para_data:
