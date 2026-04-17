@@ -1879,17 +1879,6 @@
                 },
                 "paragraphs": [
                   {
-                    "index": 78,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9F98"
-                    },
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
                     "index": 81,
                     "type": "Paragraph",
                     "properties": {
@@ -2487,7 +2476,7 @@
         "index": 109,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
+          "style": "DC_XP_BlueContent",
           "paraId": "744E9FB9"
         },
         "runs": [
@@ -2640,22 +2629,6 @@
                   "vAlign": "center"
                 },
                 "paragraphs": [
-                  {
-                    "index": 110,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FBA"
-                    },
-                    "runs": [
-                      {
-                        "page_break": true
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
                   {
                     "index": 113,
                     "type": "Paragraph",
@@ -3312,7 +3285,7 @@
         "index": 143,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
+          "style": "DC_XP_BlueContent",
           "paraId": "744E9FDD"
         },
         "runs": [
@@ -3497,33 +3470,6 @@
                   "vAlign": "center"
                 },
                 "paragraphs": [
-                  {
-                    "index": 144,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FDE"
-                    },
-                    "runs": [
-                      {
-                        "page_break": true
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
-                    "index": 145,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744E9FDF"
-                    },
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
                   {
                     "index": 148,
                     "type": "Paragraph",
@@ -4418,7 +4364,7 @@
         "index": 192,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
+          "style": "DC_XP_BlueContent",
           "paraId": "744EA010"
         },
         "runs": [
@@ -4798,7 +4744,7 @@
         "index": 205,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
+          "style": "DC_XP_BlueContent",
           "paraId": "744EA020"
         },
         "runs": [
@@ -4958,28 +4904,6 @@
                 },
                 "paragraphs": [
                   {
-                    "index": 206,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744EA021"
-                    },
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
-                    "index": 207,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744EA022"
-                    },
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
@@ -5005,17 +4929,6 @@
                         },
                         "text": ", Alternance"
                       }
-                    ]
-                  },
-                  {
-                    "index": 209,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "paraId": "744EA028"
-                    },
-                    "tags": [
-                      "professional_experience"
                     ]
                   }
                 ]
@@ -5246,7 +5159,7 @@
         "index": 220,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
+          "style": "DC_XP_BlueContent",
           "paraId": "744EA033"
         },
         "runs": [

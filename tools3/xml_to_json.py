@@ -1006,10 +1006,22 @@ def insert_text_into_tables(data: Dict[str, Any]) -> None:
                         element['rows'][0]['cells'][1]['paragraphs'] = [date_para]
                     
                     # Placer le reste dans cell[1][0]
+                    # Filtrer: garder seulement les paragraphes avec du texte (exclure vides + page_break-only)
                     if remaining:
+                        filtered_paras = []
                         for para in remaining:
                             clean_paragraph_for_table(para)
-                        element['rows'][1]['cells'][0]['paragraphs'] = remaining
+                            
+                            # Un paragraphe est utile s'il a au moins un run avec du texte
+                            runs = para.get('runs', [])
+                            has_meaningful_content = any('text' in run for run in runs)
+                            
+                            if has_meaningful_content:
+                                filtered_paras.append(para)
+                        
+                        # Placer seulement les paragraphes significatifs
+                        if filtered_paras:
+                            element['rows'][1]['cells'][0]['paragraphs'] = filtered_paras
         
         i += 1
     
@@ -1116,11 +1128,12 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         if 'tags' not in itag:
             continue
         tags = itag['tags']
-        text = get_text_from_element(itag).lower() if itag else ""
-        props = itag.get('properties', {})
+        text = get_text_from_element(itag)  # Déjà en minuscules
         
-        if 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS) and not any(keyword in text for keyword in 'contexte'):
-            props['style'] = 'DC_XP_BlueContent'
+        if 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in text:
+            if 'properties' not in itag:
+                itag['properties'] = {}
+            itag['properties']['style'] = 'DC_XP_BlueContent'
             
     # Appliquer les styles des listes
     for ilist in data.get('document', {}).get('content', []):
