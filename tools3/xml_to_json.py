@@ -24,8 +24,9 @@ NS = {
 KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", "dossier de competences", "dossier de competences"]
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes"]
-KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
+KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
 KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
+KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
 
 def extract_page_dimensions_from_template(template_path: str = None) -> dict:
@@ -681,121 +682,272 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
         ]
     }
 
-
-def add_dimensions_to_tables(data: Dict[str, Any], default_row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
+def create_language_header(data: Dict[str, Any]) -> None:
     """
-    Ajoute et normalise les dimensions des tables existantes selon leur section.
-
-    - Largeur totale : normalisée à usable_width (9972 twips)
-    - Largeurs colonnes : différentes selon la section (education vs professional_experience)
-    - Hauteur lignes : défaut si absent
+    Crée un header "Langues" juste avant le premier élément contenant KEYWORDS_LANGUAGES,
+    si ce header n'existe pas déjà.
 
     Args:
         data: Structure du document JSON
-        default_row_height: Hauteur par défaut de chaque ligne
+    """
+    content = data.get('document', {}).get('content', [])
+
+    # Chercher le premier élément contenant KEYWORDS_LANGUAGES
+    first_language_idx = None
+    for i, element in enumerate(content):
+        if element.get('type') == 'Paragraph':
+            text = get_text_from_element(element).lower()
+            if any(keyword in text for keyword in KEYWORDS_LANGUAGES):
+                first_language_idx = i
+                break
+
+    if first_language_idx is None:
+        return  # Aucun keyword détecté, rien à faire
+
+    # Vérifier si l'élément précédent est déjà un header "Langues"
+    if first_language_idx > 0:
+        prev_element = content[first_language_idx - 1]
+        if prev_element.get('type') == 'Paragraph':
+            prev_text = get_text_from_element(prev_element).lower()
+            # Vérifier si c'est un header contenant des keywords de langues
+            if any(keyword in prev_text for keyword in KEYWORDS_LANGUAGES):
+                return  # Header existe déjà
+
+    # Créer et insérer le header "Langues" juste avant le premier keyword
+    new_header = {
+        'type': 'Paragraph',
+        'text': 'Langues',
+        'properties': {},
+        'tags': 'education',
+        'section': 'education',
+        'auto_generated': True
+    }
+    content.insert(first_language_idx, new_header)
+
+
+def create_edu_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
+    """
+    Crée et restructure les tables de la section "education":
+    
+    1. Après "Formation" : détecte table existante, la remplace par une table auto (2xN)
+       Redistribue le contenu : dates en col 0, textes en col 1
+    
+    2. Après "Langues" : crée une table 2x2 par défaut
+       Redistribue les paragraphes de langues : langue en col 0, description en col 1
+    
+    Args:
+        data: Structure du document JSON
+        row_height: Hauteur des lignes en twips
         page_dims: Dimensions de page (si None, utilise extract_page_dimensions_from_template())
     """
     if page_dims is None:
         page_dims = extract_page_dimensions_from_template()
 
     content = data.get('document', {}).get('content', [])
-    current_section = None
-    col_fixed_width, usable_width, _, _ = calculate_table_widths(page_dims)
+    new_content = []
+    indices_to_remove = []
+    
+    i = 0
+    while i < len(content):
+        element = content[i]
+        new_content.append(element)
 
-    for element in content:
-        # Tracer la section courante en fonction des tags
         if element.get('type') == 'Paragraph':
-            tags = element.get('tags', [])
-            if 'education' in tags:
-                current_section = 'education'
-            elif 'professional_experience' in tags:
-                current_section = 'professional_experience'
+            text = get_text_from_element(element).lower()
+            
+            # ===== CAS 1 : FORMATION =====
+            if any(keyword in text for keyword in KEYWORDS_EDUCATION) and 'formation' in text:
+                # Chercher la table existante après ce header
+                if i + 1 < len(content):
+                    next_elem = content[i + 1]
+                    if next_elem.get('type') == 'Table' and not next_elem.get('auto_generated'):
+                        # Table existante trouvée
+                        existing_table = next_elem
+                        num_rows = len(existing_table.get('rows', []))
+                        
+                        # Extraire tout le contenu de la table existante
+                        all_paras_from_table = []
+                        for row in existing_table.get('rows', []):
+                            for cell in row.get('cells', []):
+                                all_paras_from_table.extend(cell.get('paragraphs', []))
+                        
+                        # Créer une nouvelle table auto avec autant de lignes que la table existante
+                        new_table = create_empty_table_2x2(
+                            len(new_content),
+                            row_height,
+                            section='education',
+                            page_dims=page_dims,
+                            auto_generated=True
+                        )
+                        
+                        # Adapter le nombre de lignes de la table auto à celui de la table existante
+                        if num_rows != 2:
+                            # Recréer les rows manquantes
+                            new_table['rows'] = []
+                            col1_width, col2_width = get_table_widths_for_section('education', page_dims)
+                            for row_idx in range(num_rows):
+                                new_table['rows'].append({
+                                    'row_index': row_idx,
+                                    'height': row_height,
+                                    'cells': [
+                                        {
+                                            'col_index': 0,
+                                            'width': col1_width,
+                                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
+                                            'paragraphs': []
+                                        },
+                                        {
+                                            'col_index': 1,
+                                            'width': col2_width,
+                                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
+                                            'paragraphs': []
+                                        }
+                                    ]
+                                })
+                            new_table['row_count'] = num_rows
+                        
+                        # Distribuer les paragraphes extraits dans la nouvelle table
+                        # Logique : essayer de deviner dates (col 0) vs contenu (col 1)
+                        for row_idx, para in enumerate(all_paras_from_table):
+                            if row_idx < num_rows:
+                                clean_paragraph_for_table(para)
+                                
+                                # Vérifier si c'est une date (contient "20xx")
+                                para_text = get_text_from_element(para)
+                                if ' 20' in para_text or '/20' in para_text or '-20' in para_text:
+                                    # Date en col 0
+                                    new_table['rows'][row_idx]['cells'][0]['paragraphs'] = [para]
+                                else:
+                                    # Contenu en col 1
+                                    new_table['rows'][row_idx]['cells'][1]['paragraphs'] = [para]
+                        
+                        new_content.append(new_table)
+                        indices_to_remove.append(i + 1)  # Marquer la table existante pour suppression
+                        i += 2
+                        continue
+        
+        i += 1
+    
+    # Supprimer les tables existantes qui ont été traitées
+    for idx in sorted(indices_to_remove, reverse=True):
+        if idx < len(content):
+            del content[idx]
+    
+    # ===== CAS 2 : LANGUES (créer une table et insérer les paragraphes de langues) =====
+    # Chercher le header "Langues" créé précédemment
+    lang_header_idx = None
+    for i, element in enumerate(new_content):
+        if element.get('type') == 'Paragraph':
+            text = get_text_from_element(element).lower()
+            if 'langues' in text and 'header' in element.get('tags', []):
+                lang_header_idx = i
+                break
+    
+    if lang_header_idx is not None:
+        # Vérifier s'il y a une table existante juste après le header "Langues"
+        existing_lang_table = None
+        existing_lang_table_idx = None
+        if lang_header_idx + 1 < len(new_content):
+            elem = new_content[lang_header_idx + 1]
+            if elem.get('type') == 'Table' and not elem.get('auto_generated'):
+                existing_lang_table = elem
+                existing_lang_table_idx = lang_header_idx + 1
+        
+        # Déterminer le nombre de lignes de la table
+        if existing_lang_table:
+            # Utiliser le nombre de lignes de la table existante
+            num_rows = len(existing_lang_table.get('rows', []))
+            
+            # Extraire tout le contenu de la table existante
+            all_paras_from_lang_table = []
+            for row in existing_lang_table.get('rows', []):
+                for cell in row.get('cells', []):
+                    all_paras_from_lang_table.extend(cell.get('paragraphs', []))
+        else:
+            # Collecter tous les paragraphes de langues après le header jusqu'au prochain header/table
+            language_paras = []
+            for i in range(lang_header_idx + 1, len(new_content)):
+                elem = new_content[i]
+                
+                # Arrêter si on rencontre un autre header ou une section différente
+                if elem.get('type') == 'Paragraph':
+                    elem_text = get_text_from_element(elem).lower()
+                    # Arrêter si c'est un autre header
+                    if any(keyword in elem_text for keyword in KEYWORDS_EDUCATION) and 'formation' in elem_text:
+                        break
+                    if any(keyword in elem_text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                        break
+                    
+                    # Si c'est un keyword de langue, le collecter
+                    if any(keyword in elem_text for keyword in KEYWORDS_LANGUAGES):
+                        language_paras.append(elem)
+                elif elem.get('type') == 'Table':
+                    break
+            
+            num_rows = len(language_paras)
+            all_paras_from_lang_table = language_paras
+        
+        # Créer la table seulement s'il y a du contenu
+        if num_rows > 0:
+            # Créer une nouvelle table auto avec le nombre de lignes détecté
+            new_lang_table = create_empty_table_2x2(
+                lang_header_idx + 1,
+                row_height,
+                section='education',
+                page_dims=page_dims,
+                auto_generated=True
+            )
+            
+            # Recréer autant de lignes que nécessaire
+            col1_width, col2_width = get_table_widths_for_section('education', page_dims)
+            new_lang_table['rows'] = []
+            for row_idx in range(num_rows):
+                new_lang_table['rows'].append({
+                    'row_index': row_idx,
+                    'height': row_height,
+                    'cells': [
+                        {
+                            'col_index': 0,
+                            'width': col1_width,
+                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
+                            'paragraphs': []
+                        },
+                        {
+                            'col_index': 1,
+                            'width': col2_width,
+                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
+                            'paragraphs': []
+                        }
+                    ]
+                })
+            new_lang_table['row_count'] = num_rows
+            
+            # Distribuer les paragraphes dans la table
+            # Format : langue en col 0, description/reste en col 1
+            for row_idx, para in enumerate(all_paras_from_lang_table):
+                if row_idx < num_rows:
+                    clean_paragraph_for_table(para)
+                    # La langue va en col 0
+                    new_lang_table['rows'][row_idx]['cells'][0]['paragraphs'] = [para]
+            
+            # Insérer la table juste après le header "Langues"
+            new_content.insert(lang_header_idx + 1, new_lang_table)
+            
+            # Si une table existante était présente, la supprimer
+            if existing_lang_table_idx is not None:
+                # L'index a changé après l'insertion, donc ajouter 1
+                new_content.pop(existing_lang_table_idx + 1)
+    
+    data['document']['content'] = new_content
 
-        # Appliquer les dimensions aux tables
-        if element.get('type') == 'Table':
-            col1_width, col2_width = get_table_widths_for_section(current_section, page_dims)
 
-            # Vérifier le nombre de colonnes (dimension principale)
-            row_count = len(element.get('rows', []))
-            if row_count > 0:
-                first_row = element['rows'][0]
-                cell_count = len(first_row.get('cells', []))
-
-                # Créer les propriétés si n'existent pas
-                if 'properties' not in element:
-                    element['properties'] = {}
-
-                element['properties']['section'] = current_section
-
-                if cell_count == 2:
-                    # Table avec 2 colonnes (2xN) : appliquer les largeurs différenciées
-                    element['properties']['table_width'] = str(usable_width)
-                    element['properties']['table_width_type'] = 'dxa'
-
-                    for row in element.get('rows', []):
-                        if 'height' not in row:
-                            row['height'] = default_row_height
-                        cells = row.get('cells', [])
-                        if len(cells) >= 2:
-                            if 'width' not in cells[0]:
-                                cells[0]['width'] = col1_width
-                            if 'width' not in cells[1]:
-                                cells[1]['width'] = col2_width
-                else:
-                    # Table avec autre nombre de colonnes : colonnes égales
-                    element['properties']['table_width'] = str(usable_width)
-                    element['properties']['table_width_type'] = 'dxa'
-
-                    equal_width = usable_width // cell_count
-                    for row in element.get('rows', []):
-                        if 'height' not in row:
-                            row['height'] = default_row_height
-                        for col_idx, cell in enumerate(row.get('cells', [])):
-                            if 'width' not in cell:
-                                cell['width'] = equal_width
-
-            # Traiter les tables 2x2 (priorité)
-            row_count = len(element.get('rows', []))
-            if row_count == 2:
-                first_row = element['rows'][0]
-                cell_count = len(first_row.get('cells', []))
-
-                if cell_count == 2:
-                    for row in element.get('rows', []):
-                        if 'height' not in row:
-                            row['height'] = default_row_height
-                        cells = row.get('cells', [])
-                        if len(cells) >= 2:
-                            if 'width' not in cells[0]:
-                                cells[0]['width'] = col1_width
-                            if 'width' not in cells[1]:
-                                cells[1]['width'] = col2_width
-                else:
-                    # Tables avec autre nombre de colonnes
-                    equal_width = usable_width // cell_count
-                    for row in element.get('rows', []):
-                        if 'height' not in row:
-                            row['height'] = default_row_height
-                        for cell in row.get('cells', []):
-                            if 'width' not in cell:
-                                cell['width'] = equal_width
-
-            # Tracker la section
-            if 'properties' not in element:
-                element['properties'] = {}
-            if 'section' not in element['properties']:
-                element['properties']['section'] = current_section
-
-
-def transform_into_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
+def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
     """
     Crée des tables 2x2 :
     1. Après le header "Expériences Professionnelles" (pour le job entry)
     2. Quand on détecte KEYWORDS_TECHNICAL_SKILLS
     3. SAUF pour les paragraphes avec ilvl (listes/bullets)
     4. SAUF pour les paragraphes commençant par "Contexte"
-
-    Ajoute aussi les dimensions à toutes les tables existantes.
 
     Args:
         data: Structure du document JSON
@@ -807,10 +959,7 @@ def transform_into_xp_tables(data: Dict[str, Any], row_height: int = 360, page_d
 
     content = data.get('document', {}).get('content', [])
 
-    # Étape 1 : Ajouter les dimensions à toutes les tables existantes
-    add_dimensions_to_tables(data, row_height, page_dims)
-
-    # Étape 2 : Créer des tables selon les conditions
+    # Créer des tables selon les conditions
     new_content = []
     just_after_prof_exp_header = False
     current_section = None
@@ -901,7 +1050,7 @@ def clean_paragraph_for_table(para: Dict[str, Any]) -> None:
                 # Remplacer les propriétés du run par les propriétés conservées
                 run['properties'] = kept_props
 
-def insert_text_into_tables(data: Dict[str, Any]) -> None:
+def insert_text_xp_tables(data: Dict[str, Any]) -> None:
     """
     Insère le texte dans les cellules des tableaux.
 
@@ -1266,11 +1415,17 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_p
     # Appliquer les tags de section
     apply_section_tags(data)
 
+    # Créer le header "Langues" juste avant le premier keyword détecté
+    create_language_header(data)
+
+    # Créer et restructurer les tables de la section education
+    create_edu_tables(data, page_dims=page_dims)
+
     # Appliquer les tables et dimensions
-    transform_into_xp_tables(data, page_dims=page_dims)
+    create_xp_tables(data, page_dims=page_dims)
 
     # Insérer le texte dans les tables créées
-    insert_text_into_tables(data)
+    insert_text_xp_tables(data)
 
     # Appliquer les styles
     apply_styles_in_json(data)
