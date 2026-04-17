@@ -1690,7 +1690,7 @@
           }
         ],
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "education",
           "style": "DC_Table_Education"
@@ -1776,7 +1776,7 @@
         "type": "Table",
         "auto_generated": true,
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "professional_experience",
           "borders": {
@@ -1801,7 +1801,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -1872,7 +1872,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -2535,7 +2535,7 @@
         "type": "Table",
         "auto_generated": true,
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "professional_experience",
           "borders": {
@@ -2560,7 +2560,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -2623,7 +2623,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -3376,7 +3376,7 @@
         "type": "Table",
         "auto_generated": true,
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "professional_experience",
           "borders": {
@@ -3401,7 +3401,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -3464,7 +3464,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -4423,7 +4423,7 @@
         "type": "Table",
         "auto_generated": true,
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "professional_experience",
           "borders": {
@@ -4448,7 +4448,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -4511,7 +4511,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -4803,7 +4803,7 @@
         "type": "Table",
         "auto_generated": true,
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "professional_experience",
           "borders": {
@@ -4828,7 +4828,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -4897,7 +4897,7 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7137,
+                "width": 6803,
                 "properties": {
                   "hAlign": "left",
                   "vAlign": "center"
@@ -5186,9 +5186,9 @@
     }
   },
   "page_dimensions": {
-    "page_width": 12240,
-    "page_height": 15840,
-    "usable_width": 9972,
+    "page_width": 11906,
+    "page_height": 16838,
+    "usable_width": 9638,
     "top_margin": 1134,
     "bottom_margin": 1134,
     "left_margin": 1134,
