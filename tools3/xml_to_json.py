@@ -611,6 +611,28 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
 
     table_total_width = col1_width + col2_width
 
+    # Définir les bordures selon la section
+    if section == 'education':
+        # Tables éducation : toutes les bordures
+        borders = {
+            'top': {'size': '10', 'color': '000000'},
+            'bottom': {'size': '10', 'color': '000000'},
+            'left': {'size': '10', 'color': '000000'},
+            'right': {'size': '10', 'color': '000000'},
+            'insideH': {'size': '10', 'color': '000000'},
+            'insideV': {'size': '10', 'color': '000000'}
+        }
+    else:
+        # Tables professionelles : seulement bottom border
+        borders = {
+            'top': None,
+            'bottom': {'size': '10', 'color': '000000'},
+            'left': None,
+            'right': None,
+            'insideH': None,
+            'insideV': None
+        }
+
     return {
         'index': index,
         'type': 'Table',
@@ -619,14 +641,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             'table_width': str(table_total_width),
             'table_width_type': 'dxa',
             'section': section,
-            'borders': {
-                'top': None,
-                'bottom': {'size': '12', 'color': '000000'},
-                'left': None,
-                'right': None,
-                'insideH': None,
-                'insideV': None
-            }
+            'borders': borders
         },
         'row_count': 2,
         'col_count': 2,
@@ -725,6 +740,52 @@ def create_language_header(data: Dict[str, Any]) -> None:
     content.insert(first_language_idx, new_header)
 
 
+def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Dict[str, Any]]]:
+    """
+    Groupe les paragraphes éducation en blocs basés sur les dates.
+    
+    Logique:
+    - Un bloc commence avec une date (contient ' 20', '/20', '-20')
+    - Les paragraphes suivants (non-dates) font partie du même bloc
+    - Le prochain bloc commence quand une nouvelle date est détectée
+    
+    Args:
+        paragraphs: Liste de paragraphes
+        
+    Returns:
+        Liste de blocs, où chaque bloc est une liste de paragraphes
+        Exemple: [[date_para, desc1, desc2], [date_para, desc1], ...]
+    """
+    if not paragraphs:
+        return []
+    
+    blocks = []
+    current_block = []
+    
+    for para in paragraphs:
+        para_text = get_text_from_element(para)
+        is_date = '20' in para_text or ' 20' in para_text or '/20' in para_text or '-20' in para_text
+        
+        if is_date:
+            # Nouvelle date = nouveau bloc
+            if current_block:
+                blocks.append(current_block)
+            current_block = [para]  # Start new block with this date
+        else:
+            # Non-date: ajouter au bloc courant
+            if current_block:
+                current_block.append(para)
+            else:
+                # Pas de bloc courant, créer un bloc pour ce paragraphe
+                current_block = [para]
+    
+    # Ajouter le dernier bloc
+    if current_block:
+        blocks.append(current_block)
+    
+    return blocks
+
+
 def create_edu_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
     """
     Crée et restructure les tables de la section "education":
@@ -744,152 +805,207 @@ def create_edu_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Di
         page_dims = extract_page_dimensions_from_template()
 
     content = data.get('document', {}).get('content', [])
-    new_content = []
-    indices_to_remove = []
+    indices_to_delete = []  # Indices à supprimer à la fin
     
-    i = 0
-    while i < len(content):
-        element = content[i]
-        new_content.append(element)
-
+    # ===== ÉTAPE 1 : FORMATION =====
+    for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element).lower()
             
-            # ===== CAS 1 : FORMATION =====
-            if any(keyword in text for keyword in KEYWORDS_EDUCATION) and 'formation' in text:
-                # Chercher la table existante après ce header
-                if i + 1 < len(content):
-                    next_elem = content[i + 1]
-                    if next_elem.get('type') == 'Table' and not next_elem.get('auto_generated'):
-                        # Table existante trouvée
-                        existing_table = next_elem
-                        num_rows = len(existing_table.get('rows', []))
-                        
-                        # Extraire tout le contenu de la table existante
-                        all_paras_from_table = []
-                        for row in existing_table.get('rows', []):
-                            for cell in row.get('cells', []):
-                                all_paras_from_table.extend(cell.get('paragraphs', []))
-                        
-                        # Créer une nouvelle table auto avec autant de lignes que la table existante
-                        new_table = create_empty_table_2x2(
-                            len(new_content),
-                            row_height,
-                            section='education',
-                            page_dims=page_dims,
-                            auto_generated=True
-                        )
-                        
-                        # Adapter le nombre de lignes de la table auto à celui de la table existante
-                        if num_rows != 2:
-                            # Recréer les rows manquantes
-                            new_table['rows'] = []
-                            col1_width, col2_width = get_table_widths_for_section('education', page_dims)
-                            for row_idx in range(num_rows):
-                                new_table['rows'].append({
-                                    'row_index': row_idx,
-                                    'height': row_height,
-                                    'cells': [
-                                        {
-                                            'col_index': 0,
-                                            'width': col1_width,
-                                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
-                                            'paragraphs': []
-                                        },
-                                        {
-                                            'col_index': 1,
-                                            'width': col2_width,
-                                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
-                                            'paragraphs': []
-                                        }
-                                    ]
-                                })
-                            new_table['row_count'] = num_rows
-                        
-                        # Distribuer les paragraphes extraits dans la nouvelle table
-                        # Logique : essayer de deviner dates (col 0) vs contenu (col 1)
-                        for row_idx, para in enumerate(all_paras_from_table):
-                            if row_idx < num_rows:
-                                clean_paragraph_for_table(para)
-                                
-                                # Vérifier si c'est une date (contient "20xx")
+            # Chercher un vrai header Formation : soit Titre1/Titre2, soit juste le mot "Formation"
+            is_title = element.get('properties', {}).get('style', '').startswith('Titre')
+            is_only_formation = text.strip() in ['formation', 'formations']
+            
+            if (any(keyword in text for keyword in KEYWORDS_EDUCATION) and 'formation' in text and 
+                (is_title or is_only_formation)):
+                # Header Formation détecté
+                
+                # Chercher table existante ou paragraphes après ce header
+                formation_paras = []
+                j = i + 1
+                
+                # Cas 1 : table existante après Formation
+                if j < len(content) and content[j].get('type') == 'Table' and not content[j].get('auto_generated'):
+                    existing_table = content[j]
+                    # Extraire paragraphes de la table
+                    for row in existing_table.get('rows', []):
+                        for cell in row.get('cells', []):
+                            formation_paras.extend(cell.get('paragraphs', []))
+                    num_rows = len(existing_table.get('rows', []))
+                    indices_to_delete.append(j)  # Marquer table pour suppression
+                    j += 1
+                
+                # Cas 2 : paragraphes directs après Formation
+                else:
+                    while j < len(content):
+                        next_elem = content[j]
+                        if next_elem.get('type') == 'Paragraph':
+                            elem_text = get_text_from_element(next_elem).lower()
+                            
+                            # SAUTER les paragraphes vides
+                            if not elem_text.strip():
+                                j += 1
+                                continue
+                            
+                            # Arrêter si autre section (Langues ou XP)
+                            if any(keyword in elem_text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                                break
+                            # Arrêter si header Langues (exact match or auto-generated)
+                            is_only_langues = elem_text.strip() in ['langues', 'langue']
+                            is_title = next_elem.get('properties', {}).get('style', '').startswith('Titre')
+                            if is_only_langues and (is_title or next_elem.get('auto_generated', False)):
+                                break
+                            # Ajouter le paragraphe
+                            formation_paras.append(next_elem)
+                            indices_to_delete.append(j)
+                            j += 1
+                        elif next_elem.get('type') == 'Table':
+                            if not next_elem.get('auto_generated'):
+                                # Table existante : l'extraire aussi
+                                for row in next_elem.get('rows', []):
+                                    for cell in row.get('cells', []):
+                                        formation_paras.extend(cell.get('paragraphs', []))
+                                indices_to_delete.append(j)
+                            break
+                        else:
+                            j += 1
+                    
+                    # Regrouper les paragraphes en blocs basés sur les dates
+                    formation_blocks = group_education_paragraphs(formation_paras)
+                    num_rows = len(formation_blocks)
+                
+                # Créer la table auto si du contenu
+                if formation_paras and num_rows > 0:
+                    new_table = create_empty_table_2x2(
+                        i + 1,
+                        row_height,
+                        section='education',
+                        page_dims=page_dims,
+                        auto_generated=True
+                    )
+                    
+                    # Adapter nombre de lignes
+                    col1_width, col2_width = get_table_widths_for_section('education', page_dims)
+                    new_table['rows'] = []
+                    for row_idx in range(num_rows):
+                        new_table['rows'].append({
+                            'row_index': row_idx,
+                            'height': row_height,
+                            'cells': [
+                                {
+                                    'col_index': 0,
+                                    'width': col1_width,
+                                    'properties': {'hAlign': 'left', 'vAlign': 'center'},
+                                    'paragraphs': []
+                                },
+                                {
+                                    'col_index': 1,
+                                    'width': col2_width,
+                                    'properties': {'hAlign': 'left', 'vAlign': 'center'},
+                                    'paragraphs': []
+                                }
+                            ]
+                        })
+                    new_table['row_count'] = num_rows
+                    
+                    # Distribuer les blocs dans les lignes
+                    for row_idx, block in enumerate(formation_blocks):
+                        if row_idx < num_rows:
+                            # Traiter le bloc: premier = date (col 0), rest = contenu (col 1)
+                            for para_idx, para in enumerate(block):
                                 para_text = get_text_from_element(para)
-                                if ' 20' in para_text or '/20' in para_text or '-20' in para_text:
-                                    # Date en col 0
-                                    new_table['rows'][row_idx]['cells'][0]['paragraphs'] = [para]
+                                cloned = clone_paragraph_clean(para)
+                                
+                                if para_idx == 0:
+                                    # Premier paragraphe du bloc (généralement la date) → col 0
+                                    cloned['properties']['style'] = 'DC_Table_Year'
+                                    new_table['rows'][row_idx]['cells'][0]['paragraphs'].append(cloned)
                                 else:
-                                    # Contenu en col 1
-                                    new_table['rows'][row_idx]['cells'][1]['paragraphs'] = [para]
-                        
-                        new_content.append(new_table)
-                        indices_to_remove.append(i + 1)  # Marquer la table existante pour suppression
-                        i += 2
-                        continue
-        
-        i += 1
+                                    # Paragraphes suivants → col 1
+                                    cloned['properties']['style'] = 'DC_Table_Content'
+                                    new_table['rows'][row_idx]['cells'][1]['paragraphs'].append(cloned)
+                    
+                    # Insérer la table juste après Formation header
+                    content.insert(i + 1, new_table)
+                    # Décaler les indices à supprimer (insertion a changé les positions)
+                    indices_to_delete = [idx + 1 if idx > i else idx for idx in indices_to_delete]
+                    break
     
-    # Supprimer les tables existantes qui ont été traitées
-    for idx in sorted(indices_to_remove, reverse=True):
-        if idx < len(content):
-            del content[idx]
-    
-    # ===== CAS 2 : LANGUES (créer une table et insérer les paragraphes de langues) =====
-    # Chercher le header "Langues" créé précédemment
+    # ===== ÉTAPE 2 : LANGUES =====
+    # Chercher le header "Langues" (vrai header, pas du texte qui contient "langues")
     lang_header_idx = None
-    for i, element in enumerate(new_content):
+    for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element).lower()
-            if 'langues' in text and 'header' in element.get('tags', []):
+            # Chercher UNIQUEMENT "langues" ou "langue" comme header indépendant
+            is_only_langues = text.strip() in ['langues', 'langue']
+            is_title = element.get('properties', {}).get('style', '').startswith('Titre')
+            is_auto_gen = element.get('auto_generated', False)
+            
+            if is_only_langues and (is_title or is_auto_gen):
                 lang_header_idx = i
                 break
     
     if lang_header_idx is not None:
-        # Vérifier s'il y a une table existante juste après le header "Langues"
-        existing_lang_table = None
-        existing_lang_table_idx = None
-        if lang_header_idx + 1 < len(new_content):
-            elem = new_content[lang_header_idx + 1]
-            if elem.get('type') == 'Table' and not elem.get('auto_generated'):
-                existing_lang_table = elem
-                existing_lang_table_idx = lang_header_idx + 1
+        lang_paras = []
+        lang_indices = []
+        j = lang_header_idx + 1
         
-        # Déterminer le nombre de lignes de la table
-        if existing_lang_table:
-            # Utiliser le nombre de lignes de la table existante
-            num_rows = len(existing_lang_table.get('rows', []))
-            
-            # Extraire tout le contenu de la table existante
-            all_paras_from_lang_table = []
-            for row in existing_lang_table.get('rows', []):
+        # Cas 1 : table existante après Langues
+        if j < len(content) and content[j].get('type') == 'Table' and not content[j].get('auto_generated'):
+            existing_table = content[j]
+            for row in existing_table.get('rows', []):
                 for cell in row.get('cells', []):
-                    all_paras_from_lang_table.extend(cell.get('paragraphs', []))
+                    lang_paras.extend(cell.get('paragraphs', []))
+            indices_to_delete.append(j)
+            j += 1
         else:
-            # Collecter tous les paragraphes de langues après le header jusqu'au prochain header/table
-            language_paras = []
-            for i in range(lang_header_idx + 1, len(new_content)):
-                elem = new_content[i]
-                
-                # Arrêter si on rencontre un autre header ou une section différente
-                if elem.get('type') == 'Paragraph':
-                    elem_text = get_text_from_element(elem).lower()
-                    # Arrêter si c'est un autre header
-                    if any(keyword in elem_text for keyword in KEYWORDS_EDUCATION) and 'formation' in elem_text:
-                        break
+            # Cas 2 : collecter paragraphes de langues après header
+            while j < len(content):
+                next_elem = content[j]
+                if next_elem.get('type') == 'Paragraph':
+                    elem_text = get_text_from_element(next_elem).lower()
+                    
+                    # SAUTER les paragraphes vides
+                    if not elem_text.strip():
+                        j += 1
+                        continue
+                    
+                    # Arrêter si autre section (Formation ou XP)
                     if any(keyword in elem_text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
                         break
-                    
+                    # Arrêter si Formation header (exact match with title style or formation seul)
+                    is_only_formation = elem_text.strip() in ['formation', 'formations']
+                    is_title = next_elem.get('properties', {}).get('style', '').startswith('Titre')
+                    if is_only_formation and is_title:
+                        break
                     # Si c'est un keyword de langue, le collecter
                     if any(keyword in elem_text for keyword in KEYWORDS_LANGUAGES):
-                        language_paras.append(elem)
-                elif elem.get('type') == 'Table':
+                        lang_paras.append(next_elem)
+                        lang_indices.append(j)
+                    j += 1
+                elif next_elem.get('type') == 'Table':
                     break
-            
-            num_rows = len(language_paras)
-            all_paras_from_lang_table = language_paras
+                else:
+                    j += 1
         
-        # Créer la table seulement s'il y a du contenu
-        if num_rows > 0:
-            # Créer une nouvelle table auto avec le nombre de lignes détecté
+        # Créer table Langues si du contenu
+        if lang_paras:
+            # Scinder les paragraphes au ":" pour séparer langue et description
+            split_paras = []
+            for para in lang_paras:
+                split_paras.extend(split_paragraph_at_colon(para))
+            
+            # Regrouper par bloc: paires (langue, description)
+            # Si nombre impair, on les prendra 2 par 2
+            lang_blocks = []
+            for i in range(0, len(split_paras), 2):
+                if i + 1 < len(split_paras):
+                    lang_blocks.append((split_paras[i], split_paras[i+1]))
+                else:
+                    # Si impair, mettre le dernier seul en col 0
+                    lang_blocks.append((split_paras[i], None))
+            
             new_lang_table = create_empty_table_2x2(
                 lang_header_idx + 1,
                 row_height,
@@ -898,7 +1014,7 @@ def create_edu_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Di
                 auto_generated=True
             )
             
-            # Recréer autant de lignes que nécessaire
+            num_rows = len(lang_blocks)
             col1_width, col2_width = get_table_widths_for_section('education', page_dims)
             new_lang_table['rows'] = []
             for row_idx in range(num_rows):
@@ -922,23 +1038,36 @@ def create_edu_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Di
                 })
             new_lang_table['row_count'] = num_rows
             
-            # Distribuer les paragraphes dans la table
-            # Format : langue en col 0, description/reste en col 1
-            for row_idx, para in enumerate(all_paras_from_lang_table):
+            # Distribuer paragraphes scindés dans les colonnes
+            for row_idx, (lang_para, desc_para) in enumerate(lang_blocks):
                 if row_idx < num_rows:
-                    clean_paragraph_for_table(para)
-                    # La langue va en col 0
-                    new_lang_table['rows'][row_idx]['cells'][0]['paragraphs'] = [para]
+                    # Colonne 0 : langue
+                    lang_cloned = clone_paragraph_clean(lang_para)
+                    lang_cloned['properties']['style'] = 'DC_Table_Year'
+                    new_lang_table['rows'][row_idx]['cells'][0]['paragraphs'] = [lang_cloned]
+                    
+                    # Colonne 1 : description
+                    if desc_para:
+                        desc_cloned = clone_paragraph_clean(desc_para)
+                        desc_cloned['properties']['style'] = 'DC_Table_Content'
+                        new_lang_table['rows'][row_idx]['cells'][1]['paragraphs'] = [desc_cloned]
             
-            # Insérer la table juste après le header "Langues"
-            new_content.insert(lang_header_idx + 1, new_lang_table)
+            # Insérer table après Langues header
+            content.insert(lang_header_idx + 1, new_lang_table)
             
-            # Si une table existante était présente, la supprimer
-            if existing_lang_table_idx is not None:
-                # L'index a changé après l'insertion, donc ajouter 1
-                new_content.pop(existing_lang_table_idx + 1)
+            # Marquer paragraphes sources pour suppression
+            # Les indices ont changé avec l'insertion, donc ajouter 1
+            for idx in lang_indices:
+                if idx > lang_header_idx:
+                    indices_to_delete.append(idx + 1)
     
-    data['document']['content'] = new_content
+    # ===== ÉTAPE 3 : SUPPRIMER SOURCES =====
+    # Supprimer en ordre décroissant pour préserver les indices
+    for idx in sorted(set(indices_to_delete), reverse=True):
+        if 0 <= idx < len(content):
+            del content[idx]
+    
+    data['document']['content'] = content
 
 
 def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> None:
@@ -1014,41 +1143,142 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
 
     data['document']['content'] = new_content
 
-def clean_paragraph_for_table(para: Dict[str, Any]) -> None:
+def split_paragraph_at_colon(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
-    Nettoie les propriétés d'un paragraphe avant de le placer dans une table.
-    Supprime :
-    - Les propriétés de liste (ilvl, numId) pour éviter les numérotations indésirées
-    - Les propriétés de formatage directives (size, alignment, color, font) qui outrepassent le style
-    Conserve :
-    - Bold et Italic (propriétés de runs)
-    - Le style du paragraphe
+    Scinde un paragraphe au ":" s'il contient un deux-points.
+    
+    Crée 2 paragraphes:
+    - Avant ":": contient le texte jusqu'au ":"
+    - Après ":": contient le texte après le ":"
+    
+    Args:
+        para: Paragraphe JSON source
+        
+    Returns:
+        List[Dict]: Liste de 1 ou 2 paragraphes selon la présence de ":"
     """
-    if 'properties' in para:
-        props = para['properties']
-        # Supprimer les propriétés de liste
-        props.pop('ilvl', None)
-        props.pop('numId', None)
-        # Supprimer les propriétés de formatage qui outrepassent le style
-        props.pop('size', None)
-        props.pop('alignment', None)
-        props.pop('color', None)
-        props.pop('font', None)
-        # Conserver le style et les autres propriétés essentielles
+    text = get_text_from_element(para)
+    
+    if ':' not in text:
+        return [para]
+    
+    # Trouver l'index du ":" dans les runs
+    colon_pos = text.find(':')
+    before_colon = text[:colon_pos+1]  # inclure le ":"
+    after_colon = text[colon_pos+1:].lstrip()  # enlever espaces après
+    
+    # Scinder les runs selon la position du ":"
+    before_runs = []
+    after_runs = []
+    current_pos = 0
+    after_colon_found = False
+    
+    for run in para.get('runs', []):
+        run_text = run.get('text', '')
+        run_len = len(run_text)
+        run_end = current_pos + run_len
+        
+        if not after_colon_found:
+            if run_end <= colon_pos + 1:
+                # Run entièrement avant ":"
+                before_runs.append(run)
+            elif current_pos > colon_pos:
+                # Run entièrement après ":"
+                after_runs.append(run)
+                after_colon_found = True
+            else:
+                # Run contient ":"
+                before_text = run_text[:colon_pos - current_pos + 1]
+                after_text = run_text[colon_pos - current_pos + 1:].lstrip()
+                
+                before_runs.append({
+                    "text": before_text,
+                    "properties": run.get('properties', {})
+                })
+                
+                if after_text:
+                    after_runs.append({
+                        "text": after_text,
+                        "properties": run.get('properties', {})
+                    })
+                after_colon_found = True
+        else:
+            # Après ":"
+            after_runs.append(run)
+        
+        current_pos = run_end
+    
+    # Créer 2 paragraphes
+    result = []
+    
+    if before_runs:
+        before_para = clone_paragraph_clean(para)
+        before_para['runs'] = before_runs
+        result.append(before_para)
+    
+    if after_runs:
+        after_para = clone_paragraph_clean(para)
+        after_para['runs'] = after_runs
+        result.append(after_para)
+    
+    return result if result else [para]
 
-    # Nettoyer aussi les runs : garder uniquement bold et italic
+
+def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Clone et nettoie un paragraphe en créant une NOUVELLE structure propre (pas de réutilisation).
+    Cela résout le problème de métadonnées XML Word.
+    
+    Fait :
+    - Crée un nouveau paragraphe JSON (structure indépendante)
+    - Supprime les propriétés indésirables (ilvl, numId, size, alignment, color, font)
+    - Préserve le style (important pour Word navigation)
+    - Clone les runs avec uniquement bold/italic
+    
+    Args:
+        para: Paragraphe JSON source
+        
+    Returns:
+        Nouveau paragraphe JSON propre, sans pollution de contexte, prêt pour injecter dans tables
+    """
+    new_para = {
+        "type": "Paragraph",
+        "properties": {}
+    }
+    
+    # Copier et nettoyer les propriétés
+    if 'properties' in para:
+        source_props = para['properties']
+        
+        # Copier le style s'il existe
+        if 'style' in source_props:
+            new_para['properties']['style'] = source_props['style']
+    
+    # Cloner les runs avec nettoyage
+    new_para['runs'] = []
     if 'runs' in para:
-        for run in para['runs']:
-            if 'properties' in run:
-                run_props = run['properties']
-                # Garder bold et italic
-                kept_props = {}
-                if 'bold' in run_props:
-                    kept_props['bold'] = run_props['bold']
-                if 'italic' in run_props:
-                    kept_props['italic'] = run_props['italic']
-                # Remplacer les propriétés du run par les propriétés conservées
-                run['properties'] = kept_props
+        for run in para.get('runs', []):
+            new_run = {
+                "text": run.get('text', ''),
+                "properties": {}
+            }
+            
+            # Copier UNIQUEMENT bold et italic (filtrer les autres propriétés)
+            run_props = run.get('properties', {})
+            if run_props.get('bold'):
+                new_run['properties']['bold'] = True
+            if run_props.get('italic'):
+                new_run['properties']['italic'] = True
+            
+            new_para['runs'].append(new_run)
+    
+    # Copier les tags si présents
+    if 'tags' in para:
+        new_para['tags'] = para['tags'].copy()
+    
+    return new_para
+
+
 
 def insert_text_xp_tables(data: Dict[str, Any]) -> None:
     """
@@ -1146,8 +1376,7 @@ def insert_text_xp_tables(data: Dict[str, Any]) -> None:
 
                     if max_size_para and max_size_para in remaining:
                         remaining.remove(max_size_para)
-                        clean_paragraph_for_table(max_size_para)
-                        element['rows'][0]['cells'][0]['paragraphs'] = [max_size_para]
+                        element['rows'][0]['cells'][0]['paragraphs'] = [clone_paragraph_clean(max_size_para)]
 
                     # Trouver date (contient "20")
                     date_para = None
@@ -1159,22 +1388,20 @@ def insert_text_xp_tables(data: Dict[str, Any]) -> None:
 
                     if date_para and date_para in remaining:
                         remaining.remove(date_para)
-                        clean_paragraph_for_table(date_para)
-                        element['rows'][0]['cells'][1]['paragraphs'] = [date_para]
+                        element['rows'][0]['cells'][1]['paragraphs'] = [clone_paragraph_clean(date_para)]
 
                     # Placer le reste dans cell[1][0]
                     # Filtrer: garder seulement les paragraphes avec du texte (exclure vides + page_break-only)
                     if remaining:
                         filtered_paras = []
                         for para in remaining:
-                            clean_paragraph_for_table(para)
-
                             # Un paragraphe est utile s'il a au moins un run avec du texte
                             runs = para.get('runs', [])
                             has_meaningful_content = any('text' in run for run in runs)
 
                             if has_meaningful_content:
-                                filtered_paras.append(para)
+                                # Cloner et nettoyer le paragraphe
+                                filtered_paras.append(clone_paragraph_clean(para))
 
                         # Placer seulement les paragraphes significatifs
                         if filtered_paras:
@@ -1209,11 +1436,24 @@ def insert_text_xp_tables(data: Dict[str, Any]) -> None:
 def apply_styles_in_json(data: Dict[str, Any]) -> None:
     """
     Applique les styles par défaut dans les données JSON.
+    Ajoute aussi l'outline_level selon le style (pour volet de navigation Word).
     Modifie in-place.
+
+    Mapping style → outline_level :
+    - DC_T1_Sections (niveau 1) → outline_level = 0
+    - DC_XP_Title (niveau 2) → outline_level = 1
+    - DC_1st_bullet (niveau 3) → outline_level = 2
 
     Args:
         data (Dict): Structure JSON à modifier
     """
+    # Mapping style → outline_level pour Word navigation
+    STYLE_OUTLINE_MAPPING = {
+        'DC_T1_Sections': 0,  # niveau 1
+        'DC_XP_Title': 1,     # niveau 2
+        'DC_1st_bullet': 2,   # niveau 3
+    }
+    
     # Appliquer les styles des titres
     for itag in data.get('document', {}).get('content', []):
         if 'tags' not in itag:
@@ -1254,6 +1494,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                             if 'properties' not in para:
                                 para['properties'] = {}
                             para['properties']['style'] = 'DC_XP_Title'
+                            # Ajouter outline_level pour DC_XP_Title
+                            if 'DC_XP_Title' in STYLE_OUTLINE_MAPPING:
+                                para['properties']['outline_level'] = STYLE_OUTLINE_MAPPING['DC_XP_Title']
                 # Appliquer le style DC_XP_Date aux paragraphes dans cell[0][1]
                 if len(rows) > 0:
                     cells = rows[0].get('cells', [])
@@ -1305,6 +1548,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             continue
         elif ilvl == "0":
             props['style'] = 'DC_1st_bullet'
+            # Ajouter outline_level pour DC_1st_bullet
+            if 'DC_1st_bullet' in STYLE_OUTLINE_MAPPING:
+                props['outline_level'] = STYLE_OUTLINE_MAPPING['DC_1st_bullet']
         elif ilvl == "1":
             props['style'] = 'DC_2nd_bullet'
         elif ilvl == "2":
@@ -1319,6 +1565,10 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         props = element.get('properties', {})
         if 'style' not in props or 'style' in props and props['style'] == 'Normal':
             props['style'] = 'DC_Normal'
+
+        # Ajouter outline_level si le style le nécessite
+        if props.get('style') in STYLE_OUTLINE_MAPPING:
+            props['outline_level'] = STYLE_OUTLINE_MAPPING[props['style']]
 
         # Nettoyer les propriétés qui outrepassent le style si un style a été appliqué
         if props.get('style'):
@@ -1349,6 +1599,10 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         if 'properties' not in para:
                             continue
                         para_props = para['properties']
+
+                        # Ajouter outline_level si le style le nécessite
+                        if para_props.get('style') in STYLE_OUTLINE_MAPPING:
+                            para_props['outline_level'] = STYLE_OUTLINE_MAPPING[para_props['style']]
 
                         # Nettoyer size, alignment, color, font si un style a été appliqué
                         if para_props.get('style'):
