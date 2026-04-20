@@ -21,22 +21,10 @@
         },
         "runs": [
           {
+            "text": "DOSSIER DE C OMPÉTENCES",
             "properties": {
               "bold": true
-            },
-            "text": "DOSSIER DE"
-          },
-          {
-            "properties": {
-              "bold": true
-            },
-            "text": " C"
-          },
-          {
-            "properties": {
-              "bold": true
-            },
-            "text": "OMPÉTENCES"
+            }
           }
         ],
         "tags": [
@@ -49,13 +37,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "header"
         ]
@@ -68,10 +50,10 @@
         },
         "runs": [
           {
+            "text": "BM2",
             "properties": {
               "bold": true
-            },
-            "text": "BM2"
+            }
           }
         ],
         "tags": [
@@ -84,13 +66,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "header"
         ]
@@ -103,10 +79,10 @@
         },
         "runs": [
           {
+            "text": "Développeur C++",
             "properties": {
               "bold": true
-            },
-            "text": "Développeur C++"
+            }
           }
         ],
         "tags": [
@@ -121,10 +97,10 @@
         },
         "runs": [
           {
+            "text": "Acoustique, Traitement du signal, Audio",
             "properties": {
               "bold": true
-            },
-            "text": "Acoustique, Traitement du signal, Audio"
+            }
           }
         ],
         "tags": [
@@ -137,13 +113,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "header"
         ]
@@ -156,10 +126,10 @@
         },
         "runs": [
           {
+            "text": "Expérience > 15 ans",
             "properties": {
               "bold": true
-            },
-            "text": "Expérience > 15 ans"
+            }
           }
         ],
         "tags": [
@@ -172,13 +142,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "header"
         ]
@@ -192,16 +156,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Compétences"
-          },
-          {
-            "properties": {},
-            "text": " "
-          },
-          {
-            "properties": {},
-            "text": "Principales"
+            "text": "Compétences Principales",
+            "properties": {}
           }
         ],
         "tags": [
@@ -214,13 +170,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "main_skills"
         ]
@@ -243,10 +193,10 @@
                     },
                     "runs": [
                       {
+                        "text": "LANGAGES",
                         "properties": {
                           "bold": true
-                        },
-                        "text": "LANGAGES"
+                        }
                       }
                     ]
                   }
@@ -264,8 +214,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "C++, Python, Matlab"
+                        "text": "C++, Python, Matlab",
+                        "properties": {}
                       }
                     ]
                   }
@@ -289,10 +239,10 @@
                     },
                     "runs": [
                       {
+                        "text": "IDE",
                         "properties": {
                           "bold": true
-                        },
-                        "text": "IDE"
+                        }
                       }
                     ]
                   }
@@ -310,16 +260,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Visual"
-                      },
-                      {
-                        "properties": {},
-                        "text": " "
-                      },
-                      {
-                        "properties": {},
-                        "text": "studio"
+                        "text": "Visual studio",
+                        "properties": {}
                       }
                     ]
                   }
@@ -343,10 +285,10 @@
                     },
                     "runs": [
                       {
+                        "text": "GESTION DE VERSION",
                         "properties": {
                           "bold": true
-                        },
-                        "text": "GESTION DE VERSION"
+                        }
                       }
                     ]
                   }
@@ -364,8 +306,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Git, SVN"
+                        "text": "Git, SVN",
+                        "properties": {}
                       }
                     ]
                   }
@@ -389,10 +331,10 @@
                     },
                     "runs": [
                       {
+                        "text": "ENVIRONNEMENTS",
                         "properties": {
                           "bold": true
-                        },
-                        "text": "ENVIRONNEMENTS"
+                        }
                       }
                     ]
                   }
@@ -410,8 +352,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Windows, Linux"
+                        "text": "Windows, Linux",
+                        "properties": {}
                       }
                     ]
                   }
@@ -435,10 +377,10 @@
                     },
                     "runs": [
                       {
+                        "text": "FRAMEWORKS",
                         "properties": {
                           "bold": true
-                        },
-                        "text": "FRAMEWORKS"
+                        }
                       }
                     ]
                   }
@@ -456,8 +398,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Juce, Qt"
+                        "text": "Juce, Qt",
+                        "properties": {}
                       }
                     ]
                   }
@@ -485,11 +427,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "main_skills"
         ]
@@ -503,8 +441,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Diplômes"
+            "text": "Diplômes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -517,13 +455,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "education"
         ]
@@ -546,8 +478,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "2006"
+                        "text": "2006",
+                        "properties": {}
                       }
                     ]
                   }
@@ -565,8 +497,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Doctorat Signal Image et Acoustique, option Acoustique, Université Paul Sabatier Toulouse"
+                        "text": "Doctorat Signal Image et Acoustique, option Acoustique, Université Paul Sabatier Toulouse",
+                        "properties": {}
                       }
                     ]
                   }
@@ -590,8 +522,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "2002"
+                        "text": "2002",
+                        "properties": {}
                       }
                     ]
                   }
@@ -609,8 +541,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "DEA Acoustique et Traitement du signal, Université Paul Sabatier Toulouse, ENSEEIHT"
+                        "text": "DEA Acoustique et Traitement du signal, Université Paul Sabatier Toulouse, ENSEEIHT",
+                        "properties": {}
                       }
                     ]
                   }
@@ -634,8 +566,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "2002"
+                        "text": "2002",
+                        "properties": {}
                       }
                     ]
                   }
@@ -653,8 +585,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Maîtrise Physique et Applications,  Université de Lille"
+                        "text": "Maîtrise Physique et Applications,  Université de Lille",
+                        "properties": {}
                       }
                     ]
                   }
@@ -678,8 +610,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "1996"
+                        "text": "1996",
+                        "properties": {}
                       }
                     ]
                   }
@@ -697,8 +629,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Baccalauréat S,  Albi"
+                        "text": "Baccalauréat S,  Albi",
+                        "properties": {}
                       }
                     ]
                   }
@@ -726,13 +658,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "education"
         ]
@@ -746,8 +672,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Certifications, formations"
+            "text": "Certifications, formations",
+            "properties": {}
           }
         ],
         "tags": [
@@ -760,13 +686,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "education"
         ]
@@ -789,8 +709,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "2022"
+                        "text": "2022",
+                        "properties": {}
                       }
                     ]
                   }
@@ -808,8 +728,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "C++ Certified Professional Programmer (CPP) - C++ Institute"
+                        "text": "C++ Certified Professional Programmer (CPP) - C++ Institute",
+                        "properties": {}
                       }
                     ]
                   }
@@ -833,8 +753,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "2022"
+                        "text": "2022",
+                        "properties": {}
                       }
                     ]
                   }
@@ -852,8 +772,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "C++ Certified Associate Programmer (CPA) - C++ Institute"
+                        "text": "C++ Certified Associate Programmer (CPA) - C++ Institute",
+                        "properties": {}
                       }
                     ]
                   }
@@ -877,8 +797,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "2017"
+                        "text": "2017",
+                        "properties": {}
                       }
                     ]
                   }
@@ -896,8 +816,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Acoustique des instruments de musique, psychoacoustique, codage numérique - CNAM"
+                        "text": "Acoustique des instruments de musique, psychoacoustique, codage numérique - CNAM",
+                        "properties": {}
                       }
                     ]
                   }
@@ -925,13 +845,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
+        "runs": [],
         "tags": [
           "education"
         ]
@@ -1168,8 +1082,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "EXPÉRIENCES PROFESSIONNELLES"
+            "text": "EXPÉRIENCES PROFESSIONNELLES",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1204,8 +1118,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "CEA, Paris-Saclay"
+                        "text": "CEA, Paris-Saclay",
+                        "properties": {}
                       }
                     ]
                   }
@@ -1223,11 +1137,11 @@
                     },
                     "runs": [
                       {
+                        "text": "05/2024 – à ce jour",
                         "properties": {
                           "bold": true,
                           "italic": true
-                        },
-                        "text": "05/2024 – à ce jour"
+                        }
                       }
                     ]
                   }
@@ -1251,10 +1165,10 @@
                     },
                     "runs": [
                       {
+                        "text": "Développeur logiciel C++/JAVA",
                         "properties": {
                           "bold": true
-                        },
-                        "text": "Développeur logiciel C++/JAVA"
+                        }
                       }
                     ]
                   }
@@ -1284,8 +1198,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement d’un module d’imagerie en exploitant le calcul des matrices de scattering pour son intégration dans CIVA. Cela prend en compte un développement des appels au noyau de calcul et l’affichage des données de sorties, ainsi qu’un développement d’un exécutable de traitement de donnée via une interface web."
+            "text": "Développement d’un module d’imagerie en exploitant le calcul des matrices de scattering pour son intégration dans CIVA. Cela prend en compte un développement des appels au noyau de calcul et l’affichage des données de sorties, ainsi qu’un développement d’un exécutable de traitement de donnée via une interface web.",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1313,10 +1227,10 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT FRONT",
             "properties": {
               "bold": true
-            },
-            "text": "DEVELOPPEMENT FRONT"
+            }
           }
         ],
         "tags": [
@@ -1333,8 +1247,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Définition et développement de la page web"
+            "text": "Définition et développement de la page web",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1351,8 +1265,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Récupération et affichage des données dans l’interface web"
+            "text": "Récupération et affichage des données dans l’interface web",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1369,8 +1283,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Affichage des résultats"
+            "text": "Affichage des résultats",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1387,8 +1301,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mise en place et réalisation de tests unitaires et de non régression"
+            "text": "Mise en place et réalisation de tests unitaires et de non régression",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1406,10 +1320,10 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT BACK",
             "properties": {
               "bold": true
-            },
-            "text": "DEVELOPPEMENT BACK"
+            }
           }
         ],
         "tags": [
@@ -1426,8 +1340,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Prise en main du code existant"
+            "text": "Prise en main du code existant",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1444,8 +1358,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Ecriture de classes C++ permettant de transformer les données issues de l’IHM au format des données d’entrée du noyau de calcul"
+            "text": "Ecriture de classes C++ permettant de transformer les données issues de l’IHM au format des données d’entrée du noyau de calcul",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1462,8 +1376,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mise en place des appels à l’API du noyau de calcul"
+            "text": "Mise en place des appels à l’API du noyau de calcul",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1480,8 +1394,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Relecture des données de sortie du noyau de calcul et le développement d’une imagerie spécifique en JAVA permettant d’afficher les matrices de scattering"
+            "text": "Relecture des données de sortie du noyau de calcul et le développement d’une imagerie spécifique en JAVA permettant d’afficher les matrices de scattering",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1498,8 +1412,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation de tests d’intégrations et fonctionnels"
+            "text": "Réalisation de tests d’intégrations et fonctionnels",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1517,10 +1431,10 @@
         },
         "runs": [
           {
+            "text": "IMPLEMENTATION D’ALGORITHME",
             "properties": {
               "bold": true
-            },
-            "text": "IMPLEMENTATION D’ALGORITHME"
+            }
           }
         ],
         "tags": [
@@ -1537,8 +1451,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recherche d’algorithmes d’optimisation"
+            "text": "Recherche d’algorithmes d’optimisation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1555,8 +1469,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation d’étude paramétrique"
+            "text": "Réalisation d’étude paramétrique",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1573,8 +1487,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Application et validation d’algorithmes sur les jeux de données"
+            "text": "Application et validation d’algorithmes sur les jeux de données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1591,8 +1505,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Intégration des algorithmes choisis"
+            "text": "Intégration des algorithmes choisis",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1609,8 +1523,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mise en place et réalisation de tests unitaires et de non régression"
+            "text": "Mise en place et réalisation de tests unitaires et de non régression",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1645,8 +1559,8 @@
                     },
                     "runs": [
                       {
-                        "properties": {},
-                        "text": "Giant Consulting, Lyon"
+                        "text": "Giant Consulting, Lyon",
+                        "properties": {}
                       }
                     ]
                   }
@@ -1664,11 +1578,11 @@
                     },
                     "runs": [
                       {
+                        "text": "02/2024 – 05/2024",
                         "properties": {
                           "bold": true,
                           "italic": true
-                        },
-                        "text": "02/2024 – 05/2024"
+                        }
                       }
                     ]
                   }
@@ -1692,10 +1606,10 @@
                     },
                     "runs": [
                       {
+                        "text": "Développeur C++",
                         "properties": {
                           "bold": true
-                        },
-                        "text": "Développeur C++"
+                        }
                       }
                     ]
                   }
@@ -1725,8 +1639,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mission de développement logiciel pour un client situé dans la région Lyonnaise (SafetyTech). La mission se déroule dans une petite équipe, par la méthode agile SCRUM. Réalisation d’un logiciel de gestion de données pour la maintenance d’un produit automobile embarqué d’assistance à la conduite."
+            "text": "Mission de développement logiciel pour un client situé dans la région Lyonnaise (SafetyTech). La mission se déroule dans une petite équipe, par la méthode agile SCRUM. Réalisation d’un logiciel de gestion de données pour la maintenance d’un produit automobile embarqué d’assistance à la conduite.",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1739,11 +1653,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -1759,10 +1669,10 @@
         },
         "runs": [
           {
+            "text": "GESTION DE PROJET",
             "properties": {
               "bold": true
-            },
-            "text": "GESTION DE PROJET"
+            }
           }
         ],
         "tags": [
@@ -1779,8 +1689,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Rédaction du cahier des charges en adéquation avec les attentes client"
+            "text": "Rédaction du cahier des charges en adéquation avec les attentes client",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1797,8 +1707,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Prise en main du sujet et définition des axes d’étude"
+            "text": "Prise en main du sujet et définition des axes d’étude",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1815,8 +1725,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Interaction avec les différentes équipes de développement"
+            "text": "Interaction avec les différentes équipes de développement",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1829,11 +1739,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -1849,10 +1755,10 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT LOGICIEL",
             "properties": {
               "bold": true
-            },
-            "text": "DEVELOPPEMENT LOGICIEL"
+            }
           }
         ],
         "tags": [
@@ -1869,8 +1775,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Prise en main du code existant"
+            "text": "Prise en main du code existant",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1887,8 +1793,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement d’une interface logicielle"
+            "text": "Développement d’une interface logicielle",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1905,8 +1811,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Acquisition et pré-traitement des données"
+            "text": "Acquisition et pré-traitement des données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1923,8 +1829,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Définition et implémentation des algorithmes de traitement des données"
+            "text": "Définition et implémentation des algorithmes de traitement des données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1941,8 +1847,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation de tests d’intégrations et fonctionnels"
+            "text": "Réalisation de tests d’intégrations et fonctionnels",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1955,11 +1861,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -1972,17 +1874,17 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : ",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : "
+            }
           },
           {
+            "text": "C++, Qt, QtCreator, Visual Studio, Gitlab",
             "properties": {
               "bold": true,
               "italic": true
-            },
-            "text": "C++, Qt, QtCreator, Visual Studio, Gitlab"
+            }
           }
         ],
         "tags": [
@@ -2148,10 +2050,10 @@
         },
         "runs": [
           {
+            "text": "GESTION DE PROJET",
             "properties": {
               "bold": true
-            },
-            "text": "GESTION DE PROJET"
+            }
           }
         ],
         "tags": [
@@ -2168,8 +2070,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Définition du rendu de l’interface"
+            "text": "Définition du rendu de l’interface",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2186,8 +2088,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Définition des fonctionnalités spécifiques pour la lecture des sons"
+            "text": "Définition des fonctionnalités spécifiques pour la lecture des sons",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2204,8 +2106,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Veille technologique sur les logiciels existants"
+            "text": "Veille technologique sur les logiciels existants",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2222,8 +2124,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recherche de l’originalité du produit "
+            "text": "Recherche de l’originalité du produit ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2236,11 +2138,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -2256,10 +2154,10 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT D’UNE INTERFACE",
             "properties": {
               "bold": true
-            },
-            "text": "DEVELOPPEMENT D’UNE INTERFACE"
+            }
           }
         ],
         "tags": [
@@ -2276,8 +2174,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Définition de l’interface visuelle"
+            "text": "Définition de l’interface visuelle",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2294,8 +2192,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gestion des interactions utilisateur"
+            "text": "Gestion des interactions utilisateur",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2312,8 +2210,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Lecture en temps réel sans latence des fichiers audio"
+            "text": "Lecture en temps réel sans latence des fichiers audio",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2330,8 +2228,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Simplification de la visualisation des fichiers audio"
+            "text": "Simplification de la visualisation des fichiers audio",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2344,11 +2242,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -2364,10 +2258,10 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT D’ALGORITHMES DE TRAITEMENT AUDIO",
             "properties": {
               "bold": true
-            },
-            "text": "DEVELOPPEMENT D’ALGORITHMES DE TRAITEMENT AUDIO"
+            }
           }
         ],
         "tags": [
@@ -2385,8 +2279,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recherche d’approches pour l’extraction des caractéristiques audio et leur classification"
+            "text": "Recherche d’approches pour l’extraction des caractéristiques audio et leur classification",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2404,8 +2298,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Définition de l’architecture logicielle"
+            "text": "Définition de l’architecture logicielle",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2423,8 +2317,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Utilisation d’algorithmes d’extraction des MFCC"
+            "text": "Utilisation d’algorithmes d’extraction des MFCC",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2437,11 +2331,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -2457,10 +2347,10 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT D’ALGORITHME D’APPRENTISSAGE",
             "properties": {
               "bold": true
-            },
-            "text": "DEVELOPPEMENT D’ALGORITHME D’APPRENTISSAGE"
+            }
           }
         ],
         "tags": [
@@ -2478,12 +2368,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": " "
-          },
-          {
-            "properties": {},
-            "text": "Création d’une base de données de sons catégorisés"
+            "text": "  Création d’une base de données de sons catégorisés",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2501,8 +2387,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Tests d’algorithmes de classification (SVM, SVC) sur plusieurs catégories de sons : voix, musique, nature, foule, échantillons instrumentaux, etc.."
+            "text": "Tests d’algorithmes de classification (SVM, SVC) sur plusieurs catégories de sons : voix, musique, nature, foule, échantillons instrumentaux, etc..",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2517,10 +2403,10 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Visual Studio, C++, Juce, Yaafe, Python, Librosa",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : Visual Studio, C++, Juce, Yaafe, Python, Librosa"
+            }
           }
         ],
         "tags": [
@@ -2686,10 +2572,10 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
+            }
           }
         ],
         "tags": [
@@ -2706,8 +2592,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Comparaison de modèles de difractions pour un logiciel de propagation acoustique"
+            "text": "Comparaison de modèles de difractions pour un logiciel de propagation acoustique",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2724,8 +2610,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Calculs de champs par méthode de rayons"
+            "text": "Calculs de champs par méthode de rayons",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2742,8 +2628,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Calculs par éléments finis"
+            "text": "Calculs par éléments finis",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2760,8 +2646,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement d'outils pour optimiser les points de difractions de pièces et réduire les zones d'ombre"
+            "text": "Développement d'outils pour optimiser les points de difractions de pièces et réduire les zones d'ombre",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2778,8 +2664,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement d'outils logiciels pour la lecture et la visualisation de pièces 2D et leur champ acoustique"
+            "text": "Développement d'outils logiciels pour la lecture et la visualisation de pièces 2D et leur champ acoustique",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2796,8 +2682,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation de mesures expérimentales et confrontation aux modèles de calcul"
+            "text": "Réalisation de mesures expérimentales et confrontation aux modèles de calcul",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2810,11 +2696,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -2827,10 +2709,10 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : CIVA, SALOME, C++, Qt for Python, VTK, Paraview",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : CIVA, SALOME, C++, Qt for Python, VTK, Paraview"
+            }
           }
         ],
         "tags": [
@@ -2996,10 +2878,10 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
+            }
           }
         ],
         "tags": [
@@ -3016,8 +2898,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Acoustique dans les matériaux anisotropes"
+            "text": "Acoustique dans les matériaux anisotropes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3034,8 +2916,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement d'un logiciel de calcul et de visualisation"
+            "text": "Développement d'un logiciel de calcul et de visualisation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3052,8 +2934,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Optimisation du code existant et développement de nouvelles fonctionnalités"
+            "text": "Optimisation du code existant et développement de nouvelles fonctionnalités",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3070,8 +2952,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement du banc de caractérisation : instrumentation, achat du matériel, développement du programme d’acquisition"
+            "text": "Développement du banc de caractérisation : instrumentation, achat du matériel, développement du programme d’acquisition",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3088,8 +2970,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation des mesures expérimentales"
+            "text": "Réalisation des mesures expérimentales",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3106,8 +2988,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Tests et comparaison d'algorithmes d'optimisation des paramètres du modèle"
+            "text": "Tests et comparaison d'algorithmes d'optimisation des paramètres du modèle",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3122,10 +3004,10 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Python",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : Matlab, Python"
+            }
           }
         ],
         "tags": [
@@ -3291,10 +3173,10 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
+            }
           }
         ],
         "tags": [
@@ -3311,8 +3193,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Simulation du champ acoustique WFS"
+            "text": "Simulation du champ acoustique WFS",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3329,8 +3211,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Tests et mise en place des hauts parleurs, configuration du système multivoies"
+            "text": "Tests et mise en place des hauts parleurs, configuration du système multivoies",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3347,8 +3229,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Tests d'écoute avec des sources acoustiques fixes"
+            "text": "Tests d'écoute avec des sources acoustiques fixes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3363,10 +3245,10 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Reaper",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : Matlab, Reaper"
+            }
           }
         ],
         "tags": [
@@ -3532,16 +3414,10 @@
         },
         "runs": [
           {
+            "text": "Activités : Réalisation de métamatériaux acoustiques",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
-          },
-          {
-            "properties": {
-              "bold": true
-            },
-            "text": "Réalisation de métamatériaux acoustiques"
+            }
           }
         ],
         "tags": [
@@ -3558,8 +3434,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation de métamatériaux acoustique"
+            "text": "Réalisation de métamatériaux acoustique",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3576,8 +3452,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement de matériaux à base d'inclusions résonnantes en collaboration avec les laboratoires CRPP et LCPO"
+            "text": "Développement de matériaux à base d'inclusions résonnantes en collaboration avec les laboratoires CRPP et LCPO",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3594,8 +3470,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement d'un logiciel pour l'instrumentation du banc d'acquisition expérimental"
+            "text": "Développement d'un logiciel pour l'instrumentation du banc d'acquisition expérimental",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3612,8 +3488,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Implémentation de modèles de diffusion multiple"
+            "text": "Implémentation de modèles de diffusion multiple",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3630,8 +3506,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Méthodes d'optimisation pour l'identification de paramètres de modèles"
+            "text": "Méthodes d'optimisation pour l'identification de paramètres de modèles",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3648,8 +3524,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mise en place et utilisation de systèmes micro-fluidiques"
+            "text": "Mise en place et utilisation de systèmes micro-fluidiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3666,8 +3542,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation et acquisition de mesures"
+            "text": "Réalisation et acquisition de mesures",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3680,11 +3556,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -3700,16 +3572,10 @@
         },
         "runs": [
           {
+            "text": "Activités : Caractérisation de collage de pièces aéronautiques par ondes guidées",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
-          },
-          {
-            "properties": {
-              "bold": true
-            },
-            "text": "Caractérisation de collage de pièces aéronautiques par ondes guidées"
+            }
           }
         ],
         "tags": [
@@ -3726,8 +3592,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Calcul FEM sur pièces composites"
+            "text": "Calcul FEM sur pièces composites",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3744,8 +3610,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage"
+            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3762,8 +3628,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Veille scientifique"
+            "text": "Veille scientifique",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3780,8 +3646,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Communication des résultats (articles, conférences)"
+            "text": "Communication des résultats (articles, conférences)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3796,10 +3662,10 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, COMSOL, Labview",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : Matlab, COMSOL, Labview"
+            }
           }
         ],
         "tags": [
@@ -3965,10 +3831,10 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
+            }
           }
         ],
         "tags": [
@@ -3985,8 +3851,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Configuration de l'instrumentation des capteurs et du système d'acquisition des signaux"
+            "text": "Configuration de l'instrumentation des capteurs et du système d'acquisition des signaux",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4003,8 +3869,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Analyse des signaux acoustiques émis par l'articulation du genou (méthodes de classification)"
+            "text": "Analyse des signaux acoustiques émis par l'articulation du genou (méthodes de classification)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4021,8 +3887,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation des mesures sur patients en partenariat avec les médecins"
+            "text": "Réalisation des mesures sur patients en partenariat avec les médecins",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4039,8 +3905,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Définition de la méthode de diagnostic"
+            "text": "Définition de la méthode de diagnostic",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4057,8 +3923,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Communication des résultats (conférences, journaux scientifiques)"
+            "text": "Communication des résultats (conférences, journaux scientifiques)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4071,11 +3937,7 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "professional_experience"
         ]
@@ -4091,16 +3953,10 @@
         },
         "runs": [
           {
+            "text": "Activités : Caractérisation de collage de pièces aéronautiques par ondes guidées",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
-          },
-          {
-            "properties": {
-              "bold": true
-            },
-            "text": "Caractérisation de collage de pièces aéronautiques par ondes guidées"
+            }
           }
         ],
         "tags": [
@@ -4117,8 +3973,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Calcul FEM sur pièces composites"
+            "text": "Calcul FEM sur pièces composites",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4135,8 +3991,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage"
+            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4153,8 +4009,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Veille scientifique"
+            "text": "Veille scientifique",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4171,8 +4027,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Communication des résultats (articles, conférences)"
+            "text": "Communication des résultats (articles, conférences)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4187,10 +4043,10 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Machine Learning, Instrumentation d’Emission Acoustique, Instrumentation Biomécanique",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : Matlab, Machine Learning, Instrumentation d’Emission Acoustique, Instrumentation Biomécanique"
+            }
           }
         ],
         "tags": [
@@ -4356,10 +4212,10 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true
-            },
-            "text": "Activités : "
+            }
           }
         ],
         "tags": [
@@ -4376,8 +4232,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etat de l'art et étude théorique de la diffusion multiple"
+            "text": "Etat de l'art et étude théorique de la diffusion multiple",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4394,8 +4250,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etat de l'art dans le contrôle des matériaux composites par ultrasons"
+            "text": "Etat de l'art dans le contrôle des matériaux composites par ultrasons",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4412,8 +4268,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement de bancs d'instrumentation"
+            "text": "Développement de bancs d'instrumentation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4430,8 +4286,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement de logiciels et d'outils d'analyse"
+            "text": "Développement de logiciels et d'outils d'analyse",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4448,8 +4304,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation des mesures sur pièces représentatives"
+            "text": "Réalisation des mesures sur pièces représentatives",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4466,8 +4322,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Fabrication de pièces spécifiques"
+            "text": "Fabrication de pièces spécifiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4484,8 +4340,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Participation à des conférences"
+            "text": "Participation à des conférences",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4500,10 +4356,10 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Labvie",
             "properties": {
               "bold": true
-            },
-            "text": "Environnement technique : Matlab, Labvie"
+            }
           }
         ],
         "tags": [

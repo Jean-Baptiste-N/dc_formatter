@@ -18,14 +18,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 2,
@@ -42,14 +35,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 4,
@@ -58,14 +44,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 5,
@@ -74,14 +53,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 6,
@@ -90,14 +62,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 7,
@@ -106,14 +71,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 8,
@@ -122,14 +80,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 9,
@@ -138,14 +89,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 10,
@@ -154,14 +98,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 11,
@@ -170,14 +107,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 12,
@@ -186,14 +116,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 13,
@@ -202,14 +125,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "17",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 14,
@@ -220,31 +136,13 @@
         },
         "runs": [
           {
+            "text": "DOSSIER DE C OMPÉTENCES",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "538DD3",
               "font": "Arial"
-            },
-            "text": "DOSSIER DE"
-          },
-          {
-            "properties": {
-              "bold": true,
-              "size": "40",
-              "color": "538DD3",
-              "font": "Arial"
-            },
-            "text": " C"
-          },
-          {
-            "properties": {
-              "bold": true,
-              "size": "40",
-              "color": "538DD3",
-              "font": "Arial"
-            },
-            "text": "OMPÉTENCES"
+            }
           }
         ]
       },
@@ -255,15 +153,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "44",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 16,
@@ -272,15 +162,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "48",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 17,
@@ -291,13 +173,13 @@
         },
         "runs": [
           {
+            "text": "BM2",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "162D55",
               "font": "Arial"
-            },
-            "text": "BM2"
+            }
           }
         ]
       },
@@ -308,15 +190,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "44",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 19,
@@ -325,16 +199,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "54",
-              "color": "F79646",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 20,
@@ -345,13 +210,13 @@
         },
         "runs": [
           {
+            "text": "Développeur C++",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "F79646",
               "font": "Arial"
-            },
-            "text": "Développeur C++"
+            }
           }
         ]
       },
@@ -364,13 +229,13 @@
         },
         "runs": [
           {
+            "text": "Acoustique, Traitement du signal, Audio",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "F79646",
               "font": "Arial"
-            },
-            "text": "Acoustique, Traitement du signal, Audio"
+            }
           }
         ]
       },
@@ -381,16 +246,7 @@
           "style": "Standard",
           "alignment": "center"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "40",
-              "color": "F79646",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 23,
@@ -401,13 +257,13 @@
         },
         "runs": [
           {
+            "text": "Expérience > 15 ans",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "F79646",
               "font": "Arial"
-            },
-            "text": "Expérience > 15 ans"
+            }
           }
         ]
       },
@@ -418,15 +274,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 25,
@@ -435,17 +283,7 @@
           "style": "Normal",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "font": "Arial"
-            }
-          },
-          {
-            "page_break": true
-          }
-        ]
+        "runs": []
       },
       {
         "index": 26,
@@ -456,28 +294,12 @@
         },
         "runs": [
           {
+            "text": "Compétences Principales",
             "properties": {
               "size": "32",
               "color": "4472C4",
               "font": "Arial"
-            },
-            "text": "Compétences"
-          },
-          {
-            "properties": {
-              "size": "32",
-              "color": "4472C4",
-              "font": "Arial"
-            },
-            "text": " "
-          },
-          {
-            "properties": {
-              "size": "32",
-              "color": "4472C4",
-              "font": "Arial"
-            },
-            "text": "Principales"
+            }
           }
         ]
       },
@@ -488,15 +310,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "26",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 28,
@@ -517,12 +331,12 @@
                     },
                     "runs": [
                       {
+                        "text": "LANGAGES",
                         "properties": {
                           "bold": true,
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "LANGAGES"
+                        }
                       }
                     ]
                   }
@@ -541,11 +355,11 @@
                     },
                     "runs": [
                       {
+                        "text": "C++, Python, Matlab",
                         "properties": {
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "C++, Python, Matlab"
+                        }
                       }
                     ]
                   }
@@ -570,12 +384,12 @@
                     },
                     "runs": [
                       {
+                        "text": "IDE",
                         "properties": {
                           "bold": true,
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "IDE"
+                        }
                       }
                     ]
                   }
@@ -594,25 +408,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Visual studio",
                         "properties": {
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "Visual"
-                      },
-                      {
-                        "properties": {
-                          "color": "F3831D",
-                          "font": "Arial"
-                        },
-                        "text": " "
-                      },
-                      {
-                        "properties": {
-                          "color": "F3831D",
-                          "font": "Arial"
-                        },
-                        "text": "studio"
+                        }
                       }
                     ]
                   }
@@ -637,12 +437,12 @@
                     },
                     "runs": [
                       {
+                        "text": "GESTION DE VERSION",
                         "properties": {
                           "bold": true,
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "GESTION DE VERSION"
+                        }
                       }
                     ]
                   }
@@ -661,11 +461,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Git, SVN",
                         "properties": {
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "Git, SVN"
+                        }
                       }
                     ]
                   }
@@ -690,12 +490,12 @@
                     },
                     "runs": [
                       {
+                        "text": "ENVIRONNEMENTS",
                         "properties": {
                           "bold": true,
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "ENVIRONNEMENTS"
+                        }
                       }
                     ]
                   }
@@ -714,11 +514,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Windows, Linux",
                         "properties": {
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "Windows, Linux"
+                        }
                       }
                     ]
                   }
@@ -743,12 +543,12 @@
                     },
                     "runs": [
                       {
+                        "text": "FRAMEWORKS",
                         "properties": {
                           "bold": true,
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "FRAMEWORKS"
+                        }
                       }
                     ]
                   }
@@ -767,11 +567,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Juce, Qt",
                         "properties": {
                           "color": "F3831D",
                           "font": "Arial"
-                        },
-                        "text": "Juce, Qt"
+                        }
                       }
                     ]
                   }
@@ -796,15 +596,7 @@
           "style": "Heading1",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "32",
-              "color": "4472C4",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 30,
@@ -815,12 +607,12 @@
         },
         "runs": [
           {
+            "text": "Diplômes",
             "properties": {
               "size": "32",
               "color": "4472C4",
               "font": "Arial"
-            },
-            "text": "Diplômes"
+            }
           }
         ]
       },
@@ -831,15 +623,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "26",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 32,
@@ -860,12 +644,12 @@
                     },
                     "runs": [
                       {
+                        "text": "2006",
                         "properties": {
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2006"
+                        }
                       }
                     ]
                   }
@@ -884,11 +668,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Doctorat Signal Image et Acoustique, option Acoustique, Université Paul Sabatier Toulouse",
                         "properties": {
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Doctorat Signal Image et Acoustique, option Acoustique, Université Paul Sabatier Toulouse"
+                        }
                       }
                     ]
                   }
@@ -913,12 +697,12 @@
                     },
                     "runs": [
                       {
+                        "text": "2002",
                         "properties": {
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2002"
+                        }
                       }
                     ]
                   }
@@ -937,11 +721,11 @@
                     },
                     "runs": [
                       {
+                        "text": "DEA Acoustique et Traitement du signal, Université Paul Sabatier Toulouse, ENSEEIHT",
                         "properties": {
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "DEA Acoustique et Traitement du signal, Université Paul Sabatier Toulouse, ENSEEIHT"
+                        }
                       }
                     ]
                   }
@@ -966,12 +750,12 @@
                     },
                     "runs": [
                       {
+                        "text": "2002",
                         "properties": {
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2002"
+                        }
                       }
                     ]
                   }
@@ -990,11 +774,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Maîtrise Physique et Applications,  Université de Lille",
                         "properties": {
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Maîtrise Physique et Applications,  Université de Lille"
+                        }
                       }
                     ]
                   }
@@ -1019,12 +803,12 @@
                     },
                     "runs": [
                       {
+                        "text": "1996",
                         "properties": {
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "1996"
+                        }
                       }
                     ]
                   }
@@ -1043,11 +827,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Baccalauréat S,  Albi",
                         "properties": {
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Baccalauréat S,  Albi"
+                        }
                       }
                     ]
                   }
@@ -1072,16 +856,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "56",
-              "color": "000000",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 34,
@@ -1092,12 +867,12 @@
         },
         "runs": [
           {
+            "text": "Certifications, formations",
             "properties": {
               "size": "32",
               "color": "4472C4",
               "font": "Arial"
-            },
-            "text": "Certifications, formations"
+            }
           }
         ]
       },
@@ -1108,15 +883,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "26",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 36,
@@ -1137,12 +904,12 @@
                     },
                     "runs": [
                       {
+                        "text": "2022",
                         "properties": {
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2022"
+                        }
                       }
                     ]
                   }
@@ -1161,11 +928,11 @@
                     },
                     "runs": [
                       {
+                        "text": "C++ Certified Professional Programmer (CPP) - C++ Institute",
                         "properties": {
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "C++ Certified Professional Programmer (CPP) - C++ Institute"
+                        }
                       }
                     ]
                   }
@@ -1190,12 +957,12 @@
                     },
                     "runs": [
                       {
+                        "text": "2022",
                         "properties": {
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2022"
+                        }
                       }
                     ]
                   }
@@ -1214,11 +981,11 @@
                     },
                     "runs": [
                       {
+                        "text": "C++ Certified Associate Programmer (CPA) - C++ Institute",
                         "properties": {
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "C++ Certified Associate Programmer (CPA) - C++ Institute"
+                        }
                       }
                     ]
                   }
@@ -1243,12 +1010,12 @@
                     },
                     "runs": [
                       {
+                        "text": "2017",
                         "properties": {
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2017"
+                        }
                       }
                     ]
                   }
@@ -1267,11 +1034,11 @@
                     },
                     "runs": [
                       {
+                        "text": "Acoustique des instruments de musique, psychoacoustique, codage numérique - CNAM",
                         "properties": {
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Acoustique des instruments de musique, psychoacoustique, codage numérique - CNAM"
+                        }
                       }
                     ]
                   }
@@ -1296,16 +1063,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "56",
-              "color": "000000",
-              "font": "Arial"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 38,
@@ -1316,12 +1074,12 @@
         },
         "runs": [
           {
+            "text": "Langues",
             "properties": {
               "size": "32",
               "color": "4472C4",
               "font": "Arial"
-            },
-            "text": "Langues"
+            }
           }
         ]
       },
@@ -1334,11 +1092,11 @@
         },
         "runs": [
           {
+            "text": "Français",
             "properties": {
               "color": "4472C4",
               "font": "Arial"
-            },
-            "text": "Français"
+            }
           }
         ]
       },
@@ -1352,18 +1110,11 @@
         },
         "runs": [
           {
+            "text": "Anglais Niveau B1",
             "properties": {
               "color": "4472C4",
               "font": "Arial"
-            },
-            "text": "Anglais"
-          },
-          {
-            "properties": {
-              "color": "4472C4",
-              "font": "Arial"
-            },
-            "text": "Niveau B1"
+            }
           }
         ]
       },
@@ -1376,12 +1127,12 @@
         },
         "runs": [
           {
+            "text": "EXPÉRIENCES PROFESSIONNELLES",
             "properties": {
               "size": "32",
               "color": "4472C4",
               "font": "Arial"
-            },
-            "text": "EXPÉRIENCES PROFESSIONNELLES"
+            }
           }
         ]
       },
@@ -1412,12 +1163,12 @@
                     },
                     "runs": [
                       {
+                        "text": "CEA, Paris-Saclay",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "CEA, Paris-Saclay"
+                        }
                       }
                     ]
                   }
@@ -1436,14 +1187,14 @@
                     },
                     "runs": [
                       {
+                        "text": "05/2024 – à ce jour",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "05/2024 – à ce jour"
+                        }
                       }
                     ]
                   }
@@ -1468,13 +1219,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Développeur logiciel C++/JAVA",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Développeur logiciel C++/JAVA"
+                        }
                       }
                     ]
                   }
@@ -1501,12 +1252,12 @@
         },
         "runs": [
           {
+            "text": "Développement d’un module d’imagerie en exploitant le calcul des matrices de scattering pour son intégration dans CIVA. Cela prend en compte un développement des appels au noyau de calcul et l’affichage des données de sorties, ainsi qu’un développement d’un exécutable de traitement de donnée via une interface web.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Développement d’un module d’imagerie en exploitant le calcul des matrices de scattering pour son intégration dans CIVA. Cela prend en compte un développement des appels au noyau de calcul et l’affichage des données de sorties, ainsi qu’un développement d’un exécutable de traitement de donnée via une interface web."
+            }
           }
         ]
       },
@@ -1529,13 +1280,13 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT FRONT",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "DEVELOPPEMENT FRONT"
+            }
           }
         ]
       },
@@ -1550,10 +1301,10 @@
         },
         "runs": [
           {
+            "text": "Définition et développement de la page web",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Définition et développement de la page web"
+            }
           }
         ]
       },
@@ -1568,10 +1319,10 @@
         },
         "runs": [
           {
+            "text": "Récupération et affichage des données dans l’interface web",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Récupération et affichage des données dans l’interface web"
+            }
           }
         ]
       },
@@ -1586,10 +1337,10 @@
         },
         "runs": [
           {
+            "text": "Affichage des résultats",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Affichage des résultats"
+            }
           }
         ]
       },
@@ -1604,10 +1355,10 @@
         },
         "runs": [
           {
+            "text": "Mise en place et réalisation de tests unitaires et de non régression",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Mise en place et réalisation de tests unitaires et de non régression"
+            }
           }
         ]
       },
@@ -1622,13 +1373,13 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT BACK",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "DEVELOPPEMENT BACK"
+            }
           }
         ]
       },
@@ -1643,10 +1394,10 @@
         },
         "runs": [
           {
+            "text": "Prise en main du code existant",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Prise en main du code existant"
+            }
           }
         ]
       },
@@ -1661,10 +1412,10 @@
         },
         "runs": [
           {
+            "text": "Ecriture de classes C++ permettant de transformer les données issues de l’IHM au format des données d’entrée du noyau de calcul",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Ecriture de classes C++ permettant de transformer les données issues de l’IHM au format des données d’entrée du noyau de calcul"
+            }
           }
         ]
       },
@@ -1679,10 +1430,10 @@
         },
         "runs": [
           {
+            "text": "Mise en place des appels à l’API du noyau de calcul",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Mise en place des appels à l’API du noyau de calcul"
+            }
           }
         ]
       },
@@ -1697,10 +1448,10 @@
         },
         "runs": [
           {
+            "text": "Relecture des données de sortie du noyau de calcul et le développement d’une imagerie spécifique en JAVA permettant d’afficher les matrices de scattering",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Relecture des données de sortie du noyau de calcul et le développement d’une imagerie spécifique en JAVA permettant d’afficher les matrices de scattering"
+            }
           }
         ]
       },
@@ -1715,10 +1466,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation de tests d’intégrations et fonctionnels",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation de tests d’intégrations et fonctionnels"
+            }
           }
         ]
       },
@@ -1733,13 +1484,13 @@
         },
         "runs": [
           {
+            "text": "IMPLEMENTATION D’ALGORITHME",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "IMPLEMENTATION D’ALGORITHME"
+            }
           }
         ]
       },
@@ -1754,10 +1505,10 @@
         },
         "runs": [
           {
+            "text": "Recherche d’algorithmes d’optimisation",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Recherche d’algorithmes d’optimisation"
+            }
           }
         ]
       },
@@ -1772,10 +1523,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation d’étude paramétrique",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation d’étude paramétrique"
+            }
           }
         ]
       },
@@ -1790,10 +1541,10 @@
         },
         "runs": [
           {
+            "text": "Application et validation d’algorithmes sur les jeux de données",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Application et validation d’algorithmes sur les jeux de données"
+            }
           }
         ]
       },
@@ -1808,10 +1559,10 @@
         },
         "runs": [
           {
+            "text": "Intégration des algorithmes choisis",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Intégration des algorithmes choisis"
+            }
           }
         ]
       },
@@ -1826,10 +1577,10 @@
         },
         "runs": [
           {
+            "text": "Mise en place et réalisation de tests unitaires et de non régression",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Mise en place et réalisation de tests unitaires et de non régression"
+            }
           }
         ]
       },
@@ -1860,12 +1611,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Giant Consulting, Lyon",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "Giant Consulting, Lyon"
+                        }
                       }
                     ]
                   }
@@ -1884,14 +1635,14 @@
                     },
                     "runs": [
                       {
+                        "text": "02/2024 – 05/2024",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "02/2024 – 05/2024"
+                        }
                       }
                     ]
                   }
@@ -1916,13 +1667,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Développeur C++",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Développeur C++"
+                        }
                       }
                     ]
                   }
@@ -1949,12 +1700,12 @@
         },
         "runs": [
           {
+            "text": "Mission de développement logiciel pour un client situé dans la région Lyonnaise (SafetyTech). La mission se déroule dans une petite équipe, par la méthode agile SCRUM. Réalisation d’un logiciel de gestion de données pour la maintenance d’un produit automobile embarqué d’assistance à la conduite.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Mission de développement logiciel pour un client situé dans la région Lyonnaise (SafetyTech). La mission se déroule dans une petite équipe, par la méthode agile SCRUM. Réalisation d’un logiciel de gestion de données pour la maintenance d’un produit automobile embarqué d’assistance à la conduite."
+            }
           }
         ]
       },
@@ -1965,15 +1716,7 @@
           "style": "Textbody",
           "alignment": "both"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 67,
@@ -1986,13 +1729,13 @@
         },
         "runs": [
           {
+            "text": "GESTION DE PROJET",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "GESTION DE PROJET"
+            }
           }
         ]
       },
@@ -2007,10 +1750,10 @@
         },
         "runs": [
           {
+            "text": "Rédaction du cahier des charges en adéquation avec les attentes client",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Rédaction du cahier des charges en adéquation avec les attentes client"
+            }
           }
         ]
       },
@@ -2025,10 +1768,10 @@
         },
         "runs": [
           {
+            "text": "Prise en main du sujet et définition des axes d’étude",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Prise en main du sujet et définition des axes d’étude"
+            }
           }
         ]
       },
@@ -2043,10 +1786,10 @@
         },
         "runs": [
           {
+            "text": "Interaction avec les différentes équipes de développement",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Interaction avec les différentes équipes de développement"
+            }
           }
         ]
       },
@@ -2057,14 +1800,7 @@
           "style": "ListParagraph",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 72,
@@ -2077,13 +1813,13 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT LOGICIEL",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "DEVELOPPEMENT LOGICIEL"
+            }
           }
         ]
       },
@@ -2098,10 +1834,10 @@
         },
         "runs": [
           {
+            "text": "Prise en main du code existant",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Prise en main du code existant"
+            }
           }
         ]
       },
@@ -2116,10 +1852,10 @@
         },
         "runs": [
           {
+            "text": "Développement d’une interface logicielle",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement d’une interface logicielle"
+            }
           }
         ]
       },
@@ -2134,10 +1870,10 @@
         },
         "runs": [
           {
+            "text": "Acquisition et pré-traitement des données",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Acquisition et pré-traitement des données"
+            }
           }
         ]
       },
@@ -2152,10 +1888,10 @@
         },
         "runs": [
           {
+            "text": "Définition et implémentation des algorithmes de traitement des données",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Définition et implémentation des algorithmes de traitement des données"
+            }
           }
         ]
       },
@@ -2170,10 +1906,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation de tests d’intégrations et fonctionnels",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation de tests d’intégrations et fonctionnels"
+            }
           }
         ]
       },
@@ -2184,14 +1920,7 @@
           "style": "ListParagraph",
           "alignment": "both"
         },
-        "runs": [
-          {
-            "properties": {
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 79,
@@ -2202,23 +1931,23 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : ",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : "
+            }
           },
           {
+            "text": "C++, Qt, QtCreator, Visual Studio, Gitlab",
             "properties": {
               "bold": true,
               "italic": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "C++, Qt, QtCreator, Visual Studio, Gitlab"
+            }
           }
         ]
       },
@@ -2229,17 +1958,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "italic": true,
-              "size": "22",
-              "color": "ED7D31",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 81,
@@ -2260,12 +1979,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Projet Indépendant",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "Projet Indépendant"
+                        }
                       }
                     ]
                   }
@@ -2284,14 +2003,14 @@
                     },
                     "runs": [
                       {
+                        "text": "08/2021-12/2023",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "08/2021-12/2023"
+                        }
                       }
                     ]
                   }
@@ -2316,13 +2035,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Développeur C++",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Développeur C++"
+                        }
                       }
                     ]
                   }
@@ -2349,12 +2068,12 @@
         },
         "runs": [
           {
+            "text": "Développement d'une application de navigation dans les fichiers sonores pour un projet de sampling / création sonore. Ceci inclut une partie jouabilité, reconnaissance visuelle et regroupement des types de sons. Les sons peuvent être représentés grâce à un algorithme d'extraction de caractéristiques audio et de classification. Ce projet constitue un terrain d'apprentissage et d'expérimentation dans l'architecture logicielle, et peut servir de base à un futur logiciel ou plugin audio.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Développement d'une application de navigation dans les fichiers sonores pour un projet de sampling / création sonore. Ceci inclut une partie jouabilité, reconnaissance visuelle et regroupement des types de sons. Les sons peuvent être représentés grâce à un algorithme d'extraction de caractéristiques audio et de classification. Ce projet constitue un terrain d'apprentissage et d'expérimentation dans l'architecture logicielle, et peut servir de base à un futur logiciel ou plugin audio."
+            }
           }
         ]
       },
@@ -2365,15 +2084,7 @@
           "style": "Textbody",
           "alignment": "both"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 84,
@@ -2386,12 +2097,12 @@
         },
         "runs": [
           {
+            "text": "GESTION DE PROJET",
             "properties": {
               "bold": true,
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "GESTION DE PROJET"
+            }
           }
         ]
       },
@@ -2406,11 +2117,11 @@
         },
         "runs": [
           {
+            "text": "Définition du rendu de l’interface",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Définition du rendu de l’interface"
+            }
           }
         ]
       },
@@ -2425,11 +2136,11 @@
         },
         "runs": [
           {
+            "text": "Définition des fonctionnalités spécifiques pour la lecture des sons",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Définition des fonctionnalités spécifiques pour la lecture des sons"
+            }
           }
         ]
       },
@@ -2444,11 +2155,11 @@
         },
         "runs": [
           {
+            "text": "Veille technologique sur les logiciels existants",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Veille technologique sur les logiciels existants"
+            }
           }
         ]
       },
@@ -2463,11 +2174,11 @@
         },
         "runs": [
           {
+            "text": "Recherche de l’originalité du produit ",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Recherche de l’originalité du produit "
+            }
           }
         ]
       },
@@ -2478,13 +2189,7 @@
           "style": "ListParagraph",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 90,
@@ -2497,12 +2202,12 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT D’UNE INTERFACE",
             "properties": {
               "bold": true,
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "DEVELOPPEMENT D’UNE INTERFACE"
+            }
           }
         ]
       },
@@ -2517,11 +2222,11 @@
         },
         "runs": [
           {
+            "text": "Définition de l’interface visuelle",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Définition de l’interface visuelle"
+            }
           }
         ]
       },
@@ -2536,10 +2241,10 @@
         },
         "runs": [
           {
+            "text": "Gestion des interactions utilisateur",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Gestion des interactions utilisateur"
+            }
           }
         ]
       },
@@ -2554,10 +2259,10 @@
         },
         "runs": [
           {
+            "text": "Lecture en temps réel sans latence des fichiers audio",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Lecture en temps réel sans latence des fichiers audio"
+            }
           }
         ]
       },
@@ -2572,10 +2277,10 @@
         },
         "runs": [
           {
+            "text": "Simplification de la visualisation des fichiers audio",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Simplification de la visualisation des fichiers audio"
+            }
           }
         ]
       },
@@ -2586,13 +2291,7 @@
           "style": "ListParagraph",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 96,
@@ -2605,13 +2304,13 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT D’ALGORITHMES DE TRAITEMENT AUDIO",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "DEVELOPPEMENT D’ALGORITHMES DE TRAITEMENT AUDIO"
+            }
           }
         ]
       },
@@ -2626,11 +2325,11 @@
         },
         "runs": [
           {
+            "text": "Recherche d’approches pour l’extraction des caractéristiques audio et leur classification",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Recherche d’approches pour l’extraction des caractéristiques audio et leur classification"
+            }
           }
         ]
       },
@@ -2645,11 +2344,11 @@
         },
         "runs": [
           {
+            "text": "Définition de l’architecture logicielle",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Définition de l’architecture logicielle"
+            }
           }
         ]
       },
@@ -2664,11 +2363,11 @@
         },
         "runs": [
           {
+            "text": "Utilisation d’algorithmes d’extraction des MFCC",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Utilisation d’algorithmes d’extraction des MFCC"
+            }
           }
         ]
       },
@@ -2679,14 +2378,7 @@
           "style": "ListParagraph",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 101,
@@ -2699,13 +2391,13 @@
         },
         "runs": [
           {
+            "text": "DEVELOPPEMENT D’ALGORITHME D’APPRENTISSAGE",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "DEVELOPPEMENT D’ALGORITHME D’APPRENTISSAGE"
+            }
           }
         ]
       },
@@ -2720,18 +2412,11 @@
         },
         "runs": [
           {
+            "text": "  Création d’une base de données de sons catégorisés",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": " "
-          },
-          {
-            "properties": {
-              "color": "000000",
-              "font": "Calibri Light"
-            },
-            "text": "Création d’une base de données de sons catégorisés"
+            }
           }
         ]
       },
@@ -2746,11 +2431,11 @@
         },
         "runs": [
           {
+            "text": "Tests d’algorithmes de classification (SVM, SVC) sur plusieurs catégories de sons : voix, musique, nature, foule, échantillons instrumentaux, etc..",
             "properties": {
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Tests d’algorithmes de classification (SVM, SVC) sur plusieurs catégories de sons : voix, musique, nature, foule, échantillons instrumentaux, etc.."
+            }
           }
         ]
       },
@@ -2763,13 +2448,13 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Visual Studio, C++, Juce, Yaafe, Python, Librosa",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : Visual Studio, C++, Juce, Yaafe, Python, Librosa"
+            }
           }
         ]
       },
@@ -2780,16 +2465,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "ED7D31",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 106,
@@ -2810,12 +2486,12 @@
                     },
                     "runs": [
                       {
+                        "text": "CEA, Saclay",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "CEA, Saclay"
+                        }
                       }
                     ]
                   }
@@ -2834,14 +2510,14 @@
                     },
                     "runs": [
                       {
+                        "text": "03/2019- 09/2020",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "03/2019- 09/2020"
+                        }
                       }
                     ]
                   }
@@ -2866,13 +2542,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Ingénieur Chercheur",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Ingénieur Chercheur"
+                        }
                       }
                     ]
                   }
@@ -2899,12 +2575,12 @@
         },
         "runs": [
           {
+            "text": "Dans le cadre d'un projet collaboratif entre deux laboratoires du CEA, l'un développant un logiciel de simulation et de de dessin 3D (Salome) et l'autre développant et commercialisant un logiciel de simulation de propagation acoustique ultrasonore pour le contrôle non destructif de pièces industrielles (CIVA), j'étais en charge de développer des méthodes et des outils afin de comparer ou d'améliorer les méthodes de calcul de diffraction sur des angles solides, en explorant les possibilités des deux logiciels. L'objectif étant de favoriser les échanges et les idées entre les deux équipes.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Dans le cadre d'un projet collaboratif entre deux laboratoires du CEA, l'un développant un logiciel de simulation et de de dessin 3D (Salome) et l'autre développant et commercialisant un logiciel de simulation de propagation acoustique ultrasonore pour le contrôle non destructif de pièces industrielles (CIVA), j'étais en charge de développer des méthodes et des outils afin de comparer ou d'améliorer les méthodes de calcul de diffraction sur des angles solides, en explorant les possibilités des deux logiciels. L'objectif étant de favoriser les échanges et les idées entre les deux équipes."
+            }
           }
         ]
       },
@@ -2927,13 +2603,13 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
+            }
           }
         ]
       },
@@ -2948,10 +2624,10 @@
         },
         "runs": [
           {
+            "text": "Comparaison de modèles de difractions pour un logiciel de propagation acoustique",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Comparaison de modèles de difractions pour un logiciel de propagation acoustique"
+            }
           }
         ]
       },
@@ -2966,10 +2642,10 @@
         },
         "runs": [
           {
+            "text": "Calculs de champs par méthode de rayons",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Calculs de champs par méthode de rayons"
+            }
           }
         ]
       },
@@ -2984,10 +2660,10 @@
         },
         "runs": [
           {
+            "text": "Calculs par éléments finis",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Calculs par éléments finis"
+            }
           }
         ]
       },
@@ -3002,10 +2678,10 @@
         },
         "runs": [
           {
+            "text": "Développement d'outils pour optimiser les points de difractions de pièces et réduire les zones d'ombre",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement d'outils pour optimiser les points de difractions de pièces et réduire les zones d'ombre"
+            }
           }
         ]
       },
@@ -3020,10 +2696,10 @@
         },
         "runs": [
           {
+            "text": "Développement d'outils logiciels pour la lecture et la visualisation de pièces 2D et leur champ acoustique",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement d'outils logiciels pour la lecture et la visualisation de pièces 2D et leur champ acoustique"
+            }
           }
         ]
       },
@@ -3038,10 +2714,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation de mesures expérimentales et confrontation aux modèles de calcul",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation de mesures expérimentales et confrontation aux modèles de calcul"
+            }
           }
         ]
       },
@@ -3052,14 +2728,7 @@
           "style": "ListParagraph",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 117,
@@ -3070,13 +2739,13 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : CIVA, SALOME, C++, Qt for Python, VTK, Paraview",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : CIVA, SALOME, C++, Qt for Python, VTK, Paraview"
+            }
           }
         ]
       },
@@ -3087,16 +2756,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "ED7D31",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 119,
@@ -3117,12 +2777,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Laboratoire Vibration Acoustique, INSA Lyon",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "Laboratoire Vibration Acoustique, INSA Lyon"
+                        }
                       }
                     ]
                   }
@@ -3141,14 +2801,14 @@
                     },
                     "runs": [
                       {
+                        "text": "03/2017- 12 /2018",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "03/2017- 12 /2018"
+                        }
                       }
                     ]
                   }
@@ -3173,13 +2833,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Ingénieur de Recherche",
                         "properties": {
                           "bold": true,
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Ingénieur de Recherche"
+                        }
                       }
                     ]
                   }
@@ -3206,12 +2866,12 @@
         },
         "runs": [
           {
+            "text": "Projet entre INSA Lyon / CEA / EDF / LMA visant à améliorer le contrôle de pièces métalliques formant des jointures dans les centrales nucléaires. Mon rôle était d'améliorer une méthode de contrôle de pièces anisotropes développée par l'INSA Lyon, incluant la refonte du logiciel de calcul et de visualisation, et également du banc de mesure expérimental.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Projet entre INSA Lyon / CEA / EDF / LMA visant à améliorer le contrôle de pièces métalliques formant des jointures dans les centrales nucléaires. Mon rôle était d'améliorer une méthode de contrôle de pièces anisotropes développée par l'INSA Lyon, incluant la refonte du logiciel de calcul et de visualisation, et également du banc de mesure expérimental."
+            }
           }
         ]
       },
@@ -3222,15 +2882,7 @@
           "style": "Textbody",
           "alignment": "both"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 122,
@@ -3243,13 +2895,13 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
+            }
           }
         ]
       },
@@ -3264,10 +2916,10 @@
         },
         "runs": [
           {
+            "text": "Acoustique dans les matériaux anisotropes",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Acoustique dans les matériaux anisotropes"
+            }
           }
         ]
       },
@@ -3282,10 +2934,10 @@
         },
         "runs": [
           {
+            "text": "Développement d'un logiciel de calcul et de visualisation",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement d'un logiciel de calcul et de visualisation"
+            }
           }
         ]
       },
@@ -3300,10 +2952,10 @@
         },
         "runs": [
           {
+            "text": "Optimisation du code existant et développement de nouvelles fonctionnalités",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Optimisation du code existant et développement de nouvelles fonctionnalités"
+            }
           }
         ]
       },
@@ -3318,10 +2970,10 @@
         },
         "runs": [
           {
+            "text": "Développement du banc de caractérisation : instrumentation, achat du matériel, développement du programme d’acquisition",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement du banc de caractérisation : instrumentation, achat du matériel, développement du programme d’acquisition"
+            }
           }
         ]
       },
@@ -3336,10 +2988,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation des mesures expérimentales",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation des mesures expérimentales"
+            }
           }
         ]
       },
@@ -3354,10 +3006,10 @@
         },
         "runs": [
           {
+            "text": "Tests et comparaison d'algorithmes d'optimisation des paramètres du modèle",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Tests et comparaison d'algorithmes d'optimisation des paramètres du modèle"
+            }
           }
         ]
       },
@@ -3370,13 +3022,13 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Python",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : Matlab, Python"
+            }
           }
         ]
       },
@@ -3387,18 +3039,7 @@
           "style": "Normal",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "color": "ED7D31",
-              "font": "Calibri Light"
-            }
-          },
-          {
-            "page_break": true
-          }
-        ]
+        "runs": []
       },
       {
         "index": 131,
@@ -3419,12 +3060,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Genesis, Aix-en-Provence",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "Genesis, Aix-en-Provence"
+                        }
                       }
                     ]
                   }
@@ -3443,14 +3084,14 @@
                     },
                     "runs": [
                       {
+                        "text": "05-06/2016",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "05-06/2016"
+                        }
                       }
                     ]
                   }
@@ -3475,13 +3116,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Ingénieur Acoustique",
                         "properties": {
                           "bold": true,
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Ingénieur Acoustique"
+                        }
                       }
                     ]
                   }
@@ -3508,12 +3149,12 @@
         },
         "runs": [
           {
+            "text": "Période de prise de contact avec l'entreprise, correspondant à un stage, la mission était de contribuer à la mise en place d'un démonstrateur de projection sonore par la méthode de Wave Field Synthesis.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Période de prise de contact avec l'entreprise, correspondant à un stage, la mission était de contribuer à la mise en place d'un démonstrateur de projection sonore par la méthode de Wave Field Synthesis."
+            }
           }
         ]
       },
@@ -3524,15 +3165,7 @@
           "style": "Textbody",
           "alignment": "both"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 134,
@@ -3545,13 +3178,13 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
+            }
           }
         ]
       },
@@ -3566,10 +3199,10 @@
         },
         "runs": [
           {
+            "text": "Simulation du champ acoustique WFS",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Simulation du champ acoustique WFS"
+            }
           }
         ]
       },
@@ -3584,10 +3217,10 @@
         },
         "runs": [
           {
+            "text": "Tests et mise en place des hauts parleurs, configuration du système multivoies",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Tests et mise en place des hauts parleurs, configuration du système multivoies"
+            }
           }
         ]
       },
@@ -3602,10 +3235,10 @@
         },
         "runs": [
           {
+            "text": "Tests d'écoute avec des sources acoustiques fixes",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Tests d'écoute avec des sources acoustiques fixes"
+            }
           }
         ]
       },
@@ -3618,13 +3251,13 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Reaper",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : Matlab, Reaper"
+            }
           }
         ]
       },
@@ -3635,16 +3268,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "ED7D31",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 140,
@@ -3665,12 +3289,12 @@
                     },
                     "runs": [
                       {
+                        "text": "CNRS, Université de Bordeaux",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "CNRS, Université de Bordeaux"
+                        }
                       }
                     ]
                   }
@@ -3689,14 +3313,14 @@
                     },
                     "runs": [
                       {
+                        "text": "10/2010 - 05/2015",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "10/2010 - 05/2015"
+                        }
                       }
                     ]
                   }
@@ -3721,13 +3345,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Chercheur contractuel",
                         "properties": {
                           "bold": true,
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Chercheur contractuel"
+                        }
                       }
                     ]
                   }
@@ -3754,12 +3378,12 @@
         },
         "runs": [
           {
+            "text": "Cette période s'est déroulée dans le même laboratoire mais sur deux projets successifs avec des équipes différentes. Le premier projet concernait l'analyse d'une méthode de contrôle du collage de pièces aéronautiques, l'autre était une étude de faisabilité de nouveaux matériaux acoustiques, en collaboration avec des laboratoires de spécialisés en chimie et microfluidique (LCPO, CRPP).",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Cette période s'est déroulée dans le même laboratoire mais sur deux projets successifs avec des équipes différentes. Le premier projet concernait l'analyse d'une méthode de contrôle du collage de pièces aéronautiques, l'autre était une étude de faisabilité de nouveaux matériaux acoustiques, en collaboration avec des laboratoires de spécialisés en chimie et microfluidique (LCPO, CRPP)."
+            }
           }
         ]
       },
@@ -3770,15 +3394,7 @@
           "style": "Textbody",
           "alignment": "both"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 143,
@@ -3791,22 +3407,13 @@
         },
         "runs": [
           {
+            "text": "Activités : Réalisation de métamatériaux acoustiques",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
-          },
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri"
-            },
-            "text": "Réalisation de métamatériaux acoustiques"
+            }
           }
         ]
       },
@@ -3821,10 +3428,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation de métamatériaux acoustique",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation de métamatériaux acoustique"
+            }
           }
         ]
       },
@@ -3839,10 +3446,10 @@
         },
         "runs": [
           {
+            "text": "Développement de matériaux à base d'inclusions résonnantes en collaboration avec les laboratoires CRPP et LCPO",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement de matériaux à base d'inclusions résonnantes en collaboration avec les laboratoires CRPP et LCPO"
+            }
           }
         ]
       },
@@ -3857,10 +3464,10 @@
         },
         "runs": [
           {
+            "text": "Développement d'un logiciel pour l'instrumentation du banc d'acquisition expérimental",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement d'un logiciel pour l'instrumentation du banc d'acquisition expérimental"
+            }
           }
         ]
       },
@@ -3875,10 +3482,10 @@
         },
         "runs": [
           {
+            "text": "Implémentation de modèles de diffusion multiple",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Implémentation de modèles de diffusion multiple"
+            }
           }
         ]
       },
@@ -3893,10 +3500,10 @@
         },
         "runs": [
           {
+            "text": "Méthodes d'optimisation pour l'identification de paramètres de modèles",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Méthodes d'optimisation pour l'identification de paramètres de modèles"
+            }
           }
         ]
       },
@@ -3911,10 +3518,10 @@
         },
         "runs": [
           {
+            "text": "Mise en place et utilisation de systèmes micro-fluidiques",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Mise en place et utilisation de systèmes micro-fluidiques"
+            }
           }
         ]
       },
@@ -3929,10 +3536,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation et acquisition de mesures",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation et acquisition de mesures"
+            }
           }
         ]
       },
@@ -3943,13 +3550,7 @@
           "style": "ListParagraph",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 152,
@@ -3962,22 +3563,13 @@
         },
         "runs": [
           {
+            "text": "Activités : Caractérisation de collage de pièces aéronautiques par ondes guidées",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
-          },
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri"
-            },
-            "text": "Caractérisation de collage de pièces aéronautiques par ondes guidées"
+            }
           }
         ]
       },
@@ -3992,10 +3584,10 @@
         },
         "runs": [
           {
+            "text": "Calcul FEM sur pièces composites",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Calcul FEM sur pièces composites"
+            }
           }
         ]
       },
@@ -4010,10 +3602,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage"
+            }
           }
         ]
       },
@@ -4028,10 +3620,10 @@
         },
         "runs": [
           {
+            "text": "Veille scientifique",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Veille scientifique"
+            }
           }
         ]
       },
@@ -4046,10 +3638,10 @@
         },
         "runs": [
           {
+            "text": "Communication des résultats (articles, conférences)",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Communication des résultats (articles, conférences)"
+            }
           }
         ]
       },
@@ -4062,13 +3654,13 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, COMSOL, Labview",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : Matlab, COMSOL, Labview"
+            }
           }
         ]
       },
@@ -4079,16 +3671,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "ED7D31",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 159,
@@ -4109,12 +3692,12 @@
                     },
                     "runs": [
                       {
+                        "text": "UCLAN Applied Digital Signal and Image Processing Centrer, Preston (UK)",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "UCLAN Applied Digital Signal and Image Processing Centrer, Preston (UK)"
+                        }
                       }
                     ]
                   }
@@ -4133,14 +3716,14 @@
                     },
                     "runs": [
                       {
+                        "text": "11/2006 -11/2008",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "11/2006 -11/2008"
+                        }
                       }
                     ]
                   }
@@ -4165,13 +3748,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Chercheur contractuel",
                         "properties": {
                           "bold": true,
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Chercheur contractuel"
+                        }
                       }
                     ]
                   }
@@ -4198,12 +3781,12 @@
         },
         "runs": [
           {
+            "text": "Il s'agissait d'un étude sur la diagnostic de l'arthrose dans le genou, pilotée par le Département de Médecine en partenariat avec le Département de Traitement du Signal. L'objectif était de réaliser un prototype de diagnostic par émission acoustique en réalisant une étude sur des patients réels.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Il s'agissait d'un étude sur la diagnostic de l'arthrose dans le genou, pilotée par le Département de Médecine en partenariat avec le Département de Traitement du Signal. L'objectif était de réaliser un prototype de diagnostic par émission acoustique en réalisant une étude sur des patients réels."
+            }
           }
         ]
       },
@@ -4218,13 +3801,13 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
+            }
           }
         ]
       },
@@ -4239,10 +3822,10 @@
         },
         "runs": [
           {
+            "text": "Configuration de l'instrumentation des capteurs et du système d'acquisition des signaux",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Configuration de l'instrumentation des capteurs et du système d'acquisition des signaux"
+            }
           }
         ]
       },
@@ -4257,10 +3840,10 @@
         },
         "runs": [
           {
+            "text": "Analyse des signaux acoustiques émis par l'articulation du genou (méthodes de classification)",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Analyse des signaux acoustiques émis par l'articulation du genou (méthodes de classification)"
+            }
           }
         ]
       },
@@ -4275,10 +3858,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation des mesures sur patients en partenariat avec les médecins",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation des mesures sur patients en partenariat avec les médecins"
+            }
           }
         ]
       },
@@ -4293,10 +3876,10 @@
         },
         "runs": [
           {
+            "text": "Définition de la méthode de diagnostic",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Définition de la méthode de diagnostic"
+            }
           }
         ]
       },
@@ -4311,10 +3894,10 @@
         },
         "runs": [
           {
+            "text": "Communication des résultats (conférences, journaux scientifiques)",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Communication des résultats (conférences, journaux scientifiques)"
+            }
           }
         ]
       },
@@ -4325,13 +3908,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 168,
@@ -4344,22 +3921,13 @@
         },
         "runs": [
           {
+            "text": "Activités : Caractérisation de collage de pièces aéronautiques par ondes guidées",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
-          },
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "000000",
-              "font": "Calibri"
-            },
-            "text": "Caractérisation de collage de pièces aéronautiques par ondes guidées"
+            }
           }
         ]
       },
@@ -4374,10 +3942,10 @@
         },
         "runs": [
           {
+            "text": "Calcul FEM sur pièces composites",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Calcul FEM sur pièces composites"
+            }
           }
         ]
       },
@@ -4392,10 +3960,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation de mesures par ondes guidées et développement d'une méthode de suivi de réticulation des joints de collage"
+            }
           }
         ]
       },
@@ -4410,10 +3978,10 @@
         },
         "runs": [
           {
+            "text": "Veille scientifique",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Veille scientifique"
+            }
           }
         ]
       },
@@ -4428,10 +3996,10 @@
         },
         "runs": [
           {
+            "text": "Communication des résultats (articles, conférences)",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Communication des résultats (articles, conférences)"
+            }
           }
         ]
       },
@@ -4444,13 +4012,13 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Machine Learning, Instrumentation d’Emission Acoustique, Instrumentation Biomécanique",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : Matlab, Machine Learning, Instrumentation d’Emission Acoustique, Instrumentation Biomécanique"
+            }
           }
         ]
       },
@@ -4461,16 +4029,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "bold": true,
-              "size": "22",
-              "color": "ED7D31",
-              "font": "Calibri Light"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 175,
@@ -4491,12 +4050,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Airbus, Toulouse",
                         "properties": {
                           "size": "36",
                           "color": "808080",
                           "font": "Lucida Bright"
-                        },
-                        "text": "Airbus, Toulouse"
+                        }
                       }
                     ]
                   }
@@ -4515,14 +4074,14 @@
                     },
                     "runs": [
                       {
+                        "text": "06/2003 - 06/2006",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "06/2003 - 06/2006"
+                        }
                       }
                     ]
                   }
@@ -4547,13 +4106,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Thèse de Doctorat",
                         "properties": {
                           "bold": true,
                           "size": "24",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Thèse de Doctorat"
+                        }
                       }
                     ]
                   }
@@ -4580,12 +4139,12 @@
         },
         "runs": [
           {
+            "text": "Recherche appliquée à la caractérisation ultrasonore des porosités pour la contrôle qualité des matériaux composites aéronautiques. Cette thèse s'est déroulée à part égale entre le Laboratoire d'Acoustique de l'université Paul Sabatier et Airbus Toulouse. Elle a également été l'objet de fabrication de matériaux test en partenariat avec un laboratoire spécialisé dans les procédés de fabrication de matériaux composites.",
             "properties": {
               "size": "22",
               "color": "000000",
               "font": "Calibri Light"
-            },
-            "text": "Recherche appliquée à la caractérisation ultrasonore des porosités pour la contrôle qualité des matériaux composites aéronautiques. Cette thèse s'est déroulée à part égale entre le Laboratoire d'Acoustique de l'université Paul Sabatier et Airbus Toulouse. Elle a également été l'objet de fabrication de matériaux test en partenariat avec un laboratoire spécialisé dans les procédés de fabrication de matériaux composites."
+            }
           }
         ]
       },
@@ -4596,14 +4155,7 @@
           "style": "Textbody",
           "alignment": "left"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "22",
-              "color": "000000"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 178,
@@ -4616,13 +4168,13 @@
         },
         "runs": [
           {
+            "text": "Activités : ",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "000000",
               "font": "Calibri"
-            },
-            "text": "Activités : "
+            }
           }
         ]
       },
@@ -4637,10 +4189,10 @@
         },
         "runs": [
           {
+            "text": "Etat de l'art et étude théorique de la diffusion multiple",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Etat de l'art et étude théorique de la diffusion multiple"
+            }
           }
         ]
       },
@@ -4655,10 +4207,10 @@
         },
         "runs": [
           {
+            "text": "Etat de l'art dans le contrôle des matériaux composites par ultrasons",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Etat de l'art dans le contrôle des matériaux composites par ultrasons"
+            }
           }
         ]
       },
@@ -4673,10 +4225,10 @@
         },
         "runs": [
           {
+            "text": "Développement de bancs d'instrumentation",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement de bancs d'instrumentation"
+            }
           }
         ]
       },
@@ -4691,10 +4243,10 @@
         },
         "runs": [
           {
+            "text": "Développement de logiciels et d'outils d'analyse",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Développement de logiciels et d'outils d'analyse"
+            }
           }
         ]
       },
@@ -4709,10 +4261,10 @@
         },
         "runs": [
           {
+            "text": "Réalisation des mesures sur pièces représentatives",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Réalisation des mesures sur pièces représentatives"
+            }
           }
         ]
       },
@@ -4727,10 +4279,10 @@
         },
         "runs": [
           {
+            "text": "Fabrication de pièces spécifiques",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Fabrication de pièces spécifiques"
+            }
           }
         ]
       },
@@ -4745,10 +4297,10 @@
         },
         "runs": [
           {
+            "text": "Participation à des conférences",
             "properties": {
               "font": "Calibri Light"
-            },
-            "text": "Participation à des conférences"
+            }
           }
         ]
       },
@@ -4761,13 +4313,13 @@
         },
         "runs": [
           {
+            "text": "Environnement technique : Matlab, Labvie",
             "properties": {
               "bold": true,
               "size": "22",
               "color": "ED7D31",
               "font": "Calibri Light"
-            },
-            "text": "Environnement technique : Matlab, Labvie"
+            }
           }
         ]
       }

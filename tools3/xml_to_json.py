@@ -349,6 +349,75 @@ def extract_row_height(row, ns: Dict) -> int:
                     return None
     return None
 
+def normalize_paragraph_runs(para: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Normalise et fusionne les runs consécutifs d'un paragraphe.
+    
+    ⚠️ IMPORTANT: Cette fonction FUSIONNE les runs avec les mêmes propriétés
+    en concaténant leurs textes, pour que:
+    1. La détection de keywords fonctionne mieux
+    2. L'application des styles soit plus cohérente
+    3. La structure JSON soit plus propre
+    
+    Logique:
+    - Fusionne les runs consécutifs avec EXACTEMENT les mêmes propriétés
+    - Concatène les textes avec un espace si nécessaire
+    - Préserve les runs avec propriétés différentes
+    
+    Exemple:
+    - Input: [{"text": "dossier ", "properties": {}}, 
+              {"text": "de ", "properties": {}}, 
+              {"text": "compétences", "properties": {}}]
+    - Output: [{"text": "dossier de compétences", "properties": {}}]
+    
+    Args:
+        para: Paragraphe JSON avec runs
+        
+    Returns:
+        Paragraphe normalisé avec runs fusionnés
+    """
+    if 'runs' not in para or not para['runs']:
+        return para
+    
+    runs = para['runs']
+    normalized_runs = []
+    
+    for run in runs:
+        # Ignorer les runs sans texte
+        if 'text' not in run or not run['text']:
+            continue
+        
+        # Obtenir les propriétés du run (ou dict vide si aucune)
+        run_props = json.dumps(run.get('properties', {}), sort_keys=True)
+        
+        # Vérifier s'il faut fusionner avec le dernier run
+        if normalized_runs and 'text' in normalized_runs[-1]:
+            last_run_props = json.dumps(normalized_runs[-1].get('properties', {}), sort_keys=True)
+            
+            if run_props == last_run_props:
+                # Mêmes propriétés: fusionner les textes
+                last_text = normalized_runs[-1]['text']
+                new_text = run['text']
+                
+                # Fusionner intelligemment: ajouter un espace seulement si nécessaire
+                if last_text and not last_text.endswith(' ') and not new_text.startswith(' '):
+                    normalized_runs[-1]['text'] = last_text + ' ' + new_text
+                else:
+                    normalized_runs[-1]['text'] = last_text + new_text
+                
+                continue  # Pas besoin d'ajouter un nouveau run
+        
+        # Ajouter le run normalisé
+        normalized_runs.append({
+            'text': run['text'],
+            'properties': run.get('properties', {})
+        })
+    
+    # Remplacer les runs
+    para['runs'] = normalized_runs
+    
+    return para
+
 def parse_table(table, ns: Dict, index: int) -> Dict[str, Any]:
     """Parse un tableau avec extraction des dimensions"""
     table_obj = {
@@ -426,12 +495,21 @@ def parse_global_xml(xml_file: str) -> Dict[str, Any]:
         # Paragraphes
         if element.tag == f'{{{NS["w"]}}}p':
             para_obj = parse_paragraph(element, NS, content_index)
+            # ⭐ NORMALISER LES RUNS du paragraphe
+            para_obj = normalize_paragraph_runs(para_obj)
             document_structure["document"]["content"].append(para_obj)
             content_index += 1
 
         # Tableaux
         elif element.tag == f'{{{NS["w"]}}}tbl':
             table_obj = parse_table(element, NS, content_index)
+            
+            # ⭐ NORMALISER LES RUNS de tous les paragraphes dans la table
+            for row in table_obj.get('rows', []):
+                for cell in row.get('cells', []):
+                    for para in cell.get('paragraphs', []):
+                        normalize_paragraph_runs(para)
+            
             document_structure["document"]["content"].append(table_obj)
             content_index += 1
 
@@ -756,7 +834,7 @@ def create_language_header(data: Dict[str, Any]) -> None:
     first_language_idx = None
     for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element).lower()
+            text = get_text_from_element(element)
             if any(keyword in text for keyword in KEYWORDS_LANGUAGES):
                 first_language_idx = i
                 break
@@ -768,7 +846,7 @@ def create_language_header(data: Dict[str, Any]) -> None:
     if first_language_idx > 0:
         prev_element = content[first_language_idx - 1]
         if prev_element.get('type') == 'Paragraph':
-            prev_text = get_text_from_element(prev_element).lower()
+            prev_text = get_text_from_element(prev_element)
             # Vérifier si c'est un header contenant des keywords de langues
             if any(keyword in prev_text for keyword in KEYWORDS_LANGUAGES):
                 return  # Header existe déjà
@@ -793,6 +871,9 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     - Après: la description nettoyée (col 1)
 
     Nettoie le début de la description: supprime " : ", espaces, jusqu'à la première lettre.
+
+    ⚠️ IMPORTANT: Les runs sont normalisés au parsing, donc les keywords
+    sont maintenant directement accessibles sans fragmentation.
 
     Args:
         para: Paragraphe JSON source
@@ -907,6 +988,9 @@ def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Di
     - Le prochain bloc commence quand une nouvelle date est détectée
     - Les paragraphes vides sont ignorés à la création des blocs
 
+    ⚠️ IMPORTANT: Les runs sont normalisés au parsing, donc les dates
+    sont maintenant directement accessibles sans fragmentation.
+
     Args:
         paragraphs: Liste de paragraphes
 
@@ -984,7 +1068,7 @@ def create_edu_table(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
     # ===== CRÉATION FORMATION =====
     for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element).lower()
+            text = get_text_from_element(element)
 
             # Chercher un vrai header Formation
             is_title = element.get('properties', {}).get('style', '').startswith('Titre')
@@ -1010,7 +1094,7 @@ def create_edu_table(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
                     while j < len(content):
                         next_elem = content[j]
                         if next_elem.get('type') == 'Paragraph':
-                            elem_text = get_text_from_element(next_elem).lower()
+                            elem_text = get_text_from_element(next_elem)
 
                             if not elem_text.strip():
                                 j += 1
@@ -1083,7 +1167,7 @@ def create_edu_table(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
     lang_indices = []
     for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element).lower()
+            text = get_text_from_element(element)
             is_only_langues = text.strip() in ['langues', 'langue']
             is_title = element.get('properties', {}).get('style', '').startswith('Titre')
             is_auto_gen = element.get('auto_generated', False)
@@ -1107,7 +1191,7 @@ def create_edu_table(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
             while j < len(content):
                 next_elem = content[j]
                 if next_elem.get('type') == 'Paragraph':
-                    elem_text = get_text_from_element(next_elem).lower()
+                    elem_text = get_text_from_element(next_elem)
 
                     if not elem_text.strip():
                         j += 1
@@ -1292,7 +1376,7 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
         new_content.append(element)
 
         if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element).lower()
+            text = get_text_from_element(element)
             has_ilvl = element.get('properties', {}).get('ilvl') is not None
 
             # Détecter le header "Expériences Professionnelles"
@@ -1398,11 +1482,11 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any])
                             break
 
                         # SKIP si c'est un titre (KEYWORDS_TECHNICAL_SKILLS) - le laisser en place
-                        if any(keyword in text.lower() for keyword in KEYWORDS_TECHNICAL_SKILLS):
+                        if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
                             break
 
                         # ARRÊTER si contexte
-                        if 'contexte' in text.lower():
+                        if 'contexte' in text:
                             break
 
                         # Ajouter le paragraphe (même s'il est vide)
@@ -1609,7 +1693,8 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         if 'tags' not in itag:
             continue
         tags = itag['tags']
-        text = get_text_from_element(itag).lower() if itag else ""
+        # Extraire le texte
+        text = get_text_from_element(itag) if itag else ""
         props = itag.get('properties', {})
 
         if 'header' in tags and any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
