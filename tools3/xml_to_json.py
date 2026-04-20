@@ -1536,6 +1536,52 @@ def remove_double_paras_and_spaces (data: Dict[str, Any]) -> None:
 
     data['document']['content'] = new_content
 
+def add_colons_between_list_levels(data: Dict[str, Any]) -> None:
+    """
+    Ajoute des ":" entre deux niveaux de listes successifs (1→2, 2→3, etc).
+    SAUF entre ilvl 0 et 1.
+    Si un paragraphe avec ilvl est suivi d'un paragraphe avec un ilvl supérieur
+    (sauf 0→1), ajoute " :" à la fin du premier paragraphe s'il n'existe pas.
+
+    Modifie in-place.
+
+    Logique:
+    - Parcourir les paragraphes avec ilvl
+    - Détecter quand on passe d'un ilvl inférieur à un ilvl supérieur
+    - Exclure la transition 0→1
+    - Si le paragraphe n'a pas ":", l'ajouter
+    """
+    content = data.get('document', {}).get('content', [])
+
+    for i in range(len(content) - 1):
+        element = content[i]
+        next_element = content[i + 1]
+
+        if element.get('type') == 'Paragraph' and next_element.get('type') == 'Paragraph':
+            curr_ilvl = element.get('properties', {}).get('ilvl')
+            next_ilvl = next_element.get('properties', {}).get('ilvl')
+
+            # Vérifier s'il y a une transition vers un niveau supérieur
+            if curr_ilvl is not None and next_ilvl is not None:
+                try:
+                    curr_ilvl_int = int(curr_ilvl) if isinstance(curr_ilvl, str) else curr_ilvl
+                    next_ilvl_int = int(next_ilvl) if isinstance(next_ilvl, str) else next_ilvl
+
+                    # Si niveau suivant > niveau courant, SAUF la transition 0→1
+                    if next_ilvl_int > curr_ilvl_int and not (curr_ilvl_int == 0 and next_ilvl_int == 1):
+                        text = get_text_from_element(element)
+
+                        # Vérifier si ":" est déjà présent
+                        if ':' not in text:
+                            # Ajouter " :" à la fin du dernier run du paragraphe courant
+                            if 'runs' in element and len(element['runs']) > 0:
+                                last_run = element['runs'][-1]
+                                if 'text' in last_run:
+                                    last_run['text'] += ' :'
+                except (ValueError, TypeError):
+                    # Ignorer les conversions invalides
+                    pass
+
 def apply_styles_in_json(data: Dict[str, Any]) -> None:
     """
     Applique les styles par défaut dans les données JSON.
@@ -1819,6 +1865,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_p
     insert_text_xp_tables(data, xp_creation_result)
 
     # ===== NETTOYAGE et RENDU FINAL POUR CHAQUE ELEMENT =====
+    # Ajouter les ":" entre les niveaux de listes successifs
+    add_colons_between_list_levels(data)
+
     # Nettoyer les paragraphes vides doublons et les doubles espaces
     remove_double_paras_and_spaces(data)
 
