@@ -1298,7 +1298,7 @@
               "color": "000000"
             }
           },
-          "style": "DC_Normal"
+          "style": "DC_Table_Content"
         },
         "row_count": 4,
         "col_count": 2,
@@ -1625,7 +1625,7 @@
               "color": "000000"
             }
           },
-          "style": "DC_Normal"
+          "style": "DC_Table_Content"
         },
         "row_count": 1,
         "col_count": 2,
@@ -1745,7 +1745,7 @@
             "insideH": null,
             "insideV": null
           },
-          "style": "DC_Normal"
+          "style": "DC_Table_Content"
         },
         "row_count": 2,
         "col_count": 2,
@@ -2503,7 +2503,7 @@
             "insideH": null,
             "insideV": null
           },
-          "style": "DC_Normal"
+          "style": "DC_Table_Content"
         },
         "row_count": 2,
         "col_count": 2,
@@ -3331,7 +3331,7 @@
             "insideH": null,
             "insideV": null
           },
-          "style": "DC_Normal"
+          "style": "DC_Table_Content"
         },
         "row_count": 2,
         "col_count": 2,
@@ -4377,7 +4377,7 @@
             "insideH": null,
             "insideV": null
           },
-          "style": "DC_Normal"
+          "style": "DC_Table_Content"
         },
         "row_count": 2,
         "col_count": 2,
@@ -4755,7 +4755,7 @@
             "insideH": null,
             "insideV": null
           },
-          "style": "DC_Normal"
+          "style": "DC_Table_Content"
         },
         "row_count": 2,
         "col_count": 2,

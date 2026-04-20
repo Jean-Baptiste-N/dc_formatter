@@ -613,7 +613,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             'insideV': {'size': '10', 'color': '000000'}
         }
     else:
-        # Tables professionelles : seulement bottom border
+        # Tables expériences professionelles : seulement bottom border
         borders = {
             'top': None,
             'bottom': {'size': '10', 'color': '000000'},
@@ -631,7 +631,8 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             'table_width': str(table_total_width),
             'table_width_type': 'dxa',
             'section': section,
-            'borders': borders
+            'borders': borders,
+            'style': "DC_Table_Content"
         },
         'row_count': 2,
         'col_count': 2,
