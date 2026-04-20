@@ -20,50 +20,6 @@
         ]
       },
       {
-        "index": 1,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F38"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 2,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F39"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 3,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F3A"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 4,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F3B"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
         "index": 5,
         "type": "Paragraph",
         "properties": {
@@ -88,39 +44,6 @@
         "properties": {
           "style": "DC_Normal",
           "paraId": "744E9F3D"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 7,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F3E"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 8,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F3F"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 9,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F40"
         },
         "tags": [
           "header"
@@ -206,61 +129,6 @@
         "properties": {
           "style": "DC_Normal",
           "paraId": "744E9F45"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 15,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F46"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 16,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F47"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 17,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F48"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 18,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F49"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 19,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F4A"
         },
         "tags": [
           "header"
@@ -1364,19 +1232,8 @@
         "index": 69,
         "type": "Paragraph",
         "properties": {
-          "style": "Titre2",
+          "style": "DC_Normal",
           "paraId": "744E9F7C"
-        },
-        "tags": [
-          "education"
-        ]
-      },
-      {
-        "index": 70,
-        "type": "Paragraph",
-        "properties": {
-          "style": "Titre2",
-          "paraId": "744E9F7D"
         },
         "tags": [
           "education"
@@ -1399,6 +1256,13 @@
         "tags": [
           "education"
         ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 72,
@@ -1434,7 +1298,7 @@
               "color": "000000"
             }
           },
-          "style": "DC_Table_Education"
+          "style": "DC_Normal"
         },
         "row_count": 4,
         "col_count": 2,
@@ -1498,13 +1362,6 @@
                         "properties": {}
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_Table_Content"
-                    },
-                    "runs": []
                   }
                 ]
               }
@@ -1569,13 +1426,6 @@
                         "properties": {}
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_Table_Content"
-                    },
-                    "runs": []
                   }
                 ]
               }
@@ -1640,13 +1490,6 @@
                         "properties": {}
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_Table_Content"
-                    },
-                    "runs": []
                   }
                 ]
               }
@@ -1711,13 +1554,6 @@
                         "properties": {}
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_Table_Content"
-                    },
-                    "runs": []
                   }
                 ]
               }
@@ -1726,30 +1562,20 @@
         ]
       },
       {
-        "index": 72,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F7F"
+          "style": "DC_Normal"
         },
-        "tags": [
-          "education"
-        ]
-      },
-      {
-        "index": 74,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9F94"
-        },
-        "tags": [
-          "education"
-        ]
+        "runs": []
       },
       {
         "type": "Paragraph",
-        "text": "Langues",
+        "runs": [
+          {
+            "text": "Langues",
+            "properties": {}
+          }
+        ],
         "properties": {
           "style": "DC_T1_Sections",
           "outline_level": 0
@@ -1757,6 +1583,13 @@
         "tags": "education",
         "section": "education",
         "auto_generated": true
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 77,
@@ -1792,7 +1625,7 @@
               "color": "000000"
             }
           },
-          "style": "DC_Table_Education"
+          "style": "DC_Normal"
         },
         "row_count": 1,
         "col_count": 2,
@@ -1816,7 +1649,7 @@
                     },
                     "runs": [
                       {
-                        "text": "Anglais :",
+                        "text": "Anglais",
                         "properties": {}
                       }
                     ],
@@ -1856,6 +1689,13 @@
         ]
       },
       {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
         "index": 76,
         "type": "Paragraph",
         "properties": {
@@ -1885,13 +1725,6 @@
         "tags": [
           "professional_experience"
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 79,
@@ -3384,17 +3217,6 @@
         "properties": {
           "style": "DC_Normal",
           "paraId": "744E9FDB"
-        },
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 142,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "744E9FDC"
         },
         "tags": [
           "professional_experience"
