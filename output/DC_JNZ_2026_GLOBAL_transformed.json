@@ -20,50 +20,6 @@
         ]
       },
       {
-        "index": 1,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000002"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 2,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000003"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 3,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000004"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 4,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000005"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
         "index": 5,
         "type": "Paragraph",
         "properties": {
@@ -88,39 +44,6 @@
         "properties": {
           "style": "DC_Normal",
           "paraId": "00000007"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 7,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000008"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 8,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000009"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 9,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "0000000A"
         },
         "tags": [
           "header"
@@ -206,61 +129,6 @@
         ]
       },
       {
-        "index": 15,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000010"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 16,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000011"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 17,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000012"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 18,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000013"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
-        "index": 19,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000014"
-        },
-        "tags": [
-          "header"
-        ]
-      },
-      {
         "index": 20,
         "type": "Paragraph",
         "properties": {
@@ -285,7 +153,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
-          "paraId": "00000016"
+          "paraId": "00000016",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -304,7 +173,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000017"
+          "paraId": "00000017",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -494,7 +364,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000021"
+          "paraId": "00000021",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -787,7 +658,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000030"
+          "paraId": "00000030",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -1063,7 +935,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "0000003E"
+          "paraId": "0000003E",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -1177,7 +1050,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000044"
+          "paraId": "00000044",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -1212,19 +1086,8 @@
         "index": 69,
         "type": "Paragraph",
         "properties": {
-          "style": "Heading2",
+          "style": "DC_Normal",
           "paraId": "00000046"
-        },
-        "tags": [
-          "education"
-        ]
-      },
-      {
-        "index": 70,
-        "type": "Paragraph",
-        "properties": {
-          "style": "Heading2",
-          "paraId": "00000047"
         },
         "tags": [
           "education"
@@ -1235,7 +1098,8 @@
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
-          "paraId": "00000048"
+          "paraId": "00000048",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -1248,412 +1112,450 @@
         ]
       },
       {
-        "index": 72,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "00000049"
+          "style": "DC_Normal"
         },
-        "tags": [
-          "education"
-        ]
+        "runs": []
       },
       {
-        "index": 73,
+        "index": 72,
         "type": "Table",
-        "rows": [
-          {
-            "row_index": 0,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "0000004A"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "22",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "2024"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "0000004B"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Formation Concepteur Développeur en IA et analyse Big Data - Option Data analyse"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 1,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "0000004C"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Le Wagon Bordeaux"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 2,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "0000004D"
-                    }
-                  }
-                ],
-                "width": 7704
-              }
-            ],
-            "height": 1012
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "0000004E"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "22",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "2018-2020"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "0000004F"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Master Manager en stratégie digitale et MBA Web Business"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 1,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000050"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "ESCEN Bordeaux"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 2,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000051"
-                    }
-                  }
-                ],
-                "width": 7704
-              }
-            ],
-            "height": 1012
-          },
-          {
-            "row_index": 2,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000052"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "22",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "2017-2018"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000053"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Bachelor Webmarketing et sites e-commerce"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 1,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000054"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "ESCEN Bordeaux"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 2,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000055"
-                    }
-                  }
-                ],
-                "width": 7704
-              }
-            ],
-            "height": 1012
-          },
-          {
-            "row_index": 3,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000056"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "22",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "2014-2016"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000057"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "DUT GEA spécialité gestion financière et comptable"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 1,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000058"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "IUT Bordeaux Montesquieu"
-                      }
-                    ]
-                  },
-                  {
-                    "index": 2,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal",
-                      "alignment": "left",
-                      "paraId": "00000059"
-                    }
-                  }
-                ],
-                "width": 7704
-              }
-            ],
-            "height": 1012
-          }
-        ],
+        "auto_generated": true,
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "education",
-          "style": "DC_Table_Education"
+          "borders": {
+            "top": {
+              "size": "10",
+              "color": "000000"
+            },
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": {
+              "size": "10",
+              "color": "000000"
+            },
+            "right": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideH": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideV": {
+              "size": "10",
+              "color": "000000"
+            }
+          },
+          "style": "DC_Table_Content"
         },
         "row_count": 4,
         "col_count": 2,
-        "tags": [
-          "education"
-        ]
-      },
-      {
-        "index": 74,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "0000005A"
-        },
-        "tags": [
-          "education"
-        ]
-      },
-      {
-        "index": 75,
-        "type": "Paragraph",
-        "properties": {
-          "style": "Heading1",
-          "section_break": "nextPage",
-          "paraId": "0000005B"
-        },
-        "runs": [
+        "rows": [
           {
-            "properties": {},
-            "text": "Anglais :"
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2024",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Formation Concepteur Développeur en IA et analyse Big Data - Option Data analyse",
+                        "properties": {}
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Le Wagon Bordeaux",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
           {
-            "properties": {},
-            "text": " Lu, écrit, parlé, professionnel"
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2018-2020",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Master Manager en stratégie digitale et MBA Web Business",
+                        "properties": {}
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "ESCEN Bordeaux",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2017-2018",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Bachelor Webmarketing et sites e-commerce",
+                        "properties": {}
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "ESCEN Bordeaux",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2014-2016",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "DUT GEA spécialité gestion financière et comptable",
+                        "properties": {}
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "IUT Bordeaux Montesquieu",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "type": "Paragraph",
+        "runs": [
+          {
+            "text": "Langues",
+            "properties": {}
           }
         ],
-        "tags": [
-          "education"
+        "properties": {
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "tags": "education",
+        "section": "education",
+        "auto_generated": true
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 77,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": {
+              "size": "10",
+              "color": "000000"
+            },
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": {
+              "size": "10",
+              "color": "000000"
+            },
+            "right": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideH": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideV": {
+              "size": "10",
+              "color": "000000"
+            }
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 1,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Anglais",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "education"
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": " Lu, écrit, parlé, professionnel",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "education"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 76,
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
-          "paraId": "0000005C"
+          "paraId": "0000005C",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -1679,14 +1581,25 @@
         ]
       },
       {
-        "index": 78,
+        "index": 79,
         "type": "Table",
         "auto_generated": true,
         "properties": {
-          "table_width": "9972",
+          "table_width": "9638",
           "table_width_type": "dxa",
           "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
         },
         "row_count": 2,
         "col_count": 2,
@@ -1697,13 +1610,51 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
-                "paragraphs": []
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Title",
+                      "outline_level": 1
+                    },
+                    "runs": [
+                      {
+                        "text": "Automotive Cells Company",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
-                "width": 2268,
-                "paragraphs": []
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Date"
+                    },
+                    "runs": [
+                      {
+                        "text": "09/2025 – 03/2026",
+                        "properties": {
+                          "bold": true,
+                          "italic": true
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -1713,12 +1664,35 @@
             "cells": [
               {
                 "col_index": 0,
-                "width": 7704,
-                "paragraphs": []
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "Ingénieur d’étude CDI, mission de Data Engineer",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
-                "width": 2268,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": []
               }
             ]
@@ -1726,110 +1700,11 @@
         ]
       },
       {
-        "index": 79,
-        "type": "Table",
-        "rows": [
-          {
-            "row_index": 0,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Title",
-                      "alignment": "left",
-                      "paraId": "0000005F"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "Automotive Cells Company"
-                      }
-                    ]
-                  }
-                ],
-                "width": 7704
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Date",
-                      "alignment": "left",
-                      "paraId": "00000060"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "italic": true,
-                          "size": "24",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "09/2025 – 03/2026"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              }
-            ],
-            "height": 453
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "alignment": "left",
-                      "paraId": "00000061"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Ingénieur d’étude CDI, mission de Data Engineer"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "height": 392
-          }
-        ],
+        "type": "Paragraph",
         "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
+          "style": "DC_Normal"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
         "index": 80,
@@ -1861,7 +1736,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000064"
+          "paraId": "00000064",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -1899,8 +1775,7 @@
           "style": "DC_2nd_bullet",
           "ilvl": "1",
           "numId": "4",
-          "paraId": "00000066",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "00000066"
         },
         "runs": [
           {
@@ -1976,7 +1851,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "0000006A"
+          "paraId": "0000006A",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -2071,7 +1947,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "0000006F"
+          "paraId": "0000006F",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -2212,7 +2089,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000076"
+          "paraId": "00000076",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -2353,9 +2231,8 @@
         "index": 107,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "0000007E",
-          "styles": "DC_XP_BlueContent"
+          "style": "DC_XP_BlueContent",
+          "paraId": "0000007E"
         },
         "runs": [
           {
@@ -2374,126 +2251,137 @@
         ]
       },
       {
-        "index": 108,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "0000007F"
+          "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "page_break": true
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
-        "index": 109,
+        "index": 110,
         "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Title",
-                      "alignment": "left",
-                      "paraId": "00000080"
+                      "outline_level": 1
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "Data For Good"
+                        "text": "Data For Good",
+                        "properties": {}
                       }
                     ]
                   }
-                ],
-                "width": 7704
+                ]
               },
               {
                 "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_XP_Date",
-                      "alignment": "left",
-                      "paraId": "00000081"
+                      "style": "DC_XP_Date"
                     },
                     "runs": [
                       {
+                        "text": "11/2024 – 04/2026",
                         "properties": {
                           "bold": true,
-                          "italic": true,
-                          "size": "24",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "11/2024 – 04/2026"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              }
-            ],
-            "height": 453
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "alignment": "left",
-                      "paraId": "00000082"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Data Analyst, bénévole"
+                          "italic": true
+                        }
                       }
                     ]
                   }
                 ]
               }
-            ],
-            "height": 392
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "Data Analyst, bénévole",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
           }
-        ],
-        "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
-        },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
         ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 110,
@@ -2525,7 +2413,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000085"
+          "paraId": "00000085",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -2563,8 +2452,7 @@
           "style": "DC_2nd_bullet",
           "ilvl": "1",
           "numId": "4",
-          "paraId": "00000087",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "00000087"
         },
         "runs": [
           {
@@ -2659,7 +2547,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "0000008C"
+          "paraId": "0000008C",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -2811,7 +2700,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "00000094"
+          "paraId": "00000094",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -3039,23 +2929,11 @@
         ]
       },
       {
-        "index": 138,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000A0"
-        },
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
         "index": 139,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000A1",
-          "styles": "DC_XP_BlueContent"
+          "style": "DC_XP_BlueContent",
+          "paraId": "000000A1"
         },
         "runs": [
           {
@@ -3074,145 +2952,144 @@
         ]
       },
       {
-        "index": 140,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000A2"
+          "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "page_break": true
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
-        "index": 141,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000A3"
-        },
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 142,
+        "index": 143,
         "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Title",
-                      "alignment": "left",
-                      "paraId": "000000A4"
+                      "outline_level": 1
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "KEYOR, Bordeaux"
+                        "text": "KEYOR, Bordeaux",
+                        "properties": {}
                       }
                     ]
                   }
-                ],
-                "width": 7704
+                ]
               },
               {
                 "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_XP_Date",
-                      "alignment": "left",
-                      "paraId": "000000A5"
+                      "style": "DC_XP_Date"
                     },
                     "runs": [
                       {
+                        "text": "06/2021 – 06/2024",
                         "properties": {
                           "bold": true,
-                          "italic": true,
-                          "size": "24",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "06/2021 – 06/2024"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              }
-            ],
-            "height": 453
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "alignment": "left",
-                      "paraId": "000000A6"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Data Manager, CDI"
+                          "italic": true
+                        }
                       }
                     ]
                   }
                 ]
               }
-            ],
-            "height": 390
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "Data Manager, CDI",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
           }
-        ],
-        "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
-        },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
         ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 143,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal",
-          "paraId": "000000A8",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "000000A8"
         },
         "runs": [
           {
@@ -3237,7 +3114,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "000000A9"
+          "paraId": "000000A9",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -3389,7 +3267,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "000000B1"
+          "paraId": "000000B1",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -3564,8 +3443,7 @@
           "style": "DC_4th_bullet",
           "ilvl": "3",
           "numId": "4",
-          "paraId": "000000BA",
-          "styles": "DC_XP_BlueContent"
+          "paraId": "000000BA"
         },
         "runs": [
           {
@@ -3679,7 +3557,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "000000C0"
+          "paraId": "000000C0",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -3892,7 +3771,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "3",
-          "paraId": "000000CB"
+          "paraId": "000000CB",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -4033,9 +3913,8 @@
         "index": 186,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000D3",
-          "styles": "DC_XP_BlueContent"
+          "style": "DC_XP_BlueContent",
+          "paraId": "000000D3"
         },
         "runs": [
           {
@@ -4054,126 +3933,137 @@
         ]
       },
       {
-        "index": 187,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000D4"
+          "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "page_break": true
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
-        "index": 188,
+        "index": 191,
         "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Title",
-                      "alignment": "left",
-                      "paraId": "000000D5"
+                      "outline_level": 1
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "Vignobles Bardet, Vignonet"
+                        "text": "Vignobles Bardet, Vignonet",
+                        "properties": {}
                       }
                     ]
                   }
-                ],
-                "width": 7704
+                ]
               },
               {
                 "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_XP_Date",
-                      "alignment": "left",
-                      "paraId": "000000D6"
+                      "style": "DC_XP_Date"
                     },
                     "runs": [
                       {
+                        "text": "09/2019 – 04/2020",
                         "properties": {
                           "bold": true,
-                          "italic": true,
-                          "size": "24",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "09/2019 – 04/2020"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              }
-            ],
-            "height": 453
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "alignment": "left",
-                      "paraId": "000000D7"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Gestion de Projets Web, Alternance"
+                          "italic": true
+                        }
                       }
                     ]
                   }
                 ]
               }
-            ],
-            "height": 401
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "Gestion de Projets Web, Alternance",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
           }
-        ],
-        "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
-        },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
         ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 189,
@@ -4182,7 +4072,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "1",
-          "paraId": "000000D9"
+          "paraId": "000000D9",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -4258,7 +4149,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "1",
-          "paraId": "000000DD"
+          "paraId": "000000DD",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -4342,9 +4234,8 @@
         "index": 198,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000E2",
-          "styles": "DC_XP_BlueContent"
+          "style": "DC_XP_BlueContent",
+          "paraId": "000000E2"
         },
         "runs": [
           {
@@ -4363,143 +4254,137 @@
         ]
       },
       {
-        "index": 199,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000E3"
+          "style": "DC_Normal"
         },
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
-        "index": 200,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000E4"
-        },
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 201,
+        "index": 204,
         "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_XP_Title",
-                      "alignment": "left",
-                      "paraId": "000000E5"
+                      "outline_level": 1
                     },
                     "runs": [
                       {
-                        "properties": {
-                          "size": "34",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "Actiplay (Klarsen), Bordeaux"
+                        "text": "Actiplay (Klarsen), Bordeaux",
+                        "properties": {}
                       }
                     ]
                   }
-                ],
-                "width": 7704
+                ]
               },
               {
                 "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_XP_Date",
-                      "alignment": "left",
-                      "paraId": "000000E6"
+                      "style": "DC_XP_Date"
                     },
                     "runs": [
                       {
+                        "text": "09/2018 – 04/2019",
                         "properties": {
                           "bold": true,
-                          "italic": true,
-                          "size": "24",
-                          "color": "808080",
-                          "font": "Arial"
-                        },
-                        "text": "09/2018 – 04/2019"
-                      }
-                    ]
-                  }
-                ],
-                "width": 2268
-              }
-            ],
-            "height": 453
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste",
-                      "alignment": "left",
-                      "paraId": "000000E7"
-                    },
-                    "runs": [
-                      {
-                        "properties": {
-                          "bold": true,
-                          "size": "20",
-                          "color": "000000",
-                          "font": "Arial"
-                        },
-                        "text": "Data analyst, Alternance"
+                          "italic": true
+                        }
                       }
                     ]
                   }
                 ]
               }
-            ],
-            "height": 394
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "Data analyst, Alternance",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
           }
-        ],
-        "properties": {
-          "table_width": "9972",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "style": "DC_Table_Experience"
-        },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
         ]
       },
       {
-        "index": 202,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000E9"
+          "style": "DC_Normal"
         },
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
         "index": 203,
@@ -4508,7 +4393,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "1",
-          "paraId": "000000EA"
+          "paraId": "000000EA",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -4584,7 +4470,8 @@
           "style": "DC_1st_bullet",
           "ilvl": "0",
           "numId": "1",
-          "paraId": "000000EE"
+          "paraId": "000000EE",
+          "outline_level": 2
         },
         "runs": [
           {
@@ -4687,9 +4574,8 @@
         "index": 213,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "000000F4",
-          "styles": "DC_XP_BlueContent"
+          "style": "DC_XP_BlueContent",
+          "paraId": "000000F4"
         },
         "runs": [
           {
@@ -4715,13 +4601,13 @@
     }
   },
   "page_dimensions": {
-    "page_width": 12240,
-    "page_height": 15840,
-    "usable_width": 9972,
+    "page_width": 11906,
+    "page_height": 16838,
+    "usable_width": 9638,
     "top_margin": 1134,
     "bottom_margin": 1134,
     "left_margin": 1134,
     "right_margin": 1134,
-    "col_fixed_width": 2268
+    "col_fixed_width": 2835
   }
 }
