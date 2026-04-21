@@ -1194,7 +1194,7 @@
         "index": 44,
         "type": "Paragraph",
         "properties": {
-          "style": "Textbody"
+          "style": "DC_Normal"
         },
         "runs": [
           {
@@ -1635,7 +1635,7 @@
         "index": 65,
         "type": "Paragraph",
         "properties": {
-          "style": "Textbody"
+          "style": "DC_Normal"
         },
         "runs": [
           {
@@ -2001,21 +2001,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Développement d'une application de navigation dans les fichiers sonores pour un projet de sampling / création sonore. Ceci inclut une partie jouabilité, reconnaissance visuelle et regroupement des types de sons. Les sons peuvent être représentés grâce à un algorithme d'extraction de caractéristiques audio et de classification. Ce projet constitue un terrain d'apprentissage et d'expérimentation dans l'architecture logicielle, et peut servir de base à un futur logiciel ou plugin audio.",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
                   }
                 ]
               },
@@ -2038,6 +2023,33 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 82,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Développement d'une application de navigation dans les fichiers sonores pour un projet de sampling / création sonore. Ceci inclut une partie jouabilité, reconnaissance visuelle et regroupement des types de sons. Les sons peuvent être représentés grâce à un algorithme d'extraction de caractéristiques audio et de classification. Ce projet constitue un terrain d'apprentissage et d'expérimentation dans l'architecture logicielle, et peut servir de base à un futur logiciel ou plugin audio.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 83,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 84,
@@ -2523,21 +2535,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Dans le cadre d'un projet collaboratif entre deux laboratoires du CEA, l'un développant un logiciel de simulation et de de dessin 3D (Salome) et l'autre développant et commercialisant un logiciel de simulation de propagation acoustique ultrasonore pour le contrôle non destructif de pièces industrielles (CIVA), j'étais en charge de développer des méthodes et des outils afin de comparer ou d'améliorer les méthodes de calcul de diffraction sur des angles solides, en explorant les possibilités des deux logiciels. L'objectif étant de favoriser les échanges et les idées entre les deux équipes.",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
                   }
                 ]
               },
@@ -2560,6 +2557,32 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 107,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Dans le cadre d'un projet collaboratif entre deux laboratoires du CEA, l'un développant un logiciel de simulation et de de dessin 3D (Salome) et l'autre développant et commercialisant un logiciel de simulation de propagation acoustique ultrasonore pour le contrôle non destructif de pièces industrielles (CIVA), j'étais en charge de développer des méthodes et des outils afin de comparer ou d'améliorer les méthodes de calcul de diffraction sur des angles solides, en explorant les possibilités des deux logiciels. L'objectif étant de favoriser les échanges et les idées entre les deux équipes.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 108,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 109,
@@ -2829,21 +2852,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Projet entre INSA Lyon / CEA / EDF / LMA visant à améliorer le contrôle de pièces métalliques formant des jointures dans les centrales nucléaires. Mon rôle était d'améliorer une méthode de contrôle de pièces anisotropes développée par l'INSA Lyon, incluant la refonte du logiciel de calcul et de visualisation, et également du banc de mesure expérimental.",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
                   }
                 ]
               },
@@ -2866,6 +2874,33 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 120,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Projet entre INSA Lyon / CEA / EDF / LMA visant à améliorer le contrôle de pièces métalliques formant des jointures dans les centrales nucléaires. Mon rôle était d'améliorer une méthode de contrôle de pièces anisotropes développée par l'INSA Lyon, incluant la refonte du logiciel de calcul et de visualisation, et également du banc de mesure expérimental.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 121,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 122,
@@ -3124,21 +3159,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Période de prise de contact avec l'entreprise, correspondant à un stage, la mission était de contribuer à la mise en place d'un démonstrateur de projection sonore par la méthode de Wave Field Synthesis.",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
                   }
                 ]
               },
@@ -3161,6 +3181,33 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 132,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Période de prise de contact avec l'entreprise, correspondant à un stage, la mission était de contribuer à la mise en place d'un démonstrateur de projection sonore par la méthode de Wave Field Synthesis.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 133,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 134,
@@ -3365,21 +3412,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Cette période s'est déroulée dans le même laboratoire mais sur deux projets successifs avec des équipes différentes. Le premier projet concernait l'analyse d'une méthode de contrôle du collage de pièces aéronautiques, l'autre était une étude de faisabilité de nouveaux matériaux acoustiques, en collaboration avec des laboratoires de spécialisés en chimie et microfluidique (LCPO, CRPP).",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
                   }
                 ]
               },
@@ -3402,6 +3434,33 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 141,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Cette période s'est déroulée dans le même laboratoire mais sur deux projets successifs avec des équipes différentes. Le premier projet concernait l'analyse d'une méthode de contrôle du collage de pièces aéronautiques, l'autre était une étude de faisabilité de nouveaux matériaux acoustiques, en collaboration avec des laboratoires de spécialisés en chimie et microfluidique (LCPO, CRPP).",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 142,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 143,
@@ -3782,21 +3841,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Il s'agissait d'un étude sur la diagnostic de l'arthrose dans le genou, pilotée par le Département de Médecine en partenariat avec le Département de Traitement du Signal. L'objectif était de réaliser un prototype de diagnostic par émission acoustique en réalisant une étude sur des patients réels.",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
                   }
                 ]
               },
@@ -3819,6 +3863,22 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 160,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Il s'agissait d'un étude sur la diagnostic de l'arthrose dans le genou, pilotée par le Département de Médecine en partenariat avec le Département de Traitement du Signal. L'objectif était de réaliser un prototype de diagnostic par émission acoustique en réalisant une étude sur des patients réels.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 161,
@@ -4163,21 +4223,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Recherche appliquée à la caractérisation ultrasonore des porosités pour la contrôle qualité des matériaux composites aéronautiques. Cette thèse s'est déroulée à part égale entre le Laboratoire d'Acoustique de l'université Paul Sabatier et Airbus Toulouse. Elle a également été l'objet de fabrication de matériaux test en partenariat avec un laboratoire spécialisé dans les procédés de fabrication de matériaux composites.",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
                   }
                 ]
               },
@@ -4200,6 +4245,33 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 176,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Recherche appliquée à la caractérisation ultrasonore des porosités pour la contrôle qualité des matériaux composites aéronautiques. Cette thèse s'est déroulée à part égale entre le Laboratoire d'Acoustique de l'université Paul Sabatier et Airbus Toulouse. Elle a également été l'objet de fabrication de matériaux test en partenariat avec un laboratoire spécialisé dans les procédés de fabrication de matériaux composites.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 177,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 178,

@@ -11,15 +11,7 @@
           "alignment": "left",
           "paraId": "00000001"
         },
-        "runs": [
-          {
-            "properties": {
-              "size": "20",
-              "color": "000000",
-              "font": "Times New Roman"
-            }
-          }
-        ]
+        "runs": []
       },
       {
         "index": 1,
@@ -67,13 +59,13 @@
         },
         "runs": [
           {
+            "text": "DOSSIER DE COMPETENCES",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "538cd3",
               "font": "Arial"
-            },
-            "text": "DOSSIER DE COMPETENCES"
+            }
           }
         ]
       },
@@ -123,13 +115,13 @@
         },
         "runs": [
           {
+            "text": "JNZ",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "f69545",
               "font": "Arial"
-            },
-            "text": "JNZ"
+            }
           }
         ]
       },
@@ -152,12 +144,12 @@
         },
         "runs": [
           {
+            "text": "Data Engineer, Data Analyst",
             "properties": {
               "bold": true,
               "size": "40",
               "font": "Arial"
-            },
-            "text": "Data Engineer, Data Analyst"
+            }
           }
         ]
       },
@@ -171,12 +163,12 @@
         },
         "runs": [
           {
+            "text": "Python, SQL, PostgreSQL, DBT",
             "properties": {
               "bold": true,
               "size": "40",
               "font": "Arial"
-            },
-            "text": "Python, SQL, PostgreSQL, DBT"
+            }
           }
         ]
       },
@@ -245,13 +237,13 @@
         },
         "runs": [
           {
+            "text": "Expérience (I2)",
             "properties": {
               "bold": true,
               "size": "40",
               "color": "f69545",
               "font": "Arial"
-            },
-            "text": "Expérience (I2)"
+            }
           }
         ]
       },
@@ -265,10 +257,10 @@
         },
         "runs": [
           {
+            "text": "Domaines de compétences",
             "properties": {
               "color": "538cd4"
-            },
-            "text": "Domaines de compétences"
+            }
           }
         ]
       },
@@ -284,10 +276,10 @@
         },
         "runs": [
           {
+            "text": "Gestion de projets",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Gestion de projets"
+            }
           }
         ]
       },
@@ -303,12 +295,12 @@
         },
         "runs": [
           {
+            "text": "Recueil des besoins",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Recueil des besoins"
+            }
           }
         ]
       },
@@ -324,12 +316,12 @@
         },
         "runs": [
           {
+            "text": "Participation au cahier des charges avec les métiers",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Participation au cahier des charges avec les métiers"
+            }
           }
         ]
       },
@@ -345,12 +337,12 @@
         },
         "runs": [
           {
+            "text": "Analyse de faisabilité et préconisations",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Analyse de faisabilité et préconisations"
+            }
           }
         ]
       },
@@ -366,12 +358,12 @@
         },
         "runs": [
           {
+            "text": "Gestion des priorités et planning",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Gestion des priorités et planning"
+            }
           }
         ]
       },
@@ -387,12 +379,12 @@
         },
         "runs": [
           {
+            "text": "Ecriture des livrables",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Ecriture des livrables"
+            }
           }
         ]
       },
@@ -408,12 +400,12 @@
         },
         "runs": [
           {
+            "text": "Suivi de projets et avancements",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Suivi de projets et avancements"
+            }
           }
         ]
       },
@@ -429,12 +421,12 @@
         },
         "runs": [
           {
+            "text": "Organisation des réunions",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Organisation des réunions"
+            }
           }
         ]
       },
@@ -450,12 +442,12 @@
         },
         "runs": [
           {
+            "text": "Coordination transverse entre services",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Coordination transverse entre services"
+            }
           }
         ]
       },
@@ -471,12 +463,12 @@
         },
         "runs": [
           {
+            "text": "Formation des équipes",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Formation des équipes"
+            }
           }
         ]
       },
@@ -492,10 +484,10 @@
         },
         "runs": [
           {
+            "text": "Traitement des données",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Traitement des données"
+            }
           }
         ]
       },
@@ -511,12 +503,12 @@
         },
         "runs": [
           {
+            "text": "Conception de pipelines de données robustes",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Conception de pipelines de données robustes"
+            }
           }
         ]
       },
@@ -532,12 +524,12 @@
         },
         "runs": [
           {
+            "text": "Traitement de données à grande échelle (Big Data):",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Traitement de données à grande échelle (Big Data):"
+            }
           }
         ]
       },
@@ -553,13 +545,13 @@
         },
         "runs": [
           {
+            "text": "Collecte et branchements APIs, ETLs python",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Collecte et branchements APIs, ETLs python"
+            }
           }
         ]
       },
@@ -575,13 +567,13 @@
         },
         "runs": [
           {
+            "text": "Chargement sur des Data Lakes ou Data Warehouses",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Chargement sur des Data Lakes ou Data Warehouses"
+            }
           }
         ]
       },
@@ -597,13 +589,13 @@
         },
         "runs": [
           {
+            "text": "Stockage Google Cloud Platform, PostgreSQL, DuckDB",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Stockage Google Cloud Platform, PostgreSQL, DuckDB"
+            }
           }
         ]
       },
@@ -619,13 +611,13 @@
         },
         "runs": [
           {
+            "text": "Transformation avec Data Build Tool, SQL, Python",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Transformation avec Data Build Tool, SQL, Python"
+            }
           }
         ]
       },
@@ -641,12 +633,12 @@
         },
         "runs": [
           {
+            "text": "Support aux cas d’usage et analytiques",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Support aux cas d’usage et analytiques"
+            }
           }
         ]
       },
@@ -662,12 +654,12 @@
         },
         "runs": [
           {
+            "text": "Réalisation de tests unitaires, configuration dynamique, retraitement régulier",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Réalisation de tests unitaires, configuration dynamique, retraitement régulier"
+            }
           }
         ]
       },
@@ -683,12 +675,12 @@
         },
         "runs": [
           {
+            "text": "Architecture médaillon Databricks",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Architecture médaillon Databricks"
+            }
           }
         ]
       },
@@ -704,12 +696,12 @@
         },
         "runs": [
           {
+            "text": "Construction de plusieurs niveaux de traitement et assemblage de tables",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction de plusieurs niveaux de traitement et assemblage de tables"
+            }
           }
         ]
       },
@@ -725,12 +717,12 @@
         },
         "runs": [
           {
+            "text": "Développement de traitements dynamiques",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Développement de traitements dynamiques"
+            }
           }
         ]
       },
@@ -746,12 +738,12 @@
         },
         "runs": [
           {
+            "text": "Unification des données dans un lakehouse optimisé",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Unification des données dans un lakehouse optimisé"
+            }
           }
         ]
       },
@@ -767,12 +759,12 @@
         },
         "runs": [
           {
+            "text": "Intégration d’une démarche CI/CD Databricks CLI pour les pipelines",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Intégration d’une démarche CI/CD Databricks CLI pour les pipelines"
+            }
           }
         ]
       },
@@ -788,12 +780,12 @@
         },
         "runs": [
           {
+            "text": "Mise en place de bonnes pratiques FinOps sur Databricks",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Mise en place de bonnes pratiques FinOps sur Databricks"
+            }
           }
         ]
       },
@@ -809,10 +801,10 @@
         },
         "runs": [
           {
+            "text": "Visualisation",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Visualisation"
+            }
           }
         ]
       },
@@ -828,12 +820,12 @@
         },
         "runs": [
           {
+            "text": "Développement de Dashboards PowerBI, Looker dynamiques",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Développement de Dashboards PowerBI, Looker dynamiques"
+            }
           }
         ]
       },
@@ -849,12 +841,12 @@
         },
         "runs": [
           {
+            "text": "Recherche et vulgarisation d’indicateurs clés de performance",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Recherche et vulgarisation d’indicateurs clés de performance"
+            }
           }
         ]
       },
@@ -870,12 +862,12 @@
         },
         "runs": [
           {
+            "text": "Implémentation d’une data gouvernance :",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Implémentation d’une data gouvernance :"
+            }
           }
         ]
       },
@@ -891,13 +883,13 @@
         },
         "runs": [
           {
+            "text": "Etude des compétences et besoins métiers",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Etude des compétences et besoins métiers"
+            }
           }
         ]
       },
@@ -913,13 +905,13 @@
         },
         "runs": [
           {
+            "text": "Conception des outils et indicateurs à mettre à disposition",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Conception des outils et indicateurs à mettre à disposition"
+            }
           }
         ]
       },
@@ -935,13 +927,13 @@
         },
         "runs": [
           {
+            "text": "Correction et optimisation des pipelines de données",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Correction et optimisation des pipelines de données"
+            }
           }
         ]
       },
@@ -957,13 +949,13 @@
         },
         "runs": [
           {
+            "text": "Coordination entre les services",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Coordination entre les services"
+            }
           }
         ]
       },
@@ -979,13 +971,13 @@
         },
         "runs": [
           {
+            "text": "Ecriture des process et formation des équipes",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Ecriture des process et formation des équipes"
+            }
           }
         ]
       },
@@ -1001,12 +993,12 @@
         },
         "runs": [
           {
+            "text": "Support aux cas d’usage et analytiques",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Support aux cas d’usage et analytiques"
+            }
           }
         ]
       },
@@ -1022,12 +1014,12 @@
         },
         "runs": [
           {
+            "text": "Conception de modèles ML et prévisionnels",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Conception de modèles ML et prévisionnels"
+            }
           }
         ]
       },
@@ -1043,12 +1035,12 @@
         },
         "runs": [
           {
+            "text": "Référent des données disponibles",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Référent des données disponibles"
+            }
           }
         ]
       },
@@ -1064,12 +1056,12 @@
         },
         "runs": [
           {
+            "text": "Construction des requêtes SQL ponctuelles et planifiées",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction des requêtes SQL ponctuelles et planifiées"
+            }
           }
         ]
       },
@@ -1085,12 +1077,12 @@
         },
         "runs": [
           {
+            "text": "Intégration et développement de reverse engineering",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Intégration et développement de reverse engineering"
+            }
           }
         ]
       },
@@ -1106,10 +1098,10 @@
         },
         "runs": [
           {
+            "text": "Applicatif",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Applicatif"
+            }
           }
         ]
       },
@@ -1125,12 +1117,12 @@
         },
         "runs": [
           {
+            "text": "Etude de besoin utilisateur",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Etude de besoin utilisateur"
+            }
           }
         ]
       },
@@ -1146,12 +1138,12 @@
         },
         "runs": [
           {
+            "text": "Développement d’application pour la délivrabilité et la visualisation de données avec le Framework Streamlit",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Développement d’application pour la délivrabilité et la visualisation de données avec le Framework Streamlit"
+            }
           }
         ]
       },
@@ -1167,12 +1159,12 @@
         },
         "runs": [
           {
+            "text": "Interactions et échanges de données avec des serveurs et bases de données (Backend)",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Interactions et échanges de données avec des serveurs et bases de données (Backend)"
+            }
           }
         ]
       },
@@ -1188,12 +1180,12 @@
         },
         "runs": [
           {
+            "text": "Interface dynamique et construction de documents de publipostage (Frontend)",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
+            }
           }
         ]
       },
@@ -1209,12 +1201,12 @@
         },
         "runs": [
           {
+            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
+            }
           }
         ]
       },
@@ -1230,10 +1222,10 @@
         },
         "runs": [
           {
+            "text": "Technologies",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Technologies"
+            }
           }
         ]
       },
@@ -1249,12 +1241,12 @@
         },
         "runs": [
           {
+            "text": "Python, Pandas, SQL, PostgreSQL, PgAdmin, Databricks, Docker, DevContainers, DBT, Docxtpl, Jinja, DuckDB, MotherDuck, Power BI, Looker",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Python, Pandas, SQL, PostgreSQL, PgAdmin, Databricks, Docker, DevContainers, DBT, Docxtpl, Jinja, DuckDB, MotherDuck, Power BI, Looker"
+            }
           }
         ]
       },
@@ -1286,10 +1278,10 @@
         },
         "runs": [
           {
+            "text": "Formation",
             "properties": {
               "color": "538cd4"
-            },
-            "text": "Formation"
+            }
           }
         ]
       },
@@ -1322,13 +1314,13 @@
                     },
                     "runs": [
                       {
+                        "text": "2024",
                         "properties": {
                           "bold": true,
                           "size": "22",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2024"
+                        }
                       }
                     ]
                   }
@@ -1347,12 +1339,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Formation Concepteur Développeur en IA et analyse Big Data - Option Data analyse",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Formation Concepteur Développeur en IA et analyse Big Data - Option Data analyse"
+                        }
                       }
                     ]
                   },
@@ -1366,12 +1358,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Le Wagon Bordeaux",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Le Wagon Bordeaux"
+                        }
                       }
                     ]
                   },
@@ -1405,13 +1397,13 @@
                     },
                     "runs": [
                       {
+                        "text": "2018-2020",
                         "properties": {
                           "bold": true,
                           "size": "22",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2018-2020"
+                        }
                       }
                     ]
                   }
@@ -1430,12 +1422,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Master Manager en stratégie digitale et MBA Web Business",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Master Manager en stratégie digitale et MBA Web Business"
+                        }
                       }
                     ]
                   },
@@ -1449,12 +1441,12 @@
                     },
                     "runs": [
                       {
+                        "text": "ESCEN Bordeaux",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "ESCEN Bordeaux"
+                        }
                       }
                     ]
                   },
@@ -1488,13 +1480,13 @@
                     },
                     "runs": [
                       {
+                        "text": "2017-2018",
                         "properties": {
                           "bold": true,
                           "size": "22",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2017-2018"
+                        }
                       }
                     ]
                   }
@@ -1513,12 +1505,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Bachelor Webmarketing et sites e-commerce",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Bachelor Webmarketing et sites e-commerce"
+                        }
                       }
                     ]
                   },
@@ -1532,12 +1524,12 @@
                     },
                     "runs": [
                       {
+                        "text": "ESCEN Bordeaux",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "ESCEN Bordeaux"
+                        }
                       }
                     ]
                   },
@@ -1571,13 +1563,13 @@
                     },
                     "runs": [
                       {
+                        "text": "2014-2016",
                         "properties": {
                           "bold": true,
                           "size": "22",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "2014-2016"
+                        }
                       }
                     ]
                   }
@@ -1596,12 +1588,12 @@
                     },
                     "runs": [
                       {
+                        "text": "DUT GEA spécialité gestion financière et comptable",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "DUT GEA spécialité gestion financière et comptable"
+                        }
                       }
                     ]
                   },
@@ -1615,12 +1607,12 @@
                     },
                     "runs": [
                       {
+                        "text": "IUT Bordeaux Montesquieu",
                         "properties": {
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "IUT Bordeaux Montesquieu"
+                        }
                       }
                     ]
                   },
@@ -1666,17 +1658,17 @@
         },
         "runs": [
           {
+            "text": "Anglais :",
             "properties": {
               "color": "538cd4"
-            },
-            "text": "Anglais :"
+            }
           },
           {
+            "text": " Lu, écrit, parlé, professionnel",
             "properties": {
               "size": "22",
               "color": "000000"
-            },
-            "text": " Lu, écrit, parlé, professionnel"
+            }
           }
         ]
       },
@@ -1690,13 +1682,13 @@
         },
         "runs": [
           {
+            "text": "Expériences Professionnelles",
             "properties": {
               "bold": true,
               "size": "32",
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Expériences Professionnelles"
+            }
           }
         ]
       },
@@ -1738,12 +1730,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Automotive Cells Company",
                         "properties": {
                           "size": "34",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "Automotive Cells Company"
+                        }
                       }
                     ]
                   }
@@ -1762,14 +1754,14 @@
                     },
                     "runs": [
                       {
+                        "text": "09/2025 – 03/2026",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "09/2025 – 03/2026"
+                        }
                       }
                     ]
                   }
@@ -1794,13 +1786,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Ingénieur d’étude CDI, mission de Data Engineer",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Ingénieur d’étude CDI, mission de Data Engineer"
+                        }
                       }
                     ]
                   }
@@ -1827,21 +1819,21 @@
         },
         "runs": [
           {
+            "text": "Contexte : ",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Contexte : "
+            }
           },
           {
+            "text": "Ma première mission au sein d’EPSYL-ALCEN s’est déroulée dans le centre d’études et d’innovation d’ACC à Bruges. Dans le cadre de mises en place de process data automatisés, j’ai rejoint l’équipe data R&D qui développe des pipelines et des applications de traitement de données pour la délivrer de manière dynamique et robuste aux autres services d’ingénierie.",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Ma première mission au sein d’EPSYL-ALCEN s’est déroulée dans le centre d’études et d’innovation d’ACC à Bruges. Dans le cadre de mises en place de process data automatisés, j’ai rejoint l’équipe data R&D qui développe des pipelines et des applications de traitement de données pour la délivrer de manière dynamique et robuste aux autres services d’ingénierie."
+            }
           }
         ]
       },
@@ -1857,10 +1849,10 @@
         },
         "runs": [
           {
+            "text": "Gestion de projets",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Gestion de projets"
+            }
           }
         ]
       },
@@ -1876,12 +1868,12 @@
         },
         "runs": [
           {
+            "text": "Recueil des besoins, des contraintes et spécifications",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Recueil des besoins, des contraintes et spécifications"
+            }
           }
         ]
       },
@@ -1897,12 +1889,12 @@
         },
         "runs": [
           {
+            "text": "Etude de faisabilité et proposition de solutions techniques ",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Etude de faisabilité et proposition de solutions techniques "
+            }
           }
         ]
       },
@@ -1918,12 +1910,12 @@
         },
         "runs": [
           {
+            "text": "Communication avec les équipes, organisation des points d’avancement",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Communication avec les équipes, organisation des points d’avancement"
+            }
           }
         ]
       },
@@ -1939,12 +1931,12 @@
         },
         "runs": [
           {
+            "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes"
+            }
           }
         ]
       },
@@ -1960,12 +1952,12 @@
         },
         "runs": [
           {
+            "text": "Reportings",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Reportings"
+            }
           }
         ]
       },
@@ -1981,10 +1973,10 @@
         },
         "runs": [
           {
+            "text": "Collecte des données",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Collecte des données"
+            }
           }
         ]
       },
@@ -2000,12 +1992,12 @@
         },
         "runs": [
           {
+            "text": "Etudes des sources de données, Construction et amélioration de l’architecture ",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Etudes des sources de données, Construction et amélioration de l’architecture "
+            }
           }
         ]
       },
@@ -2021,12 +2013,12 @@
         },
         "runs": [
           {
+            "text": "Requêtes SQL sur les bases de données PostgreSQL",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Requêtes SQL sur les bases de données PostgreSQL"
+            }
           }
         ]
       },
@@ -2042,12 +2034,12 @@
         },
         "runs": [
           {
+            "text": "Traitements de données en Python Pandas",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Traitements de données en Python Pandas"
+            }
           }
         ]
       },
@@ -2063,12 +2055,12 @@
         },
         "runs": [
           {
+            "text": "Construction d’un formulaire dynamique de complétion des données par l’utilisateur",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction d’un formulaire dynamique de complétion des données par l’utilisateur"
+            }
           }
         ]
       },
@@ -2084,10 +2076,10 @@
         },
         "runs": [
           {
+            "text": "Traitement des bases de données",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Traitement des bases de données"
+            }
           }
         ]
       },
@@ -2103,13 +2095,13 @@
         },
         "runs": [
           {
+            "text": "Traitements des données :",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Traitements des données :"
+            }
           }
         ]
       },
@@ -2125,13 +2117,13 @@
         },
         "runs": [
           {
+            "text": "Stockage Serveur dédié",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Stockage Serveur dédié"
+            }
           }
         ]
       },
@@ -2147,13 +2139,13 @@
         },
         "runs": [
           {
+            "text": "Gestion des bases PostgreSQL",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Gestion des bases PostgreSQL"
+            }
           }
         ]
       },
@@ -2169,13 +2161,13 @@
         },
         "runs": [
           {
+            "text": "Distribution dans un data model et délivrabilité dans un document éditable avec Docxtpl et Jinja*",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Distribution dans un data model et délivrabilité dans un document éditable avec Docxtpl et Jinja*"
+            }
           }
         ]
       },
@@ -2191,12 +2183,12 @@
         },
         "runs": [
           {
+            "text": "Sauvegarde des nouvelles données",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Sauvegarde des nouvelles données"
+            }
           }
         ]
       },
@@ -2212,12 +2204,12 @@
         },
         "runs": [
           {
+            "text": "Dashboard de suivi KPIs avec Power BI",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Dashboard de suivi KPIs avec Power BI"
+            }
           }
         ]
       },
@@ -2233,10 +2225,10 @@
         },
         "runs": [
           {
+            "text": "Applicatif",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Applicatif"
+            }
           }
         ]
       },
@@ -2252,12 +2244,12 @@
         },
         "runs": [
           {
+            "text": "Construction d’une Webapp à destination d’utilisateurs internes à l’entreprise avec le Framework Streamlit",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction d’une Webapp à destination d’utilisateurs internes à l’entreprise avec le Framework Streamlit"
+            }
           }
         ]
       },
@@ -2273,12 +2265,12 @@
         },
         "runs": [
           {
+            "text": "Développement applicatif pour la délivrabilité et la visualisation de données",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Développement applicatif pour la délivrabilité et la visualisation de données"
+            }
           }
         ]
       },
@@ -2294,12 +2286,12 @@
         },
         "runs": [
           {
+            "text": "Interactions et échanges de données avec des serveurs et base de données (Backend)",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Interactions et échanges de données avec des serveurs et base de données (Backend)"
+            }
           }
         ]
       },
@@ -2315,12 +2307,12 @@
         },
         "runs": [
           {
+            "text": "Interface dynamique et construction de documents de publipostage (Frontend)",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
+            }
           }
         ]
       },
@@ -2336,12 +2328,12 @@
         },
         "runs": [
           {
+            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
+            }
           }
         ]
       },
@@ -2357,12 +2349,12 @@
         },
         "runs": [
           {
+            "text": "Tech Lead applicatif, reviews de code et coordination des PRs",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Tech Lead applicatif, reviews de code et coordination des PRs"
+            }
           }
         ]
       },
@@ -2385,19 +2377,19 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : SQL, Python",
             "properties": {
               "bold": true,
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Environnements techniques : SQL, Python"
+            }
           },
           {
+            "text": ", VSCode, Azure DevOps, Jupyter Notebook, PostgreSQL, Streamlit, LucidChart",
             "properties": {
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": ", VSCode, Azure DevOps, Jupyter Notebook, PostgreSQL, Streamlit, LucidChart"
+            }
           }
         ]
       },
@@ -2409,11 +2401,7 @@
           "alignment": "left",
           "paraId": "0000007F"
         },
-        "runs": [
-          {
-            "page_break": true
-          }
-        ]
+        "runs": []
       },
       {
         "index": 109,
@@ -2435,12 +2423,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Data For Good",
                         "properties": {
                           "size": "34",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "Data For Good"
+                        }
                       }
                     ]
                   }
@@ -2459,14 +2447,14 @@
                     },
                     "runs": [
                       {
+                        "text": "11/2024 – 04/2026",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "11/2024 – 04/2026"
+                        }
                       }
                     ]
                   }
@@ -2491,13 +2479,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Data Analyst, bénévole",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Data Analyst, bénévole"
+                        }
                       }
                     ]
                   }
@@ -2524,21 +2512,21 @@
         },
         "runs": [
           {
+            "text": "Contexte : ",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Contexte : "
+            }
           },
           {
+            "text": "Je mène des projets en tant que Data Analyst ou Data Engineer, de manière bénévole, pour la communauté Data For Good, à destination de partenaires associatifs ou d’ONGs : MEDCAP, Eclaireur public, ODIS, Algoboost, QPPCC",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Je mène des projets en tant que Data Analyst ou Data Engineer, de manière bénévole, pour la communauté Data For Good, à destination de partenaires associatifs ou d’ONGs : MEDCAP, Eclaireur public, ODIS, Algoboost, QPPCC"
+            }
           }
         ]
       },
@@ -2554,10 +2542,10 @@
         },
         "runs": [
           {
+            "text": "Gestion de projets",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Gestion de projets"
+            }
           }
         ]
       },
@@ -2573,12 +2561,12 @@
         },
         "runs": [
           {
+            "text": "Recueil des besoins, des contraintes et spécifications",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Recueil des besoins, des contraintes et spécifications"
+            }
           }
         ]
       },
@@ -2594,12 +2582,12 @@
         },
         "runs": [
           {
+            "text": "Etude et proposition de solutions techniques ",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Etude et proposition de solutions techniques "
+            }
           }
         ]
       },
@@ -2615,12 +2603,12 @@
         },
         "runs": [
           {
+            "text": "Construction et mise à jour du Kanban de projet, Méthodologie Agile",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction et mise à jour du Kanban de projet, Méthodologie Agile"
+            }
           }
         ]
       },
@@ -2636,12 +2624,12 @@
         },
         "runs": [
           {
+            "text": "Communication avec les équipes, organisation des réunions",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Communication avec les équipes, organisation des réunions"
+            }
           }
         ]
       },
@@ -2657,12 +2645,12 @@
         },
         "runs": [
           {
+            "text": "Rédaction de préconisations métiers ",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Rédaction de préconisations métiers "
+            }
           }
         ]
       },
@@ -2678,12 +2666,12 @@
         },
         "runs": [
           {
+            "text": "Reportings",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Reportings"
+            }
           }
         ]
       },
@@ -2699,10 +2687,10 @@
         },
         "runs": [
           {
+            "text": "Collecte des données",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Collecte des données"
+            }
           }
         ]
       },
@@ -2718,12 +2706,12 @@
         },
         "runs": [
           {
+            "text": "Etudes des sources possibles de collecte de données, Open Data",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Etudes des sources possibles de collecte de données, Open Data"
+            }
           }
         ]
       },
@@ -2739,12 +2727,12 @@
         },
         "runs": [
           {
+            "text": "Requêtes APIs ",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Requêtes APIs "
+            }
           }
         ]
       },
@@ -2760,12 +2748,12 @@
         },
         "runs": [
           {
+            "text": "Conception des modèles de données ",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Conception des modèles de données "
+            }
           }
         ]
       },
@@ -2781,12 +2769,12 @@
         },
         "runs": [
           {
+            "text": "Parsing Python depuis des bases de données NoSQL",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Parsing Python depuis des bases de données NoSQL"
+            }
           }
         ]
       },
@@ -2802,12 +2790,12 @@
         },
         "runs": [
           {
+            "text": "Traitements de données en Python Pandas",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Traitements de données en Python Pandas"
+            }
           }
         ]
       },
@@ -2823,12 +2811,12 @@
         },
         "runs": [
           {
+            "text": "Construction d’un pipeline dynamique de données socio-économiques",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction d’un pipeline dynamique de données socio-économiques"
+            }
           }
         ]
       },
@@ -2844,12 +2832,12 @@
         },
         "runs": [
           {
+            "text": "Extract and Load des données en process CLI avec Python",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Extract and Load des données en process CLI avec Python"
+            }
           }
         ]
       },
@@ -2865,10 +2853,10 @@
         },
         "runs": [
           {
+            "text": "Traitement des bases de données",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Traitement des bases de données"
+            }
           }
         ]
       },
@@ -2884,13 +2872,13 @@
         },
         "runs": [
           {
+            "text": "Traitements des données :",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Traitements des données :"
+            }
           }
         ]
       },
@@ -2906,13 +2894,13 @@
         },
         "runs": [
           {
+            "text": "Stockage Local ou Cloud",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Stockage Local ou Cloud"
+            }
           }
         ]
       },
@@ -2928,13 +2916,13 @@
         },
         "runs": [
           {
+            "text": "Gestion des bases PostgreSQL, Duck DB",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Gestion des bases PostgreSQL, Duck DB"
+            }
           }
         ]
       },
@@ -2950,13 +2938,13 @@
         },
         "runs": [
           {
+            "text": "Assemblages et Transformations",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Assemblages et Transformations"
+            }
           }
         ]
       },
@@ -2972,13 +2960,13 @@
         },
         "runs": [
           {
+            "text": "Séquençage DBT",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Séquençage DBT"
+            }
           }
         ]
       },
@@ -2994,13 +2982,13 @@
         },
         "runs": [
           {
+            "text": "Automatisation CLI ou Prefect",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Automatisation CLI ou Prefect"
+            }
           }
         ]
       },
@@ -3016,13 +3004,13 @@
         },
         "runs": [
           {
+            "text": "Architecture Databricks Médaillon",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Architecture Databricks Médaillon"
+            }
           }
         ]
       },
@@ -3038,12 +3026,12 @@
         },
         "runs": [
           {
+            "text": "Construction de data visualisations avec Python",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction de data visualisations avec Python"
+            }
           }
         ]
       },
@@ -3059,12 +3047,12 @@
         },
         "runs": [
           {
+            "text": "Implémentation dans une application existante, tests de data visualisation, corrections",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Implémentation dans une application existante, tests de data visualisation, corrections"
+            }
           }
         ]
       },
@@ -3080,12 +3068,12 @@
         },
         "runs": [
           {
+            "text": "Entrainement de modèles ML, graphes prévisionnels",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Entrainement de modèles ML, graphes prévisionnels"
+            }
           }
         ]
       },
@@ -3117,19 +3105,19 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : SQL, Python",
             "properties": {
               "bold": true,
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Environnements techniques : SQL, Python"
+            }
           },
           {
+            "text": ", VSCode, Github, DBT Cloud, DBT Core, Jupyter Notebook, Google Cloud Platform, AWS S3, DuckDB, PostgreSQL, Streamlit, Slack, Mattermost, Github Issues, Notion, Outline",
             "properties": {
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": ", VSCode, Github, DBT Cloud, DBT Core, Jupyter Notebook, Google Cloud Platform, AWS S3, DuckDB, PostgreSQL, Streamlit, Slack, Mattermost, Github Issues, Notion, Outline"
+            }
           }
         ]
       },
@@ -3141,11 +3129,7 @@
           "alignment": "left",
           "paraId": "000000A2"
         },
-        "runs": [
-          {
-            "page_break": true
-          }
-        ]
+        "runs": []
       },
       {
         "index": 141,
@@ -3176,12 +3160,12 @@
                     },
                     "runs": [
                       {
+                        "text": "KEYOR, Bordeaux",
                         "properties": {
                           "size": "34",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "KEYOR, Bordeaux"
+                        }
                       }
                     ]
                   }
@@ -3200,14 +3184,14 @@
                     },
                     "runs": [
                       {
+                        "text": "06/2021 – 06/2024",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "06/2021 – 06/2024"
+                        }
                       }
                     ]
                   }
@@ -3232,13 +3216,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Data Manager, CDI",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Data Manager, CDI"
+                        }
                       }
                     ]
                   }
@@ -3265,21 +3249,21 @@
         },
         "runs": [
           {
+            "text": "Contexte : ",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Contexte : "
+            }
           },
           {
+            "text": "J’ai rejoint Keyor qui est une entreprise de conception et fabrication de menuiseries afin de prendre en charge l’ensemble des projets data. J’ai notamment travaillé avec les équipes R&D sur le traitement des données techniques liées aux différents produits.",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "J’ai rejoint Keyor qui est une entreprise de conception et fabrication de menuiseries afin de prendre en charge l’ensemble des projets data. J’ai notamment travaillé avec les équipes R&D sur le traitement des données techniques liées aux différents produits."
+            }
           }
         ]
       },
@@ -3295,10 +3279,10 @@
         },
         "runs": [
           {
+            "text": "Gestion de projets",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Gestion de projets"
+            }
           }
         ]
       },
@@ -3314,12 +3298,12 @@
         },
         "runs": [
           {
+            "text": "Recueil des besoins",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Recueil des besoins"
+            }
           }
         ]
       },
@@ -3335,12 +3319,12 @@
         },
         "runs": [
           {
+            "text": "Participation au cahier des charges avec les métiers",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Participation au cahier des charges avec les métiers"
+            }
           }
         ]
       },
@@ -3356,12 +3340,12 @@
         },
         "runs": [
           {
+            "text": "Analyse de faisabilité et préconisations",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Analyse de faisabilité et préconisations"
+            }
           }
         ]
       },
@@ -3377,12 +3361,12 @@
         },
         "runs": [
           {
+            "text": "Ecriture des livrables",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Ecriture des livrables"
+            }
           }
         ]
       },
@@ -3398,12 +3382,12 @@
         },
         "runs": [
           {
+            "text": "Suivi de projets et avancements",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Suivi de projets et avancements"
+            }
           }
         ]
       },
@@ -3419,12 +3403,12 @@
         },
         "runs": [
           {
+            "text": "Echanges transverses entre services",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Echanges transverses entre services"
+            }
           }
         ]
       },
@@ -3440,12 +3424,12 @@
         },
         "runs": [
           {
+            "text": "Reportings",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Reportings"
+            }
           }
         ]
       },
@@ -3461,10 +3445,10 @@
         },
         "runs": [
           {
+            "text": "Collecte des données",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Collecte des données"
+            }
           }
         ]
       },
@@ -3480,12 +3464,12 @@
         },
         "runs": [
           {
+            "text": "Collecte des données spécifiques aux métiers : multisources",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Collecte des données spécifiques aux métiers : multisources"
+            }
           }
         ]
       },
@@ -3501,12 +3485,12 @@
         },
         "runs": [
           {
+            "text": "Réceptionner, trier, nettoyer les données",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Réceptionner, trier, nettoyer les données"
+            }
           }
         ]
       },
@@ -3522,13 +3506,13 @@
         },
         "runs": [
           {
+            "text": "Implémentation d’une data gouvernance :",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Implémentation d’une data gouvernance :"
+            }
           }
         ]
       },
@@ -3544,12 +3528,12 @@
         },
         "runs": [
           {
+            "text": "Etude des compétences et besoins métiers",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Etude des compétences et besoins métiers"
+            }
           }
         ]
       },
@@ -3565,12 +3549,12 @@
         },
         "runs": [
           {
+            "text": "Conception des outils et indicateurs à mettre à disposition",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Conception des outils et indicateurs à mettre à disposition"
+            }
           }
         ]
       },
@@ -3586,12 +3570,12 @@
         },
         "runs": [
           {
+            "text": "Correction et optimisation des pipelines de données",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Correction et optimisation des pipelines de données"
+            }
           }
         ]
       },
@@ -3607,12 +3591,12 @@
         },
         "runs": [
           {
+            "text": "Coordination entre les services",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Coordination entre les services"
+            }
           }
         ]
       },
@@ -3628,13 +3612,13 @@
         },
         "runs": [
           {
+            "text": "Configuration des données R&D et BE :",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Configuration des données R&D et BE :"
+            }
           }
         ]
       },
@@ -3650,12 +3634,12 @@
         },
         "runs": [
           {
+            "text": "Données techniques produits",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Données techniques produits"
+            }
           }
         ]
       },
@@ -3671,12 +3655,12 @@
         },
         "runs": [
           {
+            "text": "Données commerciales sur ERP",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Données commerciales sur ERP"
+            }
           }
         ]
       },
@@ -3692,12 +3676,12 @@
         },
         "runs": [
           {
+            "text": "Gammes",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Gammes"
+            }
           }
         ]
       },
@@ -3713,12 +3697,12 @@
         },
         "runs": [
           {
+            "text": "Nomenclatures…",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Nomenclatures…"
+            }
           }
         ]
       },
@@ -3734,12 +3718,12 @@
         },
         "runs": [
           {
+            "text": "Compréhension et interprétation",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Compréhension et interprétation"
+            }
           }
         ]
       },
@@ -3755,12 +3739,12 @@
         },
         "runs": [
           {
+            "text": "Homogénéisation",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Homogénéisation"
+            }
           }
         ]
       },
@@ -3776,10 +3760,10 @@
         },
         "runs": [
           {
+            "text": "Automatisation",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Automatisation"
+            }
           }
         ]
       },
@@ -3795,13 +3779,13 @@
         },
         "runs": [
           {
+            "text": "Construction de pipelines selon le besoin",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construction de pipelines selon le besoin"
+            }
           }
         ]
       },
@@ -3817,13 +3801,13 @@
         },
         "runs": [
           {
+            "text": "Enrichir et croiser les multiples bases de données",
             "properties": {
               "bold": true,
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Enrichir et croiser les multiples bases de données"
+            }
           }
         ]
       },
@@ -3839,12 +3823,12 @@
         },
         "runs": [
           {
+            "text": "Automatisation :",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Automatisation :"
+            }
           }
         ]
       },
@@ -3860,12 +3844,12 @@
         },
         "runs": [
           {
+            "text": "Collecte des besoins ",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Collecte des besoins "
+            }
           }
         ]
       },
@@ -3881,12 +3865,12 @@
         },
         "runs": [
           {
+            "text": "Mises à jour données",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Mises à jour données"
+            }
           }
         ]
       },
@@ -3902,12 +3886,12 @@
         },
         "runs": [
           {
+            "text": "Traitement et tri",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Traitement et tri"
+            }
           }
         ]
       },
@@ -3923,12 +3907,12 @@
         },
         "runs": [
           {
+            "text": "Paramétrages",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Paramétrages"
+            }
           }
         ]
       },
@@ -3944,12 +3928,12 @@
         },
         "runs": [
           {
+            "text": "Ajustements et paramétrages",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Ajustements et paramétrages"
+            }
           }
         ]
       },
@@ -3965,12 +3949,12 @@
         },
         "runs": [
           {
+            "text": "Détection des défauts, dysfonctionnements, anomalies",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Détection des défauts, dysfonctionnements, anomalies"
+            }
           }
         ]
       },
@@ -3986,12 +3970,12 @@
         },
         "runs": [
           {
+            "text": "Proposition de solutions correctives",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Proposition de solutions correctives"
+            }
           }
         ]
       },
@@ -4007,10 +3991,10 @@
         },
         "runs": [
           {
+            "text": "Visualisation",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Visualisation"
+            }
           }
         ]
       },
@@ -4026,12 +4010,12 @@
         },
         "runs": [
           {
+            "text": "Construire les différentes datavisualisations pour chaque service",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construire les différentes datavisualisations pour chaque service"
+            }
           }
         ]
       },
@@ -4047,12 +4031,12 @@
         },
         "runs": [
           {
+            "text": "Développement de Dashboards PowerBI, Looker dynamiques",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Développement de Dashboards PowerBI, Looker dynamiques"
+            }
           }
         ]
       },
@@ -4068,12 +4052,12 @@
         },
         "runs": [
           {
+            "text": "Recherche et vulgarisation d’indicateurs de performance",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Recherche et vulgarisation d’indicateurs de performance"
+            }
           }
         ]
       },
@@ -4089,12 +4073,12 @@
         },
         "runs": [
           {
+            "text": "Support aux cas d’usage et analytiques",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Support aux cas d’usage et analytiques"
+            }
           }
         ]
       },
@@ -4110,12 +4094,12 @@
         },
         "runs": [
           {
+            "text": "Référent des données disponibles",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Référent des données disponibles"
+            }
           }
         ]
       },
@@ -4131,12 +4115,12 @@
         },
         "runs": [
           {
+            "text": "Intégration et développement de reverse engineering",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Intégration et développement de reverse engineering"
+            }
           }
         ]
       },
@@ -4159,19 +4143,19 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : ",
             "properties": {
               "bold": true,
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Environnements techniques : "
+            }
           },
           {
+            "text": "Power Query, Power BI, Excel, Qlikview, Qliksense, HerculePro, Sage X3, Quable",
             "properties": {
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Power Query, Power BI, Excel, Qlikview, Qliksense, HerculePro, Sage X3, Quable"
+            }
           }
         ]
       },
@@ -4183,11 +4167,7 @@
           "alignment": "left",
           "paraId": "000000D4"
         },
-        "runs": [
-          {
-            "page_break": true
-          }
-        ]
+        "runs": []
       },
       {
         "index": 188,
@@ -4209,12 +4189,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Vignobles Bardet, Vignonet",
                         "properties": {
                           "size": "34",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "Vignobles Bardet, Vignonet"
+                        }
                       }
                     ]
                   }
@@ -4233,14 +4213,14 @@
                     },
                     "runs": [
                       {
+                        "text": "09/2019 – 04/2020",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "09/2019 – 04/2020"
+                        }
                       }
                     ]
                   }
@@ -4265,13 +4245,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Gestion de Projets Web, Alternance",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Gestion de Projets Web, Alternance"
+                        }
                       }
                     ]
                   }
@@ -4300,10 +4280,10 @@
         },
         "runs": [
           {
+            "text": "Chef de Projets web",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Chef de Projets web"
+            }
           }
         ]
       },
@@ -4319,12 +4299,12 @@
         },
         "runs": [
           {
+            "text": "Concevoir un business plan et un cahier des charges de site web",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Concevoir un business plan et un cahier des charges de site web"
+            }
           }
         ]
       },
@@ -4340,12 +4320,12 @@
         },
         "runs": [
           {
+            "text": "Mettre en place les plans de communication",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Mettre en place les plans de communication"
+            }
           }
         ]
       },
@@ -4361,12 +4341,12 @@
         },
         "runs": [
           {
+            "text": "Lancer les campagnes SEA, Social Ads et les Emailings",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Lancer les campagnes SEA, Social Ads et les Emailings"
+            }
           }
         ]
       },
@@ -4382,10 +4362,10 @@
         },
         "runs": [
           {
+            "text": "Webmaster e-commerce",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Webmaster e-commerce"
+            }
           }
         ]
       },
@@ -4401,12 +4381,12 @@
         },
         "runs": [
           {
+            "text": "Gérer le site e-commerce existant, développer le SEO",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Gérer le site e-commerce existant, développer le SEO"
+            }
           }
         ]
       },
@@ -4422,12 +4402,12 @@
         },
         "runs": [
           {
+            "text": "Intégrer de nouveaux produits",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Intégrer de nouveaux produits"
+            }
           }
         ]
       },
@@ -4443,12 +4423,12 @@
         },
         "runs": [
           {
+            "text": "Créer les visuels de communication web, print et vidéos",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Créer les visuels de communication web, print et vidéos"
+            }
           }
         ]
       },
@@ -4471,19 +4451,19 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : ",
             "properties": {
               "bold": true,
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Environnements techniques : "
+            }
           },
           {
+            "text": "Wordpress, Woocommerce, Illustrator, Mailchimp, Meta Businness Suite, Google Ads",
             "properties": {
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Wordpress, Woocommerce, Illustrator, Mailchimp, Meta Businness Suite, Google Ads"
+            }
           }
         ]
       },
@@ -4525,12 +4505,12 @@
                     },
                     "runs": [
                       {
+                        "text": "Actiplay (Klarsen), Bordeaux",
                         "properties": {
                           "size": "34",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "Actiplay (Klarsen), Bordeaux"
+                        }
                       }
                     ]
                   }
@@ -4549,14 +4529,14 @@
                     },
                     "runs": [
                       {
+                        "text": "09/2018 – 04/2019",
                         "properties": {
                           "bold": true,
                           "italic": true,
                           "size": "24",
                           "color": "808080",
                           "font": "Arial"
-                        },
-                        "text": "09/2018 – 04/2019"
+                        }
                       }
                     ]
                   }
@@ -4581,13 +4561,13 @@
                     },
                     "runs": [
                       {
+                        "text": "Data analyst, Alternance",
                         "properties": {
                           "bold": true,
                           "size": "20",
                           "color": "000000",
                           "font": "Arial"
-                        },
-                        "text": "Data analyst, Alternance"
+                        }
                       }
                     ]
                   }
@@ -4625,10 +4605,10 @@
         },
         "runs": [
           {
+            "text": "Data Analyst",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Data Analyst"
+            }
           }
         ]
       },
@@ -4644,12 +4624,12 @@
         },
         "runs": [
           {
+            "text": "Intégrer les campagnes digitales sur les différents sites web",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Intégrer les campagnes digitales sur les différents sites web"
+            }
           }
         ]
       },
@@ -4665,12 +4645,12 @@
         },
         "runs": [
           {
+            "text": "Construire les tableaux de reporting et d'analyse des données utilisateurs issues des campagnes",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construire les tableaux de reporting et d'analyse des données utilisateurs issues des campagnes"
+            }
           }
         ]
       },
@@ -4686,12 +4666,12 @@
         },
         "runs": [
           {
+            "text": "Enrichir et nettoyer les bases de données existantes",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Enrichir et nettoyer les bases de données existantes"
+            }
           }
         ]
       },
@@ -4707,10 +4687,10 @@
         },
         "runs": [
           {
+            "text": "Product Owner",
             "properties": {
               "color": "ec7c2f"
-            },
-            "text": "Product Owner"
+            }
           }
         ]
       },
@@ -4726,12 +4706,12 @@
         },
         "runs": [
           {
+            "text": "Manager le développement d'un projet de logiciel interne de requêtage de base de données",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Manager le développement d'un projet de logiciel interne de requêtage de base de données"
+            }
           }
         ]
       },
@@ -4747,12 +4727,12 @@
         },
         "runs": [
           {
+            "text": "Coordonner un Tech Lead et 2 développeurs",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Coordonner un Tech Lead et 2 développeurs"
+            }
           }
         ]
       },
@@ -4768,12 +4748,12 @@
         },
         "runs": [
           {
+            "text": "Recueillir les besoins métiers",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Recueillir les besoins métiers"
+            }
           }
         ]
       },
@@ -4789,12 +4769,12 @@
         },
         "runs": [
           {
+            "text": "Construire et mettre à jour le Kanban",
             "properties": {
               "size": "20",
               "color": "000000",
               "font": "Arial"
-            },
-            "text": "Construire et mettre à jour le Kanban"
+            }
           }
         ]
       },
@@ -4817,19 +4797,19 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : ",
             "properties": {
               "bold": true,
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Environnements techniques : "
+            }
           },
           {
+            "text": "Google Analytics, Excel, HTML-CSS, Jira Confluence, MongoDB, Python, Javascript",
             "properties": {
               "color": "538cd4",
               "font": "Arial"
-            },
-            "text": "Google Analytics, Excel, HTML-CSS, Jira Confluence, MongoDB, Python, Javascript"
+            }
           }
         ]
       }

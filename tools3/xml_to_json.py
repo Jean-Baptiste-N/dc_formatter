@@ -1485,8 +1485,8 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any])
                         if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
                             break
 
-                        # ARRÊTER si contexte
-                        if 'contexte' in text:
+                        # ARRÊTER si le paragraphe est long (> 100 caractères)
+                        if len(text) > 100:
                             break
 
                         # Ajouter le paragraphe (même s'il est vide)
@@ -1820,8 +1820,11 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
 
         if element.get('type') == 'Paragraph' and is_empty_para:
             props['style'] = 'DC_Normal'
-        elif 'style' not in props or 'style' in props and props['style'] == 'Normal':
-            props['style'] = 'DC_Normal'
+        else:
+            # Pour les paragraphes avec du texte: si le style n'est pas un style DC_* ou n'existe pas, appliquer DC_Normal
+            current_style = props.get('style', '')
+            if not current_style.startswith('DC_'):
+                props['style'] = 'DC_Normal'
 
         # Ajouter outline_level si le style le nécessite
         if props.get('style') in STYLE_OUTLINE_MAPPING:

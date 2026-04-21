@@ -10,11 +10,7 @@
           "style": "DC_Normal",
           "paraId": "00000001"
         },
-        "runs": [
-          {
-            "properties": {}
-          }
-        ],
+        "runs": [],
         "tags": [
           "header"
         ]
@@ -28,10 +24,10 @@
         },
         "runs": [
           {
+            "text": "DOSSIER DE COMPETENCES",
             "properties": {
               "bold": true
-            },
-            "text": "DOSSIER DE COMPETENCES"
+            }
           }
         ],
         "tags": [
@@ -58,10 +54,10 @@
         },
         "runs": [
           {
+            "text": "JNZ",
             "properties": {
               "bold": true
-            },
-            "text": "JNZ"
+            }
           }
         ],
         "tags": [
@@ -88,10 +84,10 @@
         },
         "runs": [
           {
+            "text": "Data Engineer, Data Analyst",
             "properties": {
               "bold": true
-            },
-            "text": "Data Engineer, Data Analyst"
+            }
           }
         ],
         "tags": [
@@ -107,10 +103,10 @@
         },
         "runs": [
           {
+            "text": "Python, SQL, PostgreSQL, DBT",
             "properties": {
               "bold": true
-            },
-            "text": "Python, SQL, PostgreSQL, DBT"
+            }
           }
         ],
         "tags": [
@@ -138,10 +134,10 @@
         },
         "runs": [
           {
+            "text": "Expérience (I2)",
             "properties": {
               "bold": true
-            },
-            "text": "Expérience (I2)"
+            }
           }
         ],
         "tags": [
@@ -158,8 +154,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Domaines de compétences"
+            "text": "Domaines de compétences",
+            "properties": {}
           }
         ],
         "tags": [
@@ -178,8 +174,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gestion de projets"
+            "text": "Gestion de projets",
+            "properties": {}
           }
         ],
         "tags": [
@@ -197,8 +193,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recueil des besoins"
+            "text": "Recueil des besoins",
+            "properties": {}
           }
         ],
         "tags": [
@@ -216,8 +212,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Participation au cahier des charges avec les métiers"
+            "text": "Participation au cahier des charges avec les métiers",
+            "properties": {}
           }
         ],
         "tags": [
@@ -235,8 +231,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Analyse de faisabilité et préconisations"
+            "text": "Analyse de faisabilité et préconisations",
+            "properties": {}
           }
         ],
         "tags": [
@@ -254,8 +250,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gestion des priorités et planning"
+            "text": "Gestion des priorités et planning",
+            "properties": {}
           }
         ],
         "tags": [
@@ -273,8 +269,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Ecriture des livrables"
+            "text": "Ecriture des livrables",
+            "properties": {}
           }
         ],
         "tags": [
@@ -292,8 +288,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Suivi de projets et avancements"
+            "text": "Suivi de projets et avancements",
+            "properties": {}
           }
         ],
         "tags": [
@@ -311,8 +307,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Organisation des réunions"
+            "text": "Organisation des réunions",
+            "properties": {}
           }
         ],
         "tags": [
@@ -330,8 +326,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Coordination transverse entre services"
+            "text": "Coordination transverse entre services",
+            "properties": {}
           }
         ],
         "tags": [
@@ -349,8 +345,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Formation des équipes"
+            "text": "Formation des équipes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -369,8 +365,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Traitement des données"
+            "text": "Traitement des données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -388,8 +384,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Conception de pipelines de données robustes"
+            "text": "Conception de pipelines de données robustes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -407,8 +403,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Traitement de données à grande échelle (Big Data):"
+            "text": "Traitement de données à grande échelle (Big Data):",
+            "properties": {}
           }
         ],
         "tags": [
@@ -426,10 +422,10 @@
         },
         "runs": [
           {
+            "text": "Collecte et branchements APIs, ETLs python",
             "properties": {
               "bold": true
-            },
-            "text": "Collecte et branchements APIs, ETLs python"
+            }
           }
         ],
         "tags": [
@@ -447,10 +443,10 @@
         },
         "runs": [
           {
+            "text": "Chargement sur des Data Lakes ou Data Warehouses",
             "properties": {
               "bold": true
-            },
-            "text": "Chargement sur des Data Lakes ou Data Warehouses"
+            }
           }
         ],
         "tags": [
@@ -468,10 +464,10 @@
         },
         "runs": [
           {
+            "text": "Stockage Google Cloud Platform, PostgreSQL, DuckDB",
             "properties": {
               "bold": true
-            },
-            "text": "Stockage Google Cloud Platform, PostgreSQL, DuckDB"
+            }
           }
         ],
         "tags": [
@@ -489,10 +485,10 @@
         },
         "runs": [
           {
+            "text": "Transformation avec Data Build Tool, SQL, Python",
             "properties": {
               "bold": true
-            },
-            "text": "Transformation avec Data Build Tool, SQL, Python"
+            }
           }
         ],
         "tags": [
@@ -510,8 +506,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Support aux cas d’usage et analytiques"
+            "text": "Support aux cas d’usage et analytiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -529,8 +525,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réalisation de tests unitaires, configuration dynamique, retraitement régulier"
+            "text": "Réalisation de tests unitaires, configuration dynamique, retraitement régulier",
+            "properties": {}
           }
         ],
         "tags": [
@@ -548,8 +544,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Architecture médaillon Databricks"
+            "text": "Architecture médaillon Databricks",
+            "properties": {}
           }
         ],
         "tags": [
@@ -567,8 +563,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construction de plusieurs niveaux de traitement et assemblage de tables"
+            "text": "Construction de plusieurs niveaux de traitement et assemblage de tables",
+            "properties": {}
           }
         ],
         "tags": [
@@ -586,8 +582,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement de traitements dynamiques"
+            "text": "Développement de traitements dynamiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -605,8 +601,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Unification des données dans un lakehouse optimisé"
+            "text": "Unification des données dans un lakehouse optimisé",
+            "properties": {}
           }
         ],
         "tags": [
@@ -624,8 +620,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Intégration d’une démarche CI/CD Databricks CLI pour les pipelines"
+            "text": "Intégration d’une démarche CI/CD Databricks CLI pour les pipelines",
+            "properties": {}
           }
         ],
         "tags": [
@@ -643,8 +639,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mise en place de bonnes pratiques FinOps sur Databricks"
+            "text": "Mise en place de bonnes pratiques FinOps sur Databricks",
+            "properties": {}
           }
         ],
         "tags": [
@@ -663,8 +659,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Visualisation"
+            "text": "Visualisation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -682,8 +678,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement de Dashboards PowerBI, Looker dynamiques"
+            "text": "Développement de Dashboards PowerBI, Looker dynamiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -701,8 +697,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recherche et vulgarisation d’indicateurs clés de performance"
+            "text": "Recherche et vulgarisation d’indicateurs clés de performance",
+            "properties": {}
           }
         ],
         "tags": [
@@ -720,8 +716,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Implémentation d’une data gouvernance :"
+            "text": "Implémentation d’une data gouvernance :",
+            "properties": {}
           }
         ],
         "tags": [
@@ -739,10 +735,10 @@
         },
         "runs": [
           {
+            "text": "Etude des compétences et besoins métiers",
             "properties": {
               "bold": true
-            },
-            "text": "Etude des compétences et besoins métiers"
+            }
           }
         ],
         "tags": [
@@ -760,10 +756,10 @@
         },
         "runs": [
           {
+            "text": "Conception des outils et indicateurs à mettre à disposition",
             "properties": {
               "bold": true
-            },
-            "text": "Conception des outils et indicateurs à mettre à disposition"
+            }
           }
         ],
         "tags": [
@@ -781,10 +777,10 @@
         },
         "runs": [
           {
+            "text": "Correction et optimisation des pipelines de données",
             "properties": {
               "bold": true
-            },
-            "text": "Correction et optimisation des pipelines de données"
+            }
           }
         ],
         "tags": [
@@ -802,10 +798,10 @@
         },
         "runs": [
           {
+            "text": "Coordination entre les services",
             "properties": {
               "bold": true
-            },
-            "text": "Coordination entre les services"
+            }
           }
         ],
         "tags": [
@@ -823,10 +819,10 @@
         },
         "runs": [
           {
+            "text": "Ecriture des process et formation des équipes",
             "properties": {
               "bold": true
-            },
-            "text": "Ecriture des process et formation des équipes"
+            }
           }
         ],
         "tags": [
@@ -844,8 +840,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Support aux cas d’usage et analytiques"
+            "text": "Support aux cas d’usage et analytiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -863,8 +859,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Conception de modèles ML et prévisionnels"
+            "text": "Conception de modèles ML et prévisionnels",
+            "properties": {}
           }
         ],
         "tags": [
@@ -882,8 +878,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Référent des données disponibles"
+            "text": "Référent des données disponibles",
+            "properties": {}
           }
         ],
         "tags": [
@@ -901,8 +897,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construction des requêtes SQL ponctuelles et planifiées"
+            "text": "Construction des requêtes SQL ponctuelles et planifiées",
+            "properties": {}
           }
         ],
         "tags": [
@@ -920,8 +916,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Intégration et développement de reverse engineering"
+            "text": "Intégration et développement de reverse engineering",
+            "properties": {}
           }
         ],
         "tags": [
@@ -940,8 +936,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Applicatif"
+            "text": "Applicatif",
+            "properties": {}
           }
         ],
         "tags": [
@@ -959,8 +955,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etude de besoin utilisateur"
+            "text": "Etude de besoin utilisateur",
+            "properties": {}
           }
         ],
         "tags": [
@@ -978,8 +974,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement d’application pour la délivrabilité et la visualisation de données avec le Framework Streamlit"
+            "text": "Développement d’application pour la délivrabilité et la visualisation de données avec le Framework Streamlit",
+            "properties": {}
           }
         ],
         "tags": [
@@ -997,8 +993,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Interactions et échanges de données avec des serveurs et bases de données (Backend)"
+            "text": "Interactions et échanges de données avec des serveurs et bases de données (Backend)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1016,8 +1012,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
+            "text": "Interface dynamique et construction de documents de publipostage (Frontend)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1035,8 +1031,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
+            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1055,8 +1051,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Technologies"
+            "text": "Technologies",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1074,8 +1070,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Python, Pandas, SQL, PostgreSQL, PgAdmin, Databricks, Docker, DevContainers, DBT, Docxtpl, Jinja, DuckDB, MotherDuck, Power BI, Looker"
+            "text": "Python, Pandas, SQL, PostgreSQL, PgAdmin, Databricks, Docker, DevContainers, DBT, Docxtpl, Jinja, DuckDB, MotherDuck, Power BI, Looker",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1103,8 +1099,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Formation"
+            "text": "Formation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1559,10 +1555,10 @@
         },
         "runs": [
           {
+            "text": "Expériences Professionnelles",
             "properties": {
               "bold": true
-            },
-            "text": "Expériences Professionnelles"
+            }
           }
         ],
         "tags": [
@@ -1715,14 +1711,14 @@
         },
         "runs": [
           {
+            "text": "Contexte : ",
             "properties": {
               "bold": true
-            },
-            "text": "Contexte : "
+            }
           },
           {
-            "properties": {},
-            "text": "Ma première mission au sein d’EPSYL-ALCEN s’est déroulée dans le centre d’études et d’innovation d’ACC à Bruges. Dans le cadre de mises en place de process data automatisés, j’ai rejoint l’équipe data R&D qui développe des pipelines et des applications de traitement de données pour la délivrer de manière dynamique et robuste aux autres services d’ingénierie."
+            "text": "Ma première mission au sein d’EPSYL-ALCEN s’est déroulée dans le centre d’études et d’innovation d’ACC à Bruges. Dans le cadre de mises en place de process data automatisés, j’ai rejoint l’équipe data R&D qui développe des pipelines et des applications de traitement de données pour la délivrer de manière dynamique et robuste aux autres services d’ingénierie.",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1741,8 +1737,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gestion de projets"
+            "text": "Gestion de projets",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1760,8 +1756,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recueil des besoins, des contraintes et spécifications"
+            "text": "Recueil des besoins, des contraintes et spécifications",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1779,8 +1775,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etude de faisabilité et proposition de solutions techniques "
+            "text": "Etude de faisabilité et proposition de solutions techniques ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1798,8 +1794,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Communication avec les équipes, organisation des points d’avancement"
+            "text": "Communication avec les équipes, organisation des points d’avancement",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1817,8 +1813,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes"
+            "text": "Rédaction de préconisations métiers, écriture des process, Formation des équipes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1836,8 +1832,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Reportings"
+            "text": "Reportings",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1856,8 +1852,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Collecte des données"
+            "text": "Collecte des données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1875,8 +1871,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etudes des sources de données, Construction et amélioration de l’architecture "
+            "text": "Etudes des sources de données, Construction et amélioration de l’architecture ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1894,8 +1890,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Requêtes SQL sur les bases de données PostgreSQL"
+            "text": "Requêtes SQL sur les bases de données PostgreSQL",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1913,8 +1909,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Traitements de données en Python Pandas"
+            "text": "Traitements de données en Python Pandas",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1932,8 +1928,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construction d’un formulaire dynamique de complétion des données par l’utilisateur"
+            "text": "Construction d’un formulaire dynamique de complétion des données par l’utilisateur",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1952,8 +1948,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Traitement des bases de données"
+            "text": "Traitement des bases de données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -1971,10 +1967,10 @@
         },
         "runs": [
           {
+            "text": "Traitements des données :",
             "properties": {
               "bold": true
-            },
-            "text": "Traitements des données :"
+            }
           }
         ],
         "tags": [
@@ -1992,10 +1988,10 @@
         },
         "runs": [
           {
+            "text": "Stockage Serveur dédié",
             "properties": {
               "bold": true
-            },
-            "text": "Stockage Serveur dédié"
+            }
           }
         ],
         "tags": [
@@ -2013,10 +2009,10 @@
         },
         "runs": [
           {
+            "text": "Gestion des bases PostgreSQL",
             "properties": {
               "bold": true
-            },
-            "text": "Gestion des bases PostgreSQL"
+            }
           }
         ],
         "tags": [
@@ -2034,10 +2030,10 @@
         },
         "runs": [
           {
+            "text": "Distribution dans un data model et délivrabilité dans un document éditable avec Docxtpl et Jinja*",
             "properties": {
               "bold": true
-            },
-            "text": "Distribution dans un data model et délivrabilité dans un document éditable avec Docxtpl et Jinja*"
+            }
           }
         ],
         "tags": [
@@ -2055,8 +2051,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Sauvegarde des nouvelles données"
+            "text": "Sauvegarde des nouvelles données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2074,8 +2070,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Dashboard de suivi KPIs avec Power BI"
+            "text": "Dashboard de suivi KPIs avec Power BI",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2094,8 +2090,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Applicatif"
+            "text": "Applicatif",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2113,8 +2109,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construction d’une Webapp à destination d’utilisateurs internes à l’entreprise avec le Framework Streamlit"
+            "text": "Construction d’une Webapp à destination d’utilisateurs internes à l’entreprise avec le Framework Streamlit",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2132,8 +2128,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement applicatif pour la délivrabilité et la visualisation de données"
+            "text": "Développement applicatif pour la délivrabilité et la visualisation de données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2151,8 +2147,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Interactions et échanges de données avec des serveurs et base de données (Backend)"
+            "text": "Interactions et échanges de données avec des serveurs et base de données (Backend)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2170,8 +2166,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Interface dynamique et construction de documents de publipostage (Frontend)"
+            "text": "Interface dynamique et construction de documents de publipostage (Frontend)",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2189,8 +2185,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs"
+            "text": "Démarche UX/UI et optimisation intuitive des actions utilisateurs",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2208,8 +2204,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Tech Lead applicatif, reviews de code et coordination des PRs"
+            "text": "Tech Lead applicatif, reviews de code et coordination des PRs",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2236,14 +2232,14 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : SQL, Python",
             "properties": {
               "bold": true
-            },
-            "text": "Environnements techniques : SQL, Python"
+            }
           },
           {
-            "properties": {},
-            "text": ", VSCode, Azure DevOps, Jupyter Notebook, PostgreSQL, Streamlit, LucidChart"
+            "text": ", VSCode, Azure DevOps, Jupyter Notebook, PostgreSQL, Streamlit, LucidChart",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2392,14 +2388,14 @@
         },
         "runs": [
           {
+            "text": "Contexte : ",
             "properties": {
               "bold": true
-            },
-            "text": "Contexte : "
+            }
           },
           {
-            "properties": {},
-            "text": "Je mène des projets en tant que Data Analyst ou Data Engineer, de manière bénévole, pour la communauté Data For Good, à destination de partenaires associatifs ou d’ONGs : MEDCAP, Eclaireur public, ODIS, Algoboost, QPPCC"
+            "text": "Je mène des projets en tant que Data Analyst ou Data Engineer, de manière bénévole, pour la communauté Data For Good, à destination de partenaires associatifs ou d’ONGs : MEDCAP, Eclaireur public, ODIS, Algoboost, QPPCC",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2418,8 +2414,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gestion de projets"
+            "text": "Gestion de projets",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2437,8 +2433,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recueil des besoins, des contraintes et spécifications"
+            "text": "Recueil des besoins, des contraintes et spécifications",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2456,8 +2452,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etude et proposition de solutions techniques "
+            "text": "Etude et proposition de solutions techniques ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2475,8 +2471,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construction et mise à jour du Kanban de projet, Méthodologie Agile"
+            "text": "Construction et mise à jour du Kanban de projet, Méthodologie Agile",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2494,8 +2490,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Communication avec les équipes, organisation des réunions"
+            "text": "Communication avec les équipes, organisation des réunions",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2513,8 +2509,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Rédaction de préconisations métiers "
+            "text": "Rédaction de préconisations métiers ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2532,8 +2528,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Reportings"
+            "text": "Reportings",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2552,8 +2548,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Collecte des données"
+            "text": "Collecte des données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2571,8 +2567,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etudes des sources possibles de collecte de données, Open Data"
+            "text": "Etudes des sources possibles de collecte de données, Open Data",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2590,8 +2586,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Requêtes APIs "
+            "text": "Requêtes APIs ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2609,8 +2605,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Conception des modèles de données "
+            "text": "Conception des modèles de données ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2628,8 +2624,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Parsing Python depuis des bases de données NoSQL"
+            "text": "Parsing Python depuis des bases de données NoSQL",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2647,8 +2643,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Traitements de données en Python Pandas"
+            "text": "Traitements de données en Python Pandas",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2666,8 +2662,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construction d’un pipeline dynamique de données socio-économiques"
+            "text": "Construction d’un pipeline dynamique de données socio-économiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2685,8 +2681,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Extract and Load des données en process CLI avec Python"
+            "text": "Extract and Load des données en process CLI avec Python",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2705,8 +2701,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Traitement des bases de données"
+            "text": "Traitement des bases de données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2724,10 +2720,10 @@
         },
         "runs": [
           {
+            "text": "Traitements des données :",
             "properties": {
               "bold": true
-            },
-            "text": "Traitements des données :"
+            }
           }
         ],
         "tags": [
@@ -2745,10 +2741,10 @@
         },
         "runs": [
           {
+            "text": "Stockage Local ou Cloud",
             "properties": {
               "bold": true
-            },
-            "text": "Stockage Local ou Cloud"
+            }
           }
         ],
         "tags": [
@@ -2766,10 +2762,10 @@
         },
         "runs": [
           {
+            "text": "Gestion des bases PostgreSQL, Duck DB",
             "properties": {
               "bold": true
-            },
-            "text": "Gestion des bases PostgreSQL, Duck DB"
+            }
           }
         ],
         "tags": [
@@ -2787,10 +2783,10 @@
         },
         "runs": [
           {
+            "text": "Assemblages et Transformations",
             "properties": {
               "bold": true
-            },
-            "text": "Assemblages et Transformations"
+            }
           }
         ],
         "tags": [
@@ -2808,10 +2804,10 @@
         },
         "runs": [
           {
+            "text": "Séquençage DBT",
             "properties": {
               "bold": true
-            },
-            "text": "Séquençage DBT"
+            }
           }
         ],
         "tags": [
@@ -2829,10 +2825,10 @@
         },
         "runs": [
           {
+            "text": "Automatisation CLI ou Prefect",
             "properties": {
               "bold": true
-            },
-            "text": "Automatisation CLI ou Prefect"
+            }
           }
         ],
         "tags": [
@@ -2850,10 +2846,10 @@
         },
         "runs": [
           {
+            "text": "Architecture Databricks Médaillon",
             "properties": {
               "bold": true
-            },
-            "text": "Architecture Databricks Médaillon"
+            }
           }
         ],
         "tags": [
@@ -2871,8 +2867,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construction de data visualisations avec Python"
+            "text": "Construction de data visualisations avec Python",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2890,8 +2886,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Implémentation dans une application existante, tests de data visualisation, corrections"
+            "text": "Implémentation dans une application existante, tests de data visualisation, corrections",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2909,8 +2905,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Entrainement de modèles ML, graphes prévisionnels"
+            "text": "Entrainement de modèles ML, graphes prévisionnels",
+            "properties": {}
           }
         ],
         "tags": [
@@ -2937,14 +2933,14 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : SQL, Python",
             "properties": {
               "bold": true
-            },
-            "text": "Environnements techniques : SQL, Python"
+            }
           },
           {
-            "properties": {},
-            "text": ", VSCode, Github, DBT Cloud, DBT Core, Jupyter Notebook, Google Cloud Platform, AWS S3, DuckDB, PostgreSQL, Streamlit, Slack, Mattermost, Github Issues, Notion, Outline"
+            "text": ", VSCode, Github, DBT Cloud, DBT Core, Jupyter Notebook, Google Cloud Platform, AWS S3, DuckDB, PostgreSQL, Streamlit, Slack, Mattermost, Github Issues, Notion, Outline",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3093,14 +3089,14 @@
         },
         "runs": [
           {
+            "text": "Contexte : ",
             "properties": {
               "bold": true
-            },
-            "text": "Contexte : "
+            }
           },
           {
-            "properties": {},
-            "text": "J’ai rejoint Keyor qui est une entreprise de conception et fabrication de menuiseries afin de prendre en charge l’ensemble des projets data. J’ai notamment travaillé avec les équipes R&D sur le traitement des données techniques liées aux différents produits."
+            "text": "J’ai rejoint Keyor qui est une entreprise de conception et fabrication de menuiseries afin de prendre en charge l’ensemble des projets data. J’ai notamment travaillé avec les équipes R&D sur le traitement des données techniques liées aux différents produits.",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3119,8 +3115,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gestion de projets"
+            "text": "Gestion de projets",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3138,8 +3134,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recueil des besoins"
+            "text": "Recueil des besoins",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3157,8 +3153,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Participation au cahier des charges avec les métiers"
+            "text": "Participation au cahier des charges avec les métiers",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3176,8 +3172,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Analyse de faisabilité et préconisations"
+            "text": "Analyse de faisabilité et préconisations",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3195,8 +3191,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Ecriture des livrables"
+            "text": "Ecriture des livrables",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3214,8 +3210,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Suivi de projets et avancements"
+            "text": "Suivi de projets et avancements",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3233,8 +3229,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Echanges transverses entre services"
+            "text": "Echanges transverses entre services",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3252,8 +3248,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Reportings"
+            "text": "Reportings",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3272,8 +3268,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Collecte des données"
+            "text": "Collecte des données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3291,8 +3287,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Collecte des données spécifiques aux métiers : multisources"
+            "text": "Collecte des données spécifiques aux métiers : multisources",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3310,8 +3306,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Réceptionner, trier, nettoyer les données"
+            "text": "Réceptionner, trier, nettoyer les données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3329,10 +3325,10 @@
         },
         "runs": [
           {
+            "text": "Implémentation d’une data gouvernance :",
             "properties": {
               "bold": true
-            },
-            "text": "Implémentation d’une data gouvernance :"
+            }
           }
         ],
         "tags": [
@@ -3350,8 +3346,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Etude des compétences et besoins métiers"
+            "text": "Etude des compétences et besoins métiers",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3369,8 +3365,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Conception des outils et indicateurs à mettre à disposition"
+            "text": "Conception des outils et indicateurs à mettre à disposition",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3388,8 +3384,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Correction et optimisation des pipelines de données"
+            "text": "Correction et optimisation des pipelines de données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3407,8 +3403,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Coordination entre les services"
+            "text": "Coordination entre les services",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3426,10 +3422,10 @@
         },
         "runs": [
           {
+            "text": "Configuration des données R&D et BE :",
             "properties": {
               "bold": true
-            },
-            "text": "Configuration des données R&D et BE :"
+            }
           }
         ],
         "tags": [
@@ -3447,8 +3443,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Données techniques produits"
+            "text": "Données techniques produits",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3466,8 +3462,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Données commerciales sur ERP"
+            "text": "Données commerciales sur ERP",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3485,8 +3481,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gammes"
+            "text": "Gammes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3504,8 +3500,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Nomenclatures…"
+            "text": "Nomenclatures…",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3523,8 +3519,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Compréhension et interprétation"
+            "text": "Compréhension et interprétation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3542,8 +3538,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Homogénéisation"
+            "text": "Homogénéisation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3562,8 +3558,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Automatisation"
+            "text": "Automatisation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3581,10 +3577,10 @@
         },
         "runs": [
           {
+            "text": "Construction de pipelines selon le besoin",
             "properties": {
               "bold": true
-            },
-            "text": "Construction de pipelines selon le besoin"
+            }
           }
         ],
         "tags": [
@@ -3602,10 +3598,10 @@
         },
         "runs": [
           {
+            "text": "Enrichir et croiser les multiples bases de données",
             "properties": {
               "bold": true
-            },
-            "text": "Enrichir et croiser les multiples bases de données"
+            }
           }
         ],
         "tags": [
@@ -3623,8 +3619,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Automatisation :"
+            "text": "Automatisation :",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3642,8 +3638,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Collecte des besoins "
+            "text": "Collecte des besoins ",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3661,8 +3657,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mises à jour données"
+            "text": "Mises à jour données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3680,8 +3676,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Traitement et tri"
+            "text": "Traitement et tri",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3699,8 +3695,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Paramétrages"
+            "text": "Paramétrages",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3718,8 +3714,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Ajustements et paramétrages"
+            "text": "Ajustements et paramétrages",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3737,8 +3733,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Détection des défauts, dysfonctionnements, anomalies"
+            "text": "Détection des défauts, dysfonctionnements, anomalies",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3756,8 +3752,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Proposition de solutions correctives"
+            "text": "Proposition de solutions correctives",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3776,8 +3772,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Visualisation"
+            "text": "Visualisation",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3795,8 +3791,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construire les différentes datavisualisations pour chaque service"
+            "text": "Construire les différentes datavisualisations pour chaque service",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3814,8 +3810,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Développement de Dashboards PowerBI, Looker dynamiques"
+            "text": "Développement de Dashboards PowerBI, Looker dynamiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3833,8 +3829,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recherche et vulgarisation d’indicateurs de performance"
+            "text": "Recherche et vulgarisation d’indicateurs de performance",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3852,8 +3848,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Support aux cas d’usage et analytiques"
+            "text": "Support aux cas d’usage et analytiques",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3871,8 +3867,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Référent des données disponibles"
+            "text": "Référent des données disponibles",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3890,8 +3886,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Intégration et développement de reverse engineering"
+            "text": "Intégration et développement de reverse engineering",
+            "properties": {}
           }
         ],
         "tags": [
@@ -3918,14 +3914,14 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : ",
             "properties": {
               "bold": true
-            },
-            "text": "Environnements techniques : "
+            }
           },
           {
-            "properties": {},
-            "text": "Power Query, Power BI, Excel, Qlikview, Qliksense, HerculePro, Sage X3, Quable"
+            "text": "Power Query, Power BI, Excel, Qlikview, Qliksense, HerculePro, Sage X3, Quable",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4077,8 +4073,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Chef de Projets web"
+            "text": "Chef de Projets web",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4096,8 +4092,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Concevoir un business plan et un cahier des charges de site web"
+            "text": "Concevoir un business plan et un cahier des charges de site web",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4115,8 +4111,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Mettre en place les plans de communication"
+            "text": "Mettre en place les plans de communication",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4134,8 +4130,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Lancer les campagnes SEA, Social Ads et les Emailings"
+            "text": "Lancer les campagnes SEA, Social Ads et les Emailings",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4154,8 +4150,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Webmaster e-commerce"
+            "text": "Webmaster e-commerce",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4173,8 +4169,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Gérer le site e-commerce existant, développer le SEO"
+            "text": "Gérer le site e-commerce existant, développer le SEO",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4192,8 +4188,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Intégrer de nouveaux produits"
+            "text": "Intégrer de nouveaux produits",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4211,8 +4207,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Créer les visuels de communication web, print et vidéos"
+            "text": "Créer les visuels de communication web, print et vidéos",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4239,14 +4235,14 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : ",
             "properties": {
               "bold": true
-            },
-            "text": "Environnements techniques : "
+            }
           },
           {
-            "properties": {},
-            "text": "Wordpress, Woocommerce, Illustrator, Mailchimp, Meta Businness Suite, Google Ads"
+            "text": "Wordpress, Woocommerce, Illustrator, Mailchimp, Meta Businness Suite, Google Ads",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4398,8 +4394,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Data Analyst"
+            "text": "Data Analyst",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4417,8 +4413,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Intégrer les campagnes digitales sur les différents sites web"
+            "text": "Intégrer les campagnes digitales sur les différents sites web",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4436,8 +4432,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construire les tableaux de reporting et d'analyse des données utilisateurs issues des campagnes"
+            "text": "Construire les tableaux de reporting et d'analyse des données utilisateurs issues des campagnes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4455,8 +4451,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Enrichir et nettoyer les bases de données existantes"
+            "text": "Enrichir et nettoyer les bases de données existantes",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4475,8 +4471,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Product Owner"
+            "text": "Product Owner",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4494,8 +4490,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Manager le développement d'un projet de logiciel interne de requêtage de base de données"
+            "text": "Manager le développement d'un projet de logiciel interne de requêtage de base de données",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4513,8 +4509,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Coordonner un Tech Lead et 2 développeurs"
+            "text": "Coordonner un Tech Lead et 2 développeurs",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4532,8 +4528,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Recueillir les besoins métiers"
+            "text": "Recueillir les besoins métiers",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4551,8 +4547,8 @@
         },
         "runs": [
           {
-            "properties": {},
-            "text": "Construire et mettre à jour le Kanban"
+            "text": "Construire et mettre à jour le Kanban",
+            "properties": {}
           }
         ],
         "tags": [
@@ -4579,14 +4575,14 @@
         },
         "runs": [
           {
+            "text": "Environnements techniques : ",
             "properties": {
               "bold": true
-            },
-            "text": "Environnements techniques : "
+            }
           },
           {
-            "properties": {},
-            "text": "Google Analytics, Excel, HTML-CSS, Jira Confluence, MongoDB, Python, Javascript"
+            "text": "Google Analytics, Excel, HTML-CSS, Jira Confluence, MongoDB, Python, Javascript",
+            "properties": {}
           }
         ],
         "tags": [
