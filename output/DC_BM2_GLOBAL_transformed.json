@@ -1227,7 +1227,7 @@
         },
         "runs": [
           {
-            "text": "DEVELOPPEMENT FRONT",
+            "text": "Developpement front",
             "properties": {
               "bold": true
             }
@@ -1320,7 +1320,7 @@
         },
         "runs": [
           {
-            "text": "DEVELOPPEMENT BACK",
+            "text": "Developpement back",
             "properties": {
               "bold": true
             }
@@ -1431,7 +1431,7 @@
         },
         "runs": [
           {
-            "text": "IMPLEMENTATION D’ALGORITHME",
+            "text": "Implementation d’algorithme",
             "properties": {
               "bold": true
             }
@@ -1669,7 +1669,7 @@
         },
         "runs": [
           {
-            "text": "GESTION DE PROJET",
+            "text": "Gestion de projet",
             "properties": {
               "bold": true
             }
@@ -1755,7 +1755,7 @@
         },
         "runs": [
           {
-            "text": "DEVELOPPEMENT LOGICIEL",
+            "text": "Developpement logiciel",
             "properties": {
               "bold": true
             }
@@ -2062,7 +2062,7 @@
         },
         "runs": [
           {
-            "text": "GESTION DE PROJET",
+            "text": "Gestion de projet",
             "properties": {
               "bold": true
             }
@@ -2166,7 +2166,7 @@
         },
         "runs": [
           {
-            "text": "DEVELOPPEMENT D’UNE INTERFACE",
+            "text": "Developpement d’une interface",
             "properties": {
               "bold": true
             }
@@ -2270,7 +2270,7 @@
         },
         "runs": [
           {
-            "text": "DEVELOPPEMENT D’ALGORITHMES DE TRAITEMENT AUDIO",
+            "text": "Developpement d’algorithmes de traitement audio",
             "properties": {
               "bold": true
             }
@@ -2329,7 +2329,7 @@
         },
         "runs": [
           {
-            "text": "Utilisation d’algorithmes d’extraction des MFCC",
+            "text": "Utilisation d’algorithmes d’extraction des mfcc",
             "properties": {}
           }
         ],
@@ -2359,7 +2359,7 @@
         },
         "runs": [
           {
-            "text": "DEVELOPPEMENT D’ALGORITHME D’APPRENTISSAGE",
+            "text": "Developpement d’algorithme d’apprentissage",
             "properties": {
               "bold": true
             }
@@ -2380,7 +2380,7 @@
         },
         "runs": [
           {
-            "text": "  Création d’une base de données de sons catégorisés",
+            "text": "  création d’une base de données de sons catégorisés",
             "properties": {}
           }
         ],
@@ -2399,7 +2399,7 @@
         },
         "runs": [
           {
-            "text": "Tests d’algorithmes de classification (SVM, SVC) sur plusieurs catégories de sons : voix, musique, nature, foule, échantillons instrumentaux, etc..",
+            "text": "Tests d’algorithmes de classification (svm, svc) sur plusieurs catégories de sons : voix, musique, nature, foule, échantillons instrumentaux, etc..",
             "properties": {}
           }
         ],
@@ -2595,7 +2595,7 @@
         },
         "runs": [
           {
-            "text": "Activités : ",
+            "text": "Activités ",
             "properties": {
               "bold": true
             }
@@ -2913,7 +2913,7 @@
         },
         "runs": [
           {
-            "text": "Activités : ",
+            "text": "Activités ",
             "properties": {
               "bold": true
             }
@@ -3220,7 +3220,7 @@
         },
         "runs": [
           {
-            "text": "Activités : ",
+            "text": "Activités ",
             "properties": {
               "bold": true
             }
@@ -3473,7 +3473,7 @@
         },
         "runs": [
           {
-            "text": "Activités : Réalisation de métamatériaux acoustiques",
+            "text": "Activités : réalisation de métamatériaux acoustiques",
             "properties": {
               "bold": true
             }
@@ -3631,7 +3631,7 @@
         },
         "runs": [
           {
-            "text": "Activités : Caractérisation de collage de pièces aéronautiques par ondes guidées",
+            "text": "Activités : caractérisation de collage de pièces aéronautiques par ondes guidées",
             "properties": {
               "bold": true
             }
@@ -3891,7 +3891,7 @@
         },
         "runs": [
           {
-            "text": "Activités : ",
+            "text": "Activités ",
             "properties": {
               "bold": true
             }
@@ -4013,7 +4013,7 @@
         },
         "runs": [
           {
-            "text": "Activités : Caractérisation de collage de pièces aéronautiques par ondes guidées",
+            "text": "Activités : caractérisation de collage de pièces aéronautiques par ondes guidées",
             "properties": {
               "bold": true
             }
@@ -4284,7 +4284,7 @@
         },
         "runs": [
           {
-            "text": "Activités : ",
+            "text": "Activités ",
             "properties": {
               "bold": true
             }

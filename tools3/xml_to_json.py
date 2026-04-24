@@ -1624,17 +1624,14 @@ def remove_double_paras_and_spaces (data: Dict[str, Any]) -> None:
 def add_colons_between_list_levels(data: Dict[str, Any]) -> None:
     """
     Ajoute des ":" entre deux niveaux de listes successifs (1→2, 2→3, etc).
-    SAUF entre ilvl 0 et 1.
-    Si un paragraphe avec ilvl est suivi d'un paragraphe avec un ilvl supérieur
-    (sauf 0→1), ajoute " :" à la fin du premier paragraphe s'il n'existe pas.
-
-    Modifie in-place.
-
+    SAUF entre ilvl 0 et 1 (et supprime le ":" s'il existe).
+    
     Logique:
     - Parcourir les paragraphes avec ilvl
-    - Détecter quand on passe d'un ilvl inférieur à un ilvl supérieur
-    - Exclure la transition 0→1
-    - Si le paragraphe n'a pas ":", l'ajouter
+    - Si transition vers niveau supérieur (sauf 0→1): ajouter " :" si absent
+    - Si transition 0→1: SUPPRIMER le ":" s'il existe
+
+    Modifie in-place.
     """
     content = data.get('document', {}).get('content', [])
 
@@ -1652,17 +1649,27 @@ def add_colons_between_list_levels(data: Dict[str, Any]) -> None:
                     curr_ilvl_int = int(curr_ilvl) if isinstance(curr_ilvl, str) else curr_ilvl
                     next_ilvl_int = int(next_ilvl) if isinstance(next_ilvl, str) else next_ilvl
 
-                    # Si niveau suivant > niveau courant, SAUF la transition 0→1
-                    if next_ilvl_int > curr_ilvl_int and not (curr_ilvl_int == 0 and next_ilvl_int == 1):
-                        text = get_text_from_element(element)
-
-                        # Vérifier si ":" est déjà présent
-                        if ':' not in text:
-                            # Ajouter " :" à la fin du dernier run du paragraphe courant
+                    if next_ilvl_int > curr_ilvl_int:
+                        # Transition 0→1: SUPPRIMER le ":" s'il existe
+                        if curr_ilvl_int == 0 and next_ilvl_int == 1:
                             if 'runs' in element and len(element['runs']) > 0:
                                 last_run = element['runs'][-1]
                                 if 'text' in last_run:
-                                    last_run['text'] += ' :'
+                                    # Supprimer " :" ou ":" à la fin
+                                    last_run['text'] = last_run['text'].rstrip()
+                                    if last_run['text'].endswith(' :'):
+                                        last_run['text'] = last_run['text'][:-2]
+                                    elif last_run['text'].endswith(':'):
+                                        last_run['text'] = last_run['text'][:-1]
+                        # Autres transitions: AJOUTER ":" s'il n'existe pas
+                        else:
+                            text = get_text_from_element(element)
+                            if ':' not in text:
+                                # Ajouter " :" à la fin du dernier run du paragraphe courant
+                                if 'runs' in element and len(element['runs']) > 0:
+                                    last_run = element['runs'][-1]
+                                    if 'text' in last_run:
+                                        last_run['text'] += ' :'
                 except (ValueError, TypeError):
                     # Ignorer les conversions invalides
                     pass
@@ -1697,9 +1704,12 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         text = get_text_from_element(itag) if itag else ""
         props = itag.get('properties', {})
 
-        if 'header' in tags and any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
+        if 'header' in tags and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_DOCUMENT):
             props['style'] = 'DC_H_DC'
-        elif 'main_skills' in tags and any(keyword in text for keyword in KEYWORDS_MAIN_SKILLS):
+            text = text.upper()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
+        elif 'main_skills' in tags and any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS):
             props['style'] = 'DC_T1_Sections'
         elif 'education' in tags and any(keyword in text for keyword in KEYWORDS_EDUCATION):
             props['style'] = 'DC_T1_Sections'
@@ -1708,7 +1718,10 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
 
         if 'header' in tags and 'DC_H_DC' not in props.get('style', '') and len(text) > 0 and len(text) <= 5:
             props['style'] = 'DC_H_Trigramme'
-        elif 'header' in tags and 'DC_H_DC' not in props.get('style', '') and any(keyword in text for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5:
+            text = text.upper()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
+        elif 'header' in tags and 'DC_H_DC' not in props.get('style', '') and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5:
             props['style'] = 'DC_H_XP'
 
         if 'header' in tags and 'DC_H_XP' not in props.get('style', '') and 'DC_H_DC' not in props.get('style', '') and len(text) > 5:
@@ -1795,6 +1808,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             continue
 
         ilvl = props.get('ilvl')
+        text = get_text_from_element(ilist)
         if not ilvl:
             continue
         elif ilvl == "0":
@@ -1802,6 +1816,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             # Ajouter outline_level pour DC_1st_bullet
             if 'DC_1st_bullet' in STYLE_OUTLINE_MAPPING:
                 props['outline_level'] = STYLE_OUTLINE_MAPPING['DC_1st_bullet']
+                text = text.capitalize()
+                if 'runs' in ilist and ilist['runs']:
+                    ilist['runs'][0]['text'] = text
         elif ilvl == "1":
             props['style'] = 'DC_2nd_bullet'
         elif ilvl == "2":
