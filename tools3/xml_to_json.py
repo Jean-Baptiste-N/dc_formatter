@@ -1380,7 +1380,7 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
             has_ilvl = element.get('properties', {}).get('ilvl') is not None
 
             # Détecter le header "Expériences Professionnelles"
-            if any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+            if any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
                 current_section = 'professional_experience'
                 just_after_prof_exp_header = True
                 i += 1
@@ -1397,8 +1397,8 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
             # Cas 2 : Paragraph with KEYWORDS_TECHNICAL_SKILLS and no ilvl
             # SAUF si le paragraphe commence par "Contexte"
             elif current_section == 'professional_experience' and not has_ilvl:
-                if not text.startswith('contexte'):  # Exclure les paragraphes commençant par "Contexte"
-                    if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
+                if not text.startswith('contexte') or not len(text) > 100:
+                    if any(keyword in text.lower() for keyword in KEYWORDS_TECHNICAL_SKILLS):
                         should_create_table = True
 
             if should_create_table and i + 1 < len(content):
