@@ -1758,10 +1758,19 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                 itag['runs'][0]['text'] = text
         elif 'main_skills' in tags and any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS):
             props['style'] = 'DC_T1_Sections'
+            text = text.capitalize()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
         elif 'education' in tags and any(keyword in text for keyword in KEYWORDS_EDUCATION):
             props['style'] = 'DC_T1_Sections'
+            text = text.capitalize()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
         elif 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
             props['style'] = 'DC_T1_Sections'
+            text = text.capitalize()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
 
         if 'header' in tags and 'DC_H_DC' not in props.get('style', '') and len(text) > 0 and len(text) <= 5:
             props['style'] = 'DC_H_Trigramme'
