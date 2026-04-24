@@ -58,6 +58,7 @@ def extract_page_dimensions_from_template(template_path: str = None) -> dict:
     A4_WIDTH_TWIPS = round(21 * 1440 / 2.54)  # ≈ 11906 twips
     A4_HEIGHT_TWIPS = round(29.7 * 1440 / 2.54)  # ≈ 16838 twips
     TWO_CM_TWIPS = round(2 * 1440 / 2.54)  # ≈ 1134 twips
+    THREE_CM_TWIPS = round(3 * 1440 / 2.54)  # ≈ 1701 twips
     FIVE_CM_TWIPS = round(5 * 1440 / 2.54)  # ≈ 2835 twips
 
     defaults = {
@@ -68,7 +69,8 @@ def extract_page_dimensions_from_template(template_path: str = None) -> dict:
         'bottom_margin': TWO_CM_TWIPS,  # 2 cm en twips
         'left_margin': TWO_CM_TWIPS,  # 2 cm en twips
         'right_margin': TWO_CM_TWIPS,  # 2 cm en twips
-        'col_fixed_width': FIVE_CM_TWIPS  # 5 cm en twips
+        'col_fixed_width_3': THREE_CM_TWIPS,  # 3 cm en twips
+        'col_fixed_width_5': FIVE_CM_TWIPS  # 5 cm en twips
     }
 
     if not template_path.exists():
@@ -117,7 +119,8 @@ def extract_page_dimensions_from_template(template_path: str = None) -> dict:
                             dimensions['right_margin'] = int(right_match.group(1))
 
                 # Ajouter largeur colonne fixe
-                dimensions['col_fixed_width'] = 5 * 567
+                dimensions['col_fixed_width_3'] = THREE_CM_TWIPS
+                dimensions['col_fixed_width_5'] = FIVE_CM_TWIPS
 
                 # Fusionner avec les valeurs par défaut
                 result = defaults.copy()
@@ -131,14 +134,15 @@ def extract_page_dimensions_from_template(template_path: str = None) -> dict:
         print(f"❌ Erreur lors de la lecture du template: {e}")
         return defaults
 
-def calculate_table_widths(page_dims: dict = None) -> tuple:
+def get_table_widths_for_section(section: str = None, page_dims: dict = None) -> tuple:
     """
     Calcule les largeurs des colonnes pour les 2 types de tables.
 
-    Type 1 (education): Col1 = 4cm (étroite), Col2 = reste (large)
-    Type 2 (professional): Col1 = reste (large), Col2 = 4cm (étroite)
+    Type 1 (education): Col1 = 3cm (étroite), Col2 = reste (large)
+    Type 2 (professional): Col1 = reste (large), Col2 = 5cm (étroite)
 
     Args:
+        section (str): 'education', 'professional_experience' ou None
         page_dims (dict): Dimensions de page avec left_margin, right_margin, page_width
 
     Returns:
@@ -148,20 +152,27 @@ def calculate_table_widths(page_dims: dict = None) -> tuple:
     if page_dims is None:
         page_dims = extract_page_dimensions_from_template()
 
-    col_fixed_width = page_dims['col_fixed_width']
+    col_fixed_width_3 = page_dims['col_fixed_width_3']
+    col_fixed_width_5 = page_dims['col_fixed_width_5']
     usable_width = page_dims['usable_width']
 
-    # Type 1 (Education): Col1 = 4cm, Col2 = reste
-    type1_col1 = col_fixed_width
-    type1_col2 = usable_width - col_fixed_width
+    # Type 1 (Education): Col1 = 3cm, Col2 = reste
+    edu_table_col1 = col_fixed_width_3
+    edu_table_col2 = usable_width - col_fixed_width_3
 
-    # Type 2 (Professional): Col1 = reste, Col2 = 4cm
-    type2_col1 = usable_width - col_fixed_width
-    type2_col2 = col_fixed_width
+    # Type 2 (Professional): Col1 = reste, Col2 = 5cm
+    xp_table_col1 = usable_width - col_fixed_width_5
+    xp_table_col2 = col_fixed_width_5
 
-    return (col_fixed_width, usable_width,
-            (type1_col1, type1_col2),
-            (type2_col1, type2_col2))
+    # Type default: Col1 = Col2 = moitié de l'usable width
+    default_table_col1 = usable_width // 2
+    default_table_col2 = usable_width - default_table_col1
+
+    edu_table_widths = (edu_table_col1, edu_table_col2)
+    xp_table_widths = (xp_table_col1, xp_table_col2)
+    default_table_widths = (default_table_col1, default_table_col2)
+
+    return (usable_width, edu_table_widths if section == 'education' else None, xp_table_widths if section == 'professional_experience' else None, default_table_widths)
 
 def extract_run_properties(run, ns: Dict) -> Dict[str, Any]:
     """Extrait les propriétés d'un run (texte formaté)"""
@@ -627,70 +638,49 @@ def apply_section_tags(data: Dict[str, Any]) -> None:
         if current_section not in element['tags']:
             element['tags'].append(current_section)
 
-def get_table_widths_for_section(section: str = None, page_dims: Dict[str, int] = None) -> tuple:
-    """
-    Retourne les largeurs des colonnes selon la section.
-    Calcule automatiquement basé sur les dimensions du template.
-
-    Args:
-        section: 'education', 'professional_experience', ou None (défaut)
-        page_dims: Dimensions de page (si None, utilise extract_page_dimensions_from_template())
-
-    Returns:
-        Tuple (col1_width, col2_width) en twips
-    """
-    if page_dims is None:
-        page_dims = extract_page_dimensions_from_template()
-
-    _, usable_width, type1_widths, type2_widths = calculate_table_widths(page_dims)
-
-    if section == 'education':
-        return type1_widths
-    elif section == 'professional_experience':
-        return type2_widths
-    else:
-        return (usable_width // 2, usable_width // 2)
 
 def create_empty_table_2x2(index: int, row_height: int = 360,
                            col1_width: int = None, col2_width: int = None,
-                           section: str = None, page_dims: Dict[str, int] = None,
+                           section: str = None,
                            auto_generated: bool = False) -> Dict[str, Any]:
     """
     Crée une table 2x2 vide (sans paragraphes de remplissage) avec dimensions spécifiques par colonne.
-    Les dimensions sont calculées selon la section et les marges du template.
+    Les dimensions sont calculées selon la section et les marges du template, elles sont récupérées de la fonction get_table_widths_for_section.
 
     Args:
         index: Index dans le document
         row_height: Hauteur de la ligne en twips
         col1_width: Largeur colonne 1 (twips) - si None, utilisé section+page_dims
         col2_width: Largeur colonne 2 (twips) - si None, utilisé section+page_dims
-        section: 'education' ou 'professional_experience'
-        page_dims: Dimensions de page extraites du template
+        section: 'education' ou 'professional_experience' ou 'autre'
         auto_generated: Flag pour indiquer que la table a été créée automatiquement
 
     Returns:
         Table 2x2 structurée avec dimensions (sans paragraphes vides)
     """
-    if page_dims is None:
-        page_dims = extract_page_dimensions_from_template()
 
     if col1_width is None or col2_width is None:
-        col1_width, col2_width = get_table_widths_for_section(section, page_dims)
+        if section == 'education':
+            col1_width, col2_width = get_table_widths_for_section('education')
+        elif section == 'professional_experience':
+            col1_width, col2_width = get_table_widths_for_section('professional_experience')
+        else:
+            col1_width, col2_width = get_table_widths_for_section(None)
 
     table_total_width = col1_width + col2_width
 
     # Définir les bordures selon la section
     if section == 'education':
-        # Tables éducation : toutes les bordures
+        # Tables éducation : aucune bordure
         borders = {
-            'top': {'size': '10', 'color': '000000'},
-            'bottom': {'size': '10', 'color': '000000'},
-            'left': {'size': '10', 'color': '000000'},
-            'right': {'size': '10', 'color': '000000'},
-            'insideH': {'size': '10', 'color': '000000'},
-            'insideV': {'size': '10', 'color': '000000'}
+            'top': None,
+            'bottom': None,
+            'left': None,
+            'right': None,
+            'insideH': None,
+            'insideV': None
         }
-    else:
+    elif section == 'professional_experience':
         # Tables expériences professionelles : seulement bottom border
         borders = {
             'top': None,
@@ -700,9 +690,25 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             'insideH': None,
             'insideV': None
         }
+    else:
+        # Par défaut, pas de bordures
+        borders = {
+            'top': None,
+            'bottom': None,
+            'left': None,
+            'right': None,
+            'insideH': None,
+            'insideV': None
+        }
 
-    return {
+    insert_table = {
         'index': index,
+        'type': 'Paragraph',
+        'properties': {},
+        'runs': []
+    },
+    {
+        'index': index + 1,
         'type': 'Table',
         'auto_generated': auto_generated,
         'properties': {
@@ -717,7 +723,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
         'rows': [
             {
                 'row_index': 0,
-                'height': row_height,
+                'height': 360,
                 'cells': [
                     {
                         'col_index': 0,
@@ -732,7 +738,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
                         'col_index': 1,
                         'width': col2_width,
                         'properties': {
-                            'hAlign': 'right',
+                            'hAlign': 'right' if section == 'professional_experience' else 'left',
                             'vAlign': 'center'
                         },
                         'paragraphs': []
@@ -741,7 +747,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             },
             {
                 'row_index': 1,
-                'height': row_height,
+                'height': 360,
                 'cells': [
                     {
                         'col_index': 0,
@@ -756,7 +762,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
                         'col_index': 1,
                         'width': col2_width,
                         'properties': {
-                            'hAlign': 'right',
+                            'hAlign': 'right' if section == 'professional_experience' else 'left',
                             'vAlign': 'center'
                         },
                         'paragraphs': []
@@ -764,7 +770,15 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
                 ]
             }
         ]
+    },
+    {
+        'index': index + 2,
+        'type': 'Paragraph',
+        'properties': {},
+        'runs': []
     }
+
+    return insert_table
 
 def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -1032,41 +1046,38 @@ def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Di
 
     return blocks
 
-def create_edu_table(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> Dict[str, List[int]]:
+def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Crée les structures des tables éducation (Formation et Langues).
+    Crée les structures des tables éducation : itération sur les titres en KEYWORDS_EDUCATION, de base formations + langues.
 
-    Responsabilité: Créer les tables vides et les insérer dans le contenu.
-
-    1. Détecte le header "Formation" et crée une table structurée 2xN avec blocs
-    2. Détecte le header "Langues" et crée une table structurée 2xN avec paires langue/description
-    3. Marque les indices des sources à supprimer
+    Responsabilité: Créer les tables vides et les insérer dans le contenu. Pour chaque header détecté → crée une table 2x2 vide après
 
     Args:
         data: Structure du document JSON
-        row_height: Hauteur des lignes en twips
-        page_dims: Dimensions de page (si None, utilise extract_page_dimensions_from_template())
 
     Returns:
-        Dict contenant:
-        - 'formation_paras': Paragraphes de Formation à traiter
-        - 'formation_blocks': Blocs Formation groupés
-        - 'lang_paras': Paragraphes Langues à traiter
-        - 'lang_blocks': Blocs Langues groupés (paires)
-        - 'indices_to_delete': Indices à supprimer
+        Dict retourné pour uniformité (sera utilisé par insert_text_edu_table)
     """
-    if page_dims is None:
-        page_dims = extract_page_dimensions_from_template()
-
     content = data.get('document', {}).get('content', [])
-    indices_to_delete = []
-    formation_paras = []
-    formation_blocks = []
-    lang_paras = []
-    lang_blocks = []
 
-    # ===== CRÉATION FORMATION =====
-    for i, element in enumerate(content):
+    # Créer des tables selon les conditions
+    new_content = []
+    just_after_edu_header = False
+    current_section = None
+
+    # Chercher le header "Expériences Professionnelles" d'avance
+    for elem in content:
+        if elem.get('type') == 'Paragraph':
+            elem_text = get_text_from_element(elem)
+            if any(keyword in elem_text.lower() for keyword in KEYWORDS_EDUCATION):
+                current_section = 'education'
+                break
+
+    i = 0
+    while i < len(content):
+        element = content[i]
+        new_content.append(element)
+
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element)
 
@@ -1126,35 +1137,14 @@ def create_edu_table(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
 
                 # Créer la table vide
                 if formation_paras and len(formation_blocks) > 0:
+                    col1_width, col2_width = get_table_widths_for_section('education', page_dims)
+
                     new_table = create_empty_table_2x2(
                         i + 1,
-                        row_height,
                         section='education',
-                        page_dims=page_dims,
                         auto_generated=True
                     )
 
-                    col1_width, col2_width = get_table_widths_for_section('education', page_dims)
-                    new_table['rows'] = []
-                    for row_idx in range(len(formation_blocks)):
-                        new_table['rows'].append({
-                            'row_index': row_idx,
-                            'height': row_height,
-                            'cells': [
-                                {
-                                    'col_index': 0,
-                                    'width': col1_width,
-                                    'properties': {'hAlign': 'left', 'vAlign': 'center'},
-                                    'paragraphs': []
-                                },
-                                {
-                                    'col_index': 1,
-                                    'width': col2_width,
-                                    'properties': {'hAlign': 'left', 'vAlign': 'center'},
-                                    'paragraphs': []
-                                }
-                            ]
-                        })
                     new_table['row_count'] = len(formation_blocks)
 
                     # Insérer la table
@@ -1227,35 +1217,14 @@ def create_edu_table(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
                 else:
                     lang_blocks.append((split_paras[i], None))
 
+            col1_width, col2_width = get_table_widths_for_section('education')
+
             new_lang_table = create_empty_table_2x2(
                 lang_header_idx + 1,
-                row_height,
                 section='education',
-                page_dims=page_dims,
                 auto_generated=True
             )
 
-            col1_width, col2_width = get_table_widths_for_section('education', page_dims)
-            new_lang_table['rows'] = []
-            for row_idx in range(len(lang_blocks)):
-                new_lang_table['rows'].append({
-                    'row_index': row_idx,
-                    'height': row_height,
-                    'cells': [
-                        {
-                            'col_index': 0,
-                            'width': col1_width,
-                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
-                            'paragraphs': []
-                        },
-                        {
-                            'col_index': 1,
-                            'width': col2_width,
-                            'properties': {'hAlign': 'left', 'vAlign': 'center'},
-                            'paragraphs': []
-                        }
-                    ]
-                })
             new_lang_table['row_count'] = len(lang_blocks)
 
             # Insérer la table
@@ -1339,7 +1308,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any])
 
     data['document']['content'] = content
 
-def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dict[str, int] = None) -> Dict[str, Any]:
+def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     """
     Crée les structures des tables professionnelles (Expériences Professionnelles).
 
@@ -1353,8 +1322,6 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
 
     Args:
         data: Structure du document JSON
-        row_height: Hauteur des lignes en twips
-        page_dims: Dimensions de page (si None, utilise extract_page_dimensions_from_template())
 
     Returns:
         Dict contenant:
@@ -1454,9 +1421,7 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
             if should_create_table:
                 new_table = create_empty_table_2x2(
                     len(new_content),
-                    row_height,
                     section=current_section,
-                    page_dims=page_dims,
                     auto_generated=True
                 )
                 new_content.append(new_table)
@@ -2014,14 +1979,14 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_p
     create_language_header(data)
 
     # Créer les structures (Formation et Langues)
-    edu_creation_result = create_edu_table(data, row_height=360, page_dims=page_dims)
+    edu_creation_result = create_edu_table(data)
 
     # Remplir le contenu et supprimer les sources
     insert_text_edu_table(data, edu_creation_result)
 
     # ===== TABLES EXPÉRIENCES PROFESSIONNELLES =====
     # Créer les structures
-    xp_creation_result = create_xp_tables(data, row_height=360, page_dims=page_dims)
+    xp_creation_result = create_xp_tables(data)
 
     # Remplir le contenu et supprimer les sources
     insert_text_xp_tables(data, xp_creation_result)

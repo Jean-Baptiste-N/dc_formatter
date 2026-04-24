@@ -485,7 +485,7 @@
         },
         "runs": [
           {
-            "text": "Transformation avec Data Build Tool, SQL, Python",
+            "text": "Transformation avec data build tool, sql, python",
             "properties": {
               "bold": true
             }
@@ -1108,67 +1108,32 @@
         ]
       },
       {
+        "index": 72,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_Normal",
+          "paraId": "00000049"
         },
-        "runs": []
+        "tags": [
+          "education"
+        ]
       },
       {
-        "index": 72,
+        "index": 73,
         "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "education",
-          "borders": {
-            "top": {
-              "size": "10",
-              "color": "000000"
-            },
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": {
-              "size": "10",
-              "color": "000000"
-            },
-            "right": {
-              "size": "10",
-              "color": "000000"
-            },
-            "insideH": {
-              "size": "10",
-              "color": "000000"
-            },
-            "insideV": {
-              "size": "10",
-              "color": "000000"
-            }
-          },
-          "style": "DC_Table_Content"
-        },
-        "row_count": 4,
-        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
-            "height": 360,
             "cells": [
               {
                 "col_index": 0,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Year"
+                      "style": "Normal",
+                      "paraId": "0000004A"
                     },
                     "runs": [
                       {
@@ -1183,16 +1148,13 @@
               },
               {
                 "col_index": 1,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "0000004B"
                     },
                     "runs": [
                       {
@@ -1202,9 +1164,11 @@
                     ]
                   },
                   {
+                    "index": 1,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "0000004C"
                     },
                     "runs": [
                       {
@@ -1212,27 +1176,32 @@
                         "properties": {}
                       }
                     ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content",
+                      "paraId": "0000004D"
+                    }
                   }
                 ]
               }
-            ]
+            ],
+            "height": 1012
           },
           {
             "row_index": 1,
-            "height": 360,
             "cells": [
               {
                 "col_index": 0,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Year"
+                      "style": "Normal",
+                      "paraId": "0000004E"
                     },
                     "runs": [
                       {
@@ -1247,16 +1216,13 @@
               },
               {
                 "col_index": 1,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "0000004F"
                     },
                     "runs": [
                       {
@@ -1266,9 +1232,11 @@
                     ]
                   },
                   {
+                    "index": 1,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "00000050"
                     },
                     "runs": [
                       {
@@ -1276,27 +1244,32 @@
                         "properties": {}
                       }
                     ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content",
+                      "paraId": "00000051"
+                    }
                   }
                 ]
               }
-            ]
+            ],
+            "height": 1012
           },
           {
             "row_index": 2,
-            "height": 360,
             "cells": [
               {
                 "col_index": 0,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Year"
+                      "style": "Normal",
+                      "paraId": "00000052"
                     },
                     "runs": [
                       {
@@ -1311,16 +1284,13 @@
               },
               {
                 "col_index": 1,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "00000053"
                     },
                     "runs": [
                       {
@@ -1330,9 +1300,11 @@
                     ]
                   },
                   {
+                    "index": 1,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "00000054"
                     },
                     "runs": [
                       {
@@ -1340,27 +1312,32 @@
                         "properties": {}
                       }
                     ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content",
+                      "paraId": "00000055"
+                    }
                   }
                 ]
               }
-            ]
+            ],
+            "height": 1012
           },
           {
             "row_index": 3,
-            "height": 360,
             "cells": [
               {
                 "col_index": 0,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Year"
+                      "style": "Normal",
+                      "paraId": "00000056"
                     },
                     "runs": [
                       {
@@ -1375,16 +1352,13 @@
               },
               {
                 "col_index": 1,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
                 "paragraphs": [
                   {
+                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "00000057"
                     },
                     "runs": [
                       {
@@ -1394,9 +1368,11 @@
                     ]
                   },
                   {
+                    "index": 1,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Content"
+                      "style": "Normal",
+                      "paraId": "00000058"
                     },
                     "runs": [
                       {
@@ -1404,19 +1380,43 @@
                         "properties": {}
                       }
                     ]
+                  },
+                  {
+                    "index": 2,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content",
+                      "paraId": "00000059"
+                    }
                   }
                 ]
               }
-            ]
+            ],
+            "height": 1012
           }
+        ],
+        "properties": {
+          "table_width": "8823.0",
+          "table_width_type": "dxa",
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "row_count": 4,
+        "col_count": 2,
+        "tags": [
+          "education"
         ]
       },
       {
+        "index": 74,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_Normal",
+          "paraId": "0000005A"
         },
-        "runs": []
+        "tags": [
+          "education"
+        ]
       },
       {
         "type": "Paragraph",
@@ -1442,7 +1442,7 @@
         "runs": []
       },
       {
-        "index": 77,
+        "index": 76,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1536,7 +1536,8 @@
               }
             ]
           }
-        ]
+        ],
+        "edu_type": "langues"
       },
       {
         "type": "Paragraph",
@@ -1555,7 +1556,7 @@
         },
         "runs": [
           {
-            "text": "Expériences Professionnelles",
+            "text": "Expériences professionnelles",
             "properties": {
               "bold": true
             }
@@ -1577,7 +1578,7 @@
         ]
       },
       {
-        "index": 79,
+        "index": 81,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2254,7 +2255,7 @@
         "runs": []
       },
       {
-        "index": 110,
+        "index": 112,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2794,6 +2795,61 @@
         ]
       },
       {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 132,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": {
+              "size": "10",
+              "color": "000000"
+            },
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": {
+              "size": "10",
+              "color": "000000"
+            },
+            "right": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideH": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideV": {
+              "size": "10",
+              "color": "000000"
+            }
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [],
+        "edu_type": "certifications"
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
         "index": 131,
         "type": "Paragraph",
         "properties": {
@@ -2955,7 +3011,7 @@
         "runs": []
       },
       {
-        "index": 143,
+        "index": 148,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3936,7 +3992,7 @@
         "runs": []
       },
       {
-        "index": 191,
+        "index": 196,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4073,7 +4129,7 @@
         },
         "runs": [
           {
-            "text": "Chef de Projets web",
+            "text": "Chef de projets web",
             "properties": {}
           }
         ],
@@ -4257,7 +4313,7 @@
         "runs": []
       },
       {
-        "index": 204,
+        "index": 209,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4394,7 +4450,7 @@
         },
         "runs": [
           {
-            "text": "Data Analyst",
+            "text": "Data analyst",
             "properties": {}
           }
         ],
@@ -4471,7 +4527,7 @@
         },
         "runs": [
           {
-            "text": "Product Owner",
+            "text": "Product owner",
             "properties": {}
           }
         ],

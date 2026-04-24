@@ -463,18 +463,58 @@
       {
         "index": 32,
         "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": {
+              "size": "10",
+              "color": "000000"
+            },
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": {
+              "size": "10",
+              "color": "000000"
+            },
+            "right": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideH": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideV": {
+              "size": "10",
+              "color": "000000"
+            }
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 4,
+        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -483,17 +523,20 @@
                       }
                     ]
                   }
-                ],
-                "width": 976
+                ]
               },
               {
                 "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -502,23 +545,26 @@
                       }
                     ]
                   }
-                ],
-                "width": 8662
+                ]
               }
-            ],
-            "height": 390
+            ]
           },
           {
             "row_index": 1,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -527,17 +573,20 @@
                       }
                     ]
                   }
-                ],
-                "width": 976
+                ]
               },
               {
                 "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -546,23 +595,26 @@
                       }
                     ]
                   }
-                ],
-                "width": 8662
+                ]
               }
-            ],
-            "height": 390
+            ]
           },
           {
             "row_index": 2,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -571,17 +623,20 @@
                       }
                     ]
                   }
-                ],
-                "width": 976
+                ]
               },
               {
                 "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -590,23 +645,26 @@
                       }
                     ]
                   }
-                ],
-                "width": 8662
+                ]
               }
-            ],
-            "height": 390
+            ]
           },
           {
             "row_index": 3,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -615,17 +673,20 @@
                       }
                     ]
                   }
-                ],
-                "width": 976
+                ]
               },
               {
                 "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -634,34 +695,19 @@
                       }
                     ]
                   }
-                ],
-                "width": 8662
+                ]
               }
-            ],
-            "height": 390
+            ]
           }
         ],
-        "properties": {
-          "table_width": "9639",
-          "table_width_type": "dxa",
-          "style": "DC_Normal"
-        },
-        "row_count": 4,
-        "col_count": 2,
-        "tags": [
-          "education"
-        ]
+        "edu_type": "diplomes"
       },
       {
-        "index": 33,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [],
-        "tags": [
-          "education"
-        ]
+        "runs": []
       },
       {
         "index": 34,
@@ -692,189 +738,7 @@
         ]
       },
       {
-        "index": 36,
-        "type": "Table",
-        "rows": [
-          {
-            "row_index": 0,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "TableParagraph"
-                    },
-                    "runs": [
-                      {
-                        "text": "2022",
-                        "properties": {}
-                      }
-                    ]
-                  }
-                ],
-                "width": 1008
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal"
-                    },
-                    "runs": [
-                      {
-                        "text": "C++ Certified Professional Programmer (CPP) - C++ Institute",
-                        "properties": {}
-                      }
-                    ]
-                  }
-                ],
-                "width": 9049
-              }
-            ],
-            "height": 390
-          },
-          {
-            "row_index": 1,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "TableParagraph"
-                    },
-                    "runs": [
-                      {
-                        "text": "2022",
-                        "properties": {}
-                      }
-                    ]
-                  }
-                ],
-                "width": 1008
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal"
-                    },
-                    "runs": [
-                      {
-                        "text": "C++ Certified Associate Programmer (CPA) - C++ Institute",
-                        "properties": {}
-                      }
-                    ]
-                  }
-                ],
-                "width": 9049
-              }
-            ],
-            "height": 390
-          },
-          {
-            "row_index": 2,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "TableParagraph"
-                    },
-                    "runs": [
-                      {
-                        "text": "2017",
-                        "properties": {}
-                      }
-                    ]
-                  }
-                ],
-                "width": 1008
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
-                  {
-                    "index": 0,
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "Normal"
-                    },
-                    "runs": [
-                      {
-                        "text": "Acoustique des instruments de musique, psychoacoustique, codage numérique - CNAM",
-                        "properties": {}
-                      }
-                    ]
-                  }
-                ],
-                "width": 9049
-              }
-            ],
-            "height": 390
-          }
-        ],
-        "properties": {
-          "table_width": "10058",
-          "table_width_type": "dxa",
-          "style": "DC_Normal"
-        },
-        "row_count": 3,
-        "col_count": 2,
-        "tags": [
-          "education"
-        ]
-      },
-      {
         "index": 37,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": [],
-        "tags": [
-          "education"
-        ]
-      },
-      {
-        "type": "Paragraph",
-        "runs": [
-          {
-            "text": "Langues",
-            "properties": {}
-          }
-        ],
-        "properties": {
-          "style": "DC_T1_Sections",
-          "outline_level": 0
-        },
-        "tags": "education",
-        "section": "education",
-        "auto_generated": true
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
-      },
-      {
-        "index": 39,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -931,12 +795,9 @@
                     },
                     "runs": [
                       {
-                        "text": "Langue",
+                        "text": "2022",
                         "properties": {}
                       }
-                    ],
-                    "tags": [
-                      "education"
                     ]
                   }
                 ]
@@ -956,12 +817,9 @@
                     },
                     "runs": [
                       {
-                        "text": "s",
+                        "text": "C++ Certified Professional Programmer (CPP) - C++ Institute",
                         "properties": {}
                       }
-                    ],
-                    "tags": [
-                      "education"
                     ]
                   }
                 ]
@@ -970,6 +828,178 @@
           },
           {
             "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2022",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "C++ Certified Associate Programmer (CPA) - C++ Institute",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2017",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Acoustique des instruments de musique, psychoacoustique, codage numérique - CNAM",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "edu_type": "certifications"
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "type": "Paragraph",
+        "runs": [
+          {
+            "text": "Langues",
+            "properties": {}
+          }
+        ],
+        "properties": {
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "tags": "education",
+        "section": "education",
+        "auto_generated": true
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 41,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": {
+              "size": "10",
+              "color": "000000"
+            },
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": {
+              "size": "10",
+              "color": "000000"
+            },
+            "right": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideH": {
+              "size": "10",
+              "color": "000000"
+            },
+            "insideV": {
+              "size": "10",
+              "color": "000000"
+            }
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
             "height": 360,
             "cells": [
               {
@@ -1004,28 +1034,12 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_Table_Content"
-                    },
-                    "runs": [
-                      {
-                        "text": "Anglais",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "education"
-                    ]
-                  }
-                ]
+                "paragraphs": []
               }
             ]
           },
           {
-            "row_index": 2,
+            "row_index": 1,
             "height": 360,
             "cells": [
               {
@@ -1043,7 +1057,7 @@
                     },
                     "runs": [
                       {
-                        "text": "Niveau B1",
+                        "text": "Anglais",
                         "properties": {}
                       }
                     ],
@@ -1060,11 +1074,28 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Niveau B1",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "education"
+                    ]
+                  }
+                ]
               }
             ]
           }
-        ]
+        ],
+        "edu_type": "langues"
       },
       {
         "type": "Paragraph",
@@ -1072,6 +1103,23 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 38,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "runs": [
+          {
+            "text": "Langues",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "education"
+        ]
       },
       {
         "index": 41,
@@ -1101,7 +1149,7 @@
         ]
       },
       {
-        "index": 42,
+        "index": 49,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1578,7 +1626,7 @@
         ]
       },
       {
-        "index": 64,
+        "index": 71,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1971,7 +2019,7 @@
         "runs": []
       },
       {
-        "index": 81,
+        "index": 88,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2505,7 +2553,7 @@
         "runs": []
       },
       {
-        "index": 107,
+        "index": 114,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2822,7 +2870,7 @@
         "runs": []
       },
       {
-        "index": 121,
+        "index": 128,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3129,7 +3177,7 @@
         "runs": []
       },
       {
-        "index": 134,
+        "index": 141,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3382,7 +3430,7 @@
         "runs": []
       },
       {
-        "index": 144,
+        "index": 151,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3811,7 +3859,7 @@
         "runs": []
       },
       {
-        "index": 164,
+        "index": 171,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4193,7 +4241,7 @@
         "runs": []
       },
       {
-        "index": 181,
+        "index": 188,
         "type": "Table",
         "auto_generated": true,
         "properties": {
