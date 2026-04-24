@@ -1101,20 +1101,46 @@
         ]
       },
       {
-        "index": 43,
+        "index": 42,
         "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_XP_Title",
+                      "outline_level": 1
                     },
                     "runs": [
                       {
@@ -1123,17 +1149,20 @@
                       }
                     ]
                   }
-                ],
-                "width": 7174
+                ]
               },
               {
                 "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_XP_Date"
                     },
                     "runs": [
                       {
@@ -1145,23 +1174,26 @@
                       }
                     ]
                   }
-                ],
-                "width": 3031
+                ]
               }
-            ],
-            "height": 454
+            ]
           },
           {
             "row_index": 1,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_XP_Poste"
                     },
                     "runs": [
                       {
@@ -1172,23 +1204,27 @@
                       }
                     ]
                   }
-                ],
-                "width": 10205
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
               }
-            ],
-            "height": 454
+            ]
           }
-        ],
+        ]
+      },
+      {
+        "type": "Paragraph",
         "properties": {
-          "table_width": "10206",
-          "table_width_type": "dxa",
           "style": "DC_Normal"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
         "index": 44,
@@ -1544,18 +1580,44 @@
       {
         "index": 64,
         "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "row_count": 2,
+        "col_count": 2,
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_XP_Title",
+                      "outline_level": 1
                     },
                     "runs": [
                       {
@@ -1564,17 +1626,20 @@
                       }
                     ]
                   }
-                ],
-                "width": 7174
+                ]
               },
               {
                 "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_XP_Date"
                     },
                     "runs": [
                       {
@@ -1586,23 +1651,26 @@
                       }
                     ]
                   }
-                ],
-                "width": 3031
+                ]
               }
-            ],
-            "height": 454
+            ]
           },
           {
             "row_index": 1,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_XP_Poste"
                     },
                     "runs": [
                       {
@@ -1613,23 +1681,27 @@
                       }
                     ]
                   }
-                ],
-                "width": 10205
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
               }
-            ],
-            "height": 454
+            ]
           }
-        ],
+        ]
+      },
+      {
+        "type": "Paragraph",
         "properties": {
-          "table_width": "10206",
-          "table_width_type": "dxa",
           "style": "DC_Normal"
         },
-        "row_count": 2,
-        "col_count": 2,
-        "tags": [
-          "professional_experience"
-        ]
+        "runs": []
       },
       {
         "index": 65,
@@ -1899,7 +1971,7 @@
         "runs": []
       },
       {
-        "index": 79,
+        "index": 81,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2433,7 +2505,7 @@
         "runs": []
       },
       {
-        "index": 105,
+        "index": 107,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2750,7 +2822,7 @@
         "runs": []
       },
       {
-        "index": 119,
+        "index": 121,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3057,7 +3129,7 @@
         "runs": []
       },
       {
-        "index": 132,
+        "index": 134,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3310,7 +3382,7 @@
         "runs": []
       },
       {
-        "index": 142,
+        "index": 144,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3739,7 +3811,7 @@
         "runs": []
       },
       {
-        "index": 162,
+        "index": 164,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4121,7 +4193,7 @@
         "runs": []
       },
       {
-        "index": 179,
+        "index": 181,
         "type": "Table",
         "auto_generated": true,
         "properties": {

@@ -352,70 +352,70 @@ def extract_row_height(row, ns: Dict) -> int:
 def normalize_paragraph_runs(para: Dict[str, Any]) -> Dict[str, Any]:
     """
     Normalise et fusionne les runs consécutifs d'un paragraphe.
-    
+
     ⚠️ IMPORTANT: Cette fonction FUSIONNE les runs avec les mêmes propriétés
     en concaténant leurs textes, pour que:
     1. La détection de keywords fonctionne mieux
     2. L'application des styles soit plus cohérente
     3. La structure JSON soit plus propre
-    
+
     Logique:
     - Fusionne les runs consécutifs avec EXACTEMENT les mêmes propriétés
     - Concatène les textes avec un espace si nécessaire
     - Préserve les runs avec propriétés différentes
-    
+
     Exemple:
-    - Input: [{"text": "dossier ", "properties": {}}, 
-              {"text": "de ", "properties": {}}, 
+    - Input: [{"text": "dossier ", "properties": {}},
+              {"text": "de ", "properties": {}},
               {"text": "compétences", "properties": {}}]
     - Output: [{"text": "dossier de compétences", "properties": {}}]
-    
+
     Args:
         para: Paragraphe JSON avec runs
-        
+
     Returns:
         Paragraphe normalisé avec runs fusionnés
     """
     if 'runs' not in para or not para['runs']:
         return para
-    
+
     runs = para['runs']
     normalized_runs = []
-    
+
     for run in runs:
         # Ignorer les runs sans texte
         if 'text' not in run or not run['text']:
             continue
-        
+
         # Obtenir les propriétés du run (ou dict vide si aucune)
         run_props = json.dumps(run.get('properties', {}), sort_keys=True)
-        
+
         # Vérifier s'il faut fusionner avec le dernier run
         if normalized_runs and 'text' in normalized_runs[-1]:
             last_run_props = json.dumps(normalized_runs[-1].get('properties', {}), sort_keys=True)
-            
+
             if run_props == last_run_props:
                 # Mêmes propriétés: fusionner les textes
                 last_text = normalized_runs[-1]['text']
                 new_text = run['text']
-                
+
                 # Fusionner intelligemment: ajouter un espace seulement si nécessaire
                 if last_text and not last_text.endswith(' ') and not new_text.startswith(' '):
                     normalized_runs[-1]['text'] = last_text + ' ' + new_text
                 else:
                     normalized_runs[-1]['text'] = last_text + new_text
-                
+
                 continue  # Pas besoin d'ajouter un nouveau run
-        
+
         # Ajouter le run normalisé
         normalized_runs.append({
             'text': run['text'],
             'properties': run.get('properties', {})
         })
-    
+
     # Remplacer les runs
     para['runs'] = normalized_runs
-    
+
     return para
 
 def parse_table(table, ns: Dict, index: int) -> Dict[str, Any]:
@@ -503,13 +503,13 @@ def parse_global_xml(xml_file: str) -> Dict[str, Any]:
         # Tableaux
         elif element.tag == f'{{{NS["w"]}}}tbl':
             table_obj = parse_table(element, NS, content_index)
-            
+
             # ⭐ NORMALISER LES RUNS de tous les paragraphes dans la table
             for row in table_obj.get('rows', []):
                 for cell in row.get('cells', []):
                     for para in cell.get('paragraphs', []):
                         normalize_paragraph_runs(para)
-            
+
             document_structure["document"]["content"].append(table_obj)
             content_index += 1
 
@@ -1370,10 +1370,29 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
     just_after_prof_exp_header = False
     current_section = None
 
+    # Chercher le header "Expériences Professionnelles" d'avance
+    for elem in content:
+        if elem.get('type') == 'Paragraph':
+            elem_text = get_text_from_element(elem)
+            if any(keyword in elem_text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                current_section = 'professional_experience'
+                break
+
     i = 0
     while i < len(content):
         element = content[i]
         new_content.append(element)
+
+        # Chercher le paragraphe non-vide précédent
+        prev_element = None
+        for j in range(i - 1, -1, -1):
+            prev_candidate = content[j]
+            if prev_candidate.get('type') == 'Paragraph':
+                # Vérifier que le paragraphe a du texte
+                prev_text = get_text_from_element(prev_candidate)
+                if prev_text.strip():
+                    prev_element = prev_candidate
+                    break
 
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element)
@@ -1389,32 +1408,60 @@ def create_xp_tables(data: Dict[str, Any], row_height: int = 360, page_dims: Dic
             # Condition pour créer une table
             should_create_table = False
 
+            # Check if previous element in ORIGINAL content is a table (we'll handle table merging in insert_text_xp_tables)
+            prev_is_table_in_original = (i > 0 and content[i-1].get('type') == 'Table')
+
+            # Check if previous element in new_content is already a table (avoid consecutive tables)
+            prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
+
+            # Check next element - don't create table if next is AUTO table (avoid auto/auto duplication)
+            # But DO create if next is EXISTING table (we'll merge and delete the old one)
+            next_is_auto_table = (i + 1 < len(content) and content[i + 1].get('type') == 'Table' and content[i + 1].get('auto_generated'))
+            is_near_end = (i > len(content) - 3)  # Too close to end (last 2 elements)
+
             # Cas 1 : First paragraph after "Expériences Professionnelles" header
-            if just_after_prof_exp_header and not has_ilvl:
+            if just_after_prof_exp_header and not has_ilvl and not prev_is_table_in_original:
                 should_create_table = True
                 just_after_prof_exp_header = False
 
-            # Cas 2 : Paragraph with KEYWORDS_TECHNICAL_SKILLS and no ilvl
-            # SAUF si le paragraphe commence par "Contexte"
-            elif current_section == 'professional_experience' and not has_ilvl:
-                if not text.startswith('contexte') or not len(text) > 100:
-                    if any(keyword in text.lower() for keyword in KEYWORDS_TECHNICAL_SKILLS):
+            # Cas 2 & 3 : Paragraphes sans ilvl
+            # - Cas 2: KEYWORDS_TECHNICAL_SKILLS
+            # - Cas 3: Sortie de liste (prev avait ilvl) + (long OU contexte)
+            # ⚠️ NEVER create table immediately after an existing table (prev_is_table_in_original=True)
+            elif current_section == 'professional_experience' and not has_ilvl and not prev_is_table_in_original and not prev_elem_is_table:
+                # Cas 2 : Paragraphe avec keywords_technical
+                # ⚠️ Skip if next is AUTO table or near end
+                if any(keyword in text.lower() for keyword in KEYWORDS_TECHNICAL_SKILLS):
+                    if (not text.startswith('contexte') or len(text) > 100) and not next_is_auto_table and not is_near_end:
                         should_create_table = True
 
-            if should_create_table and i + 1 < len(content):
-                next_element = content[i + 1]
-                # Créer table si l'élément suivant n'est pas déjà une table
-                if next_element.get('type') != 'Table':
-                    new_table = create_empty_table_2x2(
-                        len(new_content),
-                        row_height,
-                        section=current_section,
-                        page_dims=page_dims,
-                        auto_generated=True
-                    )
-                    new_content.append(new_table)
-                    i += 1
-                    continue
+                # Cas 3 : Sortie de liste (transition ilvl → no ilvl)
+                # ⚠️ Skip if next is AUTO table (but allow if EXISTING table - we'll merge!)
+                elif prev_element is not None and not next_is_auto_table:
+                    prev_had_ilvl = prev_element.get('properties', {}).get('ilvl') is not None
+                    is_long = len(text) > 100
+                    is_contexte = text.startswith('contexte')
+                    next_is_existing_table = (i + 1 < len(content) and content[i + 1].get('type') == 'Table' and not content[i + 1].get('auto_generated'))
+
+                    # Create table if: prev had ilvl AND (text is long OR starts with contexte OR next is existing table to replace)
+                    if prev_had_ilvl and (is_long or is_contexte or next_is_existing_table):
+                        should_create_table = True
+                elif next_is_auto_table:
+                    pass
+                else:
+                    pass
+
+            if should_create_table:
+                new_table = create_empty_table_2x2(
+                    len(new_content),
+                    row_height,
+                    section=current_section,
+                    page_dims=page_dims,
+                    auto_generated=True
+                )
+                new_content.append(new_table)
+                i += 1
+                continue
 
         i += 1
 
@@ -1625,7 +1672,7 @@ def add_colons_between_list_levels(data: Dict[str, Any]) -> None:
     """
     Ajoute des ":" entre deux niveaux de listes successifs (1→2, 2→3, etc).
     SAUF entre ilvl 0 et 1 (et supprime le ":" s'il existe).
-    
+
     Logique:
     - Parcourir les paragraphes avec ilvl
     - Si transition vers niveau supérieur (sauf 0→1): ajouter " :" si absent
