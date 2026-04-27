@@ -6,11 +6,8 @@ Sortie: fichier _GLOBAL_transformed.json (après taggings et transformations)
 """
 
 from argparse import ArgumentParser
-import argparse
-import re
 import xml.etree.ElementTree as ET
 import json
-import zipfile
 from pathlib import Path
 from typing import Dict, Any, List
 
@@ -415,7 +412,7 @@ def xml_to_json(xml_file: str, output_file: str = None) -> str:
     return str(output_path)
 
 def main():
-    parser = argparse.ArgumentParser(description="Convertir un fichier XML en JSON RAW")
+    parser = ArgumentParser(description="Convertir un fichier XML en JSON RAW")
     parser.add_argument(
         "-s", "--source_xml_file",
         help="Chemin du fichier global.xml"

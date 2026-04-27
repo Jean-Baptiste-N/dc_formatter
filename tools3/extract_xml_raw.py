@@ -1,11 +1,7 @@
 from argparse import ArgumentParser
 import zipfile
-import os
 from pathlib import Path
-import lxml
 from xml.etree import ElementTree as ET
-import json
-import shutil
 from datetime import datetime
 from xml.dom import minidom
 

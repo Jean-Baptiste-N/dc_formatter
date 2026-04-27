@@ -5,7 +5,6 @@ Sortie: DOCX dans le dossier renders/
 """
 
 import json
-import xml.etree.ElementTree as ET
 from pathlib import Path
 from argparse import ArgumentParser
 

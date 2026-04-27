@@ -6,12 +6,8 @@ Sortie: fichier _GLOBAL_transformed.json (après taggings et transformations)
 """
 
 from argparse import ArgumentParser
-import re
-import xml.etree.ElementTree as ET
-import json
 import zipfile
 from pathlib import Path
-from typing import Dict, Any, List
 
 # ===== NAMESPACES =====
 NS = {
