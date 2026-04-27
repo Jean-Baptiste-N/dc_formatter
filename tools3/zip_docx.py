@@ -10,6 +10,23 @@ from pathlib import Path
 import zipfile
 from xml.etree import ElementTree as ET
 
+SOURCE_DOCX_DIR = 'DC_SOURCES'
+
+def _resolve_source_path(filename):
+    """Résout le chemin du fichier source
+    Si le fichier n'existe pas en chemin absolu/relatif, cherche dans DC_SOURCES/
+    """
+    filepath = Path(filename)
+    if filepath.exists():
+        return str(filepath)
+
+    # Chercher dans le dossier DC_SOURCES
+    source_path = Path(SOURCE_DOCX_DIR) / filename
+    if source_path.exists():
+        return str(source_path)
+
+    # Si rien ne correspond, retourner le chemin original
+    return str(filepath)
 
 def archive_docx(docx_file, archive_folder='archive'):
     """
@@ -162,6 +179,10 @@ def indent_xml_files_in_archive(archive_folder='archive'):
 
 def main(docx_path, archive_folder="archive"):
     """Fonction principale pour archiver et indenter les XML."""
+
+    # Résoudre le chemin du fichier source
+    docx_path = _resolve_source_path(docx_path)
+
     print(f"\n{'='*70}")
     print(f"🗂️  ARCHIVAGE ET INDENTATION XML")
     print(f"{'='*70}\n")

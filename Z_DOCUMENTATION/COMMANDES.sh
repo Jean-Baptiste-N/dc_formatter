@@ -166,8 +166,15 @@ python3 -m tools3.pipeline --help
 
 # Afficher l'aide d'une commande spécifique
 python3 -m tools3.pipeline full --help
+
 python3 -m tools3.pipeline extract --help
 python3 -m tools3.pipeline transform-render --help
+
+python3 -m tools3.pipeline extract-dims --help
+python3 -m tools3.pipeline extract-xml --help
+python3 -m tools3.pipeline xml-to-json --help
+python3 -m tools3.pipeline transform --help
+python3 -m tools3.pipeline render --help
 
 
 # =============================================================================
@@ -184,6 +191,9 @@ python3 -m tools3.pipeline transform-render --help
 # Python:
 # from tools3.zip_docx import archive_docx
 # result = archive_docx('document.docx', 'archive/')
+
+# Exécuter l'archivage zip d'un docx pour l'explorer
+python3 -m tools3.zip_docx archive_docx -s DC_JNZ_2026.docx -o archive/
 
 
 # =============================================================================
