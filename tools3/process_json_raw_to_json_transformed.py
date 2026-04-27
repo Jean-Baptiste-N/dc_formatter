@@ -1529,8 +1529,8 @@ def main():
 
     parser.add_argument(
         "-o", "--output_dir",
-        default="OUTPUT3-JSON-TRANSFORMED",
-        help="Répertoire de sortie (défaut: OUTPUT3-JSON-TRANSFORMED)"
+        default="OUTPUT3_JSON-TRANSFORMED",
+        help="Répertoire de sortie (défaut: OUTPUT3_JSON-TRANSFORMED)"
     )
 
     args = parser.parse_args()

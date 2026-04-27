@@ -64,16 +64,40 @@ python3 -m tools3.pipeline extract -s DC_JNZ_2026.docx
 # Description: Phase 2 seulement - Transformation JSON + Rendu DOCX
 # Prérequis: Phase 1 doit avoir été exécutée d'abord
 # Sortie: JSON transformé + DOCX final
+#
+# Deux cas d'usage:
+# 1. -s = DOCX: Infère le JSON RAW associé, cherche dans OUTPUT2_JSON-RAW/ (par défaut)
+#    → -o n'affecte que la sortie finale (OUTPUT3 et OUTPUT4)
+# 2. -s = JSON RAW: Utilise directement le JSON RAW spécifié (pas d'inférence)
+#    → -o affecte la sortie finale
 
-# Syntaxe:
+# Syntaxe - Cas 1 (inférence depuis DOCX):
 #   python3 -m tools3.pipeline transform-render -s DOCUMENT.docx [-o OUTPUT_DIR]
 
-# Exemple:
+# Exemple 1a: Inférence simple (JSON RAW dans dossier par défaut)
 python3 -m tools3.pipeline transform-render -s DC_JNZ_2026.docx
 
-# Résultat:
-#   OUTPUT3_JSON-TRANSFORMED/DC_JNZ_2026_GLOBAL_transformed.json
-#   OUTPUT4_DOCX-RESULT/DC_JNZ_2026_GLOBAL_formatted.docx
+# Exemple 1b: Inférence + output custom (cherche JSON RAW dans OUTPUT2_JSON-RAW/, résultats dans output_dir)
+python3 -m tools3.pipeline transform-render -s DC_JNZ_2026.docx -o renders/
+
+# Résultat (Cas 1):
+#   Cherche: OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
+#   Crée: OUTPUT3_JSON-TRANSFORMED/DC_JNZ_2026_GLOBAL_transformed.json (ou renders/OUTPUT3_... avec -o)
+#   Crée: OUTPUT4_DOCX-RESULT/DC_JNZ_2026_GLOBAL_formatted.docx (ou renders/OUTPUT4_... avec -o)
+
+# Syntaxe - Cas 2 (JSON RAW direct):
+#   python3 -m tools3.pipeline transform-render -s JSON_RAW_FILE.json [-o OUTPUT_DIR]
+
+# Exemple 2a: JSON RAW direct
+python3 -m tools3.pipeline transform-render -s OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
+
+# Exemple 2b: JSON RAW direct + output custom
+python3 -m tools3.pipeline transform-render -s structures/custom_raw.json -o renders/
+
+# Résultat (Cas 2):
+#   Utilise: structures/custom_raw.json (aucune inférence)
+#   Crée: OUTPUT3_JSON-TRANSFORMED/custom_transformed.json (ou renders/OUTPUT3_... avec -o)
+#   Crée: OUTPUT4_DOCX-RESULT/custom_formatted.docx (ou renders/OUTPUT4_... avec -o)
 
 
 # =============================================================================

@@ -150,12 +150,17 @@ def cmd_render(args):
 
 
 def cmd_extract_all(args):
-    """Combine: extract_dims + extract_xml + xml_to_json"""
+    """Combine: extract_dims + extract_xml + xml_to_json
+
+    -s: Fichier source dans DC_SOURCES/
+    -o: Dossier parent qui accueillera OUTPUT1_XML-RAW/ et OUTPUT2_JSON-RAW/
+    """
     print("\n📁 Phase 1: Extraction...")
 
     docx_file = _resolve_source_path(args.source)
-    output_base = args.output_dir or '.'
-    output_base = Path(output_base)
+
+    # Dossier de sortie: -o ou répertoire courant
+    output_base = Path(args.output_dir) if args.output_dir else Path('.')
 
     # Dossiers de sortie pour cette phase
     output_xml = output_base / OUTPUT_XML_RAW
@@ -192,31 +197,51 @@ def cmd_extract_all(args):
 
 
 def cmd_transform_and_render(args):
-    """Combine: transform + render"""
+    """Combine: transform + render
+
+    Deux cas d'usage:
+    1. -s = nom DOCX: Inférer le JSON RAW associé (comportement par défaut)
+       Cherche JSON RAW dans -o/OUTPUT2_JSON-RAW/ (si -o) ou OUTPUT2_JSON-RAW/ (par défaut)
+    2. -s = chemin JSON RAW: Utiliser directement sans inférence
+
+    Place les résultats dans -o s'il est spécifié.
+    """
     print("\n🎯 Phase 2: Transformation + Rendu...")
 
-    docx_file = _resolve_source_path(args.source)
-    output_base = args.output_dir or '.'
-    output_base = Path(output_base)
+    source_path = Path(args.source)
+
+    # Dossier de sortie: -o ou répertoire courant
+    output_base = Path(args.output_dir) if args.output_dir else Path('.')
+
+    # Cas 1: -s est un JSON RAW (pas d'inférence)
+    if args.source.endswith('.json'):
+        json_raw = source_path
+
+        if not json_raw.exists():
+            print(f"❌ Erreur: {json_raw} non trouvé")
+            sys.exit(1)
+
+    # Cas 2: -s est un DOCX (inférence du JSON RAW)
+    else:
+        docx_file = _resolve_source_path(args.source)
+        docx_stem = Path(docx_file).stem
+
+        # JSON RAW input: chercher TOUJOURS dans OUTPUT2_JSON-RAW/ (par défaut)
+        # -o n'affecte PAS la recherche du JSON RAW source, seulement la sortie finale
+        json_raw = Path(OUTPUT_JSON_RAW) / f"{docx_stem}_GLOBAL_raw.json"
+
+        if not json_raw.exists():
+            print(f"❌ Erreur: {json_raw} non trouvé")
+            print(f"   Exécutez d'abord: python3 -m tools3.pipeline extract -s {args.source}")
+            sys.exit(1)
 
     # Dossiers de sortie pour cette phase
-    output_json_raw = output_base / OUTPUT_JSON_RAW
     output_json_transformed = output_base / OUTPUT_JSON_TRANSFORMED
     output_docx = output_base / OUTPUT_DOCX_RESULT
 
     # Créer les répertoires de sortie
-    output_json_raw.mkdir(parents=True, exist_ok=True)
     output_json_transformed.mkdir(parents=True, exist_ok=True)
     output_docx.mkdir(parents=True, exist_ok=True)
-
-    # Inférer le JSON RAW depuis le DOCX
-    docx_stem = Path(docx_file).stem
-    json_raw = output_json_raw / f"{docx_stem}_GLOBAL_raw.json"
-
-    if not json_raw.exists():
-        print(f"❌ Erreur: {json_raw} non trouvé")
-        print(f"   Exécutez d'abord: pipeline.py extract {docx_file}")
-        sys.exit(1)
 
     # 1. Extraire les dimensions
     page_dims = extract_page_dimensions_from_template(TEMPLATE_PATH)
@@ -243,12 +268,17 @@ def cmd_transform_and_render(args):
 
 
 def cmd_pipeline_full(args):
-    """Pipeline completète: extraction + transformation + rendu"""
+    """Pipeline complète: extraction + transformation + rendu
+
+    -s: Fichier source dans DC_SOURCES/
+    -o: Dossier parent qui accueillera OUTPUT1_, OUTPUT2_, OUTPUT3_, OUTPUT4_
+    """
     print("\n🚀 Pipeline complète...")
 
     docx_file = _resolve_source_path(args.source)
-    output_base = args.output_dir or '.'
-    output_base = Path(output_base)
+
+    # Dossier de sortie: -o ou répertoire courant
+    output_base = Path(args.output_dir) if args.output_dir else Path('.')
 
     # Dossiers de sortie pour toutes les phases
     output_xml = output_base / OUTPUT_XML_RAW
@@ -293,7 +323,8 @@ def cmd_pipeline_full(args):
 
     print(f"✅ Pipeline réussi")
     print(f"  - XML: {xml_file}")
-    print(f"  - JSON: {json_raw}")
+    print(f"  - JSON RAW: {json_raw}")
+    print(f"  - JSON TRANSFORMED: {json_transformed}")
     print(f"  - DOCX: {docx_output}\n")
 
 
