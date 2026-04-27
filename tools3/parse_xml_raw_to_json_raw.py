@@ -402,14 +402,15 @@ def xml_to_json(xml_file: str, output_file: str = None) -> str:
 
     output_path = Path(output_file)
 
+    # Créer le répertoire s'il n'existe pas
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+
     # Parser le XML (sans tagging)
     structure = parse_global_xml(str(xml_path))
 
     # Sauvegarder en JSON RAW
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(structure, f, ensure_ascii=False, indent=2)
-
-    print(f"✅ {output_path.name} créé (RAW)")
 
     return str(output_path)
 

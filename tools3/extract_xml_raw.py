@@ -137,20 +137,15 @@ def extract_document_xml(docx_file, output_dir):
     Returns:
         str: Chemin du fichier créé
     """
-    print(f"\n📄 EXTRACTION DU CONTENU DOCUMENT (word/document.xml)")
-    print(f"{'='*70}\n")
-
     output_path = Path(output_dir)
     output_path.mkdir(exist_ok=True)
 
     try:
         # Extraire le document.xml du DOCX
-        print(f"📖 Extraction du document.xml...")
         with zipfile.ZipFile(docx_file, 'r') as zip_ref:
             doc_xml_content = zip_ref.read('word/document.xml').decode('utf-8')
 
         # Indenter
-        print(f"🎨 Formatage...")
         indented_xml = indent_xml_string(doc_xml_content)
 
         # Sauvegarder
@@ -160,18 +155,11 @@ def extract_document_xml(docx_file, output_dir):
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write(indented_xml)
 
-        file_size = output_file.stat().st_size / 1024
-        print(f"\n✓ Document XML extraite: {output_file}")
-        print(f"  Taille: {file_size:.1f} KB")
-        print(f"{'='*70}\n")
-
         return str(output_file)
 
     except KeyError:
-        print("✗ Erreur: word/document.xml non trouvé dans le DOCX")
         return None
     except Exception as e:
-        print(f"✗ Erreur: {e}")
         return None
 
 
@@ -184,20 +172,13 @@ def export_all_xml(docx_file, output_dir):
         docx_file (str): Chemin du fichier DOCX
         output_dir (str): Répertoire de destination
     """
-    print(f"📦 CRÉATION DU XML GLOBAL")
-    print(f"{'='*70}\n")
-
     output_path = Path(output_dir)
     output_path.mkdir(exist_ok=True)
 
-    print(f"📖 Extraction de tous les XML...")
     xml_contents = extract_xml_raw(docx_file)
 
     if not xml_contents:
-        print("✗ Aucun XML trouvé")
         return None
-
-    print(f"🔗 Création du XML global...")
     global_xml = create_global_xml(xml_contents, Path(docx_file).name)
 
     # Sauvegarder

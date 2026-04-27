@@ -1506,8 +1506,6 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ {output_file.name} créé (avec tags, styles et dimensions des tables)")
-
     return str(output_file)
 
 def main():
@@ -1537,17 +1535,13 @@ def main():
 
     args = parser.parse_args()
 
-    print(f"🔄 Transformation de {args.json_raw}...")
-
     # Extraire les dimensions du template
     page_dims = extract_page_dimensions_from_template(args.template)
 
     # Appliquer les tags et styles
     json_transformed = apply_tags_and_styles(args.json_raw, args.output_dir, page_dims)
 
-    if json_transformed:
-        print(f"✅ Pipeline complété: {json_transformed}")
-    else:
+    if not json_transformed:
         print("❌ Erreur lors de la transformation")
         sys.exit(1)
 

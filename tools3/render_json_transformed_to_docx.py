@@ -421,8 +421,6 @@ def json_to_docx(json_file: str, template_file: str, output_dir: str) -> str:
     # Sauvegarder
     doc.save(str(output_file))
 
-    print(f"✅ {output_file} créé")
-
     return str(output_file)
 
 
