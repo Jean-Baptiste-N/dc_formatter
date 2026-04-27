@@ -6,15 +6,12 @@ Sortie: fichier _GLOBAL_transformed.json (après taggings et transformations)
 """
 
 from argparse import ArgumentParser
-import re
-import xml.etree.ElementTree as ET
 import json
-import zipfile
+import sys
 from pathlib import Path
 from typing import Dict, Any, List
 
 from .parse_template import extract_page_dimensions_from_template
-from .parse_xml_raw_to_json_raw import *
 
 # ===== NAMESPACES =====
 NS = {
@@ -49,7 +46,7 @@ def get_table_widths_for_section(section: str = None, page_dims: dict = None) ->
                où type1_widths et type2_widths sont des tuples (col1, col2)
     """
     if page_dims is None:
-        page_dims = extract_page_dimensions_from_template()
+        raise ValueError("page_dims doit être fourni")
 
     col_fixed_width_3 = page_dims['col_fixed_width_3']
     col_fixed_width_5 = page_dims['col_fixed_width_5']
@@ -562,11 +559,16 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
     Responsabilité: Créer les tables vides et les insérer dans le contenu. Pour chaque header détecté → crée une table 2x2 vide après
 
     Args:
-        data: Structure du document JSON
+        data: Structure du document JSON contenant page_dimensions
 
     Returns:
         Dict retourné pour uniformité (sera utilisé par insert_text_edu_table)
     """
+    # Récupérer les dimensions de page depuis data
+    page_dims = data.get('page_dimensions')
+    if page_dims is None:
+        raise ValueError("page_dimensions non trouvées dans data")
+    
     content = data.get('document', {}).get('content', [])
 
     # Créer des tables selon les conditions
@@ -830,14 +832,16 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     4. SAUF pour les paragraphes commençant par "Contexte"
 
     Args:
-        data: Structure du document JSON
+        data: Structure du document JSON contenant page_dimensions
 
     Returns:
         Dict contenant:
         - 'indices_to_delete': Indices à supprimer (vide pour XP)
     """
+    # Récupérer les dimensions de page depuis data
+    page_dims = data.get('page_dimensions')
     if page_dims is None:
-        page_dims = extract_page_dimensions_from_template()
+        raise ValueError("page_dimensions non trouvées dans data")
 
     content = data.get('document', {}).get('content', [])
 
@@ -1437,30 +1441,23 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                                         kept_props['italic'] = run_props['italic']
                                     run['properties'] = kept_props
 
-def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_path: str = None) -> str:
+def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: dict) -> str:
     """
     Charge un JSON brut, applique les tags de section et les styles,
     puis enregistre le résultat transformé.
 
-    Les dimensions des tables sont extraites automatiquement du TEMPLATE.docx.
-
     Args:
         raw_json_file (str): Chemin du fichier JSON RAW
-        output_dir (str): Répertoire de sortie (optionnel, défaut: output/)
-        template_path (str): Chemin du TEMPLATE.docx (optionnel)
+        output_dir (str): Répertoire de sortie
+        page_dimensions (dict): Dimensions de page (extraites une seule fois du template)
 
     Returns:
         str: Chemin du fichier créé
     """
     input_path = Path(raw_json_file)
 
-    # Générer le répertoire de sortie
-    if output_dir is None:
-        output_dir = Path(input_path.parent.parent) / 'output'
-    else:
-        output_dir = Path(output_dir)
-
     # Créer le répertoire s'il n'existe pas
+    output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
     # Générer le nom de sortie
@@ -1470,12 +1467,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_p
     with open(input_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    # Extraire les dimensions depuis le fichier parse_template
-    page_dims = extract_page_dimensions_from_template(template_path)
-
     # Stocker les dimensions dans le document pour utilisation ultérieure
     if 'page_dimensions' not in data:
-        data['page_dimensions'] = page_dims
+        data['page_dimensions'] = page_dimensions
 
     # ===== DETECTER LES 4 SECTIONS =====
     # Appliquer les tags de section
@@ -1518,36 +1512,44 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str = None, template_p
 
 def main():
     """
-    Fonction principale: orchestre tout le pipeline
+    Fonction principale: orchestre le pipeline de transformation
     - Génère le JSON RAW depuis le XML
     - Applique les tags et styles
     - Enregistre les deux versions
     """
-    parser = ArgumentParser(description="Extrait et transforme les balises d'un fichier global.xml en JSON")
+    parser = ArgumentParser(description="Transforme un JSON RAW (tags + styles)")
 
     parser.add_argument(
-        "xml_file",
-        help="Chemin du fichier global.xml"
+        "-s", "--source_json_raw",
+        help="Chemin du fichier JSON RAW"
     )
 
     parser.add_argument(
-        "-o", "--output",
-        help="Répertoire de sortie pour les fichiers transformés (optionnel, défaut: output/)"
+        "-t", "--template",
+        help="Chemin du template DOCX"
+    )
+
+    parser.add_argument(
+        "-o", "--output_dir",
+        default="OUTPUT3-JSON-TRANSFORMED",
+        help="Répertoire de sortie (défaut: OUTPUT3-JSON-TRANSFORMED)"
     )
 
     args = parser.parse_args()
 
-    print(f"🔄 Traitement de {args.xml_file}...")
+    print(f"🔄 Transformation de {args.json_raw}...")
 
-    # Étape 1: Générer le JSON RAW
-    xml_path = Path(args.xml_file)
-    raw_json_file = xml_path.parent / (xml_path.stem + "_raw.json")
-    xml_to_json(args.xml_file, str(raw_json_file))
+    # Extraire les dimensions du template
+    page_dims = extract_page_dimensions_from_template(args.template)
 
-    # Étape 2: Appliquer tags et styles
-    apply_tags_and_styles(str(raw_json_file), args.output)
+    # Appliquer les tags et styles
+    json_transformed = apply_tags_and_styles(args.json_raw, args.output_dir, page_dims)
 
-    print(f"\n✨ Pipeline complété!")
+    if json_transformed:
+        print(f"✅ Pipeline complété: {json_transformed}")
+    else:
+        print("❌ Erreur lors de la transformation")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

@@ -16,7 +16,6 @@ from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 
 # # Approche template (2 lignes)
-# source_doc = Document('DC_JNZ_structures/DC_JNZ_2026_GLOBAL_balises.json')
 # template_doc = Document('assets/TEMPLATE.docx')
 
 # KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", "dossier de competences", "dossier de competences"]
@@ -380,7 +379,7 @@ def add_table_from_json(doc: Document, table_data: dict):
                         para.add_run(para_data['text'])
 
 
-def json_to_docx(json_file: str, template_file: str, output_dir: str = 'renders') -> str:
+def json_to_docx(json_file: str, template_file: str, output_dir: str) -> str:
     """
     Injecte le contenu d'un JSON dans un template DOCX.
 
@@ -432,24 +431,24 @@ if __name__ == "__main__":
 
     parser.add_argument(
         "json_file",
-        help="Chemin du fichier JSON (balises)"
+        help="Chemin du fichier JSON (transformé)"
     )
 
     parser.add_argument(
         "--template",
         default="assets/TEMPLATE.docx",
-        help="Chemin du template DOCX (défaut: assets/TEMPLATE.docx)"
+        help="Chemin du template DOCX"
     )
 
     parser.add_argument(
-        "-o", "--output",
-        default="renders",
-        help="Répertoire de sortie (défaut: renders)"
+        "-o", "--output_dir",
+        default="OUTPUT4_DOCX-RESULT",
+        help="Répertoire de sortie (défaut: OUTPUT4_DOCX-RESULT)"
     )
 
     args = parser.parse_args()
 
-    json_to_docx(args.json_file, args.template, args.output)
+    json_to_docx(args.json_file, args.template_file, args.output_dir)
 
 
 

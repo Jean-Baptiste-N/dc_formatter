@@ -22,7 +22,7 @@ NS = {
     'w15': 'http://schemas.microsoft.com/office/word/2012/wordml',
 }
 
-def extract_page_dimensions_from_template(template_path: str = None) -> dict:
+def extract_page_dimensions_from_template(template_path: str) -> dict:
     """
     Extrait les dimensions de page du fichier TEMPLATE.docx.
 
@@ -38,8 +38,6 @@ def extract_page_dimensions_from_template(template_path: str = None) -> dict:
         dict avec keys: page_width, page_height, usable_width, top_margin, bottom_margin,
                         left_margin, right_margin (en twips)
     """
-    if template_path is None:
-        template_path = 'assets/TEMPLATE.docx'
 
     template_path = Path(template_path)
 
@@ -128,11 +126,15 @@ def extract_page_dimensions_from_template(template_path: str = None) -> dict:
 
 def main():
     parser = ArgumentParser(description="Extrait les dimensions de page du TEMPLATE.docx")
-    parser.add_argument('--template', type=str, default='assets/TEMPLATE.docx', help='Chemin du TEMPLATE.docx')
+    parser.add_argument(
+        '--template',
+        type=str,
+        default='assets/TEMPLATE.docx',
+        help='Chemin du TEMPLATE.docx')
     args = parser.parse_args()
 
-    extract_page_dimensions_from_template(args.template)
-    print('Template extracted!')
+    dims = extract_page_dimensions_from_template(args.template)
+    print(f'✅ Template dimensions extraites: {dims}')
 
 if __name__ == "__main__":
     main()

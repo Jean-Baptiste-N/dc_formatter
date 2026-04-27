@@ -125,14 +125,14 @@ def create_global_xml(xml_contents, docx_name):
     return indented
 
 
-def extract_document_xml(docx_file, output_folder='structures'):
+def extract_document_xml(docx_file, output_dir):
     """
     Extrait uniquement le word/document.xml d'un DOCX et le sauvegarde formaté.
     Crée un fichier comme DC_JNZ_2026_RAW.xml
 
     Args:
         docx_file (str): Chemin du fichier DOCX
-        output_folder (str): Dossier de destination
+        output_dir (str): Répertoire de destination
 
     Returns:
         str: Chemin du fichier créé
@@ -140,7 +140,7 @@ def extract_document_xml(docx_file, output_folder='structures'):
     print(f"\n📄 EXTRACTION DU CONTENU DOCUMENT (word/document.xml)")
     print(f"{'='*70}\n")
 
-    output_path = Path(output_folder)
+    output_path = Path(output_dir)
     output_path.mkdir(exist_ok=True)
 
     try:
@@ -175,19 +175,19 @@ def extract_document_xml(docx_file, output_folder='structures'):
         return None
 
 
-def export_all_xml(docx_file, output_folder='structures'):
+def export_all_xml(docx_file, output_dir):
     """
     Fonction complète qui:
     Extrait tous les XML et crée un global
 
     Args:
         docx_file (str): Chemin du fichier DOCX
-        output_folder (str): Dossier de destination
+        output_dir (str): Répertoire de destination
     """
     print(f"📦 CRÉATION DU XML GLOBAL")
     print(f"{'='*70}\n")
 
-    output_path = Path(output_folder)
+    output_path = Path(output_dir)
     output_path.mkdir(exist_ok=True)
 
     print(f"📖 Extraction de tous les XML...")
@@ -218,16 +218,16 @@ def export_all_xml(docx_file, output_folder='structures'):
     return str(output_file)
 
 
-def main(docx_path, output_folder='structures', export_docxml=False, export_allxml=False):
+def main(docx_path, output_dir, export_docxml=False, export_allxml=False):
     """Fonction principale pour extraire tous les XML et exporter"""
 
     if export_docxml:
         # 1. Extraire le document.xml brut
-        extract_document_xml(docx_path, output_folder)
+        extract_document_xml(docx_path, output_dir)
 
     if export_allxml:
         # 2. Extraire tous les XML et créer un global
-        export_all_xml(docx_path, output_folder)
+        export_all_xml(docx_path, output_dir)
 
 
 if __name__ == "__main__":
@@ -254,9 +254,9 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "-o", "--output",
-        default="structures",
-        help="Dossier de sortie (défaut: structures)"
+        "-o", "--output_dir",
+        default="OUTPUT1_XML-RAW",
+        help="Dossier de sortie (défaut: OUTPUT1_XML-RAW)"
     )
 
     args = parser.parse_args()
@@ -265,4 +265,4 @@ if __name__ == "__main__":
         args.export_docxml = False
         args.export_allxml = True
 
-    main(args.docx_file, args.output, args.export_docxml, args.export_allxml)
+    main(args.docx_file, args.output_dir, args.export_docxml, args.export_allxml)

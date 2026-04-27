@@ -415,9 +415,16 @@ def xml_to_json(xml_file: str, output_file: str = None) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="Convertir un fichier XML en JSON RAW")
-    parser.add_argument("xml_file", help="Chemin du fichier global.xml")
-    parser.add_argument("-o", "--output", help="Chemin du fichier JSON de sortie")
+    parser.add_argument(
+        "-s", "--source_xml_file",
+        help="Chemin du fichier global.xml"
+    )
+    parser.add_argument(
+        "-o", "--output_dir",
+        default="OUTPUT2_JSON-RAW",
+        help="Répertoire de sortie (défaut: OUTPUT2_JSON-RAW)"
+    )
 
     args = parser.parse_args()
 
-    xml_to_json(args.xml_file, args.output)
+    xml_to_json(args.source_xml_file, args.output_dir)

@@ -189,16 +189,16 @@ if __name__ == "__main__":
 
     # Argument positional: chemin du fichier DOCX
     parser.add_argument(
-        "docx_file",
+        "-s" ,"--source_docx_file",
         help="Chemin du fichier .docx à traiter"
     )
 
     parser.add_argument(
-        "-o", "--output",
+        "-o", "--output_dir",
         default="archive",
         help="Dossier de sortie (défaut: archive)"
     )
 
     args = parser.parse_args()
 
-    main(args.docx_file, args.output)
+    main(args.source_docx_file, args.output_dir)
