@@ -178,25 +178,26 @@ xml_file = export_all_xml("document.docx", "OUTPUT1_XML-RAW/")
 ### Phase 3: Transformation (process_json_raw_to_json_transformed.py)
 
 **Entrée**: JSON RAW
-**Sortie**: JSON enrichi avec structure et tags
+**Sortie**: JSON enrichi avec structure, tags et styles
 
 #### Transformations Appliquées
 
-1. **Détection de hiérarchie**
-   - Identification Heading1 (titres principaux)
-   - Identification Heading2 (sous-titres)
+1. **Détection textuelle**
    - Classification sections (Experience, Education, Skills, etc.)
 
 2. **Application de tags**
-   - `<section>`: Identification sections principales
-   - `<subsection>`: Identification sous-sections
-   - `<content>`: Contenu régulier
+   - `<tags>`: Identification sections principales
+   - `<section>`: Identification des parties pour les tables
+   - `<outline_level>`: Niveau hiérarchique des titres
+   - `<style>`: Style original puis remplacé
    - `<table>`: Tableaux structurés
 
 3. **Création de structures**
+   - Tables de compétences principales s'il y a une table à l'origine
    - Tables d'éducation (Date | Formation)
    - Tables d'expérience (Poste | Période)
    - Listes de compétences
+   - Listes de missions
 
 #### Fonctions Clés
 
@@ -211,36 +212,32 @@ xml_file = export_all_xml("document.docx", "OUTPUT1_XML-RAW/")
 #### Exemple JSON Transformé
 
 ```json
-{
-  "sections": [
-    {
-      "type": "Header",
-      "tag": "section",
-      "content": "DOSSIER DE COMPÉTENCES"
-    },
-    {
-      "type": "Skills",
-      "tag": "subsection", 
-      "entries": [
-        {"tag": "skill", "content": "Python, JavaScript, SQL"}
-      ]
-    },
-    {
-      "type": "Education",
-      "tag": "subsection",
-      "table": {
-        "rows": [
+      {
+        "index": 138,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
           {
-            "cells": [
-              {"content": "2018-2020"},
-              {"content": "Master Informatique"}
-            ]
+            "text": "Environnement technique : Matlab, Reaper",
+            "properties": {
+              "bold": true
+            }
           }
+        ],
+        "tags": [
+          "professional_experience"
         ]
-      }
-    }
-  ]
-}
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+
 ```
 
 ---
@@ -293,11 +290,11 @@ Extrait les dimensions et paramètres du template DOCX.
 ```python
 {
     'page_width': 11906,        # twips (A4)
-    'page_height': 16838,       # twips
-    'top_margin': 1440,         # twips
-    'bottom_margin': 1440,
-    'left_margin': 1440,
-    'right_margin': 1440,
+    'page_height': 16838,       # twips (A4)
+    'top_margin': 1440,         # 2cm en twips
+    'bottom_margin': 1440,      # 2cm en twips
+    'left_margin': 1440,        # 2cm en twips
+    'right_margin': 1440,       # 2cm en twips
     'usable_width': 8226        # page_width - marges
 }
 ```
@@ -345,8 +342,10 @@ Interface CLI qui orchestre le pipeline complet.
 
 **Commandes principales**:
 - `full` - Pipeline complète
+
 - `extract` - Phase 1 (extraction)
 - `transform-render` - Phase 2 (transformation + rendu)
+
 - `extract-dims` - Extraction dimensions
 - `extract-xml` - Extraction XML
 - `xml-to-json` - Conversion XML → JSON
@@ -385,7 +384,7 @@ Représentation fidèle de la structure XML:
 
 Structure enrichie avec:
 - Sections identifiées et taggées
-- Hiérarchie (Heading1 → Heading2 → Content)
+- Pas de Hiérarchie, prise en compte par les styles du template + outline_level
 - Tables structurées
 - Styles appliqués
 
@@ -394,26 +393,17 @@ Structure enrichie avec:
 Document Word standard formaté:
 - Basé sur template (preserves styles)
 - Contenu injecté et formaté
-- Tableaux avec bordures
+- Tableaux avec et sans bordures
 - Mise en page respectée
 
 ---
 
 ## Hiérarchie et Tags
 
-### Détection Hiérarchie
-
-**Heading1** (Titres principaux):
-- Texte court ET centré OU complètement MAJUSCULE
-- Taille grande (40pt+)
-- Souvent en couleur spéciale (bleu)
-
-**Heading2** (Sous-titres):
-- Texte court-moyen finissant par ":"
-- Contient keywords section (Experience, Education, etc.)
-- Généralement bold
+### Détection Content
 
 **Content** (Contenu normal):
+- Mots réguliers: listes KEYWORDS_*
 - Paragraphes réguliers
 - Longueur variable
 - Formatage standard
@@ -426,16 +416,6 @@ Document Word standard formaté:
 | Education | "formation", "diplôme", "certification" |
 | Skills | "compétences", "techniques", "informatiques" |
 | Languages | "langue", "français", "anglais" |
-
-### Tags Appliqués
-
-```json
-"tags": {
-  "type": "Heading1|Heading2|Content|Table",
-  "section": "Header|Skills|Education|Experience|Languages|Document",
-  "properties": {...}
-}
-```
 
 ---
 
@@ -495,6 +475,6 @@ Document Word standard formaté:
 
 ---
 
-**Version**: 1.0  
-**Dernière mise à jour**: Avril 2026  
+**Version**: 3.0
+**Dernière mise à jour**: Avril 2026
 **Auteur**: DC Formatter Team
