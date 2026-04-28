@@ -1408,15 +1408,11 @@
         ]
       },
       {
-        "index": 74,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal",
-          "paraId": "0000005A"
+          "style": "DC_Normal"
         },
-        "tags": [
-          "education"
-        ]
+        "runs": []
       },
       {
         "type": "Paragraph",
@@ -1435,116 +1431,26 @@
         "auto_generated": true
       },
       {
+        "index": 75,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_Normal",
+          "section_break": "nextPage",
+          "paraId": "0000005B"
         },
-        "runs": []
-      },
-      {
-        "index": 76,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "education",
-          "borders": {
-            "top": {
-              "size": "10",
-              "color": "000000"
-            },
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": {
-              "size": "10",
-              "color": "000000"
-            },
-            "right": {
-              "size": "10",
-              "color": "000000"
-            },
-            "insideH": {
-              "size": "10",
-              "color": "000000"
-            },
-            "insideV": {
-              "size": "10",
-              "color": "000000"
-            }
-          },
-          "style": "DC_Table_Content"
-        },
-        "row_count": 1,
-        "col_count": 2,
-        "rows": [
+        "runs": [
           {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_Table_Year"
-                    },
-                    "runs": [
-                      {
-                        "text": "Anglais",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "education"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_Table_Content"
-                    },
-                    "runs": [
-                      {
-                        "text": " Lu, écrit, parlé, professionnel",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "education"
-                    ]
-                  }
-                ]
-              }
-            ]
+            "text": "Anglais :",
+            "properties": {}
+          },
+          {
+            "text": " Lu, écrit, parlé, professionnel",
+            "properties": {}
           }
         ],
-        "edu_type": "langues"
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
+        "tags": [
+          "education"
+        ]
       },
       {
         "index": 76,
@@ -1578,7 +1484,7 @@
         ]
       },
       {
-        "index": 81,
+        "index": 80,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2255,7 +2161,7 @@
         "runs": []
       },
       {
-        "index": 112,
+        "index": 111,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2795,61 +2701,6 @@
         ]
       },
       {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
-      },
-      {
-        "index": 132,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "education",
-          "borders": {
-            "top": {
-              "size": "10",
-              "color": "000000"
-            },
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": {
-              "size": "10",
-              "color": "000000"
-            },
-            "right": {
-              "size": "10",
-              "color": "000000"
-            },
-            "insideH": {
-              "size": "10",
-              "color": "000000"
-            },
-            "insideV": {
-              "size": "10",
-              "color": "000000"
-            }
-          },
-          "style": "DC_Table_Content"
-        },
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [],
-        "edu_type": "certifications"
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
-      },
-      {
         "index": 131,
         "type": "Paragraph",
         "properties": {
@@ -3011,7 +2862,7 @@
         "runs": []
       },
       {
-        "index": 148,
+        "index": 144,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3992,7 +3843,7 @@
         "runs": []
       },
       {
-        "index": 196,
+        "index": 192,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4313,7 +4164,7 @@
         "runs": []
       },
       {
-        "index": 209,
+        "index": 205,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4660,6 +4511,7 @@
     "bottom_margin": 1134,
     "left_margin": 1134,
     "right_margin": 1134,
-    "col_fixed_width": 2835
+    "col_fixed_width_3": 1701,
+    "col_fixed_width_5": 2835
   }
 }

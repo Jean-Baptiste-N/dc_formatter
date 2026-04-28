@@ -77,11 +77,13 @@ def get_table_widths_for_section(section: str = None, page_dims: dict = None) ->
     default_table_col1 = usable_width // 2
     default_table_col2 = usable_width - default_table_col1
 
-    edu_table_widths = (edu_table_col1, edu_table_col2)
-    xp_table_widths = (xp_table_col1, xp_table_col2)
-    default_table_widths = (default_table_col1, default_table_col2)
-
-    return (usable_width, edu_table_widths if section == 'education' else None, xp_table_widths if section == 'professional_experience' else None, default_table_widths)
+    # Retourner les largeurs appropriées selon la section
+    if section == 'education':
+        return (edu_table_col1, edu_table_col2)
+    elif section == 'professional_experience':
+        return (xp_table_col1, xp_table_col2)
+    else:
+        return (default_table_col1, default_table_col2)
 
 def get_text_from_element(element: Dict[str, Any]) -> str:
     """Extrait tout le texte d'un élément (paragraphe ou table)"""
@@ -161,9 +163,11 @@ def apply_section_tags(data: Dict[str, Any]) -> None:
 def create_empty_table_2x2(index: int, row_height: int = 360,
                            col1_width: int = None, col2_width: int = None,
                            section: str = None,
-                           auto_generated: bool = False) -> Dict[str, Any]:
+                           auto_generated: bool = False,
+                           num_rows: int = 2,
+                           page_dims: dict = None) -> Dict[str, Any]:
     """
-    Crée une table 2x2 vide (sans paragraphes de remplissage) avec dimensions spécifiques par colonne.
+    Crée une table 2xN vide (sans paragraphes de remplissage) avec dimensions spécifiques par colonne.
     Les dimensions sont calculées selon la section et les marges du template, elles sont récupérées de la fonction get_table_widths_for_section.
 
     Args:
@@ -173,33 +177,25 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
         col2_width: Largeur colonne 2 (twips) - si None, utilisé section+page_dims
         section: 'education' ou 'professional_experience' ou 'autre'
         auto_generated: Flag pour indiquer que la table a été créée automatiquement
+        num_rows: Nombre de rows à créer (défaut 2)
+        page_dims: Dictionnaire avec dimensions de page (col_fixed_width_3, col_fixed_width_5, usable_width, etc.)
 
     Returns:
-        Table 2x2 structurée avec dimensions (sans paragraphes vides)
+        Table 2xN structurée avec dimensions (sans paragraphes vides)
     """
 
     if col1_width is None or col2_width is None:
         if section == 'education':
-            col1_width, col2_width = get_table_widths_for_section('education')
+            col1_width, col2_width = get_table_widths_for_section('education', page_dims)
         elif section == 'professional_experience':
-            col1_width, col2_width = get_table_widths_for_section('professional_experience')
+            col1_width, col2_width = get_table_widths_for_section('professional_experience', page_dims)
         else:
-            col1_width, col2_width = get_table_widths_for_section(None)
+            col1_width, col2_width = get_table_widths_for_section(None, page_dims)
 
     table_total_width = col1_width + col2_width
 
     # Définir les bordures selon la section
-    if section == 'education':
-        # Tables éducation : aucune bordure
-        borders = {
-            'top': None,
-            'bottom': None,
-            'left': None,
-            'right': None,
-            'insideH': None,
-            'insideV': None
-        }
-    elif section == 'professional_experience':
+    if section == 'professional_experience':
         # Tables expériences professionelles : seulement bottom border
         borders = {
             'top': None,
@@ -220,13 +216,37 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             'insideV': None
         }
 
-    insert_table = {
-        'index': index,
-        'type': 'Paragraph',
-        'properties': {},
-        'runs': []
-    },
-    {
+    # Créer les rows dynamiquement
+    rows = []
+    for row_idx in range(num_rows):
+        row = {
+            'row_index': row_idx,
+            'height': row_height,
+            'cells': [
+                {
+                    'col_index': 0,
+                    'width': col1_width,
+                    'properties': {
+                        'hAlign': 'left',
+                        'vAlign': 'center'
+                    },
+                    'paragraphs': []
+                },
+                {
+                    'col_index': 1,
+                    'width': col2_width,
+                    'properties': {
+                        'hAlign': 'right' if section == 'professional_experience' else 'left',
+                        'vAlign': 'center'
+                    },
+                    'paragraphs': []
+                }
+            ]
+        }
+        rows.append(row)
+
+    # Retourner juste la table (dictionnaire), pas un tuple
+    return {
         'index': index + 1,
         'type': 'Table',
         'auto_generated': auto_generated,
@@ -237,67 +257,10 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             'borders': borders,
             'style': "DC_Table_Content"
         },
-        'row_count': 2,
+        'row_count': num_rows,
         'col_count': 2,
-        'rows': [
-            {
-                'row_index': 0,
-                'height': row_height,
-                'cells': [
-                    {
-                        'col_index': 0,
-                        'width': col1_width,
-                        'properties': {
-                            'hAlign': 'left',
-                            'vAlign': 'center'
-                        },
-                        'paragraphs': []
-                    },
-                    {
-                        'col_index': 1,
-                        'width': col2_width,
-                        'properties': {
-                            'hAlign': 'right' if section == 'professional_experience' else 'left',
-                            'vAlign': 'center'
-                        },
-                        'paragraphs': []
-                    }
-                ]
-            },
-            {
-                'row_index': 1,
-                'height': row_height,
-                'cells': [
-                    {
-                        'col_index': 0,
-                        'width': col1_width,
-                        'properties': {
-                            'hAlign': 'left',
-                            'vAlign': 'center'
-                        },
-                        'paragraphs': []
-                    },
-                    {
-                        'col_index': 1,
-                        'width': col2_width,
-                        'properties': {
-                            'hAlign': 'right' if section == 'professional_experience' else 'left',
-                            'vAlign': 'center'
-                        },
-                        'paragraphs': []
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        'index': index + 2,
-        'type': 'Paragraph',
-        'properties': {},
-        'runs': []
+        'rows': rows
     }
-
-    return insert_table
 
 def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -352,6 +315,65 @@ def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
         new_para['tags'] = para['tags'].copy()
 
     return new_para
+
+def add_empty_paragraphs_around_tables(data: Dict[str, Any]) -> None:
+    """
+    Ajoute un paragraphe vide AVANT et APRÈS chaque table du document.
+
+    Utile pour:
+    - Espace visuel avant et après les tables
+    - Permettre à Word de naviguer correctement
+    - Faciliter le rendu et l'édition
+
+    Cette fonction est appelée APRÈS que toutes les tables aient été créées
+    et remplies (create_edu_table, insert_text_edu_table, create_xp_tables, insert_text_xp_tables),
+    mais AVANT le nettoyage des doubles paragraphes.
+
+    Args:
+        data: Structure du document JSON
+    """
+    content = data.get('document', {}).get('content', [])
+
+    if not content:
+        return
+
+    # Construire une nouvelle liste avec les paragraphes vides autour des tables
+    new_content = []
+
+    for elem in content:
+        # Si c'est une table, ajouter un paragraphe vide AVANT
+        if elem.get('type') == 'Table':
+            # Vérifier si le dernier élément ajouté n'est pas déjà un paragraphe vide
+            if new_content and new_content[-1].get('type') == 'Paragraph':
+                last_para = new_content[-1]
+                # Si le dernier paragraphe n'est pas vide, ajouter un paragraphe vide
+                if last_para.get('runs') or last_para.get('text'):
+                    new_content.append({
+                        'type': 'Paragraph',
+                        'properties': {},
+                        'runs': []
+                    })
+            elif not new_content or new_content[-1].get('type') == 'Table':
+                # Ajouter un paragraphe vide avant la table
+                new_content.append({
+                    'type': 'Paragraph',
+                    'properties': {},
+                    'runs': []
+                })
+
+        # Ajouter l'élément lui-même
+        new_content.append(elem)
+
+        # Si c'est une table, ajouter un paragraphe vide APRÈS
+        if elem.get('type') == 'Table':
+            new_content.append({
+                'type': 'Paragraph',
+                'properties': {},
+                'runs': []
+            })
+
+    # Remplacer le contenu du document
+    data['document']['content'] = new_content
 
 def create_language_header(data: Dict[str, Any]) -> None:
     """
@@ -567,267 +589,226 @@ def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Di
 
 def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Crée les structures des tables éducation : itération sur les titres en KEYWORDS_EDUCATION, de base formations + langues.
+    Crée les structures des tables éducation de manière générique.
 
-    Responsabilité: Créer les tables vides et les insérer dans le contenu. Pour chaque header détecté → crée une table 2x2 vide après
+    Cherche toutes les sections éducation dans le document (formations et langues)
+    et crée une table pour chaque section qui contient du contenu.
+
+    Responsabilité:
+    - Itérer sur tous les titres contenant KEYWORDS_EDUCATION
+    - Pour chaque section trouvée (formations, langues, etc.), créer une table vide
+    - Marquer les sources pour suppression
 
     Args:
         data: Structure du document JSON contenant page_dimensions
 
     Returns:
-        Dict retourné pour uniformité (sera utilisé par insert_text_edu_table)
+        Dict contenant les métadonnées sur les tables créées
     """
     # Récupérer les dimensions de page depuis data
     page_dims = data.get('page_dimensions')
     if page_dims is None:
         raise ValueError("page_dimensions non trouvées dans data")
-    
+
     content = data.get('document', {}).get('content', [])
+    result = {'tables_created': []}
 
-    # Créer des tables selon les conditions
-    new_content = []
-    just_after_edu_header = False
-    current_section = None
-
-    # Chercher le header "Expériences Professionnelles" d'avance
-    for elem in content:
+    # Trouver tous les headers éducation
+    edu_headers = []
+    for i, elem in enumerate(content):
         if elem.get('type') == 'Paragraph':
-            elem_text = get_text_from_element(elem)
-            if any(keyword in elem_text.lower() for keyword in KEYWORDS_EDUCATION):
-                current_section = 'education'
-                break
+            text = get_text_from_element(elem)
+            is_title = elem.get('properties', {}).get('style', '').startswith('Titre')
 
-    i = 0
-    while i < len(content):
-        element = content[i]
-        new_content.append(element)
-
-        if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element)
-
-            # Chercher un vrai header Formation
-            is_title = element.get('properties', {}).get('style', '').startswith('Titre')
-            is_only_formation = text.strip() in ['formation', 'formations']
-
-            if (any(keyword in text for keyword in KEYWORDS_EDUCATION) and 'formation' in text and
-                (is_title or is_only_formation)):
-
-                # Collecter paragraphes/table après Formation
-                j = i + 1
-
-                # Cas 1 : table existante
-                if j < len(content) and content[j].get('type') == 'Table' and not content[j].get('auto_generated'):
-                    existing_table = content[j]
-                    for row in existing_table.get('rows', []):
-                        for cell in row.get('cells', []):
-                            formation_paras.extend(cell.get('paragraphs', []))
-                    indices_to_delete.append(j)
-                    j += 1
-
-                # Cas 2 : paragraphes directs
+            # Chercher si c'est un header éducation
+            if any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION) and is_title:
+                # Déterminer le type: formations ou langues
+                if any(kw in text.lower() for kw in ['formation', 'formations', 'diplôme', 'diplômes', 'certification', 'certifications']):
+                    edu_type = 'formations'
+                elif any(kw in text.lower() for kw in ['langue', 'langues']):
+                    edu_type = 'langues'
                 else:
-                    while j < len(content):
-                        next_elem = content[j]
-                        if next_elem.get('type') == 'Paragraph':
-                            elem_text = get_text_from_element(next_elem)
+                    edu_type = 'education'  # Type générique
 
-                            if not elem_text.strip():
-                                j += 1
-                                continue
+                edu_headers.append({'index': i, 'text': text, 'type': edu_type})
 
-                            if any(keyword in elem_text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-                                break
+    # Créer une table pour chaque section éducation trouvée
+    for header_info in edu_headers:
+        header_idx = header_info['index']
+        edu_type = header_info['type']
 
-                            is_only_langues = elem_text.strip() in ['langues', 'langue']
-                            is_title_check = next_elem.get('properties', {}).get('style', '').startswith('Titre')
-                            if is_only_langues and (is_title_check or next_elem.get('auto_generated', False)):
-                                break
+        # Vérifier qu'il y a du contenu après le header
+        has_content = False
+        content_indices = []
+        j = header_idx + 1
 
-                            formation_paras.append(next_elem)
-                            indices_to_delete.append(j)
-                            j += 1
-                        elif next_elem.get('type') == 'Table':
-                            if not next_elem.get('auto_generated'):
-                                for row in next_elem.get('rows', []):
-                                    for cell in row.get('cells', []):
-                                        formation_paras.extend(cell.get('paragraphs', []))
-                                indices_to_delete.append(j)
-                            break
-                        else:
-                            j += 1
+        while j < len(content):
+            elem = content[j]
 
-                # Grouper en blocs
-                formation_blocks = group_education_paragraphs(formation_paras)
+            # Stop si on rencontre un autre header ou une autre section
+            if elem.get('type') == 'Paragraph':
+                text = get_text_from_element(elem)
+                is_title = elem.get('properties', {}).get('style', '').startswith('Titre')
 
-                # Créer la table vide
-                if formation_paras and len(formation_blocks) > 0:
-                    col1_width, col2_width = get_table_widths_for_section('education', page_dims)
-
-                    new_table = create_empty_table_2x2(
-                        i + 1,
-                        section='education',
-                        auto_generated=True
-                    )
-
-                    new_table['row_count'] = len(formation_blocks)
-
-                    # Insérer la table
-                    content.insert(i + 1, new_table)
-                    indices_to_delete = [idx + 1 if idx > i else idx for idx in indices_to_delete]
-                break
-
-    # ===== CRÉATION LANGUES =====
-    lang_header_idx = None
-    lang_indices = []
-    for i, element in enumerate(content):
-        if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element)
-            is_only_langues = text.strip() in ['langues', 'langue']
-            is_title = element.get('properties', {}).get('style', '').startswith('Titre')
-            is_auto_gen = element.get('auto_generated', False)
-
-            if is_only_langues and (is_title or is_auto_gen):
-                lang_header_idx = i
-                break
-
-    if lang_header_idx is not None:
-        j = lang_header_idx + 1
-
-        # Cas 1 : table existante
-        if j < len(content) and content[j].get('type') == 'Table' and not content[j].get('auto_generated'):
-            existing_table = content[j]
-            for row in existing_table.get('rows', []):
-                for cell in row.get('cells', []):
-                    lang_paras.extend(cell.get('paragraphs', []))
-            indices_to_delete.append(j)
-        else:
-            # Cas 2 : collecter paragraphes
-            while j < len(content):
-                next_elem = content[j]
-                if next_elem.get('type') == 'Paragraph':
-                    elem_text = get_text_from_element(next_elem)
-
-                    if not elem_text.strip():
-                        j += 1
-                        continue
-
-                    if any(keyword in elem_text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-                        break
-
-                    is_only_formation = elem_text.strip() in ['formation', 'formations']
-                    is_title_check = next_elem.get('properties', {}).get('style', '').startswith('Titre')
-                    if is_only_formation and is_title_check:
-                        break
-
-                    if any(keyword in elem_text for keyword in KEYWORDS_LANGUAGES):
-                        lang_paras.append(next_elem)
-                        lang_indices.append(j)
-                    j += 1
-                elif next_elem.get('type') == 'Table':
+                if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                     break
-                else:
+                if not text.strip():
                     j += 1
+                    continue
+                has_content = True
+                content_indices.append(j)
+            elif elem.get('type') == 'Table':
+                has_content = True
+                content_indices.append(j)
+                break
 
-        # Créer table Langues
-        if lang_paras:
-            # Scinder au keyword de langue et regrouper
-            split_paras = []
-            for para in lang_paras:
-                split_paras.extend(split_paragraph_at_language(para))
+            j += 1
 
-            for i in range(0, len(split_paras), 2):
-                if i + 1 < len(split_paras):
-                    lang_blocks.append((split_paras[i], split_paras[i+1]))
-                else:
-                    lang_blocks.append((split_paras[i], None))
+        # Créer la table uniquement s'il y a du contenu
+        if has_content and content_indices:
+            insert_idx = header_idx + 1
 
-            col1_width, col2_width = get_table_widths_for_section('education')
-
-            new_lang_table = create_empty_table_2x2(
-                lang_header_idx + 1,
+            # Créer une table vide pour cette section
+            new_table = create_empty_table_2x2(
+                insert_idx,
                 section='education',
-                auto_generated=True
+                auto_generated=True,
+                num_rows=0,  # Commencer avec 0 rows, sera remplies par insert_text_edu_table
+                page_dims=page_dims
             )
+            new_table['edu_type'] = edu_type
 
-            new_lang_table['row_count'] = len(lang_blocks)
-
-            # Insérer la table
-            content.insert(lang_header_idx + 1, new_lang_table)
-
-            # Marquer sources
-            for idx in lang_indices:
-                if idx > lang_header_idx:
-                    indices_to_delete.append(idx + 1)
+            content.insert(insert_idx, new_table)
+            result['tables_created'].append({'index': insert_idx, 'type': edu_type})
 
     data['document']['content'] = content
-
-    return {
-        'formation_paras': formation_paras,
-        'formation_blocks': formation_blocks,
-        'lang_paras': lang_paras,
-        'lang_blocks': lang_blocks,
-        'indices_to_delete': indices_to_delete
-    }
+    return result
 
 def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any]) -> None:
     """
-    Remplit le contenu des tables éducation (Formation et Langues) et supprime les sources.
+    Remplit le contenu des tables éducation (formations et langues) et supprime les sources.
 
-    Responsabilité: Insérer le texte dans les cellules des tables créées et nettoyer les sources.
+    Responsabilité:
+    - Pour chaque table auto éducation créée
+    - Remplir avec le contenu (paragraphes ou tables existantes)
+    - Supprimer les sources après migration
 
     Args:
         data: Structure du document JSON
-        creation_result: Résultat de create_edu_table() contenant:
-            - 'formation_blocks': Blocs Formation groupés
-            - 'lang_blocks': Blocs Langues groupés (paires)
-            - 'indices_to_delete': Indices à supprimer
+        creation_result: Résultat de create_edu_table() contenant les indices des tables créées
     """
     content = data.get('document', {}).get('content', [])
-    formation_blocks = creation_result.get('formation_blocks', [])
-    lang_blocks = creation_result.get('lang_blocks', [])
-    indices_to_delete = creation_result.get('indices_to_delete', [])
+    indices_to_remove = []
 
-    # ===== REMPLIR FORMATION =====
-    for elem in content:
+    # Itérer sur toutes les tables auto education créées
+    for i, elem in enumerate(content):
         if elem.get('type') == 'Table' and elem.get('auto_generated'):
             section = elem.get('properties', {}).get('section')
-            if section == 'education':
-                # Identifier si c'est Formation ou Langues
+            edu_type = elem.get('edu_type')
+
+            if section == 'education' and edu_type:
                 rows = elem.get('rows', [])
 
-                # Si on trouve une table éducation, on la remplit
-                # Vérifier si elle est déjà remplie (a du contenu)
-                if all(not cell['paragraphs'] for row in rows for cell in row['cells']):
-                    # Table vide, c'est notre table à remplir
+                # ===== FORMATIONS (diplômes, certifications, etc.) =====
+                if edu_type in ['formations', 'diplomes', 'certifications']:
+                    # Chercher la table source juste après
+                    j = i + 1
+                    if j < len(content) and content[j].get('type') == 'Table' and not content[j].get('auto_generated'):
+                        existing_table = content[j]
+                        all_paras = []
 
-                    # Vérifier si c'est Formation (a des blocs de dates) ou Langues
-                    if formation_blocks and len(rows) == len(formation_blocks):
-                        # C'est Formation
-                        for row_idx, block in enumerate(formation_blocks):
-                            if row_idx < len(rows):
+                        # Extraire tous les paragraphes
+                        for row in existing_table.get('rows', []):
+                            for cell in row.get('cells', []):
+                                all_paras.extend(cell.get('paragraphs', []))
+
+                        # Grouper par blocs
+                        blocks = group_education_paragraphs(all_paras)
+
+                        # Créer les rows avec le nombre exact requis
+                        if blocks:
+                            # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
+                            temp_table = create_empty_table_2x2(
+                                0,  # index fictif
+                                section='education',
+                                auto_generated=True,
+                                num_rows=len(blocks)
+                            )
+                            rows = temp_table['rows']
+
+                            # Remplir chaque row avec les blocs
+                            for row_idx, block in enumerate(blocks):
                                 for para_idx, para in enumerate(block):
                                     cloned = clone_paragraph_clean(para)
                                     if para_idx == 0:
                                         rows[row_idx]['cells'][0]['paragraphs'].append(cloned)
                                     else:
                                         rows[row_idx]['cells'][1]['paragraphs'].append(cloned)
-                        formation_blocks = []  # Marqué comme traité
 
-                    elif lang_blocks and len(rows) == len(lang_blocks):
-                        # C'est Langues
-                        for row_idx, (lang_para, desc_para) in enumerate(lang_blocks):
-                            if row_idx < len(rows):
-                                lang_cloned = clone_paragraph_clean(lang_para)
-                                rows[row_idx]['cells'][0]['paragraphs'] = [lang_cloned]
+                            elem['rows'] = rows
+                            elem['row_count'] = len(rows)
 
-                                if desc_para:
-                                    desc_cloned = clone_paragraph_clean(desc_para)
-                                    rows[row_idx]['cells'][1]['paragraphs'] = [desc_cloned]
-                        lang_blocks = []  # Marqué comme traité
+                        # Marquer pour suppression
+                        indices_to_remove.append(j)
 
-    # ===== SUPPRIMER SOURCES =====
-    for idx in sorted(set(indices_to_delete), reverse=True):
-        if 0 <= idx < len(content):
+                # ===== LANGUES =====
+                elif edu_type == 'langues':
+                    lang_pairs = []
+                    j = i + 1
+
+                    while j < len(content):
+                        elem = content[j]
+
+                        if elem.get('type') == 'Table':
+                            break
+                        elif elem.get('type') == 'Paragraph':
+                            text = get_text_from_element(elem)
+
+                            # Stop si autre section
+                            if any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                                break
+                            if text.strip() and any(kw in text.lower() for kw in ['formation', 'formations', 'diplôme', 'certification']):
+                                break
+
+                            # Si c'est une langue
+                            if any(keyword in text.lower() for keyword in KEYWORDS_LANGUAGES) and text.lower() != 'langues':
+                                split_result = split_paragraph_at_language(elem)
+
+                                if len(split_result) == 2:
+                                    lang_pairs.append((split_result[0], split_result[1]))
+                                elif len(split_result) == 1:
+                                    lang_pairs.append((split_result[0], None))
+
+                                indices_to_remove.append(j)
+
+                        j += 1
+
+                    # Créer les rows pour langues avec le nombre exact requis
+                    if lang_pairs:
+                        # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
+                        temp_table = create_empty_table_2x2(
+                            0,  # index fictif
+                            section='education',
+                            auto_generated=True,
+                            num_rows=len(lang_pairs)
+                        )
+                        rows = temp_table['rows']
+
+                        # Remplir chaque row avec les paires de langue
+                        for row_idx, (lang_para, desc_para) in enumerate(lang_pairs):
+                            lang_cloned = clone_paragraph_clean(lang_para)
+                            rows[row_idx]['cells'][0]['paragraphs'] = [lang_cloned]
+
+                            if desc_para:
+                                desc_cloned = clone_paragraph_clean(desc_para)
+                                rows[row_idx]['cells'][1]['paragraphs'] = [desc_cloned]
+
+                        elem['rows'] = rows
+                        elem['row_count'] = len(rows)
+
+    # Supprimer les sources (en ordre inverse pour éviter les décalages d'indices)
+    for idx in sorted(indices_to_remove, reverse=True):
+        if idx < len(content):
             del content[idx]
 
     data['document']['content'] = content
@@ -948,7 +929,8 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                 new_table = create_empty_table_2x2(
                     len(new_content),
                     section=current_section,
-                    auto_generated=True
+                    auto_generated=True,
+                    page_dims=page_dims
                 )
                 new_content.append(new_table)
                 i += 1
@@ -1504,6 +1486,11 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
 
     # Remplir le contenu et supprimer les sources
     insert_text_xp_tables(data, xp_creation_result)
+
+    # ===== AJOUT DES PARAGRAPHES VIDES AUTOUR DES TABLES =====
+    # Ajouter un paragraphe vide avant et après chaque table
+    # (après que toutes les tables aient été créées/remplies)
+    add_empty_paragraphs_around_tables(data)
 
     # ===== NETTOYAGE et RENDU FINAL POUR CHAQUE ELEMENT =====
     # Ajouter les ":" entre les niveaux de listes successifs
