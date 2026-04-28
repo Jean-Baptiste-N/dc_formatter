@@ -153,18 +153,22 @@ def cmd_extract_all(args):
     """Combine: extract_dims + extract_xml + xml_to_json
 
     -s: Fichier source dans DC_SOURCES/
-    -o: Dossier parent qui accueillera OUTPUT1_XML-RAW/ et OUTPUT2_JSON-RAW/
+    -o: Dossier de sortie DIRECT (pas de sous-dossiers OUTPUTX_*)
+        Si non fourni, utilise les dossiers OUTPUTX_* par défaut
     """
     print("\n📁 Phase 1: Extraction...")
 
     docx_file = _resolve_source_path(args.source)
 
-    # Dossier de sortie: -o ou répertoire courant
-    output_base = Path(args.output_dir) if args.output_dir else Path('.')
-
     # Dossiers de sortie pour cette phase
-    output_xml = output_base / OUTPUT_XML_RAW
-    output_json = output_base / OUTPUT_JSON_RAW
+    if args.output_dir:
+        # Si -o est fourni: utiliser directement ce dossier (SANS sous-dossiers)
+        output_xml = Path(args.output_dir)
+        output_json = Path(args.output_dir)
+    else:
+        # Sinon: utiliser les dossiers OUTPUTX_* par défaut
+        output_xml = Path(OUTPUT_XML_RAW)
+        output_json = Path(OUTPUT_JSON_RAW)
 
     # Créer les répertoires de sortie
     output_xml.mkdir(parents=True, exist_ok=True)
@@ -180,9 +184,7 @@ def cmd_extract_all(args):
         sys.exit(1)
 
     # 3. Convertir XML → JSON RAW
-    docx_stem = Path(docx_file).stem
-    json_output = output_json / f"{docx_stem}_GLOBAL_raw.json"
-    json_file = xml_to_json(xml_file, str(json_output))
+    json_file = xml_to_json(xml_file, str(output_json))
     if not json_file:
         print("❌ Erreur lors de la conversion")
         sys.exit(1)
@@ -201,17 +203,15 @@ def cmd_transform_and_render(args):
 
     Deux cas d'usage:
     1. -s = nom DOCX: Inférer le JSON RAW associé (comportement par défaut)
-       Cherche JSON RAW dans -o/OUTPUT2_JSON-RAW/ (si -o) ou OUTPUT2_JSON-RAW/ (par défaut)
+       Cherche JSON RAW toujours dans OUTPUT2_JSON-RAW/ (indépendant de -o)
     2. -s = chemin JSON RAW: Utiliser directement sans inférence
 
-    Place les résultats dans -o s'il est spécifié.
+    -o: Dossier de sortie DIRECT pour résultats (SANS sous-dossiers OUTPUTX_*)
+        Si non fourni, utilise les dossiers OUTPUTX_* par défaut
     """
     print("\n🎯 Phase 2: Transformation + Rendu...")
 
     source_path = Path(args.source)
-
-    # Dossier de sortie: -o ou répertoire courant
-    output_base = Path(args.output_dir) if args.output_dir else Path('.')
 
     # Cas 1: -s est un JSON RAW (pas d'inférence)
     if args.source.endswith('.json'):
@@ -236,8 +236,14 @@ def cmd_transform_and_render(args):
             sys.exit(1)
 
     # Dossiers de sortie pour cette phase
-    output_json_transformed = output_base / OUTPUT_JSON_TRANSFORMED
-    output_docx = output_base / OUTPUT_DOCX_RESULT
+    if args.output_dir:
+        # Si -o est fourni: utiliser directement ce dossier (SANS sous-dossiers)
+        output_json_transformed = Path(args.output_dir)
+        output_docx = Path(args.output_dir)
+    else:
+        # Sinon: utiliser les dossiers OUTPUTX_* par défaut
+        output_json_transformed = Path(OUTPUT_JSON_TRANSFORMED)
+        output_docx = Path(OUTPUT_DOCX_RESULT)
 
     # Créer les répertoires de sortie
     output_json_transformed.mkdir(parents=True, exist_ok=True)
@@ -271,20 +277,26 @@ def cmd_pipeline_full(args):
     """Pipeline complète: extraction + transformation + rendu
 
     -s: Fichier source dans DC_SOURCES/
-    -o: Dossier parent qui accueillera OUTPUT1_, OUTPUT2_, OUTPUT3_, OUTPUT4_
+    -o: Dossier de sortie DIRECT pour tous les résultats (SANS sous-dossiers OUTPUTX_*)
+        Si non fourni, utilise les dossiers OUTPUTX_* par défaut
     """
     print("\n🚀 Pipeline complète...")
 
     docx_file = _resolve_source_path(args.source)
 
-    # Dossier de sortie: -o ou répertoire courant
-    output_base = Path(args.output_dir) if args.output_dir else Path('.')
-
     # Dossiers de sortie pour toutes les phases
-    output_xml = output_base / OUTPUT_XML_RAW
-    output_json = output_base / OUTPUT_JSON_RAW
-    output_json_transformed = output_base / OUTPUT_JSON_TRANSFORMED
-    output_docx = output_base / OUTPUT_DOCX_RESULT
+    if args.output_dir:
+        # Si -o est fourni: utiliser directement ce dossier (SANS sous-dossiers)
+        output_xml = Path(args.output_dir)
+        output_json = Path(args.output_dir)
+        output_json_transformed = Path(args.output_dir)
+        output_docx = Path(args.output_dir)
+    else:
+        # Sinon: utiliser les dossiers OUTPUTX_* par défaut
+        output_xml = Path(OUTPUT_XML_RAW)
+        output_json = Path(OUTPUT_JSON_RAW)
+        output_json_transformed = Path(OUTPUT_JSON_TRANSFORMED)
+        output_docx = Path(OUTPUT_DOCX_RESULT)
 
     # Créer les répertoires de sortie
     output_xml.mkdir(parents=True, exist_ok=True)
@@ -302,9 +314,7 @@ def cmd_pipeline_full(args):
         sys.exit(1)
 
     # 3. Convertir XML → JSON RAW
-    docx_stem = Path(docx_file).stem
-    json_output = output_json / f"{docx_stem}_GLOBAL_raw.json"
-    json_raw = xml_to_json(xml_file, str(json_output))
+    json_raw = xml_to_json(xml_file, str(output_json))
     if not json_raw:
         print("❌ Erreur lors de la conversion XML")
         sys.exit(1)

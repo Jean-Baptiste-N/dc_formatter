@@ -414,7 +414,7 @@ def json_to_docx(json_file: str, template_file: str, output_dir: str) -> str:
             add_table_from_json(doc, element)
 
     # Générer le nom de sortie
-    json_stem = Path(json_file).stem.replace('_balises', '')
+    json_stem = Path(json_file).stem.replace('_transformed', '')
     output_file = output_path / f"{json_stem}_generated.docx"
 
     # Sauvegarder
@@ -422,12 +422,10 @@ def json_to_docx(json_file: str, template_file: str, output_dir: str) -> str:
 
     return str(output_file)
 
-
-if __name__ == "__main__":
+def main():
     parser = ArgumentParser(description="Injecte le contenu d'un JSON dans un template DOCX")
-
     parser.add_argument(
-        "json_file",
+        "-s", "--source_json_file",
         help="Chemin du fichier JSON (transformé)"
     )
 
@@ -445,7 +443,8 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    json_to_docx(args.json_file, args.template_file, args.output_dir)
+    json_to_docx(args.source_json_file, args.template, args.output_dir)
 
-
+if __name__ == "__main__":
+    main()
 
