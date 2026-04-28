@@ -11,7 +11,20 @@ import sys
 from pathlib import Path
 from typing import Dict, Any, List
 
-from .parse_template import extract_page_dimensions_from_template
+# Ajouter le répertoire parent à sys.path pour les imports
+parent_dir = str(Path(__file__).parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+# Imports locaux
+try:
+    from .parse_template import extract_page_dimensions_from_template
+except (ImportError, ValueError):
+    # Fallback pour exécution directe (python3 script.py)
+    from tools3.parse_template import extract_page_dimensions_from_template
+
+# ===== CONSTANTES =====
+TEMPLATE_PATH = 'assets/TEMPLATE.docx'
 
 # ===== NAMESPACES =====
 NS = {
@@ -229,7 +242,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
         'rows': [
             {
                 'row_index': 0,
-                'height': 360,
+                'height': row_height,
                 'cells': [
                     {
                         'col_index': 0,
@@ -253,7 +266,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             },
             {
                 'row_index': 1,
-                'height': 360,
+                'height': row_height,
                 'cells': [
                     {
                         'col_index': 0,
@@ -1519,12 +1532,14 @@ def main():
 
     parser.add_argument(
         "-s", "--source_json_raw",
+        required=True,
         help="Chemin du fichier JSON RAW"
     )
 
     parser.add_argument(
         "-t", "--template",
-        help="Chemin du template DOCX"
+        default=TEMPLATE_PATH,
+        help=f"Chemin du template DOCX (défaut: {TEMPLATE_PATH})"
     )
 
     parser.add_argument(
@@ -1539,7 +1554,7 @@ def main():
     page_dims = extract_page_dimensions_from_template(args.template)
 
     # Appliquer les tags et styles
-    json_transformed = apply_tags_and_styles(args.json_raw, args.output_dir, page_dims)
+    json_transformed = apply_tags_and_styles(args.source_json_raw, args.output_dir, page_dims)
 
     if not json_transformed:
         print("❌ Erreur lors de la transformation")
