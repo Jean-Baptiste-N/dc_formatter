@@ -180,7 +180,10 @@ def add_table_from_json(doc: Document, table_data: dict):
 
     # Créer le tableau
     table = doc.add_table(rows=len(rows), cols=col_count)
-    table.style = 'Table Grid'
+
+    # Note: Le style de table n'est pas assigné ici car les styles personnalisés
+    # sont gérés par le template DOCX. Seules les propriétés structurelles (largeur,
+    # hauteur, bordures) sont appliquées à partir du JSON.
 
     # Appliquer les propriétés du tableau
     props = table_data.get('properties', {})
