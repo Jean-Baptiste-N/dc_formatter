@@ -386,6 +386,19 @@ def create_language_header(data: Dict[str, Any]) -> None:
     """
     content = data.get('document', {}).get('content', [])
 
+    # D'abord, vérifier si un header "Langues" existe déjà dans le document
+    header_langues_exists = False
+    for element in content:
+        if element.get('type') == 'Paragraph':
+            text = get_text_from_element(element).strip()
+            style = element.get('properties', {}).get('style', '')
+            if (style.startswith('Heading') or style.startswith('Titre')) and text.lower() == 'langues':
+                header_langues_exists = True
+                break
+    
+    if header_langues_exists:
+        return  # Header "Langues" existe déjà, rien à faire
+
     # Chercher le premier élément contenant KEYWORDS_LANGUAGES
     first_language_idx = None
     for i, element in enumerate(content):
@@ -397,15 +410,6 @@ def create_language_header(data: Dict[str, Any]) -> None:
 
     if first_language_idx is None:
         return  # Aucun keyword détecté, rien à faire
-
-    # Vérifier si l'élément précédent est déjà un header "Langues"
-    if first_language_idx > 0:
-        prev_element = content[first_language_idx - 1]
-        if prev_element.get('type') == 'Paragraph':
-            prev_text = get_text_from_element(prev_element)
-            # Vérifier si c'est un header contenant des keywords de langues
-            if any(keyword in prev_text for keyword in KEYWORDS_LANGUAGES):
-                return  # Header existe déjà
 
     # Créer et insérer le header "Langues" juste avant le premier keyword
     new_header = {
@@ -619,7 +623,8 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
     for i, elem in enumerate(content):
         if elem.get('type') == 'Paragraph':
             text = get_text_from_element(elem)
-            is_title = elem.get('properties', {}).get('style', '').startswith('Titre')
+            style = elem.get('properties', {}).get('style', '')
+            is_title = style.startswith('Titre') or style.startswith('Heading')
 
             # Chercher si c'est un header éducation
             if any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION) and is_title:
@@ -634,7 +639,8 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
                 edu_headers.append({'index': i, 'text': text, 'type': edu_type})
 
     # Créer une table pour chaque section éducation trouvée
-    for header_info in edu_headers:
+    # Traiter en ORDRE INVERSE pour que les insertions ne modifient pas les indices des headers suivants
+    for header_info in reversed(edu_headers):
         header_idx = header_info['index']
         edu_type = header_info['type']
 
@@ -649,7 +655,8 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
             # Stop si on rencontre un autre header ou une autre section
             if elem.get('type') == 'Paragraph':
                 text = get_text_from_element(elem)
-                is_title = elem.get('properties', {}).get('style', '').startswith('Titre')
+                style = elem.get('properties', {}).get('style', '')
+                is_title = style.startswith('Titre') or style.startswith('Heading')
 
                 if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                     break
@@ -756,6 +763,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                 # ===== LANGUES =====
                 elif edu_type == 'langues':
+                    print(f"  [DEBUG] Processing langues table at index {i}")  # DEBUG
                     lang_pairs = []
                     j = i + 1
 
@@ -776,6 +784,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                             # Si c'est une langue
                             if any(keyword in text.lower() for keyword in KEYWORDS_LANGUAGES) and text.lower() != 'langues':
                                 split_result = split_paragraph_at_language(elem)
+                                print(f"    [DEBUG] Found language: {text} → {len(split_result)} parts")  # DEBUG
 
                                 if len(split_result) == 2:
                                     lang_pairs.append((split_result[0], split_result[1]))
@@ -787,6 +796,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                         j += 1
 
                     # Créer les rows pour langues avec le nombre exact requis
+                    print(f"  [DEBUG] Found {len(lang_pairs)} lang_pairs")  # DEBUG
                     if lang_pairs:
                         # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
                         temp_table = create_empty_table_2x2(
@@ -797,6 +807,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                             page_dims=page_dims
                         )
                         rows = temp_table['rows']
+                        print(f"  [DEBUG] Created {len(rows)} rows")  # DEBUG
 
                         # Remplir chaque row avec les paires de langue
                         for row_idx, (lang_para, desc_para) in enumerate(lang_pairs):
@@ -809,6 +820,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                         elem['rows'] = rows
                         elem['row_count'] = len(rows)
+                        print(f"  [DEBUG] Assigned {len(rows)} rows to table")  # DEBUG
 
     # Supprimer les sources (en ordre inverse pour éviter les décalages d'indices)
     for idx in sorted(indices_to_remove, reverse=True):

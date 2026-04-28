@@ -446,15 +446,44 @@
         ]
       },
       {
-        "index": 31,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [],
+        "runs": []
+      },
+      {
+        "index": 32,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": null,
+            "bottom": null,
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
         "tags": [
           "education"
-        ]
+        ],
+        "row_count": 0,
+        "col_count": 2,
+        "rows": [],
+        "edu_type": "formations"
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 32,
@@ -673,15 +702,44 @@
         ]
       },
       {
-        "index": 35,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [],
+        "runs": []
+      },
+      {
+        "index": 36,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": null,
+            "bottom": null,
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
         "tags": [
           "education"
-        ]
+        ],
+        "row_count": 0,
+        "col_count": 2,
+        "rows": [],
+        "edu_type": "formations"
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 36,
@@ -839,22 +897,6 @@
         "runs": []
       },
       {
-        "type": "Paragraph",
-        "runs": [
-          {
-            "text": "Langues",
-            "properties": {}
-          }
-        ],
-        "properties": {
-          "style": "DC_T1_Sections",
-          "outline_level": 0
-        },
-        "tags": "education",
-        "section": "education",
-        "auto_generated": true
-      },
-      {
         "index": 38,
         "type": "Paragraph",
         "properties": {
@@ -872,37 +914,44 @@
         ]
       },
       {
-        "index": 39,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": [
-          {
-            "text": "Français",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "education"
-        ]
+        "runs": []
       },
       {
         "index": 40,
-        "type": "Paragraph",
+        "type": "Table",
+        "auto_generated": true,
         "properties": {
-          "style": "DC_Normal",
-          "section_break": "nextPage"
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": null,
+            "bottom": null,
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
         },
-        "runs": [
-          {
-            "text": "Anglais Niveau B1",
-            "properties": {}
-          }
-        ],
         "tags": [
           "education"
-        ]
+        ],
+        "row_count": 0,
+        "col_count": 2,
+        "rows": [],
+        "edu_type": "langues"
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
       },
       {
         "index": 41,
@@ -919,7 +968,106 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "Textbody"
+                    },
+                    "runs": [
+                      {
+                        "text": "Français",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "education"
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "Textbody"
+                    },
+                    "runs": [
+                      {
+                        "text": "Anglais",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "education"
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "Textbody"
+                    },
+                    "runs": [
+                      {
+                        "text": "Niveau B1",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "education"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "row_count": 2
       },
       {
         "index": 42,
