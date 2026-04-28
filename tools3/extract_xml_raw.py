@@ -213,19 +213,19 @@ if __name__ == "__main__":
 
     # Argument positional: chemin du fichier DOCX
     parser.add_argument(
-        "docx_file",
+        "-s", "--source_docx_file",
         help="Chemin du fichier .docx à traiter"
     )
 
     # Arguments optionnels
     parser.add_argument(
-        "--export_docxml",
+        "-xi", "--export_docxml",
         action="store_true",
         help="Exporter uniquement le document.xml formaté (RAW)"
     )
 
     parser.add_argument(
-        "--export_allxml",
+        "-xn", "--export_allxml",
         action="store_true",
         help="Exporter tous les XML dans un fichier global"
     )
@@ -242,4 +242,4 @@ if __name__ == "__main__":
         args.export_docxml = False
         args.export_allxml = True
 
-    main(args.docx_file, args.output_dir, args.export_docxml, args.export_allxml)
+    main(args.source_docx_file, args.output_dir, args.export_docxml, args.export_allxml)

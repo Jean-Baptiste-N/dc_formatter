@@ -379,25 +379,28 @@ def parse_global_xml(xml_file: str) -> Dict[str, Any]:
 
     return document_structure
 
-def xml_to_json(xml_file: str, output_file: str = None) -> str:
+def xml_to_json(xml_file: str, output_dir: str = None) -> str:
     """
     Convertit un fichier global.xml en JSON RAW (sans tags ni styles).
 
     Args:
         xml_file (str): Chemin du fichier global.xml
-        output_file (str): Chemin du fichier JSON (optionnel)
+        output_dir (str): Répertoire de sortie (optionnel, défaut: OUTPUT2_JSON-RAW)
 
     Returns:
         str: Chemin du fichier créé
     """
     xml_path = Path(xml_file)
 
-    # Générer le nom de sortie
-    if output_file is None:
-        # Créer le JSON au même répertoire que la source
-        output_file = xml_path.parent / (xml_path.stem + "_raw.json")
+    # Déterminer le répertoire de sortie
+    if output_dir is None:
+        output_dir = "OUTPUT2_JSON-RAW"
 
-    output_path = Path(output_file)
+    output_dir = Path(output_dir)
+
+    # Construire le chemin complet du fichier JSON (basé sur le stem du XML)
+    json_filename = xml_path.stem + "_raw.json"
+    output_path = output_dir / json_filename
 
     # Créer le répertoire s'il n'existe pas
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -415,6 +418,7 @@ def main():
     parser = ArgumentParser(description="Convertir un fichier XML en JSON RAW")
     parser.add_argument(
         "-s", "--source_xml_file",
+        required=True,
         help="Chemin du fichier global.xml"
     )
     parser.add_argument(
@@ -425,4 +429,35 @@ def main():
 
     args = parser.parse_args()
 
-    xml_to_json(args.source_xml_file, args.output_dir)
+    try:
+        # Vérifier que le fichier source existe
+        xml_path = Path(args.source_xml_file)
+        if not xml_path.exists():
+            print(f"❌ ERREUR: Le fichier source n'existe pas: {xml_path.absolute()}")
+            return
+
+        if not xml_path.is_file():
+            print(f"❌ ERREUR: La source n'est pas un fichier: {xml_path.absolute()}")
+            return
+
+        print(f"📖 Lecture du fichier XML: {xml_path.absolute()}")
+
+        # Convertir XML en JSON
+        output_file = xml_to_json(args.source_xml_file, args.output_dir)
+
+        # Afficher le succès
+        output_path = Path(output_file)
+        file_size = output_path.stat().st_size / 1024  # Taille en KB
+        print(f"✅ SUCCÈS: Fichier JSON généré avec succès!")
+        print(f"   📁 Chemin: {output_path.absolute()}")
+        print(f"   💾 Taille: {file_size:.1f} KB")
+
+    except FileNotFoundError as e:
+        print(f"❌ ERREUR: Fichier non trouvé: {e}")
+    except IsADirectoryError as e:
+        print(f"❌ ERREUR: Chemin invalide (répertoire au lieu de fichier): {e}")
+    except Exception as e:
+        print(f"❌ ERREUR: Impossible de convertir le fichier: {e}")
+
+if __name__ == "__main__":
+    main()
