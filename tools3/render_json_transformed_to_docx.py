@@ -393,49 +393,94 @@ def json_to_docx(json_file: str, template_file: str, output_dir: str) -> str:
     Returns:
         str: Chemin du fichier DOCX créé
     """
-    # Créer le répertoire de sortie
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
+    try:
+        # Valider l'existence du fichier JSON
+        json_path = Path(json_file)
+        if not json_path.exists():
+            print(f"❌ ERREUR: Le fichier JSON n'existe pas: {json_file}")
+            raise FileNotFoundError(f"JSON file not found: {json_file}")
 
-    # Charger le JSON
-    with open(json_file, 'r', encoding='utf-8') as f:
-        json_data = json.load(f)
+        if not json_path.is_file():
+            print(f"❌ ERREUR: La source n'est pas un fichier: {json_file}")
+            raise IsADirectoryError(f"JSON source is not a file: {json_file}")
 
-    # Charger le template
-    doc = Document(template_file)
+        # Valider l'existence du template
+        template_path = Path(template_file)
+        if not template_path.exists():
+            print(f"❌ ERREUR: Le template n'existe pas: {template_file}")
+            raise FileNotFoundError(f"Template file not found: {template_file}")
 
-    # Injecter le contenu
-    content = json_data.get('document', {}).get('content', [])
+        print(f"📖 Lecture du fichier JSON: {json_path}")
 
-    for element in content:
-        elem_type = element.get('type')
+        # Créer le répertoire de sortie
+        output_path = Path(output_dir)
+        output_path.mkdir(parents=True, exist_ok=True)
+        print(f"📁 Répertoire de sortie créé: {output_path}")
 
-        if elem_type == 'Paragraph':
-            add_paragraph_from_json(doc, element)
+        # Charger le JSON
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        print(f"✓ JSON chargé avec succès")
 
-        elif elem_type == 'Table':
-            add_table_from_json(doc, element)
+        # Charger le template
+        print(f"📄 Chargement du template: {template_path}")
+        doc = Document(template_file)
+        print(f"✓ Template chargé avec succès")
 
-    # Générer le nom de sortie
-    json_stem = Path(json_file).stem.replace('_transformed', '')
-    output_file = output_path / f"{json_stem}_generated.docx"
+        # Injecter le contenu
+        content = json_data.get('document', {}).get('content', [])
+        print(f"🔄 Injection de {len(content)} éléments dans le document...")
 
-    # Sauvegarder
-    doc.save(str(output_file))
+        for idx, element in enumerate(content, 1):
+            elem_type = element.get('type')
 
-    return str(output_file)
+            if elem_type == 'Paragraph':
+                add_paragraph_from_json(doc, element)
+
+            elif elem_type == 'Table':
+                add_table_from_json(doc, element)
+
+        print(f"✓ Tous les éléments ont été injectés")
+
+        # Générer le nom de sortie
+        json_stem = Path(json_file).stem.replace('_transformed', '')
+        output_file = output_path / f"{json_stem}_generated.docx"
+
+        # Sauvegarder
+        print(f"💾 Sauvegarde du fichier DOCX...")
+        doc.save(str(output_file))
+
+        # Obtenir la taille du fichier
+        file_size = output_file.stat().st_size / 1024  # En KB
+
+        print(f"✅ SUCCÈS: Fichier DOCX généré avec succès!")
+        print(f"   📁 Chemin: {output_file}")
+        print(f"   💾 Taille: {file_size:.1f} KB")
+
+        return str(output_file)
+
+    except FileNotFoundError as e:
+        print(f"❌ ERREUR: {str(e)}")
+        raise
+    except IsADirectoryError as e:
+        print(f"❌ ERREUR: {str(e)}")
+        raise
+    except Exception as e:
+        print(f"❌ ERREUR lors du rendu: {str(e)}")
+        raise
 
 def main():
     parser = ArgumentParser(description="Injecte le contenu d'un JSON dans un template DOCX")
     parser.add_argument(
         "-s", "--source_json_file",
+        required=True,
         help="Chemin du fichier JSON (transformé)"
     )
 
     parser.add_argument(
-        "--template",
+        "-t", "--template",
         default="assets/TEMPLATE.docx",
-        help="Chemin du template DOCX"
+        help="Chemin du template DOCX (défaut: assets/TEMPLATE.docx)"
     )
 
     parser.add_argument(
@@ -446,7 +491,20 @@ def main():
 
     args = parser.parse_args()
 
-    json_to_docx(args.source_json_file, args.template, args.output_dir)
+    print("🚀 Démarrage du rendu JSON → DOCX")
+    print(f"   📄 Source JSON: {args.source_json_file}")
+    print(f"   🎨 Template: {args.template}")
+    print(f"   📁 Sortie: {args.output_dir}")
+    print()
+
+    try:
+        output_file = json_to_docx(args.source_json_file, args.template, args.output_dir)
+        print()
+        print(f"✨ Rendu terminé avec succès: {output_file}")
+    except Exception as e:
+        print()
+        print(f"❌ Rendu échoué: {str(e)}")
+        exit(1)
 
 if __name__ == "__main__":
     main()

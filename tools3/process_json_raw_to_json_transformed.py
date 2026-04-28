@@ -257,6 +257,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
             'borders': borders,
             'style': "DC_Table_Content"
         },
+        'tags': [section] if section else [],
         'row_count': num_rows,
         'col_count': 2,
         'rows': rows
@@ -684,7 +685,7 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
     data['document']['content'] = content
     return result
 
-def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any]) -> None:
+def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any], page_dims: dict = None) -> None:
     """
     Remplit le contenu des tables éducation (formations et langues) et supprime les sources.
 
@@ -696,6 +697,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any])
     Args:
         data: Structure du document JSON
         creation_result: Résultat de create_edu_table() contenant les indices des tables créées
+        page_dims: Dimensions de page (requis pour calculer largeurs de colonnes)
     """
     content = data.get('document', {}).get('content', [])
     indices_to_remove = []
@@ -732,7 +734,8 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any])
                                 0,  # index fictif
                                 section='education',
                                 auto_generated=True,
-                                num_rows=len(blocks)
+                                num_rows=len(blocks),
+                                page_dims=page_dims
                             )
                             rows = temp_table['rows']
 
@@ -790,7 +793,8 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any])
                             0,  # index fictif
                             section='education',
                             auto_generated=True,
-                            num_rows=len(lang_pairs)
+                            num_rows=len(lang_pairs),
+                            page_dims=page_dims
                         )
                         rows = temp_table['rows']
 
@@ -1257,9 +1261,16 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             props['style'] = 'DC_H_Poste'
 
     for itable in data.get('document', {}).get('content', []):
-        if itable.get('type') == 'Table' and 'properties' in itable:
-            section = itable.get('properties', {}).get('section')
-            if section == 'education':
+        if itable.get('type') == 'Table':
+            tags = itable.get('tags', [])
+            if isinstance(tags, str):
+                tags = [tags]
+            
+            # Détecter le type de table via tags ET properties
+            is_education = 'education' in tags or itable.get('properties', {}).get('section') == 'education'
+            is_professional = 'professional_experience' in tags or itable.get('properties', {}).get('section') == 'professional_experience'
+            
+            if is_education:
                 rows = itable.get('rows', [])
                 # Appliquer le style DC_Table_Year aux paragraphes dans cell[x][0] (colonne 0)
                 for row in rows:
@@ -1277,7 +1288,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                             if 'properties' not in para:
                                 para['properties'] = {}
                             para['properties']['style'] = 'DC_Table_Content'
-            elif section == 'professional_experience':
+            elif is_professional:
                 rows = itable.get('rows', [])
                 # Appliquer le style DC_XP_Title aux paragraphes dans cell[0][0]
                 if len(rows) > 0:
@@ -1478,7 +1489,7 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     edu_creation_result = create_edu_table(data)
 
     # Remplir le contenu et supprimer les sources
-    insert_text_edu_table(data, edu_creation_result)
+    insert_text_edu_table(data, edu_creation_result, page_dims=page_dimensions)
 
     # ===== TABLES EXPÉRIENCES PROFESSIONNELLES =====
     # Créer les structures

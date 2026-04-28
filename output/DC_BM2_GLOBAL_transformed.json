@@ -470,7 +470,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -489,7 +489,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -514,7 +514,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -533,7 +533,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -558,7 +558,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -577,7 +577,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -602,7 +602,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -621,7 +621,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -697,7 +697,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -716,7 +716,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -741,7 +741,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -760,7 +760,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -785,7 +785,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "TableParagraph"
+                      "style": "DC_Table_Year"
                     },
                     "runs": [
                       {
@@ -804,7 +804,7 @@
                     "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "Normal"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -952,6 +952,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -1429,6 +1432,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -1822,6 +1828,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -2356,6 +2365,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -2673,6 +2685,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -2980,6 +2995,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -3233,6 +3251,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -3662,6 +3683,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
@@ -4044,6 +4068,9 @@
           },
           "style": "DC_Table_Content"
         },
+        "tags": [
+          "professional_experience"
+        ],
         "row_count": 2,
         "col_count": 2,
         "rows": [
