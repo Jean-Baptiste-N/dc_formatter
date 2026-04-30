@@ -256,11 +256,8 @@ def normalize_paragraph_runs(para: Dict[str, Any]) -> Dict[str, Any]:
                 last_text = normalized_runs[-1]['text']
                 new_text = run['text']
 
-                # Fusionner intelligemment: ajouter un espace seulement si nécessaire
-                if last_text and not last_text.endswith(' ') and not new_text.startswith(' '):
-                    normalized_runs[-1]['text'] = last_text + ' ' + new_text
-                else:
-                    normalized_runs[-1]['text'] = last_text + new_text
+                # Concaténer strictement le texte brut des runs
+                normalized_runs[-1]['text'] = last_text + new_text
 
                 continue  # Pas besoin d'ajouter un nouveau run
 

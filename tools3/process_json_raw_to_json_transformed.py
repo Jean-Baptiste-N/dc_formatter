@@ -395,7 +395,7 @@ def create_language_header(data: Dict[str, Any]) -> None:
             if (style.startswith('Heading') or style.startswith('Titre')) and text.lower() == 'langues':
                 header_langues_exists = True
                 break
-    
+
     if header_langues_exists:
         return  # Header "Langues" existe déjà, rien à faire
 
@@ -922,14 +922,14 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                 # Cas 2 : Paragraphe avec keywords_technical
                 # ⚠️ Skip if next is AUTO table or near end
                 if any(keyword in text.lower() for keyword in KEYWORDS_TECHNICAL_SKILLS):
-                    if (not text.startswith('contexte') or len(text) > 100) and not next_is_auto_table and not is_near_end:
+                    if (not text.startswith('contexte') or len(text) > 70) and not next_is_auto_table and not is_near_end:
                         should_create_table = True
 
                 # Cas 3 : Sortie de liste (transition ilvl → no ilvl)
                 # ⚠️ Skip if next is AUTO table (but allow if EXISTING table - we'll merge!)
                 elif prev_element is not None and not next_is_auto_table:
                     prev_had_ilvl = prev_element.get('properties', {}).get('ilvl') is not None
-                    is_long = len(text) > 100
+                    is_long = len(text) > 70
                     is_contexte = text.startswith('contexte')
                     next_is_existing_table = (i + 1 < len(content) and content[i + 1].get('type') == 'Table' and not content[i + 1].get('auto_generated'))
 
@@ -1021,8 +1021,8 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any])
                         if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
                             break
 
-                        # ARRÊTER si le paragraphe est long (> 100 caractères)
-                        if len(text) > 100:
+                        # ARRÊTER si le paragraphe est long (> 70 caractères)
+                        if len(text) > 70:
                             break
 
                         # Ajouter le paragraphe (même s'il est vide)
@@ -1240,6 +1240,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         text = get_text_from_element(itag) if itag else ""
         props = itag.get('properties', {})
 
+        #  Appliquer les styles selon le contenu textuel pour les titres
         if 'header' in tags and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_DOCUMENT):
             props['style'] = 'DC_H_DC'
             text = text.upper()
@@ -1261,27 +1262,17 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
 
-        if 'header' in tags and 'DC_H_DC' not in props.get('style', '') and len(text) > 0 and len(text) <= 5:
-            props['style'] = 'DC_H_Trigramme'
-            text = text.upper()
-            if 'runs' in itag and itag['runs']:
-                itag['runs'][0]['text'] = text
-        elif 'header' in tags and 'DC_H_DC' not in props.get('style', '') and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5:
-            props['style'] = 'DC_H_XP'
-
-        if 'header' in tags and 'DC_H_XP' not in props.get('style', '') and 'DC_H_DC' not in props.get('style', '') and len(text) > 5:
-            props['style'] = 'DC_H_Poste'
-
+    # Appliquer les styles des tables éducation et expérience professionnelle
     for itable in data.get('document', {}).get('content', []):
         if itable.get('type') == 'Table':
             tags = itable.get('tags', [])
             if isinstance(tags, str):
                 tags = [tags]
-            
+
             # Détecter le type de table via tags ET properties
             is_education = 'education' in tags or itable.get('properties', {}).get('section') == 'education'
             is_professional = 'professional_experience' in tags or itable.get('properties', {}).get('section') == 'professional_experience'
-            
+
             if is_education:
                 rows = itable.get('rows', [])
                 # Appliquer le style DC_Table_Year aux paragraphes dans cell[x][0] (colonne 0)
@@ -1296,7 +1287,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                 for row in rows:
                     cells = row.get('cells', [])
                     if len(cells) > 1:
-                        for para in cells[1].get('paragraphs', []):
+                        for para in cells[1:].get('paragraphs', []):
                             if 'properties' not in para:
                                 para['properties'] = {}
                             para['properties']['style'] = 'DC_Table_Content'
@@ -1379,6 +1370,18 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             props['style'] = 'DC_4th_bullet'
         else:
             props['style'] = 'DC_Normal'  # fallback
+
+    #  Appliquer les styles des titres restants APRES LES LISTES (en se basant sur les tags et le contenu textuel)
+    if 'header' in tags and 'DC_H_DC' not in props.get('style', '') and len(text) > 0 and len(text) <= 5:
+        props['style'] = 'DC_H_Trigramme'
+        text = text.upper()
+        if 'runs' in itag and itag['runs']:
+            itag['runs'][0]['text'] = text
+    elif 'header' in tags and 'DC_H_DC' not in props.get('style', '') and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5:
+        props['style'] = 'DC_H_XP'
+
+    if 'header' in tags and 'DC_H_XP' not in props.get('style', '') and 'DC_H_DC' not in props.get('style', '') and len(text) > 5:
+        props['style'] = 'DC_H_Poste'
 
     # Appliquer le style Normal pour le reste et les éléments sans style
     for element in data.get('document', {}).get('content', []):
