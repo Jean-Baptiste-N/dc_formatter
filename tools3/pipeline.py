@@ -24,11 +24,25 @@ from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import sys
 from pathlib import Path
 
-from .extract_xml_raw import export_all_xml
-from .parse_template import extract_page_dimensions_from_template
-from .parse_xml_raw_to_json_raw import xml_to_json
-from .process_json_raw_to_json_transformed import apply_tags_and_styles
-from .render_json_transformed_to_docx import json_to_docx
+# Ajouter le répertoire parent à sys.path pour les imports
+parent_dir = str(Path(__file__).parent.parent)
+if parent_dir not in sys.path:
+    sys.path.insert(0, parent_dir)
+
+# Imports locaux
+try:
+    from .extract_xml_raw import export_all_xml
+    from .parse_template import extract_page_dimensions_from_template
+    from .parse_xml_raw_to_json_raw import xml_to_json
+    from .process_json_raw_to_json_transformed import apply_tags_and_styles
+    from .render_json_transformed_to_docx import json_to_docx
+except (ImportError, ValueError):
+    # Fallback pour exécution directe (python3 script.py)
+    from tools3.extract_xml_raw import export_all_xml
+    from tools3.parse_template import extract_page_dimensions_from_template
+    from tools3.parse_xml_raw_to_json_raw import xml_to_json
+    from tools3.process_json_raw_to_json_transformed import apply_tags_and_styles
+    from tools3.render_json_transformed_to_docx import json_to_docx
 
 # ===== CONSTANTES =====
 TEMPLATE_PATH = 'assets/TEMPLATE.docx'
