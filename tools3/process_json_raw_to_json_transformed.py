@@ -720,10 +720,27 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                 # ===== FORMATIONS (diplômes, certifications, etc.) =====
                 if edu_type in ['formations', 'diplomes', 'certifications']:
-                    # Chercher la table source juste après
+                    # Chercher la table source suivante, même si elle n'est pas juste après le header
                     j = i + 1
-                    if j < len(content) and content[j].get('type') == 'Table' and not content[j].get('auto_generated'):
-                        existing_table = content[j]
+                    existing_table = None
+                    while j < len(content):
+                        next_elem = content[j]
+
+                        if next_elem.get('type') == 'Table' and not next_elem.get('auto_generated'):
+                            existing_table = next_elem
+                            break
+
+                        if next_elem.get('type') == 'Paragraph':
+                            text = get_text_from_element(next_elem)
+                            style = next_elem.get('properties', {}).get('style', '')
+                            is_title = style.startswith('Titre') or style.startswith('Heading')
+
+                            if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                                break
+
+                        j += 1
+
+                    if existing_table is not None:
                         all_paras = []
 
                         # Extraire tous les paragraphes

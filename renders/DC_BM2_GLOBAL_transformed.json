@@ -473,30 +473,22 @@
         "tags": [
           "education"
         ],
-        "row_count": 0,
+        "row_count": 3,
         "col_count": 2,
-        "rows": [],
-        "edu_type": "formations"
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
-      },
-      {
-        "index": 32,
-        "type": "Table",
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Year"
@@ -508,14 +500,17 @@
                       }
                     ]
                   }
-                ],
-                "width": 976
+                ]
               },
               {
                 "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Content"
@@ -527,20 +522,23 @@
                       }
                     ]
                   }
-                ],
-                "width": 8662
+                ]
               }
-            ],
-            "height": 390
+            ]
           },
           {
             "row_index": 1,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Year"
@@ -552,14 +550,17 @@
                       }
                     ]
                   }
-                ],
-                "width": 976
+                ]
               },
               {
                 "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Content"
@@ -571,20 +572,23 @@
                       }
                     ]
                   }
-                ],
-                "width": 8662
+                ]
               }
-            ],
-            "height": 390
+            ]
           },
           {
             "row_index": 2,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Year"
@@ -596,14 +600,17 @@
                       }
                     ]
                   }
-                ],
-                "width": 976
+                ]
               },
               {
                 "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Content"
@@ -614,24 +621,11 @@
                         "properties": {}
                       }
                     ]
-                  }
-                ],
-                "width": 8662
-              }
-            ],
-            "height": 390
-          },
-          {
-            "row_index": 3,
-            "cells": [
-              {
-                "col_index": 0,
-                "paragraphs": [
+                  },
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
-                      "style": "DC_Table_Year"
+                      "style": "DC_Table_Content"
                     },
                     "runs": [
                       {
@@ -639,15 +633,8 @@
                         "properties": {}
                       }
                     ]
-                  }
-                ],
-                "width": 976
-              },
-              {
-                "col_index": 1,
-                "paragraphs": [
+                  },
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Content"
@@ -659,23 +646,12 @@
                       }
                     ]
                   }
-                ],
-                "width": 8662
+                ]
               }
-            ],
-            "height": 390
+            ]
           }
         ],
-        "properties": {
-          "table_width": "9639",
-          "table_width_type": "dxa",
-          "style": "DC_Normal"
-        },
-        "row_count": 4,
-        "col_count": 2,
-        "tags": [
-          "education"
-        ]
+        "edu_type": "formations"
       },
       {
         "type": "Paragraph",
@@ -729,30 +705,22 @@
         "tags": [
           "education"
         ],
-        "row_count": 0,
+        "row_count": 3,
         "col_count": 2,
-        "rows": [],
-        "edu_type": "formations"
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
-      },
-      {
-        "index": 36,
-        "type": "Table",
         "rows": [
           {
             "row_index": 0,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Year"
@@ -764,14 +732,17 @@
                       }
                     ]
                   }
-                ],
-                "width": 1008
+                ]
               },
               {
                 "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Content"
@@ -783,20 +754,23 @@
                       }
                     ]
                   }
-                ],
-                "width": 9049
+                ]
               }
-            ],
-            "height": 390
+            ]
           },
           {
             "row_index": 1,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Year"
@@ -808,14 +782,17 @@
                       }
                     ]
                   }
-                ],
-                "width": 1008
+                ]
               },
               {
                 "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Content"
@@ -827,20 +804,23 @@
                       }
                     ]
                   }
-                ],
-                "width": 9049
+                ]
               }
-            ],
-            "height": 390
+            ]
           },
           {
             "row_index": 2,
+            "height": 360,
             "cells": [
               {
                 "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Year"
@@ -852,14 +832,17 @@
                       }
                     ]
                   }
-                ],
-                "width": 1008
+                ]
               },
               {
                 "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
                 "paragraphs": [
                   {
-                    "index": 0,
                     "type": "Paragraph",
                     "properties": {
                       "style": "DC_Table_Content"
@@ -871,23 +854,12 @@
                       }
                     ]
                   }
-                ],
-                "width": 9049
+                ]
               }
-            ],
-            "height": 390
+            ]
           }
         ],
-        "properties": {
-          "table_width": "10058",
-          "table_width_type": "dxa",
-          "style": "DC_Normal"
-        },
-        "row_count": 3,
-        "col_count": 2,
-        "tags": [
-          "education"
-        ]
+        "edu_type": "formations"
       },
       {
         "type": "Paragraph",
@@ -1095,7 +1067,7 @@
         ]
       },
       {
-        "index": 45,
+        "index": 43,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1575,7 +1547,7 @@
         ]
       },
       {
-        "index": 67,
+        "index": 65,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1971,7 +1943,7 @@
         "runs": []
       },
       {
-        "index": 84,
+        "index": 82,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2508,7 +2480,7 @@
         "runs": []
       },
       {
-        "index": 110,
+        "index": 108,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2828,7 +2800,7 @@
         "runs": []
       },
       {
-        "index": 124,
+        "index": 122,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3138,7 +3110,7 @@
         "runs": []
       },
       {
-        "index": 137,
+        "index": 135,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3394,7 +3366,7 @@
         "runs": []
       },
       {
-        "index": 147,
+        "index": 145,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3826,7 +3798,7 @@
         "runs": []
       },
       {
-        "index": 167,
+        "index": 165,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4211,7 +4183,7 @@
         "runs": []
       },
       {
-        "index": 184,
+        "index": 182,
         "type": "Table",
         "auto_generated": true,
         "properties": {
