@@ -1040,14 +1040,6 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     just_after_prof_exp_header = False
     current_section = None
 
-    # Chercher le header "Expériences Professionnelles" d'avance
-    for elem in content:
-        if elem.get('type') == 'Paragraph':
-            elem_text = get_text_from_element(elem)
-            if any(keyword in elem_text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-                current_section = 'professional_experience'
-                break
-
     i = 0
     while i < len(content):
         element = content[i]
@@ -1067,9 +1059,11 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element)
             has_ilvl = element.get('properties', {}).get('ilvl') is not None
+            style = element.get('properties', {}).get('style', '')
+            is_title = style.startswith('Titre') or style.startswith('Heading')
 
             # Détecter le header "Expériences Professionnelles"
-            if any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+            if is_title and any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
                 current_section = 'professional_experience'
                 just_after_prof_exp_header = True
                 i += 1

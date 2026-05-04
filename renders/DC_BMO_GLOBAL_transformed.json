@@ -1,0 +1,3411 @@
+{
+  "document": {
+    "type": "Document",
+    "source": "DC_BMO_GLOBAL.xml",
+    "content": [
+      {
+        "index": 0,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 3,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_H_DC"
+        },
+        "runs": [
+          {
+            "text": "DOSSIER DE COMPÉTENCES",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 4,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 6,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_H_Trigramme"
+        },
+        "runs": [
+          {
+            "text": "BMO",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 7,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 9,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_H_Poste"
+        },
+        "runs": [
+          {
+            "text": "Architecte Logiciel",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 10,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_H_Poste"
+        },
+        "runs": [
+          {
+            "text": "Responsable technique",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 11,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 16,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_H_XP"
+        },
+        "runs": [
+          {
+            "text": "Expérience > 15 ans",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "header"
+        ]
+      },
+      {
+        "index": 17,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "runs": [
+          {
+            "text": "Compétences",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 19,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "main_skills",
+          "borders": {
+            "top": null,
+            "bottom": null,
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "main_skills"
+        ],
+        "row_count": 9,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "LANGAGES",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "WEB",
+                        "properties": {
+                          "bold": true
+                        }
+                      },
+                      {
+                        "text": ":",
+                        "properties": {}
+                      },
+                      {
+                        "text": "PHP, JavaScript, Typescript, C#, ASP, CSS, Volt, JSX, HTML",
+                        "properties": {}
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Applicatif",
+                        "properties": {
+                          "bold": true
+                        }
+                      },
+                      {
+                        "text": ":",
+                        "properties": {}
+                      },
+                      {
+                        "text": "C#, Python, ",
+                        "properties": {}
+                      },
+                      {
+                        "text": "Java, PowerShell, ",
+                        "properties": {}
+                      },
+                      {
+                        "text": "PML, C++",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "FRAMEWORKS & TECHNOLOGIES",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Phalcon, Node.js, React, jQuery, Bootstrap, Semantic-UI, Drupal, GraphQL, JWT",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "CONTENEURS",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Docker",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "GESTION DE VERSION",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "GitLab, GitHub",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 4,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "OS",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Linux, Windows",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 5,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "BASES DE DONNÉES",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "MySQL, PostgreSQL, Oracle, SQL Server, SQLite, MongoDB",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 6,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "CLOUD COMPUTING",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "AWS",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 7,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "SERVEURS, PROXY & VPN",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Apache, Nginx, OpenVPN",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 8,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "center",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Title"
+                    },
+                    "runs": [
+                      {
+                        "text": "OUTILS DE GESTION",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 4819,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Skills_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Jira, Trello, Confluence, Klaxoon",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 19,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Gestion de projets",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 20,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "6",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Méthodologie safe, agile, scrum, kanban, cycle en v.",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 21,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 22,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "6",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Analyse technique & fonctionnelle, conception du backlog et planification des réalisations.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 23,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 24,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "6",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Management des développeurs et testeurs, contrôle du delivery, animation des réunions.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 25,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 26,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "6",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Conception de l’architecture système, logiciel et de la base de données.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 27,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 28,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "6",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Mise en place des structures cloud (instances, serveurs, proxy, conteneurs, base de données, buckets, vpn…), développement, déploiement, support et mco.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 29,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "main_skills"
+        ]
+      },
+      {
+        "index": 30,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "runs": [
+          {
+            "text": "Diplômes",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "education"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 32,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": null,
+            "bottom": null,
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "education"
+        ],
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2007",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Master 2 (M2), Mathématiques - Informatiques – Université du Havre",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "2005",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Dut, Génie Électrique et Informatique Industrielle – IUT du Havre",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "edu_type": "formations"
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 32,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "runs": [
+          {
+            "text": "Langues ",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "education"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 34,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "education",
+          "borders": {
+            "top": null,
+            "bottom": null,
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "tags": [
+          "education"
+        ],
+        "row_count": 4,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Français",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Langue",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "maternelle",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Anglais",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          },
+          {
+            "row_index": 3,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 1701,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Japonais",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 7937,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          }
+        ],
+        "edu_type": "langues"
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 33,
+        "type": "Table",
+        "rows": [
+          {
+            "row_index": 0,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Français",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "width": 1363
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Langue maternelle",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ],
+                "width": 9101
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Anglais",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "width": 1363
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Courant",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ],
+                "width": 9101
+              }
+            ]
+          },
+          {
+            "row_index": 2,
+            "cells": [
+              {
+                "col_index": 0,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Year"
+                    },
+                    "runs": [
+                      {
+                        "text": "Japonais",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "width": 1363
+              },
+              {
+                "col_index": 1,
+                "paragraphs": [
+                  {
+                    "index": 0,
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_Table_Content"
+                    },
+                    "runs": [
+                      {
+                        "text": "Bon niveau",
+                        "properties": {}
+                      }
+                    ]
+                  }
+                ],
+                "width": 9101
+              }
+            ]
+          }
+        ],
+        "properties": {
+          "table_width": "10465",
+          "table_width_type": "dxa",
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "row_count": 3,
+        "col_count": 2,
+        "tags": [
+          "education"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 35,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_T1_Sections",
+          "outline_level": 0
+        },
+        "runs": [
+          {
+            "text": "Expériences professionnelles",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 36,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
+          {
+            "text": "Depuis 06/22: Epsyl-Alcen – Responsable Technique",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 39,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "professional_experience"
+        ],
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 37,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Projet : Plateau Frontend du Train SAFe 3D, Direction ingénierie et projets nouveau nucléaire, EDF",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 38,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
+          {
+            "text": "En tant que responsable technique de projets, je supervise les évolutions et la MCO d’une quinzaine de surcouches du logiciel AVEVA E3D pour la conception des nouveaux projets nucléaires.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 42,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "professional_experience"
+        ],
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "Supervision d’une équipe de développeurs et de testeurs",
+                        "properties": {
+                          "bold": true
+                        }
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 40,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "2",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Planification de pi safe de 10 semaines en fonction des ressources disponibles",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 41,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "15 projets",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 42,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Equipe Scrum de 10 personnes",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 43,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "3 sprints de 3 semaines + 1 semaine de planification",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 44,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "2",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Suivi journalier du déroulement des développements et tests fonctionnels",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 45,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "2",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Assistance technique et fonctionnelle aux développeurs et testeurs",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 46,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "2",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Participation aux entretiens et à la sélection des nouveaux membres de l’équipe",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 47,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "2",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Onboarding et transmission des connaissances aux nouveaux arrivants",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 48,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
+          {
+            "text": "Analyse technique et fonctionnelle",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 53,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "professional_experience"
+        ],
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 49,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "3",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Analyse préliminaire des nouveaux besoins et anomalies",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 50,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Prévision des travaux à réaliser",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 51,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Réalisation de Proofs Of Concept",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 52,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Analyse des impacts sur le code existant",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 53,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Estimation des tests à réaliser",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 54,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "3",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Affinement et estimation des features et us du backlog du train safe",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 55,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "3",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Conception de l’architecture des nouveaux projets en c#, python et pml.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 56,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "3",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Prototypage des futurs développements pour limiter les conflits de code entre développeurs",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 57,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Contrôle de la qualité des livrables",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 58,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "4",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Conception des tests unitaires et fonctionnels",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 59,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "4",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Revues de code et validation des merges request gitlab",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 60,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "4",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Validation de la couverture des tests",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 61,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "4",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Contrôle des livrables",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 62,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Vérification de la conformité des packages",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 63,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Vérification des cahiers de recette",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 64,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "7"
+        },
+        "runs": [
+          {
+            "text": "Relecture de la documentation",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 65,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Activités transverses",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 66,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Coordination avec de nombreux interlocuteurs (train safe de 150 personnes + moa) ",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 67,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Animations des cérémonies agile",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 68,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Maintenance des serveurs et environnements de travail de l’équipe",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 69,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Mise en place des pipelines devops.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 70,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Résolution des tickets sn3",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 71,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Participation à la conduite du changement vers la méthodologie safe",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 72,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Amélioration continue des bonnes pratiques de l’agile",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 73,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "5",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Réversibilité des applications vers les repreneurs",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 74,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
+          {
+            "text": "Environnements techniques : ",
+            "properties": {
+              "bold": true
+            }
+          },
+          {
+            "text": "C#, Python, PML, PowerShell, SQL Server, SQLite, IIS, Jira, GitLab, AVEVA E3D",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 80,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "professional_experience"
+        ],
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "12/10 - 03/22: Kamenoco inc – Architecte/ développeur full stack",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  },
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "Projet : Remplacement et développement d’un logiciel médical",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 77,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "En tant qu’architecte et développeur full stack, je conçois et implémente l’architecture système et logicielle d’un logiciel de suivi des patients dans une clinique de vaccination en Agile. ",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 78,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 79,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Conception",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 80,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Analyse des besoins, créations des user stories, du backlog, des workflows…",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 81,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Hiérarchisation des priorités et planification du projet.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 82,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Conception de la structure du projet et de l'interface utilisateur",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 83,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Architecture",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 84,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Conception et administration de l’architecture cloud sur aws (instances linux, serveurs, proxy, conteneurs, base de données, buckets, vpn…)",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 85,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Création des conteneurs docker",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 86,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Architecture des bases de données mysql.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 87,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Développement",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 88,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Création d'une interface graphql",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 89,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Programmation frontend et backend (php, phalcon, javascript)",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 90,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Activités transverses",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 91,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Réunions hebdomadaires en japonais avec le client",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 92,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Coordination avec un développeur freelance travaillant sur une autre partie du projet",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 93,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Formations des utilisateurs",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 94,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Maintenance des serveurs",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 95,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Projets :",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 96,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Création d’un jeu (type google doodle) pour accompagner la page web d’une campagne de dons pour le programme alimentaire mondial (wfp japan).",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 97,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Création d’un site d’e-learning pour les clients d’une clinique de voyage",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 98,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Création d’un logiciel de gestion",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 99,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Étude du savoir-faire, analyse fonctionnelle et création du cahier des charges.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 100,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Conception de la base de données, de la structure du projet et de l’interface utilisateur.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 101,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Création d’un framework inspiré par la programmation orientée aspect et d’un cms pour contenus multilingues.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 102,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
+          {
+            "text": "Environnements techniques : ",
+            "properties": {
+              "bold": true
+            }
+          },
+          {
+            "text": "PHP, Javascript, TypeScript, Volt, JSX, CSS, HTML, Phalcon 3, AJAX, JQuery, Node.js, React, Next.js, Bootstrap 4, Semantic-UI, MySQL, Prisma, GraphQL, Docker, Docker Compose, Git, AWS, Amazon Linux 2, Apache 2, Nginx, JWT, OpenVPN, Trello",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 109,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "professional_experience"
+        ],
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Date"
+                    },
+                    "runs": [
+                      {
+                        "text": "07-12/2007 : T-Bone Productions – Développeur",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 104,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Projet : Mise à jour du design du site australien de Toyota Material Handling.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 105,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Adaptation des scripts des pages web au nouveau design.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 106,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Ajout de nouvelles pages et fonctionnalités.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 107,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
+          {
+            "text": "Environnements techniques:",
+            "properties": {
+              "bold": true
+            }
+          },
+          {
+            "text": " C#, ASP, SQL Server, Visual Studio, .Net, Windows",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 115,
+        "type": "Table",
+        "auto_generated": true,
+        "properties": {
+          "table_width": "9638",
+          "table_width_type": "dxa",
+          "section": "professional_experience",
+          "borders": {
+            "top": null,
+            "bottom": {
+              "size": "10",
+              "color": "000000"
+            },
+            "left": null,
+            "right": null,
+            "insideH": null,
+            "insideV": null
+          },
+          "style": "DC_Table_Content"
+        },
+        "tags": [
+          "professional_experience"
+        ],
+        "row_count": 2,
+        "col_count": 2,
+        "rows": [
+          {
+            "row_index": 0,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Date"
+                    },
+                    "runs": [
+                      {
+                        "text": "02-05/ 2007 : Sydney Web – Développeur",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "row_index": 1,
+            "height": 360,
+            "cells": [
+              {
+                "col_index": 0,
+                "width": 6803,
+                "properties": {
+                  "hAlign": "left",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              },
+              {
+                "col_index": 1,
+                "width": 2835,
+                "properties": {
+                  "hAlign": "right",
+                  "vAlign": "center"
+                },
+                "paragraphs": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": []
+      },
+      {
+        "index": 109,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Projet : Continuation d’un projet interne: l’annuaire des entreprises à Sydney.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 110,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Analyse, débogage et nettoyage du code existant.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 111,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Programmation de nouvelles fonctionnalités.",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 112,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_XP_BlueContent"
+        },
+        "runs": [
+          {
+            "text": "Environnements techniques: ",
+            "properties": {
+              "bold": true
+            }
+          },
+          {
+            "text": "PHP, Javascript, Smarty, MySQL, Windows",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
+      }
+    ],
+    "stats": {
+      "total_elements": 113,
+      "paragraphs": 110,
+      "tables": 3
+    }
+  },
+  "page_dimensions": {
+    "page_width": 11906,
+    "page_height": 16838,
+    "usable_width": 9638,
+    "top_margin": 1134,
+    "bottom_margin": 1134,
+    "left_margin": 1134,
+    "right_margin": 1134,
+    "col_fixed_width_3": 1701,
+    "col_fixed_width_5": 2835
+  }
+}
