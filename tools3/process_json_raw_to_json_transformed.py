@@ -227,7 +227,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
                     'col_index': 0,
                     'width': col1_width,
                     'properties': {
-                        'hAlign': 'left',
+                        'hAlign': 'center' if section == 'main_skills' else 'left',
                         'vAlign': 'center'
                     },
                     'paragraphs': []
@@ -591,6 +591,172 @@ def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Di
         blocks.append(current_block)
 
     return blocks
+
+def create_main_skills_table (data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Crée les structures des tables main skills uniquement quand une table est présente au départ dans la source
+
+    Responsabilité:
+    - Itérer sur le titre de main skills contenant KEYWORDS_MAIN_SKILLS
+    - la section devrait être unique, créer une table vide
+    - Marquer les sources pour suppression
+
+    Args:
+        data: Structure du document JSON contenant page_dimensions
+
+    Returns:
+        Dict contenant les métadonnées sur les tables créées
+    """
+
+    # Récupérer les dimensions de page depuis data
+    page_dims = data.get('page_dimensions')
+    if page_dims is None:
+        raise ValueError("page_dimensions non trouvées dans data")
+
+    content = data.get('document', {}).get('content', [])
+    result = {'tables_created': []}
+
+    # Trouver le header main skills
+    main_skills_header_idx = None
+    for i, elem in enumerate(content):
+        if elem.get('type') == 'Paragraph':
+            text = get_text_from_element(elem)
+            style = elem.get('properties', {}).get('style', '')
+            is_title = style.startswith('Titre') or style.startswith('Heading')
+
+            if any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS) and is_title:
+                main_skills_header_idx = i
+                break
+
+    if main_skills_header_idx is not None:
+        # Chercher la première table source après le header main skills
+        source_table_idx = None
+        j = main_skills_header_idx + 1
+
+        while j < len(content):
+            elem = content[j]
+
+            # Stop si on rencontre un autre header ou une autre section avant une table source
+            if elem.get('type') == 'Paragraph':
+                text = get_text_from_element(elem)
+                style = elem.get('properties', {}).get('style', '')
+                is_title = style.startswith('Titre') or style.startswith('Heading')
+
+                if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                    break
+
+            if elem.get('type') == 'Table' and not elem.get('auto_generated'):
+                source_table_idx = j
+                break
+
+            j += 1
+
+        # Créer la table uniquement si une vraie table source existe
+        if source_table_idx is not None:
+            source_table = content[source_table_idx]
+            source_rows = source_table.get('rows', [])
+
+            # Créer une table vide avec les largeurs par défaut de create_empty_table_2x2
+            new_table = create_empty_table_2x2(
+                source_table_idx,
+                section='main_skills',
+                auto_generated=True,
+                num_rows=len(source_rows),
+                page_dims=page_dims
+            )
+
+            new_table['properties']['table_width'] = str(page_dims['usable_width'])
+            new_table['properties']['table_width_type'] = 'dxa'
+
+            content.insert(source_table_idx, new_table)
+            result['tables_created'].append({
+                'index': source_table_idx,
+                'source_table_index': source_table_idx + 1,
+                'row_count': len(source_rows)
+            })
+
+    return result
+
+def insert_text_main_skills_table(data: Dict[str, Any], creation_result: Dict[str, Any], page_dims: dict = None) -> None:
+    """
+    Remplit le contenu de la table main skills et supprime les sources.
+
+    Responsabilité:
+    - Pour la table main skills créée
+    - Remplir avec le contenu (paragraphes ou tables existantes)
+    - Supprimer les sources après migration
+
+    Args:
+        data: Structure du document JSON
+        creation_result: Résultat de create_skills_table() contenant les indices des tables créées
+    """
+    content = data.get('document', {}).get('content', [])
+    indices_to_remove = []
+
+    # Itérer sur toutes les tables auto main skills créées
+    for i, elem in enumerate(content):
+        if elem.get('type') == 'Table' and elem.get('auto_generated') and elem.get('properties', {}).get('section') == 'main_skills':
+            rows = elem.get('rows', [])
+
+            # La table source suit immédiatement la table auto créée
+            source_idx = None
+            for j in range(i + 1, len(content)):
+                next_elem = content[j]
+
+                if next_elem.get('type') == 'Table' and not next_elem.get('auto_generated'):
+                    source_idx = j
+                    break
+
+                if next_elem.get('type') == 'Paragraph':
+                    text = get_text_from_element(next_elem)
+                    style = next_elem.get('properties', {}).get('style', '')
+                    is_title = style.startswith('Titre') or style.startswith('Heading')
+
+                    if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                        break
+
+            if source_idx is None:
+                continue
+
+            existing_table = content[source_idx]
+            source_rows = existing_table.get('rows', [])
+
+            # Copier chaque bloc source dans la ligne correspondante de la nouvelle table
+            for row_idx, source_row in enumerate(source_rows):
+                if row_idx >= len(rows):
+                    break
+
+                target_row = rows[row_idx]
+
+                source_cells = source_row.get('cells', [])
+                target_cells = target_row.get('cells', [])
+
+                for cell_idx, target_cell in enumerate(target_cells):
+                    source_cell = source_cells[cell_idx] if cell_idx < len(source_cells) else None
+                    if source_cell is None:
+                        target_cell['paragraphs'] = []
+                        continue
+
+                    if 'properties' in source_cell:
+                        target_cell['properties'] = source_cell['properties'].copy()
+
+                    cloned_paragraphs = []
+                    for para in source_cell.get('paragraphs', []):
+                        cloned_paragraphs.append(clone_paragraph_clean(para))
+
+                    target_cell['paragraphs'] = cloned_paragraphs
+
+            elem['row_count'] = len(rows)
+            if page_dims:
+                elem.setdefault('properties', {})['table_width'] = str(page_dims['usable_width'])
+            indices_to_remove.append(source_idx)
+
+    # Supprimer les tables source en ordre inverse
+    for idx in sorted(indices_to_remove, reverse=True):
+        if idx < len(content):
+            del content[idx]
+
+    data['document']['content'] = content
 
 def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -1111,23 +1277,7 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any])
         if idx < len(content):
             del content[idx]
 
-    # Ajouter 1 paragraphe vide avant et 1 après chaque table AUTO (education et professional_experience)
-    # (après les traitements/suppressions, pour qu'ils ne soient pas relus)
-    new_content = []
-    for element in content:
-        if element.get('type') == 'Table' and element.get('auto_generated'):
-            section = element.get('properties', {}).get('section')
-            if section in ('education', 'professional_experience'):
-                # Ajouter 1 paragraphe vide juste avant la table
-                new_content.append({'type': 'Paragraph', 'properties': {}, 'runs': []})
-        new_content.append(element)
-        if element.get('type') == 'Table' and element.get('auto_generated'):
-            section = element.get('properties', {}).get('section')
-            if section in ('education', 'professional_experience'):
-                # Ajouter 1 paragraphe vide juste après la table
-                new_content.append({'type': 'Paragraph', 'properties': {}, 'runs': []})
-
-    data['document']['content'] = new_content
+    data['document']['content'] = content
 
 def remove_double_paras_and_spaces (data: Dict[str, Any]) -> None:
     """
@@ -1244,7 +1394,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         'DC_1st_bullet': 2,   # niveau 3
     }
 
-    # Appliquer les styles des tables éducation et expérience professionnelle
+    # Appliquer les styles des tables main skills, éducation et expérience professionnelle
     for itable in data.get('document', {}).get('content', []):
         if itable.get('type') == 'Table':
             tags = itable.get('tags', [])
@@ -1252,8 +1402,29 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                 tags = [tags]
 
             # Détecter le type de table via tags ET properties
+            is_main_skills = 'main_skills' in tags or itable.get('properties', {}).get('section') == 'main_skills'
             is_education = 'education' in tags or itable.get('properties', {}).get('section') == 'education'
             is_professional = 'professional_experience' in tags or itable.get('properties', {}).get('section') == 'professional_experience'
+
+            if is_main_skills:
+                rows = itable.get('rows', [])
+                # Appliquer le style DC_Table_Skills_Title aux paragraphes dans cell[x][0] (colonne 0)
+                for row in rows:
+                    cells = row.get('cells', [])
+                    if len(cells) > 0:
+                        for para in cells[0].get('paragraphs', []):
+                            if 'properties' not in para:
+                                para['properties'] = {}
+                            para['properties']['style'] = 'DC_Table_Skills_Title'
+                # Appliquer le style DC_Table_Skills_Content aux paragraphes dans cell[x][1..n] (colonnes 1 à n)
+                for row in rows:
+                    cells = row.get('cells', [])
+                    if len(cells) > 1:
+                        for cell in cells[1:]:
+                            for para in cell.get('paragraphs', []):
+                                if 'properties' not in para:
+                                    para['properties'] = {}
+                                para['properties']['style'] = 'DC_Table_Skills_Content'
 
             if is_education:
                 rows = itable.get('rows', [])
@@ -1274,7 +1445,8 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                                 if 'properties' not in para:
                                     para['properties'] = {}
                                 para['properties']['style'] = 'DC_Table_Content'
-            elif is_professional:
+
+            if is_professional:
                 rows = itable.get('rows', [])
                 # Appliquer le style DC_XP_Title aux paragraphes dans cell[0][0]
                 if len(rows) > 0:
@@ -1506,6 +1678,13 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # ===== DETECTER LES 4 SECTIONS =====
     # Appliquer les tags de section
     apply_section_tags(data)
+
+    # ===== TABLE MAIN SKILLS si existante =====
+    # Créer la table Main Skills si on détecte une table source des compétences techniques
+    main_skills_creation_result = create_main_skills_table(data)
+
+    # Remplir le contenu de la table Main Skills et supprimer les sources
+    insert_text_main_skills_table(data, main_skills_creation_result, page_dims=page_dimensions)
 
     # ===== TABLES ÉDUCATION =====
     # Créer le header "Langues" juste avant le premier keyword détecté

@@ -180,6 +180,7 @@ def add_table_from_json(doc: Document, table_data: dict):
 
     # Créer le tableau
     table = doc.add_table(rows=len(rows), cols=col_count)
+    table.autofit = False
 
     # Note: Le style de table n'est pas assigné ici car les styles personnalisés
     # sont gérés par le template DOCX. Seules les propriétés structurelles (largeur,
@@ -237,6 +238,7 @@ def add_table_from_json(doc: Document, table_data: dict):
                     width_twips = int(cell_data['width'])
                     width_cm = (width_twips * 2.54) / 1440
                     cell.width = Cm(width_cm)
+                    table.columns[col_idx].width = Cm(width_cm)
                 except (ValueError, TypeError):
                     pass
 
