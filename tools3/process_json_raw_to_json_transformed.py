@@ -109,6 +109,37 @@ def get_text_from_element(element: Dict[str, Any]) -> str:
 
     return ' '.join(texts).lower()
 
+
+def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) -> bool:
+    """Retourne True si l'élément ressemble à un vrai titre de section.
+
+    On exclut tous les paragraphes de liste (`ilvl`) pour éviter qu'un mot-clé
+    présent dans une puce soit reclassé en `T1_Sections`.
+    """
+    if not element or element.get('type') != 'Paragraph':
+        return False
+
+    props = element.get('properties', {})
+    if props.get('ilvl') is not None:
+        return False
+
+    text = get_text_from_element(element)
+    if not text.strip():
+        return False
+
+    style = props.get('style', '')
+
+    if element.get('auto_generated'):
+        return True
+
+    if style.startswith('Titre') or style.startswith('Heading'):
+        return True
+
+    if style in {'DC_T1_Sections', 'DC_XP_Title', 'DC_H_DC', 'DC_H_XP', 'DC_H_Poste'}:
+        return True
+
+    return any(keyword in text for keyword in keywords)
+
 def detect_section_by_keyword(text: str) -> str:
     """Détecte le type de section basé sur les mots-clés (en ordre de priorité)"""
     if any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
@@ -1125,7 +1156,7 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
 
     return {'indices_to_delete': []}
 
-def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any]) -> None:
+def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any], page_dims: dict = None) -> None:
     """
     Remplit le contenu des tables professionnelles et supprime les sources.
 
@@ -1143,6 +1174,8 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any])
         creation_result: Résultat de create_xp_tables() (pour uniformité, même si vide)
     """
     content = data.get('document', {}).get('content', [])
+    if page_dims is None:
+        page_dims = data.get('page_dimensions')
     indices_to_remove = []
 
     i = 0
@@ -1207,6 +1240,16 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any])
 
                 # Étape 2 : Distribuer dans les cellules
                 if all_paragraphs:
+                    temp_table = create_empty_table_2x2(
+                        0,
+                        section='professional_experience',
+                        auto_generated=True,
+                        num_rows=2,
+                        page_dims=page_dims
+                    )
+                    element['rows'] = temp_table['rows']
+                    element['row_count'] = len(element['rows'])
+
                     # Trouver max size
                     max_size_para = None
                     max_size = 0
@@ -1527,17 +1570,17 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             text = text.upper()
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
-        elif 'main_skills' in tags and any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS):
+        elif 'main_skills' in tags and is_promotable_section_title(itag, KEYWORDS_MAIN_SKILLS):
             props['style'] = 'DC_T1_Sections'
             text = text.capitalize()
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
-        elif 'education' in tags and any(keyword in text for keyword in KEYWORDS_EDUCATION):
+        elif 'education' in tags and is_promotable_section_title(itag, KEYWORDS_EDUCATION):
             props['style'] = 'DC_T1_Sections'
             text = text.capitalize()
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
-        elif 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+        elif 'professional_experience' in tags and is_promotable_section_title(itag, KEYWORDS_PROFESSIONAL_EXPERIENCE):
             props['style'] = 'DC_T1_Sections'
             text = text.capitalize()
             if 'runs' in itag and itag['runs']:
@@ -1689,7 +1732,7 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     xp_creation_result = create_xp_tables(data)
 
     # Remplir le contenu et supprimer les sources
-    insert_text_xp_tables(data, xp_creation_result)
+    insert_text_xp_tables(data, xp_creation_result, page_dims=page_dimensions)
 
     # ===== AJOUT DES PARAGRAPHES VIDES AUTOUR DES TABLES =====
     # Ajouter un paragraphe vide avant et après chaque table
