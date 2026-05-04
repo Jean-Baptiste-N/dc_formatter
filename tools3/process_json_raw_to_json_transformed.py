@@ -442,102 +442,49 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     Returns:
         List[Dict]: Liste de 1 ou 2 paragraphes
     """
-    text = get_text_from_element(para)
+    text = ''.join(run.get('text', '') for run in para.get('runs', [])) or para.get('text', '') or get_text_from_element(para)
+    normalized_text = text.strip().lower()
 
-    # Trouver le premier keyword de langue
+    # Ne pas splitter sur les mots-clés génériques si le paragraphe ne porte pas
+    # réellement une langue: ils servent surtout au header "Langues".
+    split_keywords = [kw for kw in KEYWORDS_LANGUAGES if kw not in {'langue', 'langues'}]
+
     lang_keyword = None
     lang_pos = len(text)
-
-    for keyword in KEYWORDS_LANGUAGES:
-        pos = text.find(keyword)
-        if pos != -1 and pos < lang_pos:
+    for keyword in split_keywords:
+        match = re.search(rf'(?<!\w){re.escape(keyword)}(?!\w)', normalized_text)
+        if match and match.start() < lang_pos:
             lang_keyword = keyword
-            lang_pos = pos
+            lang_pos = match.start()
 
     if lang_keyword is None:
         return [para]
 
-    # Scinder les runs selon la position du keyword
-    lang_runs = []
-    desc_runs = []
-    current_pos = 0
-    keyword_found = False
-    keyword_end_pos = lang_pos + len(lang_keyword)
+    # Séparer le label de langue et sa description au premier séparateur utile.
+    split_end = lang_pos + len(lang_keyword)
+    colon_pos = text.find(':', split_end)
+    if colon_pos != -1:
+        split_end = colon_pos
 
-    for run in para.get('runs', []):
-        run_text = run.get('text', '')
-        run_len = len(run_text)
-        run_end = current_pos + run_len
+    lang_text = text[:split_end].rstrip(' :\u00a0').strip()
+    desc_text = text[split_end:].lstrip(' :\u00a0').strip()
 
-        if not keyword_found:
-            if run_end <= lang_pos:
-                # Run entièrement avant le keyword, ignorer
-                pass
-            elif current_pos >= keyword_end_pos:
-                # Run entièrement après le keyword
-                desc_runs.append(run)
-                keyword_found = True
-            else:
-                # Run contient le keyword
-                # Extraire le keyword lui-même
-                keyword_start_in_run = lang_pos - current_pos
-                keyword_end_in_run = keyword_end_pos - current_pos
+    if not lang_text:
+        return [para]
 
-                lang_text = run_text[keyword_start_in_run:keyword_end_in_run]
-                lang_runs.append({
-                    "text": lang_text,
-                    "properties": run.get('properties', {})
-                })
-
-                # Récupérer le reste du run après le keyword
-                rest_text = run_text[keyword_end_in_run:]
-                if rest_text:
-                    desc_runs.append({
-                        "text": rest_text,
-                        "properties": run.get('properties', {})
-                    })
-                keyword_found = True
-        else:
-            # Après le keyword
-            desc_runs.append(run)
-
-        current_pos = run_end
-
-    # Créer 2 paragraphes
+    first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
     result = []
 
-    # Paragraphe 1 : le mot-clé de langue
-    if lang_runs:
-        lang_para = clone_paragraph_clean(para)
-        lang_para['runs'] = lang_runs
-        result.append(lang_para)
+    lang_para = clone_paragraph_clean(para)
+    lang_para['runs'] = [{"text": lang_text, "properties": first_run_props}]
+    result.append(lang_para)
 
-    # Paragraphe 2 : la description nettoyée
-    if desc_runs:
+    if desc_text:
         desc_para = clone_paragraph_clean(para)
+        desc_para['runs'] = [{"text": desc_text, "properties": first_run_props}]
+        result.append(desc_para)
 
-        # Nettoyer le premier run: supprimer tous les caractères jusqu'à la première lettre
-        if desc_runs:
-            first_run = desc_runs[0]
-            first_text = first_run.get('text', '')
-
-            # Enlever tous les caractères jusqu'à la première lettre
-            cleaned_text = ''
-            for char in first_text:
-                if char.isalpha():
-                    cleaned_text = first_text[first_text.index(char):]
-                    break
-
-            if cleaned_text:
-                first_run['text'] = cleaned_text
-                desc_para['runs'] = desc_runs
-                result.append(desc_para)
-            elif len(desc_runs) > 1:
-                # Si le premier run est vide après nettoyage, utiliser les runs suivants
-                desc_para['runs'] = desc_runs[1:]
-                result.append(desc_para)
-
-    return result if result else [para]
+    return result
 
 def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Dict[str, Any]]]:
     """
@@ -792,9 +739,11 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
             text = get_text_from_element(elem)
             style = elem.get('properties', {}).get('style', '')
             is_title = style.startswith('Titre') or style.startswith('Heading')
+            is_auto_language_header = elem.get('auto_generated') and text.strip().lower() == 'langues'
 
             # Chercher si c'est un header éducation
-            if any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION) and is_title:
+            if ((any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION) and is_title)
+                    or is_auto_language_header):
                 # Déterminer le type: formations ou langues
                 if any(kw in text.lower() for kw in ['formation', 'formations', 'diplôme', 'diplômes', 'certification', 'certifications']):
                     edu_type = 'formations'
@@ -947,16 +896,20 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                 # ===== LANGUES =====
                 elif edu_type == 'langues':
-                    lang_pairs = []
                     j = i + 1
                     lang_table = elem
+                    existing_table = None
+                    source_paragraphs = []
+                    source_indices = []
 
                     while j < len(content):
                         next_elem = content[j]
 
-                        if next_elem.get('type') == 'Table':
+                        if next_elem.get('type') == 'Table' and not next_elem.get('auto_generated'):
+                            existing_table = next_elem
                             break
-                        elif next_elem.get('type') == 'Paragraph':
+
+                        if next_elem.get('type') == 'Paragraph':
                             text = get_text_from_element(next_elem)
 
                             # Stop si autre section
@@ -965,42 +918,82 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                             if text.strip() and any(kw in text.lower() for kw in ['formation', 'formations', 'diplôme', 'certification']):
                                 break
 
-                            # Si c'est une langue
-                            if any(keyword in text.lower() for keyword in KEYWORDS_LANGUAGES) and text.lower() != 'langues':
-                                split_result = split_paragraph_at_language(next_elem)
+                            if text.strip():
+                                source_paragraphs.append(next_elem)
+                                source_indices.append(j)
 
-                                if len(split_result) == 2:
-                                    lang_pairs.append((split_result[0], split_result[1]))
-                                elif len(split_result) == 1:
-                                    lang_pairs.append((split_result[0], None))
-
-                                indices_to_remove.append(j)
+                        elif next_elem.get('type') == 'Table':
+                            break
 
                         j += 1
 
-                    # Créer les rows pour langues avec le nombre exact requis
-                    if lang_pairs:
+                    if existing_table is not None:
+                        source_rows = existing_table.get('rows', [])
+
                         # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
                         temp_table = create_empty_table_2x2(
                             0,  # index fictif
                             section='education',
                             auto_generated=True,
-                            num_rows=len(lang_pairs),
+                            num_rows=len(source_rows),
                             page_dims=page_dims
                         )
                         rows = temp_table['rows']
 
-                        # Remplir chaque row avec les paires de langue
-                        for row_idx, (lang_para, desc_para) in enumerate(lang_pairs):
-                            lang_cloned = clone_paragraph_clean(lang_para)
-                            rows[row_idx]['cells'][0]['paragraphs'] = [lang_cloned]
+                        # Remplir chaque row en recopiant exactement la table source
+                        for row_idx, source_row in enumerate(source_rows):
+                            if row_idx >= len(rows):
+                                break
 
-                            if desc_para:
-                                desc_cloned = clone_paragraph_clean(desc_para)
-                                rows[row_idx]['cells'][1]['paragraphs'] = [desc_cloned]
+                            source_cells = source_row.get('cells', [])
+                            target_cells = rows[row_idx].get('cells', [])
+
+                            for cell_idx, target_cell in enumerate(target_cells):
+                                if cell_idx >= len(source_cells):
+                                    target_cell['paragraphs'] = []
+                                    continue
+
+                                source_cell = source_cells[cell_idx]
+                                cloned_paragraphs = [clone_paragraph_clean(para) for para in source_cell.get('paragraphs', [])]
+                                target_cell['paragraphs'] = cloned_paragraphs
 
                         lang_table['rows'] = rows
                         lang_table['row_count'] = len(rows)
+
+                        # Marquer la source pour suppression
+                        indices_to_remove.append(j)
+                    elif source_paragraphs:
+                        split_rows = []
+
+                        for para in source_paragraphs:
+                            split_parts = split_paragraph_at_language(para)
+
+                            if not split_parts:
+                                continue
+
+                            lang_para = split_parts[0]
+                            desc_para = split_parts[1] if len(split_parts) > 1 else None
+                            split_rows.append((lang_para, desc_para))
+
+                        if split_rows:
+                            temp_table = create_empty_table_2x2(
+                                0,
+                                section='education',
+                                auto_generated=True,
+                                num_rows=len(split_rows),
+                                page_dims=page_dims
+                            )
+                            rows = temp_table['rows']
+
+                            for row_idx, (lang_para, desc_para) in enumerate(split_rows):
+                                rows[row_idx]['cells'][0]['paragraphs'] = [clone_paragraph_clean(lang_para)]
+                                rows[row_idx]['cells'][1]['paragraphs'] = [clone_paragraph_clean(desc_para)] if desc_para else []
+
+                            lang_table['rows'] = rows
+                            lang_table['row_count'] = len(rows)
+
+                            # Marquer les sources pour suppression
+                            indices_to_remove.extend(source_indices)
 
     # Supprimer les sources (en ordre inverse pour éviter les décalages d'indices)
     for idx in sorted(indices_to_remove, reverse=True):
