@@ -111,29 +111,59 @@ def extract_runs_from_paragraph(paragraph, ns: Dict) -> List[Dict[str, Any]]:
     runs = []
 
     for run in paragraph.findall('w:r', ns):
-        run_obj = {}
-
         # Vérifier les sauts de page
         br_elem = run.find('w:br', ns)
         if br_elem is not None:
             br_type = br_elem.get(f'{{{ns["w"]}}}type')
             if br_type == 'page':
-                run_obj['page_break'] = True
-                runs.append(run_obj)
+                runs.append({'page_break': True})
                 continue
 
-        # Propriétés du run
+        # Propriétés du run (partagées par tous les segments issus de ce run XML)
         run_props = extract_run_properties(run, ns)
-        if run_props:
-            run_obj['properties'] = run_props
 
-        # Texte
-        text_elem = run.find('w:t', ns)
-        if text_elem is not None and text_elem.text:
-            run_obj['text'] = text_elem.text
+        # Découper le run XML en segments texte séparés par des tabulations
+        # ou d'autres balises inline de Word.
+        text_buffer = []
+        segment_index = 0
 
-        if run_obj:
-            runs.append(run_obj)
+        def flush_text_segment() -> None:
+            nonlocal segment_index
+            if not text_buffer:
+                return
+
+            segment_text = ''.join(text_buffer)
+            if segment_text:
+                run_obj = {'text': segment_text, 'properties': dict(run_props)}
+                if segment_index > 0:
+                    # Marquer les segments issus d'une même balise w:r séparés par tabulation.
+                    # Cette propriété sert uniquement à éviter la fusion lors de la normalisation.
+                    run_obj['properties']['tab_segment'] = segment_index
+                runs.append(run_obj)
+                segment_index += 1
+            text_buffer.clear()
+
+        has_inline_content = False
+
+        for child in list(run):
+            child_tag = child.tag
+
+            if child_tag == f'{{{ns["w"]}}}t' and child.text:
+                text_buffer.append(child.text)
+                has_inline_content = True
+            elif child_tag == f'{{{ns["w"]}}}tab':
+                flush_text_segment()
+                has_inline_content = True
+            elif child_tag == f'{{{ns["w"]}}}br':
+                # Les retours à la ligne restent des séparateurs de segment.
+                flush_text_segment()
+                has_inline_content = True
+
+        flush_text_segment()
+
+        # Si le run ne contenait que des propriétés sans texte, le conserver si utile.
+        if not has_inline_content and run_props:
+            runs.append({'properties': run_props})
 
     return runs
 
@@ -445,7 +475,7 @@ def main():
         # Afficher le succès
         output_path = Path(output_file)
         file_size = output_path.stat().st_size / 1024  # Taille en KB
-        print(f"✅ SUCCÈS: Fichier JSON généré avec succès!")
+        print("✅ SUCCÈS: Fichier JSON généré avec succès!")
         print(f"   📁 Chemin: {output_path.absolute()}")
         print(f"   💾 Taille: {file_size:.1f} KB")
 

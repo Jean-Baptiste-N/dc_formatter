@@ -763,17 +763,17 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                 # ===== LANGUES =====
                 elif edu_type == 'langues':
-                    print(f"  [DEBUG] Processing langues table at index {i}")  # DEBUG
                     lang_pairs = []
                     j = i + 1
+                    lang_table = elem
 
                     while j < len(content):
-                        elem = content[j]
+                        next_elem = content[j]
 
-                        if elem.get('type') == 'Table':
+                        if next_elem.get('type') == 'Table':
                             break
-                        elif elem.get('type') == 'Paragraph':
-                            text = get_text_from_element(elem)
+                        elif next_elem.get('type') == 'Paragraph':
+                            text = get_text_from_element(next_elem)
 
                             # Stop si autre section
                             if any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
@@ -783,8 +783,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                             # Si c'est une langue
                             if any(keyword in text.lower() for keyword in KEYWORDS_LANGUAGES) and text.lower() != 'langues':
-                                split_result = split_paragraph_at_language(elem)
-                                print(f"    [DEBUG] Found language: {text} → {len(split_result)} parts")  # DEBUG
+                                split_result = split_paragraph_at_language(next_elem)
 
                                 if len(split_result) == 2:
                                     lang_pairs.append((split_result[0], split_result[1]))
@@ -796,7 +795,6 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                         j += 1
 
                     # Créer les rows pour langues avec le nombre exact requis
-                    print(f"  [DEBUG] Found {len(lang_pairs)} lang_pairs")  # DEBUG
                     if lang_pairs:
                         # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
                         temp_table = create_empty_table_2x2(
@@ -807,7 +805,6 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                             page_dims=page_dims
                         )
                         rows = temp_table['rows']
-                        print(f"  [DEBUG] Created {len(rows)} rows")  # DEBUG
 
                         # Remplir chaque row avec les paires de langue
                         for row_idx, (lang_para, desc_para) in enumerate(lang_pairs):
@@ -818,9 +815,8 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                                 desc_cloned = clone_paragraph_clean(desc_para)
                                 rows[row_idx]['cells'][1]['paragraphs'] = [desc_cloned]
 
-                        elem['rows'] = rows
-                        elem['row_count'] = len(rows)
-                        print(f"  [DEBUG] Assigned {len(rows)} rows to table")  # DEBUG
+                        lang_table['rows'] = rows
+                        lang_table['row_count'] = len(rows)
 
     # Supprimer les sources (en ordre inverse pour éviter les décalages d'indices)
     for idx in sorted(indices_to_remove, reverse=True):
@@ -1231,37 +1227,6 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         'DC_1st_bullet': 2,   # niveau 3
     }
 
-    # Appliquer les styles des titres
-    for itag in data.get('document', {}).get('content', []):
-        if 'tags' not in itag:
-            continue
-        tags = itag['tags']
-        # Extraire le texte
-        text = get_text_from_element(itag) if itag else ""
-        props = itag.get('properties', {})
-
-        #  Appliquer les styles selon le contenu textuel pour les titres
-        if 'header' in tags and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_DOCUMENT):
-            props['style'] = 'DC_H_DC'
-            text = text.upper()
-            if 'runs' in itag and itag['runs']:
-                itag['runs'][0]['text'] = text
-        elif 'main_skills' in tags and any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS):
-            props['style'] = 'DC_T1_Sections'
-            text = text.capitalize()
-            if 'runs' in itag and itag['runs']:
-                itag['runs'][0]['text'] = text
-        elif 'education' in tags and any(keyword in text for keyword in KEYWORDS_EDUCATION):
-            props['style'] = 'DC_T1_Sections'
-            text = text.capitalize()
-            if 'runs' in itag and itag['runs']:
-                itag['runs'][0]['text'] = text
-        elif 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-            props['style'] = 'DC_T1_Sections'
-            text = text.capitalize()
-            if 'runs' in itag and itag['runs']:
-                itag['runs'][0]['text'] = text
-
     # Appliquer les styles des tables éducation et expérience professionnelle
     for itable in data.get('document', {}).get('content', []):
         if itable.get('type') == 'Table':
@@ -1283,14 +1248,15 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                             if 'properties' not in para:
                                 para['properties'] = {}
                             para['properties']['style'] = 'DC_Table_Year'
-                # Appliquer le style DC_Table_Content aux paragraphes dans cell[x][1] (colonne 1)
+                # Appliquer le style DC_Table_Content aux paragraphes dans cell[x][1..n] (colonnes 1 à n)
                 for row in rows:
                     cells = row.get('cells', [])
                     if len(cells) > 1:
-                        for para in cells[1:].get('paragraphs', []):
-                            if 'properties' not in para:
-                                para['properties'] = {}
-                            para['properties']['style'] = 'DC_Table_Content'
+                        for cell in cells[1:]:
+                            for para in cell.get('paragraphs', []):
+                                if 'properties' not in para:
+                                    para['properties'] = {}
+                                para['properties']['style'] = 'DC_Table_Content'
             elif is_professional:
                 rows = itable.get('rows', [])
                 # Appliquer le style DC_XP_Title aux paragraphes dans cell[0][0]
@@ -1371,21 +1337,49 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         else:
             props['style'] = 'DC_Normal'  # fallback
 
-    #  Appliquer les styles des titres restants APRES LES LISTES (en se basant sur les tags et le contenu textuel)
-    if 'header' in tags and 'DC_H_DC' not in props.get('style', '') and len(text) > 0 and len(text) <= 5:
-        props['style'] = 'DC_H_Trigramme'
-        text = text.upper()
-        if 'runs' in itag and itag['runs']:
-            itag['runs'][0]['text'] = text
-    elif 'header' in tags and 'DC_H_DC' not in props.get('style', '') and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5:
-        props['style'] = 'DC_H_XP'
+    # Appliquer les styles des titres après les listes pour corriger les faux positifs liés à ilvl
+    for itag in data.get('document', {}).get('content', []):
+        if 'tags' not in itag:
+            continue
+        tags = itag['tags']
+        text = get_text_from_element(itag) if itag else ""
+        props = itag.setdefault('properties', {})
 
-    if 'header' in tags and 'DC_H_XP' not in props.get('style', '') and 'DC_H_DC' not in props.get('style', '') and len(text) > 5:
-        props['style'] = 'DC_H_Poste'
+        if 'header' in tags and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_DOCUMENT):
+            props['style'] = 'DC_H_DC'
+            text = text.upper()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
+        elif 'main_skills' in tags and any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS):
+            props['style'] = 'DC_T1_Sections'
+            text = text.capitalize()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
+        elif 'education' in tags and any(keyword in text for keyword in KEYWORDS_EDUCATION):
+            props['style'] = 'DC_T1_Sections'
+            text = text.capitalize()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
+        elif 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+            props['style'] = 'DC_T1_Sections'
+            text = text.capitalize()
+            if 'runs' in itag and itag['runs']:
+                itag['runs'][0]['text'] = text
+
+        if 'header' in tags:
+            if len(text) > 0 and len(text) <= 5 and props.get('style') != 'DC_H_DC':
+                props['style'] = 'DC_H_Trigramme'
+                text = text.upper()
+                if 'runs' in itag and itag['runs']:
+                    itag['runs'][0]['text'] = text
+            elif any(keyword in text.lower() for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5 and props.get('style') != 'DC_H_DC':
+                props['style'] = 'DC_H_XP'
+            elif len(text) > 5 and props.get('style') not in ('DC_H_DC', 'DC_H_XP'):
+                props['style'] = 'DC_H_Poste'
 
     # Appliquer le style Normal pour le reste et les éléments sans style
     for element in data.get('document', {}).get('content', []):
-        props = element.get('properties', {})
+        props = element.setdefault('properties', {})
 
         # Forcer DC_Normal pour les paragraphes vides (peu importe leur style d'origine)
         is_empty_para = (not element.get('runs') or all(not run.get('text', '').strip() for run in element.get('runs', [])))
