@@ -7,6 +7,7 @@ Sortie: fichier _GLOBAL_transformed.json (après taggings et transformations)
 
 from argparse import ArgumentParser
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Dict, Any, List
@@ -543,7 +544,7 @@ def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Di
     Groupe les paragraphes éducation en blocs basés sur les dates.
 
     Logique:
-    - Un bloc commence avec une date (contient '20', ' 20', '/20', '-20')
+    - Un bloc commence avec une année ou date détectée (par exemple 1996, 2002, 2002-2003)
     - Les paragraphes suivants (non-dates) font partie du même bloc
     - Le prochain bloc commence quand une nouvelle date est détectée
     - Les paragraphes vides sont ignorés à la création des blocs
@@ -571,7 +572,7 @@ def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Di
         if not para_text.strip():
             continue
 
-        is_date = '20' in para_text or ' 20' in para_text or '/20' in para_text or '-20' in para_text
+        is_date = re.search(r'(?<!\d)(?:19|20)\d{2}(?!\d)', para_text) is not None
 
         if is_date:
             # Nouvelle date = nouveau bloc
