@@ -37,10 +37,10 @@ NS = {
 }
 
 KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", "dossier de competences", "dossier de competences"]
+KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes"]
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
-KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
 
@@ -190,6 +190,36 @@ def apply_section_tags(data: Dict[str, Any]) -> None:
             element['tags'] = []
         if current_section not in element['tags']:
             element['tags'].append(current_section)
+
+
+def apply_section_header_styles(data: Dict[str, Any]) -> None:
+    """
+    Applique le style DC_T1_Sections aux vrais headers de section.
+    
+    Utilise is_promotable_section_title() pour la détection, garantissant une seule
+    source de vérité pour identifier les vrais titres (vs paragraphes ordinaires).
+    
+    EXCLUSION DURE: Les paragraphes contenant "langue maternelle" ne sont JAMAIS 
+    traités comme des headers, même s'ils contiennent "langue". Ils doivent rester 
+    comme contenu de tableau uniquement.
+    """
+    content = data.get('document', {}).get('content', [])
+    
+    # Tous les keywords de section à chercher
+    section_keywords = (KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE + 
+                       KEYWORDS_MAIN_SKILLS + KEYWORDS_HEADER_DOCUMENT + KEYWORDS_HEADER_EXPERIENCE)
+    
+    for element in content:
+        # Check dur: exclure "langue maternelle" absolument
+        text = get_text_from_element(element)
+        if 'langue maternelle' in text.lower():
+            continue
+        
+        # Utiliser la fonction existante pour vérifier si c'est un vrai titre
+        if is_promotable_section_title(element, section_keywords):
+            if 'properties' not in element:
+                element['properties'] = {}
+            element['properties']['style'] = 'DC_T1_Sections'
 
 
 def create_empty_table_2x2(index: int, row_height: int = 360,
@@ -419,12 +449,14 @@ def create_language_header(data: Dict[str, Any]) -> None:
     content = data.get('document', {}).get('content', [])
 
     # D'abord, vérifier si un header "Langues" existe déjà dans le document
+    # Cherche dans les styles Heading/Titre (avant apply_section_header_styles) ET DC_T1_Sections (après apply_section_header_styles)
     header_langues_exists = False
     for element in content:
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element).strip()
             style = element.get('properties', {}).get('style', '')
-            if (style.startswith('Heading') or style.startswith('Titre')) and text.lower() == 'langues':
+            # Check: c'est un vrai header "Langues" (pas "Français langue maternelle")
+            if text.lower() == 'langues' and (style.startswith('Heading') or style.startswith('Titre') or style == 'DC_T1_Sections'):
                 header_langues_exists = True
                 break
 
@@ -601,9 +633,9 @@ def create_main_skills_table (data: Dict[str, Any]) -> Dict[str, Any]:
         if elem.get('type') == 'Paragraph':
             text = get_text_from_element(elem)
             style = elem.get('properties', {}).get('style', '')
-            is_title = style.startswith('Titre') or style.startswith('Heading')
+            is_section_header = style == 'DC_T1_Sections'
 
-            if any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS) and is_title:
+            if any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS) and is_section_header:
                 main_skills_header_idx = i
                 break
 
@@ -619,9 +651,9 @@ def create_main_skills_table (data: Dict[str, Any]) -> Dict[str, Any]:
             if elem.get('type') == 'Paragraph':
                 text = get_text_from_element(elem)
                 style = elem.get('properties', {}).get('style', '')
-                is_title = style.startswith('Titre') or style.startswith('Heading')
+                is_section_header = style == 'DC_T1_Sections'
 
-                if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                     break
 
             if elem.get('type') == 'Table' and not elem.get('auto_generated'):
@@ -689,9 +721,9 @@ def insert_text_main_skills_table(data: Dict[str, Any], creation_result: Dict[st
                 if next_elem.get('type') == 'Paragraph':
                     text = get_text_from_element(next_elem)
                     style = next_elem.get('properties', {}).get('style', '')
-                    is_title = style.startswith('Titre') or style.startswith('Heading')
+                    is_section_header = style == 'DC_T1_Sections'
 
-                    if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                    if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                         break
 
             if source_idx is None:
@@ -769,11 +801,11 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
         if elem.get('type') == 'Paragraph':
             text = get_text_from_element(elem)
             style = elem.get('properties', {}).get('style', '')
-            is_title = style.startswith('Titre') or style.startswith('Heading')
+            is_section_header = style == 'DC_T1_Sections'
             is_auto_language_header = elem.get('auto_generated') and text.strip().lower() == 'langues'
 
             # Chercher si c'est un header éducation
-            if ((any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION) and is_title)
+            if ((any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION) and is_section_header)
                     or is_auto_language_header):
                 # Déterminer le type: formations ou langues
                 if any(kw in text.lower() for kw in ['formation', 'formations', 'diplôme', 'diplômes', 'certification', 'certifications']):
@@ -803,9 +835,9 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
             if elem.get('type') == 'Paragraph':
                 text = get_text_from_element(elem)
                 style = elem.get('properties', {}).get('style', '')
-                is_title = style.startswith('Titre') or style.startswith('Heading')
+                is_section_header = style == 'DC_T1_Sections'
 
-                if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                     break
                 if not text.strip():
                     j += 1
@@ -880,9 +912,9 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                         if next_elem.get('type') == 'Paragraph':
                             text = get_text_from_element(next_elem)
                             style = next_elem.get('properties', {}).get('style', '')
-                            is_title = style.startswith('Titre') or style.startswith('Heading')
+                            is_section_header = style == 'DC_T1_Sections'
 
-                            if is_title and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                            if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                                 break
 
                         j += 1
@@ -1084,10 +1116,10 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
             text = get_text_from_element(element)
             has_ilvl = element.get('properties', {}).get('ilvl') is not None
             style = element.get('properties', {}).get('style', '')
-            is_title = style.startswith('Titre') or style.startswith('Heading')
+            is_section_header = style == 'DC_T1_Sections'
 
             # Détecter le header "Expériences Professionnelles"
-            if is_title and any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+            if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
                 current_section = 'professional_experience'
                 just_after_prof_exp_header = True
                 i += 1
@@ -1709,6 +1741,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # ===== DETECTER LES 4 SECTIONS =====
     # Appliquer les tags de section
     apply_section_tags(data)
+    
+    # Appliquer le style DC_T1_Sections aux headers de section
+    apply_section_header_styles(data)
 
     # ===== TABLE MAIN SKILLS si existante =====
     # Créer la table Main Skills si on détecte une table source des compétences techniques
