@@ -115,6 +115,9 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
 
     On exclut tous les paragraphes de liste (`ilvl`) pour éviter qu'un mot-clé
     présent dans une puce soit reclassé en `T1_Sections`.
+
+    ⚠️ EXCLUSION: Ne pas considérer les XP entries (paragraphes commençant par une DATE)
+    comme des titres - ce sont des données à splitter.
     """
     if not element or element.get('type') != 'Paragraph':
         return False
@@ -128,6 +131,11 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
         return False
 
     style = props.get('style', '')
+
+    # Exclure les XP entries: paragraphes commençant par une DATE (regex)
+    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4})'
+    if re.match(date_pattern, text):
+        return False
 
     if element.get('auto_generated'):
         return True
@@ -192,29 +200,79 @@ def apply_section_tags(data: Dict[str, Any]) -> None:
             element['tags'].append(current_section)
 
 
+def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
+    """
+    Splitte toutes les entrées d'expérience pro détectées par DATE.
+
+    Détection: Cherche les paragraphes qui:
+    1. Sont marqués avec le tag 'professional_experience' (via apply_section_tags)
+    2. N'ont pas de ilvl (ne sont pas des bullets)
+    3. Commencent par une DATE (regex)
+
+    Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
+
+    Cette fonction doit être appelée APRÈS apply_section_tags() pour que les tags
+    soient disponibles, et AVANT apply_section_header_styles() pour éviter que les
+    XP entries soient marquées comme des headers.
+    """
+    content = data.get('document', {}).get('content', [])
+    new_content = []
+
+    # Regex pour détecter une DATE au début
+    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4})'
+
+    for element in content:
+        # Chercher les XP entries marquées avec le tag 'professional_experience'
+        if (element.get('type') == 'Paragraph'):
+            tags = element.get('tags', [])
+            if isinstance(tags, str):
+                tags = [tags]
+
+            if 'professional_experience' in tags:
+                props = element.get('properties', {})
+                # Exclure les bullets (ilvl est défini)
+                if props.get('ilvl') is None:
+                    text = get_text_from_element(element)
+
+                    # Détecter si le paragraphe commence par une DATE
+                    if re.match(date_pattern, text):
+                        # C'est une XP entry, la splitter
+                        split_result = split_xp_entry(element)
+                        new_content.extend(split_result)
+                        continue
+
+        new_content.append(element)
+
+    data['document']['content'] = new_content
+
+
 def apply_section_header_styles(data: Dict[str, Any]) -> None:
     """
     Applique le style DC_T1_Sections aux vrais headers de section.
-    
+
     Utilise is_promotable_section_title() pour la détection, garantissant une seule
     source de vérité pour identifier les vrais titres (vs paragraphes ordinaires).
-    
-    EXCLUSION DURE: Les paragraphes contenant "langue maternelle" ne sont JAMAIS 
-    traités comme des headers, même s'ils contiennent "langue". Ils doivent rester 
-    comme contenu de tableau uniquement.
+
+    EXCLUSION DURE:
+    - Les paragraphes contenant "langue maternelle" ne sont JAMAIS traités comme des headers
+    - Les paragraphes avec xp_split_part (DATE, COMPANY, POSTE) gardent leurs styles propres
     """
     content = data.get('document', {}).get('content', [])
-    
+
     # Tous les keywords de section à chercher
-    section_keywords = (KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE + 
+    section_keywords = (KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE +
                        KEYWORDS_MAIN_SKILLS + KEYWORDS_HEADER_DOCUMENT + KEYWORDS_HEADER_EXPERIENCE)
-    
+
     for element in content:
         # Check dur: exclure "langue maternelle" absolument
         text = get_text_from_element(element)
         if 'langue maternelle' in text.lower():
             continue
-        
+
+        # Ne pas toucher aux paragraphes avec xp_split_part (ils ont leurs propres styles)
+        if element.get('xp_split_part'):
+            continue
+
         # Utiliser la fonction existante pour vérifier si c'est un vrai titre
         if is_promotable_section_title(element, section_keywords):
             if 'properties' not in element:
@@ -546,6 +604,95 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
         desc_para = clone_paragraph_clean(para)
         desc_para['runs'] = [{"text": desc_text, "properties": first_run_props}]
         result.append(desc_para)
+
+    return result
+
+def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Scinde une entrée d'expérience pro détectée par une DATE au format: DATE : COMPANY - POSTE
+
+    Utilise la détection de DATE (regex) pour identifier une XP entry valide.
+    Avec lazy matching, le POSTE peut être absent.
+
+    Exemples:
+    - "01/2021- 02/2024 : CALTOPO(USA)- Développeur Full Stack" → DATE | COMPANY | POSTE
+    - "09/2017 – 09/2020 : MICROSOFT(USA)" → DATE | COMPANY | "" (poste vide)
+
+    Crée 2 ou 3 paragraphes:
+    1. DATE (avec style 'xp_date')
+    2. COMPANY (avec style 'xp_title')
+    3. POSTE (avec style 'xp_poste') - optionnel
+
+    Détection:
+    - Cherche une DATE avec regex
+    - Puis cherche `: ` qui sépare DATE de COMPANY
+    - Puis cherche `- ` ou fin du texte (lazy) pour séparer COMPANY du POSTE
+
+    Args:
+        para: Paragraphe JSON source
+
+    Returns:
+        List[Dict]: Liste de 1 (pas XP entry) ou 2-3 paragraphes (XP entry splittée)
+    """
+    text = get_text_from_element(para)
+
+    # Regex pour détecter une DATE au début: XX/XXXX ou XX–XXXX ou XX-XXXX
+    # Supporte aussi DATE – DATE (e.g., "01/2021 – 02/2024")
+    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4}(?:\s*[–-]\s*\d{1,2}[/–-]\d{4})?)'
+    date_match = re.match(date_pattern, text)
+
+    if not date_match:
+        return [para]  # Pas de DATE au début, ce n'est pas une XP entry
+
+    date_text = date_match.group(1).strip()
+    remaining_after_date = text[date_match.end():].strip()
+
+    # Chercher `: ` qui sépare DATE de COMPANY
+    colon_pos = remaining_after_date.find(': ')
+    if colon_pos == -1:
+        return [para]  # Pas de `: ` trouvé après la DATE
+
+    # Extraire COMPANY (entre `: ` et le prochain `- ` ou fin du texte, avec lazy matching)
+    after_colon = remaining_after_date[colon_pos + 2:].strip()
+
+    # Chercher `- ` (lazy matching - optionnel)
+    dash_pattern = r'^(.+?)\s*[-–]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
+    dash_match = re.match(dash_pattern, after_colon)
+
+    if dash_match:
+        # Cas: DATE : COMPANY - POSTE
+        company_text = dash_match.group(1).strip()
+        poste_text = dash_match.group(2).strip()
+    else:
+        # Cas: DATE : COMPANY (sans POSTE)
+        company_text = after_colon.strip()
+        poste_text = ""
+
+    # Vérifier que DATE et COMPANY ont du contenu
+    if not date_text or not company_text:
+        return [para]
+
+    # Créer les paragraphes
+    first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
+    result = []
+
+    # 1. Paragraphe DATE
+    date_para = clone_paragraph_clean(para)
+    date_para['runs'] = [{"text": date_text, "properties": first_run_props}]
+    date_para['xp_split_part'] = 'xp_date'
+    result.append(date_para)
+
+    # 2. Paragraphe COMPANY
+    company_para = clone_paragraph_clean(para)
+    company_para['runs'] = [{"text": company_text, "properties": first_run_props}]
+    company_para['xp_split_part'] = 'xp_company'
+    result.append(company_para)
+
+    # 3. Paragraphe POSTE
+    poste_para = clone_paragraph_clean(para)
+    poste_para['runs'] = [{"text": poste_text, "properties": first_run_props}]
+    poste_para['xp_split_part'] = 'xp_poste'
+    result.append(poste_para)
 
     return result
 
@@ -1065,6 +1212,27 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
     data['document']['content'] = content
 
+def has_bullets_after(content: List[Dict[str, Any]], start_idx: int, max_lookhead: int = 5) -> bool:
+    """
+    Vérifie s'il y a des paragraphes avec ilvl (bullets) dans les prochains éléments.
+
+    Utile pour détecter les sous-sections "Environnement technique" qui sont suivies de listes.
+
+    Args:
+        content: Liste du contenu
+        start_idx: Index de départ (non inclus)
+        max_lookhead: Nombre d'éléments à regarder en avant
+
+    Returns:
+        True si au moins un paragraphe avec ilvl est trouvé
+    """
+    for j in range(start_idx + 1, min(start_idx + 1 + max_lookhead, len(content))):
+        elem = content[j]
+        if elem.get('type') == 'Paragraph':
+            if elem.get('properties', {}).get('ilvl') is not None:
+                return True
+    return False
+
 def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     """
     Crée les structures des tables professionnelles (Expériences Professionnelles).
@@ -1073,9 +1241,10 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
 
     Crée une table 2x2 pour:
     1. Après le header "Expériences Professionnelles" (pour le job entry)
-    2. Quand on détecte KEYWORDS_TECHNICAL_SKILLS
-    3. SAUF pour les paragraphes avec ilvl (listes/bullets)
-    4. SAUF pour les paragraphes commençant par "Contexte"
+    2. À la fin d'une sous-section "Environnement technique" (sortie de bullets)
+    3. À la sortie d'une liste (transition ilvl → no ilvl) + paragraphe descriptif
+
+    ⚠️ N'accélère PAS si KEYWORDS_TECHNICAL_SKILLS est suivi de bullets (c'est une sous-section)
 
     Args:
         data: Structure du document JSON contenant page_dimensions
@@ -1741,7 +1910,10 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # ===== DETECTER LES 4 SECTIONS =====
     # Appliquer les tags de section
     apply_section_tags(data)
-    
+
+    # Splitter les entrées d'expérience pro AVANT de marquer les headers
+    apply_xp_entry_splits(data)
+
     # Appliquer le style DC_T1_Sections aux headers de section
     apply_section_header_styles(data)
 
