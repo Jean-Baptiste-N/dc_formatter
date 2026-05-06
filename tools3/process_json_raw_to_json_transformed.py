@@ -1252,7 +1252,7 @@ def is_technical_skills_header(element: Dict[str, Any]) -> bool:
         return False
     text = get_text_from_element(element)
     normalized_text = text.strip()
-    if not normalized_text.startswith(('environnement', 'environnements')):
+    if not normalized_text.startswith(('environnement', 'environnements', 'environement', 'environements')):
         return False
     return any(keyword in normalized_text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in normalized_text
 
