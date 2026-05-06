@@ -207,19 +207,26 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
     Détection: Cherche les paragraphes qui:
     1. Sont marqués avec le tag 'professional_experience' (via apply_section_tags)
     2. N'ont pas de ilvl (ne sont pas des bullets)
-    3. Commencent par une DATE (regex)
+    3. contiennent une DATE (regex)
 
     Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
+    ou COMPANY - POSTE - DATE (dans ce cas, la DATE est détectée à l'intérieur du texte)
+    ou COMPANY - DATE
+        POSTE en paragraphe suivant (pas obligatoire)
+    ou bien la table habituelle | COMPANY | DATE |
+                                | POSTE   |      |
 
     Cette fonction doit être appelée APRÈS apply_section_tags() pour que les tags
     soient disponibles, et AVANT apply_section_header_styles() pour éviter que les
     XP entries soient marquées comme des headers.
+    Elle flag tous les éléments qui permettent la distinction des blocs d'XP avec un champ `xp_split_part` (values: 'xp_date', 'xp_company', 'xp_poste', 'xp_description') pour les différencier des autres paragraphes.
+    Elle flag les listes bullets classiques et les list bullets ou paragraphes appartenant à environnement technique, pour signifier une fin de xp entry (ex: compétences techniques listées à la fin d'une expérience pro).
     """
     content = data.get('document', {}).get('content', [])
     new_content = []
 
-    # Regex pour détecter une DATE au début
-    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4})'
+    # Regex pour détecter une DATE à n'importe quel endroit du run ou du texte: XX/XXXX ou XX–XXXX ou XX-XXXX ou XXXX
+    date_pattern = r'\b\d{1,2}[/–-]\d{4}\b|\b\d{4}\b'
 
     for element in content:
         # Chercher les XP entries marquées avec le tag 'professional_experience'
@@ -234,8 +241,8 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
                 if props.get('ilvl') is None:
                     text = get_text_from_element(element)
 
-                    # Détecter si le paragraphe commence par une DATE
-                    if re.match(date_pattern, text):
+                    # Détecter si le paragraphe contient une DATE
+                    if re.search(date_pattern, text):
                         # C'est une XP entry, la splitter
                         split_result = split_xp_entry(element)
                         new_content.extend(split_result)
@@ -609,14 +616,22 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
 
 def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
-    Scinde une entrée d'expérience pro détectée par une DATE au format: DATE : COMPANY - POSTE
+    Scinde une entrée d'expérience pro détectée par une DATE présente dans le texte.
 
     Utilise la détection de DATE (regex) pour identifier une XP entry valide.
     Avec lazy matching, le POSTE peut être absent.
 
+    Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
+    ou COMPANY - POSTE - DATE (dans ce cas, la DATE est détectée à l'intérieur du texte)
+    ou COMPANY - DATE
+        POSTE en paragraphe suivant (pas obligatoire)
+    ou bien la table habituelle | COMPANY | DATE |
+                                | POSTE   |      |
     Exemples:
     - "01/2021- 02/2024 : CALTOPO(USA)- Développeur Full Stack" → DATE | COMPANY | POSTE
     - "09/2017 – 09/2020 : MICROSOFT(USA)" → DATE | COMPANY | "" (poste vide)
+    - "THALES - Ingénieur - 02-2022 à 05-2023" → COMPANY | POSTE | DATE (DATE détectée à l'intérieur du texte)
+    - "CAPGEMINI - 01/2020 à 12/2021" → COMPANY | "" (poste vide ici mais dans le paragraphe suivant) | DATE (DATE détectée à l'intérieur du texte)
 
     Crée 2 ou 3 paragraphes:
     1. DATE (avec style 'xp_date')
@@ -625,7 +640,7 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     Détection:
     - Cherche une DATE avec regex
-    - Puis cherche `: ` qui sépare DATE de COMPANY
+    - Puis cherche `: ` ou `- ` qui sépare DATE de COMPANY
     - Puis cherche `- ` ou fin du texte (lazy) pour séparer COMPANY du POSTE
 
     Args:
@@ -636,15 +651,15 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     text = get_text_from_element(para)
 
-    # Regex pour détecter une DATE au début: XX/XXXX ou XX–XXXX ou XX-XXXX
+    # Regex pour détecter une DATE à n'importe quel endroit du texte: XX/XXXX ou XX–XXXX ou XX-XXXX
     # Supporte aussi DATE – DATE (e.g., "01/2021 – 02/2024")
-    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4}(?:\s*[–-]\s*\d{1,2}[/–-]\d{4})?)'
-    date_match = re.match(date_pattern, text)
+    date_pattern = r'\b\d{1,2}[/–-]\d{4}\b|\b\d{4}\b'
+    date_match = re.search(date_pattern, text)
 
     if not date_match:
-        return [para]  # Pas de DATE au début, ce n'est pas une XP entry
+        return [para]  # Pas de DATE ddans le texte, ce n'est pas une XP entry
 
-    date_text = date_match.group(1).strip()
+    date_text = date_match.group(0).strip()
     remaining_after_date = text[date_match.end():].strip()
 
     # Chercher `: ` qui sépare DATE de COMPANY
