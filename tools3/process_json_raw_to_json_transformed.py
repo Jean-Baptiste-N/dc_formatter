@@ -44,6 +44,7 @@ KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
 XP_DATE_PATTERN = r'^\s*(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(\d{1,2}(?:[/–-]\d{1,2})?[/–-]\d{2,4}(?:\s*[–-]\s*\d{1,2}(?:[/–-]\d{1,2})?[/–-]\d{2,4})?)'
+MAX_XP_DESCRIPTION_LENGTH = 75
 
 def get_table_widths_for_section(section: str = None, page_dims: dict = None) -> tuple:
     """
@@ -646,12 +647,12 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     remaining_after_date = text[date_match.end():].strip()
 
     # Chercher `: ` qui sépare DATE de COMPANY
-    colon_pos = remaining_after_date.find(':')
-    if colon_pos == -1:
+    colon_match = re.search(r':\s+', remaining_after_date)
+    if not colon_match:
         return [para]  # Pas de `: ` trouvé après la DATE
 
     # Extraire COMPANY (entre `: ` et le prochain `- ` ou fin du texte, avec lazy matching)
-    after_colon = remaining_after_date[colon_pos + 1:].strip()
+    after_colon = remaining_after_date[colon_match.end():].strip()
 
     # Chercher `- ` (lazy matching - optionnel)
     dash_pattern = r'^(.+?)\s*[-–]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
@@ -1252,6 +1253,7 @@ def is_technical_skills_header(element: Dict[str, Any]) -> bool:
         return False
     text = get_text_from_element(element)
     normalized_text = text.strip()
+    # Inclure les fautes courantes (environement/environements) pour rester tolérant aux typos source.
     if not normalized_text.startswith(('environnement', 'environnements', 'environement', 'environements')):
         return False
     return any(keyword in normalized_text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in normalized_text
@@ -1462,7 +1464,7 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
                             break
 
                         # ARRÊTER si le paragraphe est long (> 75 caractères)
-                        if len(text) > 75:
+                        if len(text) > MAX_XP_DESCRIPTION_LENGTH:
                             break
 
                         # Ajouter le paragraphe (même s'il est vide)
