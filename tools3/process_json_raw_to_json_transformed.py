@@ -136,6 +136,13 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     if not text.strip():
         return False
 
+    tags = element.get('tags', [])
+    if isinstance(tags, str):
+        tags = [tags]
+
+    if 'professional_experience' in tags and text.strip().startswith(('projet', 'projets')):
+        return False
+
     style = props.get('style', '')
 
     # Exclure les XP entries: paragraphes commençant par une DATE (regex)
@@ -1361,22 +1368,11 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                 waiting_for_env_end = False
 
         # Condition pour créer une table AVANT l'élément courant (début d'xp_entry)
-        should_create_table = False
-        if expect_entry_start or element.get('xp_split_part') == 'xp_date':
-            is_valid_start = False
-            if element.get('xp_split_part') == 'xp_date':
-                is_valid_start = True
-            elif element.get('type') == 'Table':
-                is_valid_start = not element.get('auto_generated')
-            elif element.get('type') == 'Paragraph':
-                has_ilvl = element.get('properties', {}).get('ilvl') is not None
-                is_valid_start = not has_ilvl and not is_empty_paragraph(element) and not is_technical_skills_header(element)
-
-            if is_valid_start:
-                prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
-                if not prev_elem_is_table:
-                    should_create_table = True
-                expect_entry_start = False
+        should_create_table = element.get('xp_split_part') == 'xp_date'
+        if should_create_table:
+            prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
+            if prev_elem_is_table:
+                should_create_table = False
 
         if should_create_table:
             new_table = create_empty_table_2x2(
