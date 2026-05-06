@@ -1247,7 +1247,8 @@ def is_technical_skills_header(element: Dict[str, Any]) -> bool:
     """Retourne True si l'élément correspond au sous-bloc 'Environnement technique'.
 
     On exclut volontairement tout paragraphe contenant "contexte" pour éviter les faux positifs
-    liés aux titres de contexte, même si la correspondance est partielle.
+    liés aux titres de contexte, même si la correspondance est partielle. La recherche
+    reste volontairement en sous-chaîne car le texte est déjà normalisé en minuscules.
     """
     if element.get('type') != 'Paragraph':
         return False
@@ -1300,10 +1301,10 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     waiting_for_env_end = False
     last_was_bullet = False
 
-    def mark_env_block(idx: int) -> None:
+    def mark_env_block(idx: int, content_list: List[Dict[str, Any]]) -> None:
         nonlocal waiting_for_env_end, expect_entry_start
         # Si une liste suit l'en-tête technique, on attend la fin du bloc pour démarrer l'XP suivante.
-        if has_bullets_after(content, idx):
+        if has_bullets_after(content_list, idx):
             waiting_for_env_end = True
         else:
             expect_entry_start = True
@@ -1341,7 +1342,7 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                 if last_was_bullet:
                     last_was_bullet = False
                     if is_technical:
-                        mark_env_block(i)
+                        mark_env_block(i, content)
                     else:
                         expect_entry_start = True
 
@@ -1350,7 +1351,7 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                     waiting_for_env_end = False
 
                 if is_technical:
-                    mark_env_block(i)
+                    mark_env_block(i, content)
         elif element.get('type') == 'Table':
             if waiting_for_env_end:
                 expect_entry_start = True
@@ -1485,6 +1486,7 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
                     element['row_count'] = len(element['rows'])
 
                     def pop_split_part(paras: List[Dict[str, Any]], part: str) -> Optional[Dict[str, Any]]:
+                        """Retourne et retire le premier paragraphe matchant la partie demandée."""
                         for idx, para in enumerate(paras):
                             if para.get('xp_split_part') == part:
                                 return paras.pop(idx)
