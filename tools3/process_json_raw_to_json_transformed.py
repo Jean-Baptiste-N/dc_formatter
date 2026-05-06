@@ -10,7 +10,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 
 # Ajouter le répertoire parent à sys.path pour les imports
 parent_dir = str(Path(__file__).parent.parent)
@@ -1233,6 +1233,36 @@ def has_bullets_after(content: List[Dict[str, Any]], start_idx: int, max_lookhea
                 return True
     return False
 
+def is_professional_section_header(element: Dict[str, Any]) -> bool:
+    """Retourne True si l'élément est le header 'Expériences Professionnelles'."""
+    if element.get('type') != 'Paragraph':
+        return False
+    props = element.get('properties', {})
+    if props.get('style') != 'DC_T1_Sections':
+        return False
+    text = get_text_from_element(element)
+    return any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE)
+
+def is_technical_skills_header(element: Dict[str, Any]) -> bool:
+    """Retourne True si l'élément correspond au sous-bloc 'Environnement technique'."""
+    if element.get('type') != 'Paragraph':
+        return False
+    text = get_text_from_element(element)
+    return any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in text
+
+def is_professional_tagged(element: Dict[str, Any]) -> bool:
+    """Retourne True si l'élément appartient à la section expérience pro."""
+    tags = element.get('tags', [])
+    if isinstance(tags, str):
+        tags = [tags]
+    return 'professional_experience' in tags or element.get('properties', {}).get('section') == 'professional_experience'
+
+def is_empty_paragraph(element: Dict[str, Any]) -> bool:
+    """Retourne True si le paragraphe est vide."""
+    if element.get('type') != 'Paragraph':
+        return False
+    return not get_text_from_element(element).strip()
+
 def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     """
     Crée les structures des tables professionnelles (Expériences Professionnelles).
@@ -1262,95 +1292,93 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
 
     # Créer des tables selon les conditions
     new_content = []
-    just_after_prof_exp_header = False
-    current_section = None
+    expect_entry_start = False
+    waiting_for_env_end = False
+    last_was_bullet = False
 
     i = 0
     while i < len(content):
         element = content[i]
-        new_content.append(element)
 
-        # Chercher le paragraphe non-vide précédent
-        prev_element = None
-        for j in range(i - 1, -1, -1):
-            prev_candidate = content[j]
-            if prev_candidate.get('type') == 'Paragraph':
-                # Vérifier que le paragraphe a du texte
-                prev_text = get_text_from_element(prev_candidate)
-                if prev_text.strip():
-                    prev_element = prev_candidate
-                    break
+        if not is_professional_tagged(element):
+            expect_entry_start = False
+            waiting_for_env_end = False
+            last_was_bullet = False
+            new_content.append(element)
+            i += 1
+            continue
 
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element)
             has_ilvl = element.get('properties', {}).get('ilvl') is not None
-            style = element.get('properties', {}).get('style', '')
-            is_section_header = style == 'DC_T1_Sections'
-
             # Détecter le header "Expériences Professionnelles"
-            if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-                current_section = 'professional_experience'
-                just_after_prof_exp_header = True
+            if is_professional_section_header(element):
+                expect_entry_start = True
+                waiting_for_env_end = False
+                last_was_bullet = False
+                new_content.append(element)
                 i += 1
                 continue
 
-            # Condition pour créer une table
-            should_create_table = False
+            is_empty = not text.strip()
+            is_technical = is_technical_skills_header(element)
 
-            # Check if previous element in ORIGINAL content is a table (we'll handle table merging in insert_text_xp_tables)
-            prev_is_table_in_original = (i > 0 and content[i-1].get('type') == 'Table')
+            if has_ilvl:
+                last_was_bullet = True
+            else:
+                if last_was_bullet:
+                    last_was_bullet = False
+                    if is_technical:
+                        if has_bullets_after(content, i):
+                            waiting_for_env_end = True
+                        else:
+                            expect_entry_start = True
+                    else:
+                        expect_entry_start = True
 
-            # Check if previous element in new_content is already a table (avoid consecutive tables)
-            prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
+                if waiting_for_env_end and not is_technical and not is_empty:
+                    expect_entry_start = True
+                    waiting_for_env_end = False
 
-            # Check next element - don't create table if next is AUTO table (avoid auto/auto duplication)
-            # But DO create if next is EXISTING table (we'll merge and delete the old one)
-            next_is_auto_table = (i + 1 < len(content) and content[i + 1].get('type') == 'Table' and content[i + 1].get('auto_generated'))
-            is_near_end = (i > len(content) - 3)  # Too close to end (last 2 elements)
+                if is_technical:
+                    if has_bullets_after(content, i):
+                        waiting_for_env_end = True
+                    else:
+                        expect_entry_start = True
+        elif element.get('type') == 'Table':
+            if waiting_for_env_end:
+                expect_entry_start = True
+                waiting_for_env_end = False
 
-            # Cas 1 : First paragraph after "Expériences Professionnelles" header
-            if just_after_prof_exp_header and not has_ilvl and not prev_is_table_in_original:
-                should_create_table = True
-                just_after_prof_exp_header = False
+        # Condition pour créer une table AVANT l'élément courant (début d'xp_entry)
+        should_create_table = False
+        if expect_entry_start or element.get('xp_split_part') == 'xp_date':
+            is_valid_start = False
+            if element.get('type') == 'Table':
+                is_valid_start = not element.get('auto_generated')
+            elif element.get('type') == 'Paragraph':
+                has_ilvl = element.get('properties', {}).get('ilvl') is not None
+                is_valid_start = not has_ilvl and not is_empty_paragraph(element) and not is_technical_skills_header(element)
 
-            # Cas 2 & 3 : Paragraphes sans ilvl
-            # - Cas 2: KEYWORDS_TECHNICAL_SKILLS
-            # - Cas 3: Sortie de liste (prev avait ilvl) + (long OU contexte)
-            # ⚠️ NEVER create table immediately after an existing table (prev_is_table_in_original=True)
-            elif current_section == 'professional_experience' and not has_ilvl and not prev_is_table_in_original and not prev_elem_is_table:
-                # Cas 2 : Paragraphe avec keywords_technical
-                # ⚠️ Skip if next is AUTO table or near end
-                if any(keyword in text.lower() for keyword in KEYWORDS_TECHNICAL_SKILLS):
-                    if (not text.startswith('contexte') or len(text) > 70) and not next_is_auto_table and not is_near_end:
-                        should_create_table = True
+            if element.get('xp_split_part') == 'xp_date':
+                is_valid_start = True
 
-                # Cas 3 : Sortie de liste (transition ilvl → no ilvl)
-                # ⚠️ Skip if next is AUTO table (but allow if EXISTING table - we'll merge!)
-                elif prev_element is not None and not next_is_auto_table:
-                    prev_had_ilvl = prev_element.get('properties', {}).get('ilvl') is not None
-                    is_long = len(text) > 70
-                    is_contexte = text.startswith('contexte')
-                    next_is_existing_table = (i + 1 < len(content) and content[i + 1].get('type') == 'Table' and not content[i + 1].get('auto_generated'))
+            if is_valid_start:
+                prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
+                if not prev_elem_is_table:
+                    should_create_table = True
+                    expect_entry_start = False
 
-                    # Create table if: prev had ilvl AND (text is long OR starts with contexte OR next is existing table to replace)
-                    if prev_had_ilvl and (is_long or is_contexte or next_is_existing_table):
-                        should_create_table = True
-                elif next_is_auto_table:
-                    pass
-                else:
-                    pass
+        if should_create_table:
+            new_table = create_empty_table_2x2(
+                len(new_content),
+                section='professional_experience',
+                auto_generated=True,
+                page_dims=page_dims
+            )
+            new_content.append(new_table)
 
-            if should_create_table:
-                new_table = create_empty_table_2x2(
-                    len(new_content),
-                    section=current_section,
-                    auto_generated=True,
-                    page_dims=page_dims
-                )
-                new_content.append(new_table)
-                i += 1
-                continue
-
+        new_content.append(element)
         i += 1
 
     data['document']['content'] = new_content
@@ -1451,39 +1479,59 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
                     element['rows'] = temp_table['rows']
                     element['row_count'] = len(element['rows'])
 
-                    # Trouver max size
-                    max_size_para = None
-                    max_size = 0
+                    def pop_split_part(paras: List[Dict[str, Any]], part: str) -> Optional[Dict[str, Any]]:
+                        for idx, para in enumerate(paras):
+                            if para.get('xp_split_part') == part:
+                                return paras.pop(idx)
+                        return None
+
                     remaining = list(all_paragraphs)
 
-                    for para in all_paragraphs:
-                        if para.get('runs'):
-                            for run in para['runs']:
-                                size_str = run.get('properties', {}).get('size')
-                                if size_str:
-                                    try:
-                                        size = int(size_str)
-                                        if size > max_size:
-                                            max_size = size
-                                            max_size_para = para
-                                    except ValueError:
-                                        pass
+                    company_para = pop_split_part(remaining, 'xp_company')
+                    date_para = pop_split_part(remaining, 'xp_date')
+                    poste_para = pop_split_part(remaining, 'xp_poste')
 
-                    if max_size_para and max_size_para in remaining:
-                        remaining.remove(max_size_para)
-                        element['rows'][0]['cells'][0]['paragraphs'] = [clone_paragraph_clean(max_size_para)]
+                    if company_para:
+                        element['rows'][0]['cells'][0]['paragraphs'] = [clone_paragraph_clean(company_para)]
+                    else:
+                        # Trouver max size
+                        max_size_para = None
+                        max_size = 0
 
-                    # Trouver date (contient "20")
-                    date_para = None
-                    for para in remaining:
-                        text = get_text_from_element(para)
-                        if ' 20' in text or '/20' in text or '-20' in text:
-                            date_para = para
-                            break
+                        for para in remaining:
+                            if para.get('runs'):
+                                for run in para['runs']:
+                                    size_str = run.get('properties', {}).get('size')
+                                    if size_str:
+                                        try:
+                                            size = int(size_str)
+                                            if size > max_size:
+                                                max_size = size
+                                                max_size_para = para
+                                        except ValueError:
+                                            pass
 
-                    if date_para and date_para in remaining:
-                        remaining.remove(date_para)
+                        if max_size_para and max_size_para in remaining:
+                            remaining.remove(max_size_para)
+                            element['rows'][0]['cells'][0]['paragraphs'] = [clone_paragraph_clean(max_size_para)]
+
+                    if date_para:
                         element['rows'][0]['cells'][1]['paragraphs'] = [clone_paragraph_clean(date_para)]
+                    else:
+                        # Trouver date (contient "20")
+                        date_para = None
+                        for para in remaining:
+                            text = get_text_from_element(para)
+                            if ' 20' in text or '/20' in text or '-20' in text:
+                                date_para = para
+                                break
+
+                        if date_para and date_para in remaining:
+                            remaining.remove(date_para)
+                            element['rows'][0]['cells'][1]['paragraphs'] = [clone_paragraph_clean(date_para)]
+
+                    if poste_para:
+                        remaining.insert(0, poste_para)
 
                     # Placer le reste dans cell[1][0]
                     # Filtrer: garder seulement les paragraphes avec du texte (exclure vides + page_break-only)
