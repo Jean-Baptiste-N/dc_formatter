@@ -43,6 +43,7 @@ KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certificatio
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
+XP_DATE_PATTERN = r'^\s*(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(\d{1,2}(?:[/–-]\d{1,2})?[/–-]\d{2,4}(?:\s*[–-]\s*\d{1,2}(?:[/–-]\d{1,2})?[/–-]\d{2,4})?)'
 
 def get_table_widths_for_section(section: str = None, page_dims: dict = None) -> tuple:
     """
@@ -109,6 +110,10 @@ def get_text_from_element(element: Dict[str, Any]) -> str:
 
     return ' '.join(texts).lower()
 
+def match_xp_date(text: str) -> Optional[re.Match]:
+    """Retourne un match de date XP au début d'un texte (avec formats élargis)."""
+    return re.match(XP_DATE_PATTERN, text, flags=re.IGNORECASE)
+
 
 def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) -> bool:
     """Retourne True si l'élément ressemble à un vrai titre de section.
@@ -133,8 +138,7 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     style = props.get('style', '')
 
     # Exclure les XP entries: paragraphes commençant par une DATE (regex)
-    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4})'
-    if re.match(date_pattern, text):
+    if match_xp_date(text):
         return False
 
     if element.get('auto_generated'):
@@ -218,9 +222,6 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
     content = data.get('document', {}).get('content', [])
     new_content = []
 
-    # Regex pour détecter une DATE au début
-    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4})'
-
     for element in content:
         # Chercher les XP entries marquées avec le tag 'professional_experience'
         if (element.get('type') == 'Paragraph'):
@@ -235,7 +236,7 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
                     text = get_text_from_element(element)
 
                     # Détecter si le paragraphe commence par une DATE
-                    if re.match(date_pattern, text):
+                    if match_xp_date(text):
                         # C'est une XP entry, la splitter
                         split_result = split_xp_entry(element)
                         new_content.extend(split_result)
@@ -636,24 +637,21 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     text = get_text_from_element(para)
 
-    # Regex pour détecter une DATE au début: XX/XXXX ou XX–XXXX ou XX-XXXX
-    # Supporte aussi DATE – DATE (e.g., "01/2021 – 02/2024")
-    date_pattern = r'^\s*(\d{1,2}[/–-]\d{4}(?:\s*[–-]\s*\d{1,2}[/–-]\d{4})?)'
-    date_match = re.match(date_pattern, text)
+    date_match = match_xp_date(text)
 
     if not date_match:
         return [para]  # Pas de DATE au début, ce n'est pas une XP entry
 
-    date_text = date_match.group(1).strip()
+    date_text = date_match.group(0).strip()
     remaining_after_date = text[date_match.end():].strip()
 
     # Chercher `: ` qui sépare DATE de COMPANY
-    colon_pos = remaining_after_date.find(': ')
+    colon_pos = remaining_after_date.find(':')
     if colon_pos == -1:
         return [para]  # Pas de `: ` trouvé après la DATE
 
     # Extraire COMPANY (entre `: ` et le prochain `- ` ou fin du texte, avec lazy matching)
-    after_colon = remaining_after_date[colon_pos + 2:].strip()
+    after_colon = remaining_after_date[colon_pos + 1:].strip()
 
     # Chercher `- ` (lazy matching - optionnel)
     dash_pattern = r'^(.+?)\s*[-–]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
@@ -1246,14 +1244,17 @@ def is_professional_section_header(element: Dict[str, Any]) -> bool:
 def is_technical_skills_header(element: Dict[str, Any]) -> bool:
     """Retourne True si l'élément correspond au sous-bloc 'Environnement technique'.
 
-    On exclut volontairement tout paragraphe contenant "contexte" pour éviter les faux positifs
-    liés aux titres de contexte, même si la correspondance est partielle. La recherche
-    reste volontairement en sous-chaîne car le texte est déjà normalisé en minuscules.
+    On cible explicitement les lignes qui démarrent par "environnement(s)" afin d'éviter
+    les faux positifs sur des titres de poste (ex: "responsable technique").
+    On exclut volontairement tout paragraphe contenant "contexte".
     """
     if element.get('type') != 'Paragraph':
         return False
     text = get_text_from_element(element)
-    return any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in text
+    normalized_text = text.strip()
+    if not normalized_text.startswith(('environnement', 'environnements')):
+        return False
+    return any(keyword in normalized_text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in normalized_text
 
 def is_professional_tagged(element: Dict[str, Any]) -> bool:
     """Retourne True si l'élément appartient à la section expérience pro."""
@@ -1452,12 +1453,16 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
                         if props.get('ilvl') is not None:
                             break
 
-                        # SKIP si c'est un titre (KEYWORDS_TECHNICAL_SKILLS) - le laisser en place
-                        if any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS):
+                        # SKIP si c'est un titre d'environnement technique - le laisser en place
+                        if is_technical_skills_header(next_elem):
                             break
 
-                        # ARRÊTER si le paragraphe est long (> 70 caractères)
-                        if len(text) > 70:
+                        # ARRÊTER si le paragraphe décrit un contexte
+                        if 'contexte' in text:
+                            break
+
+                        # ARRÊTER si le paragraphe est long (> 75 caractères)
+                        if len(text) > 75:
                             break
 
                         # Ajouter le paragraphe (même s'il est vide)
@@ -1777,9 +1782,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         if 'tags' not in itag:
             continue
         tags = itag['tags']
-        text = get_text_from_element(itag)  # Déjà en minuscules
-
-        if 'professional_experience' in tags and any(keyword in text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in text:
+        if 'professional_experience' in tags and is_technical_skills_header(itag):
             if 'properties' not in itag:
                 itag['properties'] = {}
             itag['properties']['style'] = 'DC_XP_BlueContent'
