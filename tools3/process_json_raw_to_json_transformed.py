@@ -1244,7 +1244,11 @@ def is_professional_section_header(element: Dict[str, Any]) -> bool:
     return any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE)
 
 def is_technical_skills_header(element: Dict[str, Any]) -> bool:
-    """Retourne True si l'élément correspond au sous-bloc 'Environnement technique'."""
+    """Retourne True si l'élément correspond au sous-bloc 'Environnement technique'.
+
+    On exclut volontairement tout paragraphe contenant "contexte" pour éviter les faux positifs
+    liés aux titres de contexte, même si la correspondance est partielle.
+    """
     if element.get('type') != 'Paragraph':
         return False
     text = get_text_from_element(element)
@@ -1296,6 +1300,14 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     waiting_for_env_end = False
     last_was_bullet = False
 
+    def mark_env_block(idx: int) -> None:
+        nonlocal waiting_for_env_end, expect_entry_start
+        # Si une liste suit l'en-tête technique, on attend la fin du bloc pour démarrer l'XP suivante.
+        if has_bullets_after(content, idx):
+            waiting_for_env_end = True
+        else:
+            expect_entry_start = True
+
     i = 0
     while i < len(content):
         element = content[i]
@@ -1329,10 +1341,7 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                 if last_was_bullet:
                     last_was_bullet = False
                     if is_technical:
-                        if has_bullets_after(content, i):
-                            waiting_for_env_end = True
-                        else:
-                            expect_entry_start = True
+                        mark_env_block(i)
                     else:
                         expect_entry_start = True
 
@@ -1341,10 +1350,7 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                     waiting_for_env_end = False
 
                 if is_technical:
-                    if has_bullets_after(content, i):
-                        waiting_for_env_end = True
-                    else:
-                        expect_entry_start = True
+                    mark_env_block(i)
         elif element.get('type') == 'Table':
             if waiting_for_env_end:
                 expect_entry_start = True
@@ -1354,14 +1360,13 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
         should_create_table = False
         if expect_entry_start or element.get('xp_split_part') == 'xp_date':
             is_valid_start = False
-            if element.get('type') == 'Table':
+            if element.get('xp_split_part') == 'xp_date':
+                is_valid_start = True
+            elif element.get('type') == 'Table':
                 is_valid_start = not element.get('auto_generated')
             elif element.get('type') == 'Paragraph':
                 has_ilvl = element.get('properties', {}).get('ilvl') is not None
                 is_valid_start = not has_ilvl and not is_empty_paragraph(element) and not is_technical_skills_header(element)
-
-            if element.get('xp_split_part') == 'xp_date':
-                is_valid_start = True
 
             if is_valid_start:
                 prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
