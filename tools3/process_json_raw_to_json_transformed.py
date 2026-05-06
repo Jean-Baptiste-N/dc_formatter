@@ -88,7 +88,7 @@ def get_table_widths_for_section(section: str = None, page_dims: dict = None) ->
     else:
         return (default_table_col1, default_table_col2)
 
-def get_text_from_element(element: Dict[str, Any]) -> str:
+def get_text_from_element(element: Dict[str, Any], lower: bool = True) -> str:
     """Extrait tout le texte d'un élément (paragraphe ou table)"""
     texts = []
 
@@ -109,7 +109,12 @@ def get_text_from_element(element: Dict[str, Any]) -> str:
                 for para in cell.get('paragraphs', []):
                     texts.append(get_text_from_element(para))
 
-    return ' '.join(texts).lower()
+    text = ' '.join(texts)
+    return text.lower() if lower else text
+
+def get_raw_text_from_paragraph(para: Dict[str, Any]) -> str:
+    """Retourne le texte brut d'un paragraphe sans forcer la casse."""
+    return ''.join(run.get('text', '') for run in para.get('runs', [])) or para.get('text', '') or get_text_from_element(para, lower=False)
 
 def match_xp_date(text: str) -> Optional[re.Match]:
     """Retourne un match de date XP au début d'un texte (avec formats élargis)."""
@@ -139,6 +144,9 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     tags = element.get('tags', [])
     if isinstance(tags, str):
         tags = [tags]
+
+    if 'professional_experience' in tags and not any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+        return False
 
     if 'professional_experience' in tags and text.strip().startswith(('projet', 'projets')):
         return False
@@ -241,7 +249,7 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
                 props = element.get('properties', {})
                 # Exclure les bullets (ilvl est défini)
                 if props.get('ilvl') is None:
-                    text = get_text_from_element(element)
+                    text = get_raw_text_from_paragraph(element)
 
                     # Détecter si le paragraphe commence par une DATE
                     if match_xp_date(text):
@@ -643,7 +651,7 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     Returns:
         List[Dict]: Liste de 1 (pas XP entry) ou 2-3 paragraphes (XP entry splittée)
     """
-    text = get_text_from_element(para)
+    text = get_raw_text_from_paragraph(para)
 
     date_match = match_xp_date(text)
 
@@ -1277,6 +1285,72 @@ def is_empty_paragraph(element: Dict[str, Any]) -> bool:
     if element.get('type') != 'Paragraph':
         return False
     return not get_text_from_element(element).strip()
+
+def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
+    """
+    Flag tous les paragraphes d'une XP entry en xp_bullet et ajuste les ilvl si nécessaire.
+
+    Règle:
+    - Dans chaque bloc XP (début: xp_date, fin: prochain xp_date ou sortie de section),
+      tous les paragraphes non-vide entre les headers XP sont marqués xp_bullet.
+    - Si le premier xp_bullet n'a pas de ilvl, on décale tous les ilvl d'un niveau:
+      sans ilvl -> ilvl 0, ilvl0 -> ilvl1, etc.
+    - Si le premier xp_bullet a déjà un ilvl, ne rien faire.
+    """
+    content = data.get('document', {}).get('content', [])
+    current_block: List[int] = []
+    in_entry = False
+
+    def finalize_block() -> None:
+        if not current_block:
+            return
+        first_elem = content[current_block[0]]
+        first_ilvl = first_elem.get('properties', {}).get('ilvl')
+        if first_ilvl is None:
+            for idx in current_block:
+                elem = content[idx]
+                props = elem.setdefault('properties', {})
+                ilvl = props.get('ilvl')
+                if ilvl is None:
+                    props['ilvl'] = "0"
+                else:
+                    try:
+                        props['ilvl'] = str(int(ilvl) + 1)
+                    except (ValueError, TypeError):
+                        pass
+
+    for idx, element in enumerate(content):
+        if not is_professional_tagged(element):
+            if in_entry:
+                finalize_block()
+            in_entry = False
+            current_block = []
+            continue
+
+        if element.get('type') == 'Paragraph' and element.get('xp_split_part') == 'xp_date':
+            if in_entry:
+                finalize_block()
+            in_entry = True
+            current_block = []
+            continue
+
+        if not in_entry:
+            continue
+
+        if element.get('type') != 'Paragraph':
+            continue
+        if element.get('xp_split_part'):
+            continue
+        if is_professional_section_header(element):
+            continue
+        if is_empty_paragraph(element):
+            continue
+
+        element['xp_bullet'] = True
+        current_block.append(idx)
+
+    if in_entry:
+        finalize_block()
 
 def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -1972,6 +2046,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
 
     # Appliquer le style DC_T1_Sections aux headers de section
     apply_section_header_styles(data)
+
+    # Flagger les bullets des XP entries et ajuster les ilvl si nécessaire
+    apply_xp_bullet_flags_and_levels(data)
 
     # ===== TABLE MAIN SKILLS si existante =====
     # Créer la table Main Skills si on détecte une table source des compétences techniques
