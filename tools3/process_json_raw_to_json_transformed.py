@@ -1367,7 +1367,7 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                 prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
                 if not prev_elem_is_table:
                     should_create_table = True
-                    expect_entry_start = False
+                expect_entry_start = False
 
         if should_create_table:
             new_table = create_empty_table_2x2(
