@@ -705,7 +705,8 @@
         "index": 19,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -1066,8 +1067,7 @@
             "insideH": null,
             "insideV": null
           },
-          "style": "DC_T1_Sections",
-          "outline_level": 0
+          "style": "DC_Table_Content"
         },
         "tags": [
           "education"
@@ -1259,22 +1259,6 @@
         ]
       },
       {
-        "index": 36,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_XP_BlueContent"
-        },
-        "runs": [
-          {
-            "text": "Depuis 06/22: Epsyl-Alcen – Responsable Technique",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1282,7 +1266,7 @@
         "runs": []
       },
       {
-        "index": 38,
+        "index": 37,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1319,7 +1303,24 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Title",
+                      "outline_level": 1
+                    },
+                    "runs": [
+                      {
+                        "text": "epsyl-alcen",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
@@ -1328,7 +1329,23 @@
                   "hAlign": "right",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Date"
+                    },
+                    "runs": [
+                      {
+                        "text": "depuis 06/22",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -1343,7 +1360,23 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "responsable technique",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
@@ -1385,7 +1418,7 @@
         "index": 38,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_XP_BlueContent"
+          "style": "DC_Normal"
         },
         "runs": [
           {
@@ -1398,113 +1431,23 @@
         ]
       },
       {
+        "index": 39,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
-        "runs": []
-      },
-      {
-        "index": 41,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Supervision d’une équipe de développeurs et de testeurs",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Supervision d’une équipe de développeurs et de testeurs",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 40,
@@ -1659,7 +1602,8 @@
         "index": 48,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_XP_BlueContent"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -1672,97 +1616,6 @@
         "tags": [
           "professional_experience"
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
-      },
-      {
-        "index": 52,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
-        "tags": [
-          "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 49,
@@ -1916,7 +1769,8 @@
         "index": 57,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -2064,7 +1918,8 @@
         "index": 65,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -2297,7 +2152,24 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Title",
+                      "outline_level": 1
+                    },
+                    "runs": [
+                      {
+                        "text": "kamenoco inc",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
@@ -2306,7 +2178,23 @@
                   "hAlign": "right",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Date"
+                    },
+                    "runs": [
+                      {
+                        "text": "12/10 - 03/22",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -2329,22 +2217,7 @@
                     },
                     "runs": [
                       {
-                        "text": "12/10 - 03/22: Kamenoco inc – Architecte/ développeur full stack",
-                        "properties": {}
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  },
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Projet : Remplacement et développement d’un logiciel médical",
+                        "text": "architecte/ développeur full stack",
                         "properties": {}
                       }
                     ],
@@ -2373,6 +2246,22 @@
           "style": "DC_Normal"
         },
         "runs": []
+      },
+      {
+        "index": 76,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [
+          {
+            "text": "Projet : Remplacement et développement d’un logiciel médical",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
         "index": 77,
@@ -2404,7 +2293,8 @@
         "index": 79,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -2479,7 +2369,8 @@
         "index": 83,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -2554,7 +2445,8 @@
         "index": 87,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -2610,7 +2502,8 @@
         "index": 90,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
         "runs": [
           {
@@ -2862,7 +2755,7 @@
         "runs": []
       },
       {
-        "index": 108,
+        "index": 110,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2899,7 +2792,24 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Title",
+                      "outline_level": 1
+                    },
+                    "runs": [
+                      {
+                        "text": "t-bone productions",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
@@ -2916,7 +2826,7 @@
                     },
                     "runs": [
                       {
-                        "text": "07-12/2007 : T-Bone Productions – Développeur",
+                        "text": "07-12/2007",
                         "properties": {}
                       }
                     ],
@@ -2939,7 +2849,23 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "développeur",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
@@ -3045,7 +2971,7 @@
         "runs": []
       },
       {
-        "index": 114,
+        "index": 118,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3082,7 +3008,24 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Title",
+                      "outline_level": 1
+                    },
+                    "runs": [
+                      {
+                        "text": "sydney web",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
@@ -3099,7 +3042,7 @@
                     },
                     "runs": [
                       {
-                        "text": "02-05/ 2007 : Sydney Web – Développeur",
+                        "text": "02-05",
                         "properties": {}
                       }
                     ],
@@ -3122,7 +3065,23 @@
                   "hAlign": "left",
                   "vAlign": "center"
                 },
-                "paragraphs": []
+                "paragraphs": [
+                  {
+                    "type": "Paragraph",
+                    "properties": {
+                      "style": "DC_XP_Poste"
+                    },
+                    "runs": [
+                      {
+                        "text": "développeur",
+                        "properties": {}
+                      }
+                    ],
+                    "tags": [
+                      "professional_experience"
+                    ]
+                  }
+                ]
               },
               {
                 "col_index": 1,
