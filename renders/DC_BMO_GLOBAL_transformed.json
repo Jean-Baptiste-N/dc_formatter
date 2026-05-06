@@ -1402,12 +1402,11 @@
         "index": 37,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_T1_Sections",
-          "outline_level": 0
+          "style": "DC_Normal"
         },
         "runs": [
           {
-            "text": "Projet : plateau frontend du train safe 3d, direction ingénierie et projets nouveau nucléaire, edf",
+            "text": "Projet : Plateau Frontend du Train SAFe 3D, Direction ingénierie et projets nouveau nucléaire, EDF",
             "properties": {}
           }
         ],
@@ -1600,113 +1599,23 @@
         ]
       },
       {
+        "index": 48,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
-        "runs": []
-      },
-      {
-        "index": 52,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Analyse technique et fonctionnelle",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Analyse technique et fonctionnelle",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 49,
@@ -1857,113 +1766,23 @@
         ]
       },
       {
+        "index": 57,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
-        "runs": []
-      },
-      {
-        "index": 62,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Contrôle de la qualité des livrables",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Contrôle de la qualité des livrables",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 58,
@@ -2096,113 +1915,23 @@
         ]
       },
       {
+        "index": 65,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
-        "runs": []
-      },
-      {
-        "index": 71,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Activités transverses",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Activités transverses",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 66,
@@ -2386,7 +2115,7 @@
         "runs": []
       },
       {
-        "index": 82,
+        "index": 79,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2522,12 +2251,11 @@
         "index": 76,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_T1_Sections",
-          "outline_level": 0
+          "style": "DC_Normal"
         },
         "runs": [
           {
-            "text": "Projet : remplacement et développement d’un logiciel médical",
+            "text": "Projet : Remplacement et développement d’un logiciel médical",
             "properties": {}
           }
         ],
@@ -2638,113 +2366,23 @@
         ]
       },
       {
+        "index": 83,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
-        "runs": []
-      },
-      {
-        "index": 93,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Architecture",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Architecture",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 84,
@@ -2804,113 +2442,23 @@
         ]
       },
       {
+        "index": 87,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
-        "runs": []
-      },
-      {
-        "index": 98,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Développement",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Développement",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 88,
@@ -2951,113 +2499,23 @@
         ]
       },
       {
+        "index": 90,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_Normal"
+          "style": "DC_T1_Sections",
+          "outline_level": 0
         },
-        "runs": []
-      },
-      {
-        "index": 102,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Activités transverses",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Activités transverses",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 91,
@@ -3136,113 +2594,22 @@
         ]
       },
       {
+        "index": 95,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
-      },
-      {
-        "index": 108,
-        "type": "Table",
-        "auto_generated": true,
-        "properties": {
-          "table_width": "9638",
-          "table_width_type": "dxa",
-          "section": "professional_experience",
-          "borders": {
-            "top": null,
-            "bottom": {
-              "size": "10",
-              "color": "000000"
-            },
-            "left": null,
-            "right": null,
-            "insideH": null,
-            "insideV": null
-          },
-          "style": "DC_Table_Content"
-        },
+        "runs": [
+          {
+            "text": "Projets :",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
         "tags": [
           "professional_experience"
-        ],
-        "row_count": 2,
-        "col_count": 2,
-        "rows": [
-          {
-            "row_index": 0,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          },
-          {
-            "row_index": 1,
-            "height": 360,
-            "cells": [
-              {
-                "col_index": 0,
-                "width": 6803,
-                "properties": {
-                  "hAlign": "left",
-                  "vAlign": "center"
-                },
-                "paragraphs": [
-                  {
-                    "type": "Paragraph",
-                    "properties": {
-                      "style": "DC_XP_Poste"
-                    },
-                    "runs": [
-                      {
-                        "text": "Projets :",
-                        "properties": {
-                          "bold": true
-                        }
-                      }
-                    ],
-                    "tags": [
-                      "professional_experience"
-                    ]
-                  }
-                ]
-              },
-              {
-                "col_index": 1,
-                "width": 2835,
-                "properties": {
-                  "hAlign": "right",
-                  "vAlign": "center"
-                },
-                "paragraphs": []
-              }
-            ]
-          }
         ]
-      },
-      {
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": []
       },
       {
         "index": 96,
@@ -3388,7 +2755,7 @@
         "runs": []
       },
       {
-        "index": 117,
+        "index": 110,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3524,12 +2891,11 @@
         "index": 104,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_T1_Sections",
-          "outline_level": 0
+          "style": "DC_Normal"
         },
         "runs": [
           {
-            "text": "Projet : mise à jour du design du site australien de toyota material handling.",
+            "text": "Projet : Mise à jour du design du site australien de Toyota Material Handling.",
             "properties": {}
           }
         ],
@@ -3605,7 +2971,7 @@
         "runs": []
       },
       {
-        "index": 125,
+        "index": 118,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3741,12 +3107,11 @@
         "index": 109,
         "type": "Paragraph",
         "properties": {
-          "style": "DC_T1_Sections",
-          "outline_level": 0
+          "style": "DC_Normal"
         },
         "runs": [
           {
-            "text": "Projet : continuation d’un projet interne: l’annuaire des entreprises à sydney.",
+            "text": "Projet : Continuation d’un projet interne: l’annuaire des entreprises à Sydney.",
             "properties": {}
           }
         ],
