@@ -43,8 +43,9 @@ KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certificatio
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
-XP_DATE_PATTERN = r'^\s*(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(\d{1,2}(?:[/–-]\d{1,2})?[/–-]\d{2,4}(?:\s*[–-]\s*\d{1,2}(?:[/–-]\d{1,2})?[/–-]\d{2,4})?)'
+XP_DATE_PATTERN = r'^\s*(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4})(?:\s*[–-]\s*(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}))?'
 MAX_XP_DESCRIPTION_LENGTH = 75
+SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
 
 def get_table_widths_for_section(section: str = None, page_dims: dict = None) -> tuple:
     """
@@ -119,6 +120,10 @@ def get_raw_text_from_paragraph(para: Dict[str, Any]) -> str:
 def match_xp_date(text: str) -> Optional[re.Match]:
     """Retourne un match de date XP au début d'un texte (avec formats élargis)."""
     return re.match(XP_DATE_PATTERN, text, flags=re.IGNORECASE)
+
+def is_single_xp_date(text: str) -> bool:
+    """Retourne True si le texte ressemble a une date XP simple (sans prefixe)."""
+    return re.match(SINGLE_XP_DATE_PATTERN, text.strip()) is not None
 
 
 def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) -> bool:
@@ -256,12 +261,9 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
                 props = element.get('properties', {})
                 # Exclure les bullets (ilvl est défini)
                 if props.get('ilvl') is None:
-                    text = get_raw_text_from_paragraph(element)
-
-                    # Détecter si le paragraphe commence par une DATE
-                    if match_xp_date(text):
-                        # C'est une XP entry, la splitter
-                        split_result = split_xp_entry(element)
+                    # Laisser split_xp_entry decider si c'est une vraie XP entry
+                    split_result = split_xp_entry(element)
+                    if len(split_result) > 1:
                         new_content.extend(split_result)
                         continue
 
@@ -668,32 +670,43 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     text = get_raw_text_from_paragraph(para)
 
-    date_match = match_xp_date(text)
-
-    if not date_match:
-        return [para]  # Pas de DATE ddans le texte, ce n'est pas une XP entry
-
-    date_text = date_match.group(0).strip()
-    remaining_after_date = text[date_match.end():].strip()
-
     # Chercher `: ` qui sépare DATE de COMPANY
-    colon_match = re.search(r':\s+', remaining_after_date)
+    colon_match = re.search(r':\s+', text)
     if not colon_match:
-        return [para]  # Pas de `: ` trouvé après la DATE
+        return [para]  # Pas de `: ` trouvé
 
-    # Extraire COMPANY (entre `: ` et le prochain `- ` ou fin du texte, avec lazy matching)
-    after_colon = remaining_after_date[colon_match.end():].strip()
+    # Extraire la portion DATE avant le `:` pour eviter les tronquages sur les plages
+    date_candidate = text[:colon_match.start()].strip()
 
-    # Chercher `- ` (lazy matching - optionnel)
+    prefix = ""
+    date_body = date_candidate
+    prefix_match = re.match(r'^\s*((?:depuis|du|de|à\s+partir\s+de)\s+)(.+)$', date_candidate, flags=re.IGNORECASE)
+    if prefix_match:
+        prefix = prefix_match.group(1)
+        date_body = prefix_match.group(2).strip()
+
+    range_sep = re.search(r'\s+[–-]\s+', date_body)
+    if range_sep:
+        left, right = re.split(r'\s+[–-]\s+', date_body, maxsplit=1)
+        if not is_single_xp_date(left) or not is_single_xp_date(right):
+            return [para]
+        left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
+        right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
+        date_text = f"{prefix}{left_norm}-{right_norm}"
+    else:
+        if not is_single_xp_date(date_body):
+            return [para]
+        date_text = f"{prefix}{re.sub(r'\s*([/–-])\s*', r'\1', date_body)}"
+    remaining_after_date = text[colon_match.end():].strip()
+
+    # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
+    after_colon = remaining_after_date
     dash_pattern = r'^(.+?)\s*[-–]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
     dash_match = re.match(dash_pattern, after_colon)
-
     if dash_match:
-        # Cas: DATE : COMPANY - POSTE
         company_text = dash_match.group(1).strip()
         poste_text = dash_match.group(2).strip()
     else:
-        # Cas: DATE : COMPANY (sans POSTE)
         company_text = after_colon.strip()
         poste_text = ""
 
@@ -1301,6 +1314,19 @@ def is_empty_paragraph(element: Dict[str, Any]) -> bool:
         return False
     return not get_text_from_element(element).strip()
 
+def is_xp_description_paragraph(element: Dict[str, Any]) -> bool:
+    """Retourne True si le paragraphe ressemble a un bloc de contexte long."""
+    if element.get('type') != 'Paragraph':
+        return False
+    props = element.get('properties', {})
+    if props.get('ilvl') is not None:
+        return False
+    text_raw = get_raw_text_from_paragraph(element).strip()
+    if not text_raw:
+        return False
+    text_lower = text_raw.lower()
+    return 'contexte' in text_lower or len(text_raw) > MAX_XP_DESCRIPTION_LENGTH
+
 def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     """
     Flag tous les paragraphes d'une XP entry en xp_bullet et ajuste les ilvl si nécessaire.
@@ -1315,6 +1341,7 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     content = data.get('document', {}).get('content', [])
     current_block: List[int] = []
     in_entry = False
+    in_technical_block = False
 
     def finalize_block() -> None:
         if not current_block:
@@ -1339,6 +1366,7 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
             if in_entry:
                 finalize_block()
             in_entry = False
+            in_technical_block = False
             current_block = []
             continue
 
@@ -1346,10 +1374,32 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
             if in_entry:
                 finalize_block()
             in_entry = True
+            in_technical_block = False
             current_block = []
             continue
 
         if not in_entry:
+            continue
+
+        if element.get('type') == 'Paragraph' and is_technical_skills_header(element):
+            element['xp_technical'] = True
+            in_technical_block = True
+            continue
+
+        if in_technical_block:
+            if element.get('type') == 'Paragraph':
+                if element.get('properties', {}).get('ilvl') is not None:
+                    element['xp_technical'] = True
+                    continue
+                if is_empty_paragraph(element):
+                    continue
+                in_technical_block = False
+            elif element.get('type') == 'Table':
+                in_technical_block = False
+                continue
+
+        if element.get('type') == 'Paragraph' and is_xp_description_paragraph(element):
+            element['xp_split_part'] = 'xp_description'
             continue
 
         if element.get('type') != 'Paragraph':
