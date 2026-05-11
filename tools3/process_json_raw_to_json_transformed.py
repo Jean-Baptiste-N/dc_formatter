@@ -613,8 +613,8 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     if colon_pos != -1:
         split_end = colon_pos
 
-    lang_text = text[:split_end].rstrip(' :\u00a0').strip()
-    desc_text = text[split_end:].lstrip(' :\u00a0').strip()
+    lang_text = text[:split_end].rstrip(' :\u00a0\t').strip()
+    desc_text = text[split_end:].lstrip(' :\u00a0\t').strip()
 
     if not lang_text:
         return [para]
@@ -1200,6 +1200,9 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                             source_cells = source_row.get('cells', [])
                             target_cells = rows[row_idx].get('cells', [])
 
+                            source_cell_0 = source_cells[0] if len(source_cells) > 0 else None
+                            source_cell_1 = source_cells[1] if len(source_cells) > 1 else None
+
                             for cell_idx, target_cell in enumerate(target_cells):
                                 if cell_idx >= len(source_cells):
                                     target_cell['paragraphs'] = []
@@ -1208,6 +1211,16 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                                 source_cell = source_cells[cell_idx]
                                 cloned_paragraphs = [clone_paragraph_clean(para) for para in source_cell.get('paragraphs', [])]
                                 target_cell['paragraphs'] = cloned_paragraphs
+
+                            # Si la description est collee au keyword en col0, la splitter vers col1
+                            if source_cell_0 and source_cell_1:
+                                cell0_paras = source_cell_0.get('paragraphs', [])
+                                cell1_paras = source_cell_1.get('paragraphs', [])
+                                if cell0_paras and not cell1_paras:
+                                    split_parts = split_paragraph_at_language(cell0_paras[0])
+                                    if split_parts and len(split_parts) > 1:
+                                        target_cells[0]['paragraphs'] = [clone_paragraph_clean(split_parts[0])]
+                                        target_cells[1]['paragraphs'] = [clone_paragraph_clean(split_parts[1])]
 
                         lang_table['rows'] = rows
                         lang_table['row_count'] = len(rows)
@@ -1508,6 +1521,8 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
 
         # Condition pour créer une table AVANT l'élément courant (début d'xp_entry)
         should_create_table = element.get('xp_split_part') == 'xp_date'
+        if element.get('type') == 'Table' and not element.get('auto_generated') and is_professional_tagged(element):
+            should_create_table = True
         if should_create_table:
             prev_elem_is_table = len(new_content) > 0 and new_content[-1].get('type') == 'Table'
             if prev_elem_is_table:

@@ -153,6 +153,7 @@ def extract_runs_from_paragraph(paragraph, ns: Dict) -> List[Dict[str, Any]]:
                 has_inline_content = True
             elif child_tag == f'{{{ns["w"]}}}tab':
                 flush_text_segment()
+                runs.append({'text': '\t', 'properties': {'tab': True}})
                 has_inline_content = True
             elif child_tag == f'{{{ns["w"]}}}br':
                 # Les retours à la ligne restent des séparateurs de segment.
@@ -280,6 +281,20 @@ def normalize_paragraph_runs(para: Dict[str, Any]) -> Dict[str, Any]:
         # Vérifier s'il faut fusionner avec le dernier run
         if normalized_runs and 'text' in normalized_runs[-1]:
             last_run_props = json.dumps(normalized_runs[-1].get('properties', {}), sort_keys=True)
+
+            if run.get('properties', {}).get('tab') or '\t' in run.get('text', ''):
+                normalized_runs.append({
+                    'text': run['text'],
+                    'properties': run.get('properties', {})
+                })
+                continue
+
+            if normalized_runs[-1].get('properties', {}).get('tab'):
+                normalized_runs.append({
+                    'text': run['text'],
+                    'properties': run.get('properties', {})
+                })
+                continue
 
             if run_props == last_run_props:
                 # Mêmes propriétés: fusionner les textes
