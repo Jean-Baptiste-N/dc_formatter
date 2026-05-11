@@ -694,9 +694,22 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
         right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
         date_text = f"{prefix}{left_norm}-{right_norm}"
     else:
-        if not is_single_xp_date(date_body):
-            return [para]
-        date_text = f"{prefix}{re.sub(r'\s*([/–-])\s*', r'\1', date_body)}"
+        date_tokens = list(re.finditer(r'\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}', date_body))
+        if len(date_tokens) >= 2:
+            left = date_tokens[0].group(0)
+            right = date_tokens[1].group(0)
+            between = date_body[date_tokens[0].end():date_tokens[1].start()]
+            if not re.search(r'[–-]', between):
+                return [para]
+            if not is_single_xp_date(left) or not is_single_xp_date(right):
+                return [para]
+            left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
+            right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
+            date_text = f"{prefix}{left_norm}-{right_norm}"
+        else:
+            if not is_single_xp_date(date_body):
+                return [para]
+            date_text = f"{prefix}{re.sub(r'\s*([/–-])\s*', r'\1', date_body)}"
     remaining_after_date = text[colon_match.end():].strip()
 
     # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
