@@ -540,9 +540,14 @@ def create_language_header(data: Dict[str, Any]) -> None:
             text = get_text_from_element(element).strip()
             style = element.get('properties', {}).get('style', '')
             # Check: c'est un vrai header "Langues" (pas "Français langue maternelle")
-            if text.lower() == 'langues' and (style.startswith('Heading') or style.startswith('Titre') or style == 'DC_T1_Sections'):
-                header_langues_exists = True
-                break
+            if style.startswith('Heading') or style.startswith('Titre') or style == 'DC_T1_Sections':
+                if text.lower() == 'langues':
+                    header_langues_exists = True
+                    break
+                if text.lower() == 'langue':
+                    element['runs'] = [{'text': 'Langues', 'properties': {}}]
+                    header_langues_exists = True
+                    break
 
     if header_langues_exists:
         return  # Header "Langues" existe déjà, rien à faire
@@ -1122,39 +1127,71 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                         j += 1
 
                     if existing_table is not None:
-                        all_paras = []
+                        source_rows = existing_table.get('rows', [])
+                        source_col_count = existing_table.get('col_count', 0)
 
-                        # Extraire tous les paragraphes
-                        for row in existing_table.get('rows', []):
-                            for cell in row.get('cells', []):
-                                all_paras.extend(cell.get('paragraphs', []))
-
-                        # Grouper par blocs
-                        blocks = group_education_paragraphs(all_paras)
-
-                        # Créer les rows avec le nombre exact requis
-                        if blocks:
-                            # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
+                        if source_rows and source_col_count == 2:
                             temp_table = create_empty_table_2x2(
                                 0,  # index fictif
                                 section='education',
                                 auto_generated=True,
-                                num_rows=len(blocks),
+                                num_rows=len(source_rows),
                                 page_dims=page_dims
                             )
                             rows = temp_table['rows']
 
-                            # Remplir chaque row avec les blocs
-                            for row_idx, block in enumerate(blocks):
-                                for para_idx, para in enumerate(block):
-                                    cloned = clone_paragraph_clean(para)
-                                    if para_idx == 0:
-                                        rows[row_idx]['cells'][0]['paragraphs'].append(cloned)
-                                    else:
-                                        rows[row_idx]['cells'][1]['paragraphs'].append(cloned)
+                            for row_idx, source_row in enumerate(source_rows):
+                                if row_idx >= len(rows):
+                                    break
+
+                                source_cells = source_row.get('cells', [])
+                                target_cells = rows[row_idx].get('cells', [])
+
+                                for cell_idx, target_cell in enumerate(target_cells):
+                                    source_cell = source_cells[cell_idx] if cell_idx < len(source_cells) else None
+                                    if source_cell is None:
+                                        target_cell['paragraphs'] = []
+                                        continue
+
+                                    cloned_paragraphs = [clone_paragraph_clean(para) for para in source_cell.get('paragraphs', [])]
+                                    target_cell['paragraphs'] = cloned_paragraphs
 
                             elem['rows'] = rows
                             elem['row_count'] = len(rows)
+                        else:
+                            all_paras = []
+
+                            # Extraire tous les paragraphes
+                            for row in existing_table.get('rows', []):
+                                for cell in row.get('cells', []):
+                                    all_paras.extend(cell.get('paragraphs', []))
+
+                            # Grouper par blocs
+                            blocks = group_education_paragraphs(all_paras)
+
+                            # Créer les rows avec le nombre exact requis
+                            if blocks:
+                                # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
+                                temp_table = create_empty_table_2x2(
+                                    0,  # index fictif
+                                    section='education',
+                                    auto_generated=True,
+                                    num_rows=len(blocks),
+                                    page_dims=page_dims
+                                )
+                                rows = temp_table['rows']
+
+                                # Remplir chaque row avec les blocs
+                                for row_idx, block in enumerate(blocks):
+                                    for para_idx, para in enumerate(block):
+                                        cloned = clone_paragraph_clean(para)
+                                        if para_idx == 0:
+                                            rows[row_idx]['cells'][0]['paragraphs'].append(cloned)
+                                        else:
+                                            rows[row_idx]['cells'][1]['paragraphs'].append(cloned)
+
+                                elem['rows'] = rows
+                                elem['row_count'] = len(rows)
 
                         # Marquer pour suppression
                         indices_to_remove.append(j)
