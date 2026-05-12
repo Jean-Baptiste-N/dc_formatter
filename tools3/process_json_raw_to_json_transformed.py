@@ -3,6 +3,17 @@ Script simplifié pour extraire un fichier XML global en JSON avec tous les dét
 Entrée: fichier _GLOBAL.xml
 Sortie: fichier _GLOBAL_raw.json (xml brut traduit en json)
 Sortie: fichier _GLOBAL_transformed.json (après taggings et transformations)
+
+ORGANISATION DES FONCTIONS:
+1. Imports et Constantes
+2. Fonctions Utilitaires (text extraction, regex, helpers)
+3. Détection de Sections & Core Tagging
+4. Section HEADER
+5. Section MAIN SKILLS
+6. Section EDUCATION
+7. Section PROFESSIONAL EXPERIENCE
+8. Final Processing & Rendering (nettoyage, styles, indices)
+9. Main Entry Point (apply_tags_and_styles, main)
 """
 
 from argparse import ArgumentParser
@@ -24,6 +35,7 @@ except (ImportError, ValueError):
     # Fallback pour exécution directe (python3 script.py)
     from tools3.parse_template import extract_page_dimensions_from_template
 
+# MARK: CONFIGURATION & CONSTANTES
 # ===== CONSTANTES =====
 TEMPLATE_PATH = 'assets/TEMPLATE.docx'
 
@@ -43,15 +55,12 @@ KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certificatio
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
-# XP_DATE_PATTERN = r'^\s*(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4})(?:\s*[–-]\s*(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}))?'
-# Pattern pour détecter les dates XP n'importe où dans le texte
-# Accepte: "2019 - 2021", "2019-2021", "depuis 11/2021", "du 01/01/2020 - 31/12/2021", "CEA | 2019 - 2021", etc.
-# Deux formats:
-# 1. Dates complètes: JJ/MM/YYYY, JJ/YYYY, MM/YYYY
-# 2. Années seules: YYYY ou YYYY - YYYY, YYYY-YYYY
 XP_DATE_PATTERN = r'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}|\d{4}\s*[–-]\s*\d{4})'
 MAX_XP_DESCRIPTION_LENGTH = 75
 SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
+
+# MARK: FONCTIONS UTILITAIRES
+# ===== 2. FONCTIONS UTILITAIRES =====
 
 def get_table_widths_for_section(section: str = None, page_dims: dict = None) -> tuple:
     """
@@ -131,187 +140,61 @@ def is_single_xp_date(text: str) -> bool:
     """Retourne True si le texte ressemble a une date XP simple (sans prefixe)."""
     return re.match(SINGLE_XP_DATE_PATTERN, text.strip()) is not None
 
-
-def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) -> bool:
-    """Retourne True si l'élément ressemble à un vrai titre de section.
-
-    On exclut tous les paragraphes de liste (`ilvl`) pour éviter qu'un mot-clé
-    présent dans une puce soit reclassé en `T1_Sections`.
-
-    ⚠️ EXCLUSION: Ne pas considérer les XP entries (paragraphes commençant par une DATE)
-    comme des titres - ce sont des données à splitter.
+def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
     """
-    if not element or element.get('type') != 'Paragraph':
-        return False
+    Clone et nettoie un paragraphe en créant une NOUVELLE structure propre (pas de réutilisation).
+    Cela résout le problème de métadonnées XML Word.
 
-    props = element.get('properties', {})
-    if props.get('ilvl') is not None:
-        return False
+    Fait :
+    - Crée un nouveau paragraphe JSON (structure indépendante)
+    - Supprime les propriétés indésirables (ilvl, numId, size, alignment, color, font)
+    - Préserve le style (important pour Word navigation)
+    - Clone les runs avec uniquement bold/italic
 
-    text = get_text_from_element(element)
-    if not text.strip():
-        return False
+    Args:
+        para: Paragraphe JSON source
 
-    tags = element.get('tags', [])
-    if isinstance(tags, str):
-        tags = [tags]
-
-    if 'professional_experience' in tags and not any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-        return False
-
-    if 'professional_experience' in tags and text.strip().startswith(('projet', 'projets')):
-        return False
-
-    style = props.get('style', '')
-
-    # Exclure les XP entries: paragraphes commençant par une DATE (regex)
-    if match_xp_date(text):
-        return False
-
-    if element.get('auto_generated'):
-        return True
-
-    if style.startswith('Titre') or style.startswith('Heading'):
-        return True
-
-    if style in {'DC_T1_Sections', 'DC_XP_Title', 'DC_H_DC', 'DC_H_XP', 'DC_H_Poste'}:
-        return True
-
-    return any(keyword in text for keyword in keywords)
-
-def detect_section_by_keyword(text: str) -> str:
-    """Détecte le type de section basé sur les mots-clés (en ordre de priorité)"""
-    if any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
-        return 'header'
-    elif any(keyword in text for keyword in KEYWORDS_MAIN_SKILLS):
-        return 'main_skills'
-    elif any(keyword in text for keyword in KEYWORDS_EDUCATION):
-        return 'education'
-    elif any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
-        return 'professional_experience'
-    return None
-
-def apply_section_tags(data: Dict[str, Any]) -> None:
+    Returns:
+        Nouveau paragraphe JSON propre, sans pollution de contexte, prêt pour injecter dans tables
     """
-    Applique des tags de section à tous les éléments.
-    - Commence par 'header'
-    - Un tag s'applique à l'élément détecté et tous les suivants
-    - Empêche les retours en arrière aux sections antérieures
-    - Une section ne peut être visitée qu'une seule fois
-    """
-    content = data.get('document', {}).get('content', [])
+    new_para = {
+        "type": "Paragraph",
+        "properties": {}
+    }
 
-    # Ordre des sections (pour éviter les retours en arrière)
-    SECTION_ORDER = ['header', 'main_skills', 'education', 'professional_experience']
-    section_indices = {sec: idx for idx, sec in enumerate(SECTION_ORDER)}
+    # Copier et nettoyer les propriétés
+    if 'properties' in para:
+        source_props = para['properties']
 
-    current_section = 'header'  # Commence toujours par header
-    current_section_idx = 0
+        # Copier le style s'il existe
+        if 'style' in source_props:
+            new_para['properties']['style'] = source_props['style']
 
-    for element in content:
-        # Récupérer le texte de l'élément
-        element_text = get_text_from_element(element)
+    # Cloner les runs avec nettoyage
+    new_para['runs'] = []
+    if 'runs' in para:
+        for run in para.get('runs', []):
+            new_run = {
+                "text": run.get('text', ''),
+                "properties": {}
+            }
 
-        # Détecter si cet élément déclenche un changement de section
-        detected_section = detect_section_by_keyword(element_text)
+            # Copier UNIQUEMENT bold et italic (filtrer les autres propriétés)
+            run_props = run.get('properties', {})
+            if run_props.get('bold'):
+                new_run['properties']['bold'] = True
+            if run_props.get('italic'):
+                new_run['properties']['italic'] = True
 
-        if detected_section and detected_section != current_section:
-            # Vérifier que ce n'est pas un retour en arrière
-            detected_idx = section_indices.get(detected_section, -1)
-            if detected_idx >= current_section_idx:
-                # Nouvelle section valide (pas un retour en arrière)
-                current_section = detected_section
-                current_section_idx = detected_idx
-            # Sinon, ignorer le changement de section et continuer avec current_section
+            new_para['runs'].append(new_run)
 
-        # Appliquer le tag current à l'élément
-        if 'tags' not in element:
-            element['tags'] = []
-        if current_section not in element['tags']:
-            element['tags'].append(current_section)
+    # Copier les tags si présents
+    if 'tags' in para:
+        new_para['tags'] = para['tags'].copy()
 
+    return new_para
 
-def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
-    """
-    Splitte toutes les entrées d'expérience pro détectées par DATE.
-
-    Détection: Cherche les paragraphes qui:
-    1. Sont marqués avec le tag 'professional_experience' (via apply_section_tags)
-    2. N'ont pas de ilvl (ne sont pas des bullets)
-    3. contiennent une DATE (regex)
-
-    Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
-    ou COMPANY - POSTE - DATE (dans ce cas, la DATE est détectée à l'intérieur du texte)
-    ou COMPANY - DATE
-        POSTE en paragraphe suivant (pas obligatoire)
-    ou bien la table habituelle | COMPANY | DATE |
-                                | POSTE   |      |
-
-    Cette fonction doit être appelée APRÈS apply_section_tags() pour que les tags
-    soient disponibles, et AVANT apply_section_header_styles() pour éviter que les
-    XP entries soient marquées comme des headers.
-    Elle flag tous les éléments qui permettent la distinction des blocs d'XP avec un champ `xp_split_part` (values: 'xp_date', 'xp_company', 'xp_poste', 'xp_description') pour les différencier des autres paragraphes.
-    Elle flag les listes bullets classiques et les list bullets ou paragraphes appartenant à environnement technique, pour signifier une fin de xp entry (ex: compétences techniques listées à la fin d'une expérience pro).
-    """
-    content = data.get('document', {}).get('content', [])
-    new_content = []
-
-    for element in content:
-        # Chercher les XP entries marquées avec le tag 'professional_experience'
-        if (element.get('type') == 'Paragraph'):
-            tags = element.get('tags', [])
-            if isinstance(tags, str):
-                tags = [tags]
-
-            if 'professional_experience' in tags:
-                props = element.get('properties', {})
-                # Exclure les bullets (ilvl est défini)
-                if props.get('ilvl') is None:
-                    # Laisser split_xp_entry decider si c'est une vraie XP entry
-                    split_result = split_xp_entry(element)
-                    if len(split_result) > 1:
-                        new_content.extend(split_result)
-                        continue
-
-        new_content.append(element)
-
-    data['document']['content'] = new_content
-
-
-def apply_section_header_styles(data: Dict[str, Any]) -> None:
-    """
-    Applique le style DC_T1_Sections aux vrais headers de section.
-
-    Utilise is_promotable_section_title() pour la détection, garantissant une seule
-    source de vérité pour identifier les vrais titres (vs paragraphes ordinaires).
-
-    EXCLUSION DURE:
-    - Les paragraphes contenant "langue maternelle" ne sont JAMAIS traités comme des headers
-    - Les paragraphes avec xp_split_part (DATE, COMPANY, POSTE) gardent leurs styles propres
-    """
-    content = data.get('document', {}).get('content', [])
-
-    # Tous les keywords de section à chercher
-    section_keywords = (KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE +
-                       KEYWORDS_MAIN_SKILLS + KEYWORDS_HEADER_DOCUMENT + KEYWORDS_HEADER_EXPERIENCE)
-
-    for element in content:
-        # Check dur: exclure "langue maternelle" absolument
-        text = get_text_from_element(element)
-        if 'langue maternelle' in text.lower():
-            continue
-
-        # Ne pas toucher aux paragraphes avec xp_split_part (ils ont leurs propres styles)
-        if element.get('xp_split_part'):
-            continue
-
-        # Utiliser la fonction existante pour vérifier si c'est un vrai titre
-        if is_promotable_section_title(element, section_keywords):
-            if 'properties' not in element:
-                element['properties'] = {}
-            element['properties']['style'] = 'DC_T1_Sections'
-
-
+# MARK: TABLE CREATION
 def create_empty_table_2x2(index: int, row_height: int = 360,
                            col1_width: int = None, col2_width: int = None,
                            section: str = None,
@@ -415,406 +298,156 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
         'rows': rows
     }
 
-def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
+# MARK: DÉTECTION DE SECTIONS & CORE TAGGING
+# ===== 3. DÉTECTION DE SECTIONS & CORE TAGGING =====
+
+def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) -> bool:
+    """Retourne True si l'élément ressemble à un vrai titre de section.
+
+    On exclut tous les paragraphes de liste (`ilvl`) pour éviter qu'un mot-clé
+    présent dans une puce soit reclassé en `T1_Sections`.
+
+    ⚠️ EXCLUSION: Ne pas considérer les XP entries (paragraphes commençant par une DATE)
+    comme des titres - ce sont des données à splitter.
     """
-    Clone et nettoie un paragraphe en créant une NOUVELLE structure propre (pas de réutilisation).
-    Cela résout le problème de métadonnées XML Word.
+    if not element or element.get('type') != 'Paragraph':
+        return False
 
-    Fait :
-    - Crée un nouveau paragraphe JSON (structure indépendante)
-    - Supprime les propriétés indésirables (ilvl, numId, size, alignment, color, font)
-    - Préserve le style (important pour Word navigation)
-    - Clone les runs avec uniquement bold/italic
+    props = element.get('properties', {})
+    if props.get('ilvl') is not None:
+        return False
 
-    Args:
-        para: Paragraphe JSON source
+    text = get_text_from_element(element)
+    if not text.strip():
+        return False
 
-    Returns:
-        Nouveau paragraphe JSON propre, sans pollution de contexte, prêt pour injecter dans tables
+    tags = element.get('tags', [])
+    if isinstance(tags, str):
+        tags = [tags]
+
+    if 'professional_experience' in tags and not any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+        return False
+
+    if 'professional_experience' in tags and text.strip().startswith(('projet', 'projets')):
+        return False
+
+    style = props.get('style', '')
+
+    # Exclure les XP entries: paragraphes commençant par une DATE (regex)
+    if match_xp_date(text):
+        return False
+
+    if element.get('auto_generated'):
+        return True
+
+    if style.startswith('Titre') or style.startswith('Heading'):
+        return True
+
+    if style in {'DC_T1_Sections', 'DC_XP_Title', 'DC_H_DC', 'DC_H_XP', 'DC_H_Poste'}:
+        return True
+
+    return any(keyword in text for keyword in keywords)
+
+def detect_section_by_keyword(text: str) -> str:
+    """Détecte le type de section basé sur les mots-clés (en ordre de priorité)"""
+    if any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
+        return 'header'
+    elif any(keyword in text for keyword in KEYWORDS_MAIN_SKILLS):
+        return 'main_skills'
+    elif any(keyword in text for keyword in KEYWORDS_EDUCATION):
+        return 'education'
+    elif any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+        return 'professional_experience'
+    return None
+
+def apply_section_tags(data: Dict[str, Any]) -> None:
     """
-    new_para = {
-        "type": "Paragraph",
-        "properties": {}
-    }
-
-    # Copier et nettoyer les propriétés
-    if 'properties' in para:
-        source_props = para['properties']
-
-        # Copier le style s'il existe
-        if 'style' in source_props:
-            new_para['properties']['style'] = source_props['style']
-
-    # Cloner les runs avec nettoyage
-    new_para['runs'] = []
-    if 'runs' in para:
-        for run in para.get('runs', []):
-            new_run = {
-                "text": run.get('text', ''),
-                "properties": {}
-            }
-
-            # Copier UNIQUEMENT bold et italic (filtrer les autres propriétés)
-            run_props = run.get('properties', {})
-            if run_props.get('bold'):
-                new_run['properties']['bold'] = True
-            if run_props.get('italic'):
-                new_run['properties']['italic'] = True
-
-            new_para['runs'].append(new_run)
-
-    # Copier les tags si présents
-    if 'tags' in para:
-        new_para['tags'] = para['tags'].copy()
-
-    return new_para
-
-def add_empty_paragraphs_around_tables(data: Dict[str, Any]) -> None:
-    """
-    Ajoute un paragraphe vide AVANT et APRÈS chaque table du document.
-
-    Utile pour:
-    - Espace visuel avant et après les tables
-    - Permettre à Word de naviguer correctement
-    - Faciliter le rendu et l'édition
-
-    Cette fonction est appelée APRÈS que toutes les tables aient été créées
-    et remplies (create_edu_table, insert_text_edu_table, create_xp_tables, insert_text_xp_tables),
-    mais AVANT le nettoyage des doubles paragraphes.
-
-    Args:
-        data: Structure du document JSON
-    """
-    content = data.get('document', {}).get('content', [])
-
-    if not content:
-        return
-
-    # Construire une nouvelle liste avec les paragraphes vides autour des tables
-    new_content = []
-
-    for elem in content:
-        # Si c'est une table, ajouter un paragraphe vide AVANT
-        if elem.get('type') == 'Table':
-            # Vérifier si le dernier élément ajouté n'est pas déjà un paragraphe vide
-            if new_content and new_content[-1].get('type') == 'Paragraph':
-                last_para = new_content[-1]
-                # Si le dernier paragraphe n'est pas vide, ajouter un paragraphe vide
-                if last_para.get('runs') or last_para.get('text'):
-                    new_content.append({
-                        'type': 'Paragraph',
-                        'properties': {},
-                        'runs': []
-                    })
-            elif not new_content or new_content[-1].get('type') == 'Table':
-                # Ajouter un paragraphe vide avant la table
-                new_content.append({
-                    'type': 'Paragraph',
-                    'properties': {},
-                    'runs': []
-                })
-
-        # Ajouter l'élément lui-même
-        new_content.append(elem)
-
-        # Si c'est une table, ajouter un paragraphe vide APRÈS
-        if elem.get('type') == 'Table':
-            new_content.append({
-                'type': 'Paragraph',
-                'properties': {},
-                'runs': []
-            })
-
-    # Remplacer le contenu du document
-    data['document']['content'] = new_content
-
-def create_language_header(data: Dict[str, Any]) -> None:
-    """
-    Crée un header "Langues" juste avant le premier élément contenant KEYWORDS_LANGUAGES,
-    si ce header n'existe pas déjà.
-
-    Args:
-        data: Structure du document JSON
+    Applique des tags de section à tous les éléments.
+    - Commence par 'header'
+    - Un tag s'applique à l'élément détecté et tous les suivants
+    - Empêche les retours en arrière aux sections antérieures
+    - Une section ne peut être visitée qu'une seule fois
     """
     content = data.get('document', {}).get('content', [])
 
-    # D'abord, vérifier si un header "Langues" existe déjà dans le document
-    # Cherche dans les styles Heading/Titre (avant apply_section_header_styles) ET DC_T1_Sections (après apply_section_header_styles)
-    header_langues_exists = False
+    # Ordre des sections (pour éviter les retours en arrière)
+    SECTION_ORDER = ['header', 'main_skills', 'education', 'professional_experience']
+    section_indices = {sec: idx for idx, sec in enumerate(SECTION_ORDER)}
+
+    current_section = 'header'  # Commence toujours par header
+    current_section_idx = 0
+
     for element in content:
-        if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element).strip()
-            style = element.get('properties', {}).get('style', '')
-            # Check: c'est un vrai header "Langues" (pas "Français langue maternelle")
-            if style.startswith('Heading') or style.startswith('Titre') or style == 'DC_T1_Sections':
-                if text.lower() == 'langues':
-                    header_langues_exists = True
-                    break
-                if text.lower() == 'langue':
-                    element['runs'] = [{'text': 'Langues', 'properties': {}}]
-                    header_langues_exists = True
-                    break
+        # Récupérer le texte de l'élément
+        element_text = get_text_from_element(element)
 
-    if header_langues_exists:
-        return  # Header "Langues" existe déjà, rien à faire
+        # EXCLUSION: Ne pas déterminer une nouvelle section si le paragraphe a un ilvl
+        # (c'est un bullet point, pas un titre de section)
+        props = element.get('properties', {})
+        has_ilvl = props.get('ilvl') is not None
 
-    # Chercher le premier élément contenant KEYWORDS_LANGUAGES
-    first_language_idx = None
-    for i, element in enumerate(content):
-        if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element)
-            if any(keyword in text for keyword in KEYWORDS_LANGUAGES):
-                first_language_idx = i
-                break
+        # Détecter si cet élément déclenche un changement de section
+        # Mais UNIQUEMENT si ce n'est pas un bullet point (ilvl)
+        detected_section = None
+        if not has_ilvl:
+            detected_section = detect_section_by_keyword(element_text)
 
-    if first_language_idx is None:
-        return  # Aucun keyword détecté, rien à faire
+        if detected_section and detected_section != current_section:
+            # Vérifier que ce n'est pas un retour en arrière
+            detected_idx = section_indices.get(detected_section, -1)
+            if detected_idx >= current_section_idx:
+                # Nouvelle section valide (pas un retour en arrière)
+                current_section = detected_section
+                current_section_idx = detected_idx
+            # Sinon, ignorer le changement de section et continuer avec current_section
 
-    # Créer et insérer le header "Langues" juste avant le premier keyword
-    new_header = {
-        'type': 'Paragraph',
-        'runs': [{'text': 'Langues', 'properties': {}}],
-        'properties': {},
-        'tags': ['education'],
-        'section': 'education',
-        'auto_generated': True
-    }
-    content.insert(first_language_idx, new_header)
+        # Appliquer le tag current à l'élément
+        if 'tags' not in element:
+            element['tags'] = []
+        if current_section not in element['tags']:
+            element['tags'].append(current_section)
 
-def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+def apply_section_header_styles(data: Dict[str, Any]) -> None:
     """
-    Scinde un paragraphe au premier keyword de langue détecté.
+    Applique le style DC_T1_Sections aux vrais headers de section.
 
-    Crée 2 paragraphes:
-    - Avant: le mot-clé de langue détecté (col 0)
-    - Après: la description nettoyée (col 1)
+    Utilise is_promotable_section_title() pour la détection, garantissant une seule
+    source de vérité pour identifier les vrais titres (vs paragraphes ordinaires).
 
-    Nettoie le début de la description: supprime " : ", espaces, jusqu'à la première lettre.
-
-    ⚠️ IMPORTANT: Les runs sont normalisés au parsing, donc les keywords
-    sont maintenant directement accessibles sans fragmentation.
-
-    Args:
-        para: Paragraphe JSON source
-
-    Returns:
-        List[Dict]: Liste de 1 ou 2 paragraphes
+    EXCLUSION DURE:
+    - Les paragraphes contenant "langue maternelle" ne sont JAMAIS traités comme des headers
+    - Les paragraphes avec xp_split_part (DATE, COMPANY, POSTE) gardent leurs styles propres
     """
-    text = ''.join(run.get('text', '') for run in para.get('runs', [])) or para.get('text', '') or get_text_from_element(para)
-    normalized_text = text.strip().lower()
+    content = data.get('document', {}).get('content', [])
 
-    # Ne pas splitter sur les mots-clés génériques si le paragraphe ne porte pas
-    # réellement une langue: ils servent surtout au header "Langues".
-    split_keywords = [kw for kw in KEYWORDS_LANGUAGES if kw not in {'langue', 'langues'}]
+    # Tous les keywords de section à chercher
+    section_keywords = (KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE +
+                       KEYWORDS_MAIN_SKILLS + KEYWORDS_HEADER_DOCUMENT + KEYWORDS_HEADER_EXPERIENCE)
 
-    lang_keyword = None
-    lang_pos = len(text)
-    for keyword in split_keywords:
-        match = re.search(rf'(?<!\w){re.escape(keyword)}(?!\w)', normalized_text)
-        if match and match.start() < lang_pos:
-            lang_keyword = keyword
-            lang_pos = match.start()
-
-    if lang_keyword is None:
-        return [para]
-
-    # Séparer le label de langue et sa description au premier séparateur utile.
-    split_end = lang_pos + len(lang_keyword)
-    colon_pos = text.find(':', split_end)
-    if colon_pos != -1:
-        split_end = colon_pos
-
-    lang_text = text[:split_end].rstrip(' :\u00a0\t').strip()
-    desc_text = text[split_end:].lstrip(' :\u00a0\t').strip()
-
-    if not lang_text:
-        return [para]
-
-    first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
-    result = []
-
-    lang_para = clone_paragraph_clean(para)
-    lang_para['runs'] = [{"text": lang_text, "properties": first_run_props}]
-    result.append(lang_para)
-
-    if desc_text:
-        desc_para = clone_paragraph_clean(para)
-        desc_para['runs'] = [{"text": desc_text, "properties": first_run_props}]
-        result.append(desc_para)
-
-    return result
-
-def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
-    """
-    Scinde une entrée d'expérience pro détectée par une DATE présente dans le texte.
-
-    Utilise la détection de DATE (regex) pour identifier une XP entry valide.
-    Avec lazy matching, le POSTE peut être absent.
-
-    Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
-    ou COMPANY - POSTE - DATE (dans ce cas, la DATE est détectée à l'intérieur du texte)
-    ou COMPANY - DATE
-        POSTE en paragraphe suivant (pas obligatoire)
-    ou bien la table habituelle | COMPANY | DATE |
-                                | POSTE   |      |
-    Exemples:
-    - "01/2021- 02/2024 : CALTOPO(USA)- Développeur Full Stack" → DATE | COMPANY | POSTE
-    - "09/2017 – 09/2020 : MICROSOFT(USA)" → DATE | COMPANY | "" (poste vide)
-    - "THALES - Ingénieur - 02-2022 à 05-2023" → COMPANY | POSTE | DATE (DATE détectée à l'intérieur du texte)
-    - "CAPGEMINI - 01/2020 à 12/2021" → COMPANY | "" (poste vide ici mais dans le paragraphe suivant) | DATE (DATE détectée à l'intérieur du texte)
-
-    Crée 2 ou 3 paragraphes:
-    1. DATE (avec style 'xp_date')
-    2. COMPANY (avec style 'xp_title')
-    3. POSTE (avec style 'xp_poste') - optionnel
-
-    Détection:
-    - Cherche une DATE avec regex
-    - Puis cherche `: ` ou `- ` qui sépare DATE de COMPANY
-    - Puis cherche `- ` ou fin du texte (lazy) pour séparer COMPANY du POSTE
-
-    Args:
-        para: Paragraphe JSON source
-
-    Returns:
-        List[Dict]: Liste de 1 (pas XP entry) ou 2-3 paragraphes (XP entry splittée)
-    """
-    text = get_raw_text_from_paragraph(para)
-
-    # Chercher `: ` qui sépare DATE de COMPANY
-    colon_match = re.search(r':\s+', text)
-    if not colon_match:
-        return [para]  # Pas de `: ` trouvé
-
-    # Extraire la portion DATE avant le `:` pour eviter les tronquages sur les plages
-    date_candidate = text[:colon_match.start()].strip()
-
-    prefix = ""
-    date_body = date_candidate
-    prefix_match = re.match(r'^\s*((?:depuis|du|de|à\s+partir\s+de)\s+)(.+)$', date_candidate, flags=re.IGNORECASE)
-    if prefix_match:
-        prefix = prefix_match.group(1)
-        date_body = prefix_match.group(2).strip()
-
-    range_sep = re.search(r'\s+[–-]\s+', date_body)
-    if range_sep:
-        left, right = re.split(r'\s+[–-]\s+', date_body, maxsplit=1)
-        if not is_single_xp_date(left) or not is_single_xp_date(right):
-            return [para]
-        left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
-        right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
-        date_text = f"{prefix}{left_norm}-{right_norm}"
-    else:
-        date_tokens = list(re.finditer(r'\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}', date_body))
-        if len(date_tokens) >= 2:
-            left = date_tokens[0].group(0)
-            right = date_tokens[1].group(0)
-            between = date_body[date_tokens[0].end():date_tokens[1].start()]
-            if not re.search(r'[–-]', between):
-                return [para]
-            if not is_single_xp_date(left) or not is_single_xp_date(right):
-                return [para]
-            left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
-            right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
-            date_text = f"{prefix}{left_norm}-{right_norm}"
-        else:
-            if not is_single_xp_date(date_body):
-                return [para]
-            date_text = f"{prefix}{re.sub(r'\s*([/–-])\s*', r'\1', date_body)}"
-    remaining_after_date = text[colon_match.end():].strip()
-
-    # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
-    after_colon = remaining_after_date
-    dash_pattern = r'^(.+?)\s*[-–]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
-    dash_match = re.match(dash_pattern, after_colon)
-    if dash_match:
-        company_text = dash_match.group(1).strip()
-        poste_text = dash_match.group(2).strip()
-    else:
-        company_text = after_colon.strip()
-        poste_text = ""
-
-    # Vérifier que DATE et COMPANY ont du contenu
-    if not date_text or not company_text:
-        return [para]
-
-    # Créer les paragraphes
-    first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
-    result = []
-
-    # 1. Paragraphe DATE
-    date_para = clone_paragraph_clean(para)
-    date_para['runs'] = [{"text": date_text, "properties": first_run_props}]
-    date_para['xp_split_part'] = 'xp_date'
-    result.append(date_para)
-
-    # 2. Paragraphe COMPANY
-    company_para = clone_paragraph_clean(para)
-    company_para['runs'] = [{"text": company_text, "properties": first_run_props}]
-    company_para['xp_split_part'] = 'xp_company'
-    result.append(company_para)
-
-    # 3. Paragraphe POSTE
-    poste_para = clone_paragraph_clean(para)
-    poste_para['runs'] = [{"text": poste_text, "properties": first_run_props}]
-    poste_para['xp_split_part'] = 'xp_poste'
-    result.append(poste_para)
-
-    return result
-
-def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Dict[str, Any]]]:
-    """
-    Groupe les paragraphes éducation en blocs basés sur les dates.
-
-    Logique:
-    - Un bloc commence avec une année ou date détectée (par exemple 1996, 2002, 2002-2003)
-    - Les paragraphes suivants (non-dates) font partie du même bloc
-    - Le prochain bloc commence quand une nouvelle date est détectée
-    - Les paragraphes vides sont ignorés à la création des blocs
-
-    ⚠️ IMPORTANT: Les runs sont normalisés au parsing, donc les dates
-    sont maintenant directement accessibles sans fragmentation.
-
-    Args:
-        paragraphs: Liste de paragraphes
-
-    Returns:
-        Liste de blocs, où chaque bloc est une liste de paragraphes (sans vides)
-        Exemple: [[date_para, desc1, desc2], [date_para, desc1], ...]
-    """
-    if not paragraphs:
-        return []
-
-    blocks = []
-    current_block = []
-
-    for para in paragraphs:
-        para_text = get_text_from_element(para)
-
-        # Ignorer les paragraphes vides
-        if not para_text.strip():
+    for element in content:
+        # Check dur: exclure "langue maternelle" absolument
+        text = get_text_from_element(element)
+        if 'langue maternelle' in text.lower():
             continue
 
-        is_date = re.search(r'(?<!\d)(?:19|20)\d{2}(?!\d)', para_text) is not None
+        # Ne pas toucher aux paragraphes avec xp_split_part (ils ont leurs propres styles)
+        if element.get('xp_split_part'):
+            continue
 
-        if is_date:
-            # Nouvelle date = nouveau bloc
-            if current_block:
-                blocks.append(current_block)
-            current_block = [para]  # Start new block with this date
-        else:
-            # Non-date: ajouter au bloc courant
-            if current_block:
-                current_block.append(para)
-            else:
-                # Pas de bloc courant, créer un bloc pour ce paragraphe
-                current_block = [para]
+        # Utiliser la fonction existante pour vérifier si c'est un vrai titre
+        if is_promotable_section_title(element, section_keywords):
+            if 'properties' not in element:
+                element['properties'] = {}
+            element['properties']['style'] = 'DC_T1_Sections'
 
-    # Ajouter le dernier bloc
-    if current_block:
-        blocks.append(current_block)
+# MARK: SECTION HEADER
+# ===== 4. SECTION HEADER =====
 
-    return blocks
+# Les fonctions spécifiques au header iront ici si nécessaire
+# (actuellement gérées par apply_section_tags et apply_section_header_styles)
+
+# MARK: SECTION MAIN SKILLS
+# ===== 5. SECTION MAIN SKILLS =====
 
 def create_main_skills_table (data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -981,6 +614,179 @@ def insert_text_main_skills_table(data: Dict[str, Any], creation_result: Dict[st
             del content[idx]
 
     data['document']['content'] = content
+
+# MARK: SECTION EDUCATION
+# ===== 6. SECTION EDUCATION =====
+
+def create_language_header(data: Dict[str, Any]) -> None:
+    """
+    Crée un header "Langues" juste avant le premier élément contenant KEYWORDS_LANGUAGES,
+    si ce header n'existe pas déjà.
+
+    Args:
+        data: Structure du document JSON
+    """
+    content = data.get('document', {}).get('content', [])
+
+    # D'abord, vérifier si un header "Langues" existe déjà dans le document
+    # Cherche dans les styles Heading/Titre (avant apply_section_header_styles) ET DC_T1_Sections (après apply_section_header_styles)
+    header_langues_exists = False
+    for element in content:
+        if element.get('type') == 'Paragraph':
+            text = get_text_from_element(element).strip()
+            style = element.get('properties', {}).get('style', '')
+            # Check: c'est un vrai header "Langues" (pas "Français langue maternelle")
+            if style.startswith('Heading') or style.startswith('Titre') or style == 'DC_T1_Sections':
+                if text.lower() == 'langues':
+                    header_langues_exists = True
+                    break
+                if text.lower() == 'langue':
+                    element['runs'] = [{'text': 'Langues', 'properties': {}}]
+                    header_langues_exists = True
+                    break
+
+    if header_langues_exists:
+        return  # Header "Langues" existe déjà, rien à faire
+
+    # Chercher le premier élément contenant KEYWORDS_LANGUAGES
+    first_language_idx = None
+    for i, element in enumerate(content):
+        if element.get('type') == 'Paragraph':
+            text = get_text_from_element(element)
+            if any(keyword in text for keyword in KEYWORDS_LANGUAGES):
+                first_language_idx = i
+                break
+
+    if first_language_idx is None:
+        return  # Aucun keyword détecté, rien à faire
+
+    # Créer et insérer le header "Langues" juste avant le premier keyword
+    new_header = {
+        'type': 'Paragraph',
+        'runs': [{'text': 'Langues', 'properties': {}}],
+        'properties': {},
+        'tags': ['education'],
+        'section': 'education',
+        'auto_generated': True
+    }
+    content.insert(first_language_idx, new_header)
+
+def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Scinde un paragraphe au premier keyword de langue détecté.
+
+    Crée 2 paragraphes:
+    - Avant: le mot-clé de langue détecté (col 0)
+    - Après: la description nettoyée (col 1)
+
+    Nettoie le début de la description: supprime " : ", espaces, jusqu'à la première lettre.
+
+    ⚠️ IMPORTANT: Les runs sont normalisés au parsing, donc les keywords
+    sont maintenant directement accessibles sans fragmentation.
+
+    Args:
+        para: Paragraphe JSON source
+
+    Returns:
+        List[Dict]: Liste de 1 ou 2 paragraphes
+    """
+    text = ''.join(run.get('text', '') for run in para.get('runs', [])) or para.get('text', '') or get_text_from_element(para)
+    normalized_text = text.strip().lower()
+
+    # Ne pas splitter sur les mots-clés génériques si le paragraphe ne porte pas
+    # réellement une langue: ils servent surtout au header "Langues".
+    split_keywords = [kw for kw in KEYWORDS_LANGUAGES if kw not in {'langue', 'langues'}]
+
+    lang_keyword = None
+    lang_pos = len(text)
+    for keyword in split_keywords:
+        match = re.search(rf'(?<!\w){re.escape(keyword)}(?!\w)', normalized_text)
+        if match and match.start() < lang_pos:
+            lang_keyword = keyword
+            lang_pos = match.start()
+
+    if lang_keyword is None:
+        return [para]
+
+    # Séparer le label de langue et sa description au premier séparateur utile.
+    split_end = lang_pos + len(lang_keyword)
+    colon_pos = text.find(':', split_end)
+    if colon_pos != -1:
+        split_end = colon_pos
+
+    lang_text = text[:split_end].rstrip(' :\u00a0\t').strip()
+    desc_text = text[split_end:].lstrip(' :\u00a0\t').strip()
+
+    if not lang_text:
+        return [para]
+
+    first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
+    result = []
+
+    lang_para = clone_paragraph_clean(para)
+    lang_para['runs'] = [{"text": lang_text, "properties": first_run_props}]
+    result.append(lang_para)
+
+    if desc_text:
+        desc_para = clone_paragraph_clean(para)
+        desc_para['runs'] = [{"text": desc_text, "properties": first_run_props}]
+        result.append(desc_para)
+
+    return result
+
+def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Dict[str, Any]]]:
+    """
+    Groupe les paragraphes éducation en blocs basés sur les dates.
+
+    Logique:
+    - Un bloc commence avec une année ou date détectée (par exemple 1996, 2002, 2002-2003)
+    - Les paragraphes suivants (non-dates) font partie du même bloc
+    - Le prochain bloc commence quand une nouvelle date est détectée
+    - Les paragraphes vides sont ignorés à la création des blocs
+
+    ⚠️ IMPORTANT: Les runs sont normalisés au parsing, donc les dates
+    sont maintenant directement accessibles sans fragmentation.
+
+    Args:
+        paragraphs: Liste de paragraphes
+
+    Returns:
+        Liste de blocs, où chaque bloc est une liste de paragraphes (sans vides)
+        Exemple: [[date_para, desc1, desc2], [date_para, desc1], ...]
+    """
+    if not paragraphs:
+        return []
+
+    blocks = []
+    current_block = []
+
+    for para in paragraphs:
+        para_text = get_text_from_element(para)
+
+        # Ignorer les paragraphes vides
+        if not para_text.strip():
+            continue
+
+        is_date = re.search(r'(?<!\d)(?:19|20)\d{2}(?!\d)', para_text) is not None
+
+        if is_date:
+            # Nouvelle date = nouveau bloc
+            if current_block:
+                blocks.append(current_block)
+            current_block = [para]  # Start new block with this date
+        else:
+            # Non-date: ajouter au bloc courant
+            if current_block:
+                current_block.append(para)
+            else:
+                # Pas de bloc courant, créer un bloc pour ce paragraphe
+                current_block = [para]
+
+    # Ajouter le dernier bloc
+    if current_block:
+        blocks.append(current_block)
+
+    return blocks
 
 def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -1323,6 +1129,225 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
     data['document']['content'] = content
 
+# MARK: SECTION PROFESSIONAL EXPERIENCE
+# ===== 7. SECTION PROFESSIONAL EXPERIENCE =====
+
+def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Scinde une entrée d'expérience pro détectée par une DATE présente dans le texte.
+
+    Utilise la détection de DATE (regex) pour identifier une XP entry valide.
+    Avec lazy matching, le POSTE peut être absent.
+
+    Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
+    ou COMPANY - POSTE - DATE (dans ce cas, la DATE est détectée à l'intérieur du texte)
+    ou COMPANY - DATE
+        POSTE en paragraphe suivant (pas obligatoire)
+    ou bien la table habituelle | COMPANY | DATE |
+                                | POSTE   |      |
+    Exemples:
+    - "01/2021- 02/2024 : CALTOPO(USA)- Développeur Full Stack" → DATE | COMPANY | POSTE
+    - "09/2017 – 09/2020 : MICROSOFT(USA)" → DATE | COMPANY | "" (poste vide)
+    - "THALES - Ingénieur - 02-2022 à 05-2023" → COMPANY | POSTE | DATE (DATE détectée à l'intérieur du texte)
+    - "CAPGEMINI - 01/2020 à 12/2021" → COMPANY | "" (poste vide ici mais dans le paragraphe suivant) | DATE (DATE détectée à l'intérieur du texte)
+
+    Crée 2 ou 3 paragraphes:
+    1. DATE (avec style 'xp_date')
+    2. COMPANY (avec style 'xp_title')
+    3. POSTE (avec style 'xp_poste') - optionnel
+
+    Détection:
+    - Cherche une DATE avec regex
+    - Puis cherche `: ` ou `- ` qui sépare DATE de COMPANY
+    - Puis cherche `- ` ou fin du texte (lazy) pour séparer COMPANY du POSTE
+
+    Args:
+        para: Paragraphe JSON source
+
+    Returns:
+        List[Dict]: Liste de 1 (pas XP entry) ou 2-3 paragraphes (XP entry splittée)
+    """
+    text = get_raw_text_from_paragraph(para)
+
+    # Chercher `: ` qui sépare DATE de COMPANY
+    colon_match = re.search(r':\s+', text)
+    if not colon_match:
+        return [para]  # Pas de `: ` trouvé
+
+    # Extraire la portion DATE avant le `:` pour eviter les tronquages sur les plages
+    date_candidate = text[:colon_match.start()].strip()
+
+    prefix = ""
+    date_body = date_candidate
+    prefix_match = re.match(r'^\s*((?:depuis|du|de|à\s+partir\s+de)\s+)(.+)$', date_candidate, flags=re.IGNORECASE)
+    if prefix_match:
+        prefix = prefix_match.group(1)
+        date_body = prefix_match.group(2).strip()
+
+    range_sep = re.search(r'\s+[–-]\s+', date_body)
+    if range_sep:
+        left, right = re.split(r'\s+[–-]\s+', date_body, maxsplit=1)
+        if not is_single_xp_date(left) or not is_single_xp_date(right):
+            return [para]
+        left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
+        right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
+        date_text = f"{prefix}{left_norm}-{right_norm}"
+    else:
+        date_tokens = list(re.finditer(r'\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}', date_body))
+        if len(date_tokens) >= 2:
+            left = date_tokens[0].group(0)
+            right = date_tokens[1].group(0)
+            between = date_body[date_tokens[0].end():date_tokens[1].start()]
+            if not re.search(r'[–-]', between):
+                return [para]
+            if not is_single_xp_date(left) or not is_single_xp_date(right):
+                return [para]
+            left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
+            right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
+            date_text = f"{prefix}{left_norm}-{right_norm}"
+        else:
+            if not is_single_xp_date(date_body):
+                return [para]
+            date_text = f"{prefix}{re.sub(r'\s*([/–-])\s*', r'\1', date_body)}"
+    remaining_after_date = text[colon_match.end():].strip()
+
+    # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
+    after_colon = remaining_after_date
+    dash_pattern = r'^(.+?)\s*[-–]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
+    dash_match = re.match(dash_pattern, after_colon)
+    if dash_match:
+        company_text = dash_match.group(1).strip()
+        poste_text = dash_match.group(2).strip()
+    else:
+        company_text = after_colon.strip()
+        poste_text = ""
+
+    # Vérifier que DATE et COMPANY ont du contenu
+    if not date_text or not company_text:
+        return [para]
+
+    # Créer les paragraphes
+    first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
+    result = []
+
+    # 1. Paragraphe DATE
+    date_para = clone_paragraph_clean(para)
+    date_para['runs'] = [{"text": date_text, "properties": first_run_props}]
+    date_para['xp_split_part'] = 'xp_date'
+    result.append(date_para)
+
+    # 2. Paragraphe COMPANY
+    company_para = clone_paragraph_clean(para)
+    company_para['runs'] = [{"text": company_text, "properties": first_run_props}]
+    company_para['xp_split_part'] = 'xp_company'
+    result.append(company_para)
+
+    # 3. Paragraphe POSTE
+    poste_para = clone_paragraph_clean(para)
+    poste_para['runs'] = [{"text": poste_text, "properties": first_run_props}]
+    poste_para['xp_split_part'] = 'xp_poste'
+    result.append(poste_para)
+
+    return result
+
+def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
+    """
+    Splitte toutes les entrées d'expérience pro détectées par DATE.
+
+    Détection: Cherche les paragraphes qui:
+    1. Sont marqués avec le tag 'professional_experience' (via apply_section_tags)
+    2. N'ont pas de ilvl (ne sont pas des bullets)
+    3. contiennent une DATE (regex)
+
+    Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
+    ou COMPANY - POSTE - DATE (dans ce cas, la DATE est détectée à l'intérieur du texte)
+    ou COMPANY - DATE
+        POSTE en paragraphe suivant (pas obligatoire)
+    ou bien la table habituelle | COMPANY | DATE |
+                                | POSTE   |      |
+
+    Cette fonction doit être appelée APRÈS apply_section_tags() pour que les tags
+    soient disponibles, et AVANT apply_section_header_styles() pour éviter que les
+    XP entries soient marquées comme des headers.
+    Elle flag tous les éléments qui permettent la distinction des blocs d'XP avec un champ `xp_split_part` (values: 'xp_date', 'xp_company', 'xp_poste', 'xp_description') pour les différencier des autres paragraphes.
+    Elle flag les listes bullets classiques et les list bullets ou paragraphes appartenant à environnement technique, pour signifier une fin de xp entry (ex: compétences techniques listées à la fin d'une expérience pro).
+    """
+    content = data.get('document', {}).get('content', [])
+    new_content = []
+
+    for element in content:
+        # Chercher les XP entries marquées avec le tag 'professional_experience'
+        if (element.get('type') == 'Paragraph'):
+            tags = element.get('tags', [])
+            if isinstance(tags, str):
+                tags = [tags]
+
+            if 'professional_experience' in tags:
+                props = element.get('properties', {})
+                # Exclure les bullets (ilvl est défini)
+                if props.get('ilvl') is None:
+                    # Laisser split_xp_entry decider si c'est une vraie XP entry
+                    split_result = split_xp_entry(element)
+                    if len(split_result) > 1:
+                        new_content.extend(split_result)
+                        continue
+
+        new_content.append(element)
+
+    data['document']['content'] = new_content
+
+def is_professional_section_header(element: Dict[str, Any]) -> bool:
+    """Retourne True si l'élément est le header 'Expériences Professionnelles'."""
+    if element.get('type') != 'Paragraph':
+        return False
+    props = element.get('properties', {})
+    if props.get('style') != 'DC_T1_Sections':
+        return False
+    text = get_text_from_element(element)
+    return any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE)
+
+def is_professional_tagged(element: Dict[str, Any]) -> bool:
+    """Retourne True si l'élément appartient à la section expérience pro."""
+    tags = element.get('tags', [])
+    if isinstance(tags, str):
+        tags = [tags]
+    return 'professional_experience' in tags or element.get('properties', {}).get('section') == 'professional_experience'
+
+def is_empty_paragraph(element: Dict[str, Any]) -> bool:
+    """Retourne True si le paragraphe est vide."""
+    if element.get('type') != 'Paragraph':
+        return False
+    return not get_text_from_element(element).strip()
+
+def is_technical_skills_header(element: Dict[str, Any]) -> bool:
+    """Retourne True si l'élément correspond au sous-bloc 'Environnement technique'.
+
+    On cible explicitement les lignes qui démarrent par "environnement(s)" afin d'éviter
+    les faux positifs sur des titres de poste (ex: "responsable technique").
+    On exclut volontairement tout paragraphe contenant "contexte".
+    """
+    if element.get('type') != 'Paragraph':
+        return False
+    text = get_text_from_element(element)
+    normalized_text = text.strip().lower()
+    # Inclure les fautes courantes (environement/environements) pour rester tolérant aux typos source.
+    if not normalized_text.startswith(('environnement', 'environnements', 'environement', 'environements')):
+        return False
+    return any(keyword in normalized_text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in normalized_text
+
+def is_xp_description_paragraph(element: Dict[str, Any]) -> bool:
+    """Retourne True si le paragraphe ressemble a un bloc de contexte long."""
+    if element.get('type') != 'Paragraph':
+        return False
+    props = element.get('properties', {})
+    if props.get('ilvl') is not None:
+        return False
+    text_raw = get_raw_text_from_paragraph(element).strip()
+    if not text_raw:
+        return False
+    text_lower = text_raw.lower()
+    return 'contexte' in text_lower or len(text_raw) > MAX_XP_DESCRIPTION_LENGTH
+
 def has_bullets_after(content: List[Dict[str, Any]], start_idx: int, max_lookhead: int = 5) -> bool:
     """
     Vérifie s'il y a des paragraphes avec ilvl (bullets) dans les prochains éléments.
@@ -1343,58 +1368,6 @@ def has_bullets_after(content: List[Dict[str, Any]], start_idx: int, max_lookhea
             if elem.get('properties', {}).get('ilvl') is not None:
                 return True
     return False
-
-def is_professional_section_header(element: Dict[str, Any]) -> bool:
-    """Retourne True si l'élément est le header 'Expériences Professionnelles'."""
-    if element.get('type') != 'Paragraph':
-        return False
-    props = element.get('properties', {})
-    if props.get('style') != 'DC_T1_Sections':
-        return False
-    text = get_text_from_element(element)
-    return any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE)
-
-def is_technical_skills_header(element: Dict[str, Any]) -> bool:
-    """Retourne True si l'élément correspond au sous-bloc 'Environnement technique'.
-
-    On cible explicitement les lignes qui démarrent par "environnement(s)" afin d'éviter
-    les faux positifs sur des titres de poste (ex: "responsable technique").
-    On exclut volontairement tout paragraphe contenant "contexte".
-    """
-    if element.get('type') != 'Paragraph':
-        return False
-    text = get_text_from_element(element)
-    normalized_text = text.strip().lower()
-    # Inclure les fautes courantes (environement/environements) pour rester tolérant aux typos source.
-    if not normalized_text.startswith(('environnement', 'environnements', 'environement', 'environements')):
-        return False
-    return any(keyword in normalized_text for keyword in KEYWORDS_TECHNICAL_SKILLS) and 'contexte' not in normalized_text
-
-def is_professional_tagged(element: Dict[str, Any]) -> bool:
-    """Retourne True si l'élément appartient à la section expérience pro."""
-    tags = element.get('tags', [])
-    if isinstance(tags, str):
-        tags = [tags]
-    return 'professional_experience' in tags or element.get('properties', {}).get('section') == 'professional_experience'
-
-def is_empty_paragraph(element: Dict[str, Any]) -> bool:
-    """Retourne True si le paragraphe est vide."""
-    if element.get('type') != 'Paragraph':
-        return False
-    return not get_text_from_element(element).strip()
-
-def is_xp_description_paragraph(element: Dict[str, Any]) -> bool:
-    """Retourne True si le paragraphe ressemble a un bloc de contexte long."""
-    if element.get('type') != 'Paragraph':
-        return False
-    props = element.get('properties', {})
-    if props.get('ilvl') is not None:
-        return False
-    text_raw = get_raw_text_from_paragraph(element).strip()
-    if not text_raw:
-        return False
-    text_lower = text_raw.lower()
-    return 'contexte' in text_lower or len(text_raw) > MAX_XP_DESCRIPTION_LENGTH
 
 def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     """
@@ -1824,6 +1797,68 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
 
     data['document']['content'] = content
 
+# MARK: FINAL PROCESSING & RENDERING
+# ===== 8. FINAL PROCESSING & RENDERING =====
+
+def add_empty_paragraphs_around_tables(data: Dict[str, Any]) -> None:
+    """
+    Ajoute un paragraphe vide AVANT et APRÈS chaque table du document.
+
+    Utile pour:
+    - Espace visuel avant et après les tables
+    - Permettre à Word de naviguer correctement
+    - Faciliter le rendu et l'édition
+
+    Cette fonction est appelée APRÈS que toutes les tables aient été créées
+    et remplies (create_edu_table, insert_text_edu_table, create_xp_tables, insert_text_xp_tables),
+    mais AVANT le nettoyage des doubles paragraphes.
+
+    Args:
+        data: Structure du document JSON
+    """
+    content = data.get('document', {}).get('content', [])
+
+    if not content:
+        return
+
+    # Construire une nouvelle liste avec les paragraphes vides autour des tables
+    new_content = []
+
+    for elem in content:
+        # Si c'est une table, ajouter un paragraphe vide AVANT
+        if elem.get('type') == 'Table':
+            # Vérifier si le dernier élément ajouté n'est pas déjà un paragraphe vide
+            if new_content and new_content[-1].get('type') == 'Paragraph':
+                last_para = new_content[-1]
+                # Si le dernier paragraphe n'est pas vide, ajouter un paragraphe vide
+                if last_para.get('runs') or last_para.get('text'):
+                    new_content.append({
+                        'type': 'Paragraph',
+                        'properties': {},
+                        'runs': []
+                    })
+            elif not new_content or new_content[-1].get('type') == 'Table':
+                # Ajouter un paragraphe vide avant la table
+                new_content.append({
+                    'type': 'Paragraph',
+                    'properties': {},
+                    'runs': []
+                })
+
+        # Ajouter l'élément lui-même
+        new_content.append(elem)
+
+        # Si c'est une table, ajouter un paragraphe vide APRÈS
+        if elem.get('type') == 'Table':
+            new_content.append({
+                'type': 'Paragraph',
+                'properties': {},
+                'runs': []
+            })
+
+    # Remplacer le contenu du document
+    data['document']['content'] = new_content
+
 def remove_double_paras_and_spaces (data: Dict[str, Any]) -> None:
     """
     Supprime les paragraphes vides doublons et nettoie les doubles espaces.
@@ -1864,6 +1899,21 @@ def remove_double_paras_and_spaces (data: Dict[str, Any]) -> None:
             last_para_was_empty = False
 
     data['document']['content'] = new_content
+
+def recalculate_indices(data: Dict[str, Any]) -> None:
+    """
+    Recalcule les indices de tous les éléments du document de manière continue.
+    
+    Après les transformations (ajout/suppression d'éléments), les indices peuvent avoir
+    des trous. Cette fonction les recalcule de 0 à n de manière séquentielle.
+    
+    Args:
+        data: Structure du document JSON (modifiée in-place)
+    """
+    content = data.get('document', {}).get('content', [])
+    
+    for i, element in enumerate(content):
+        element['index'] = i
 
 def add_colons_between_list_levels(data: Dict[str, Any]) -> None:
     """
@@ -2188,6 +2238,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                                         kept_props['italic'] = run_props['italic']
                                     run['properties'] = kept_props
 
+# MARK: MAIN ENTRY POINT
+# ===== 9. MAIN ENTRY POINT =====
+
 def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: dict) -> str:
     """
     Charge un JSON brut, applique les tags de section et les styles,
@@ -2266,6 +2319,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
 
     # Nettoyer les paragraphes vides doublons et les doubles espaces
     remove_double_paras_and_spaces(data)
+
+    # Recalculer les indices de manière continue après toutes les transformations
+    recalculate_indices(data)
 
     # Appliquer les styles
     apply_styles_in_json(data)
