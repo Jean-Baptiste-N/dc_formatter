@@ -569,7 +569,7 @@ def create_language_header(data: Dict[str, Any]) -> None:
         'type': 'Paragraph',
         'runs': [{'text': 'Langues', 'properties': {}}],
         'properties': {},
-        'tags': 'education',
+        'tags': ['education'],
         'section': 'education',
         'auto_generated': True
     }
@@ -1358,7 +1358,7 @@ def is_technical_skills_header(element: Dict[str, Any]) -> bool:
     if element.get('type') != 'Paragraph':
         return False
     text = get_text_from_element(element)
-    normalized_text = text.strip()
+    normalized_text = text.strip().lower()
     # Inclure les fautes courantes (environement/environements) pour rester tolérant aux typos source.
     if not normalized_text.startswith(('environnement', 'environnements', 'environement', 'environements')):
         return False
@@ -1400,9 +1400,11 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     - Si le premier xp_bullet n'a pas de ilvl, on décale tous les ilvl d'un niveau:
       sans ilvl -> ilvl 0, ilvl0 -> ilvl1, etc.
     - Si le premier xp_bullet a déjà un ilvl, ne rien faire.
+    - NOUVEAU: Dans un bloc "Environnement technique", tous les bullets doivent avoir ilvl = 2
     """
     content = data.get('document', {}).get('content', [])
     current_block: List[int] = []
+    technical_block: List[int] = []
     in_entry = False
     in_technical_block = False
 
@@ -1424,42 +1426,63 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
                     except (ValueError, TypeError):
                         pass
 
+    def finalize_technical_block() -> None:
+        """Force ilvl = 2 pour tous les bullets du bloc technique."""
+        if not technical_block:
+            return
+        for idx in technical_block:
+            elem = content[idx]
+            props = elem.setdefault('properties', {})
+            # Si le bloc technique a des bullets (ilvl), les forcer à 2
+            if props.get('ilvl') is not None:
+                props['ilvl'] = "2"
+
     for idx, element in enumerate(content):
         if not is_professional_tagged(element):
             if in_entry:
                 finalize_block()
+                finalize_technical_block()
             in_entry = False
             in_technical_block = False
             current_block = []
+            technical_block = []
             continue
 
         if element.get('type') == 'Paragraph' and element.get('xp_split_part') == 'xp_date':
             if in_entry:
                 finalize_block()
+                finalize_technical_block()
             in_entry = True
             in_technical_block = False
             current_block = []
+            technical_block = []
             continue
 
-        if not in_entry:
-            continue
-
+        # Traiter les blocs techniques MÊME si on n'est pas en_entry
         if element.get('type') == 'Paragraph' and is_technical_skills_header(element):
             element['xp_technical'] = True
+            finalize_technical_block()  # Finaliser le bloc précédent avant de démarrer un nouveau
             in_technical_block = True
+            technical_block = []
             continue
 
         if in_technical_block:
             if element.get('type') == 'Paragraph':
                 if element.get('properties', {}).get('ilvl') is not None:
                     element['xp_technical'] = True
+                    technical_block.append(idx)
                     continue
                 if is_empty_paragraph(element):
                     continue
+                finalize_technical_block()
                 in_technical_block = False
             elif element.get('type') == 'Table':
+                finalize_technical_block()
                 in_technical_block = False
                 continue
+
+        if not in_entry:
+            continue
 
         if element.get('type') == 'Paragraph' and is_xp_description_paragraph(element):
             element['xp_split_part'] = 'xp_description'
@@ -1479,6 +1502,9 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
 
     if in_entry:
         finalize_block()
+        finalize_technical_block()
+    else:
+        finalize_technical_block()  # Finaliser le dernier bloc technique même s'il n'y a pas d'entry
 
 def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     """
