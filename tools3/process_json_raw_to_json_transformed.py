@@ -43,7 +43,13 @@ KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certificatio
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
-XP_DATE_PATTERN = r'^\s*(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4})(?:\s*[–-]\s*(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}))?'
+# XP_DATE_PATTERN = r'^\s*(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4})(?:\s*[–-]\s*(\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}))?'
+# Pattern pour détecter les dates XP n'importe où dans le texte
+# Accepte: "2019 - 2021", "2019-2021", "depuis 11/2021", "du 01/01/2020 - 31/12/2021", "CEA | 2019 - 2021", etc.
+# Deux formats:
+# 1. Dates complètes: JJ/MM/YYYY, JJ/YYYY, MM/YYYY
+# 2. Années seules: YYYY ou YYYY - YYYY, YYYY-YYYY
+XP_DATE_PATTERN = r'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}|\d{4}\s*[–-]\s*\d{4})'
 MAX_XP_DESCRIPTION_LENGTH = 75
 SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
 
@@ -118,8 +124,8 @@ def get_raw_text_from_paragraph(para: Dict[str, Any]) -> str:
     return ''.join(run.get('text', '') for run in para.get('runs', [])) or para.get('text', '') or get_text_from_element(para, lower=False)
 
 def match_xp_date(text: str) -> Optional[re.Match]:
-    """Retourne un match de date XP au début d'un texte (avec formats élargis)."""
-    return re.match(XP_DATE_PATTERN, text, flags=re.IGNORECASE)
+    """Retourne un match de date XP n'importe où dans le texte (avec formats élargis)."""
+    return re.search(XP_DATE_PATTERN, text, flags=re.IGNORECASE)
 
 def is_single_xp_date(text: str) -> bool:
     """Retourne True si le texte ressemble a une date XP simple (sans prefixe)."""
@@ -1401,6 +1407,7 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
       sans ilvl -> ilvl 0, ilvl0 -> ilvl1, etc.
     - Si le premier xp_bullet a déjà un ilvl, ne rien faire.
     - NOUVEAU: Dans un bloc "Environnement technique", tous les bullets doivent avoir ilvl = 2
+    - Correction : si un paragraphe xp_ bullets n'a finalement pas de ilvl, lui appliquer un ilvl = 0
     """
     content = data.get('document', {}).get('content', [])
     current_block: List[int] = []
@@ -1437,21 +1444,34 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
             if props.get('ilvl') is not None:
                 props['ilvl'] = "2"
 
+    def finalize_paras_without_ilvl_in_block() -> None:
+        """Applique ilvl=0 à tous les bullets du bloc courant qui n'ont pas d'ilvl."""
+        if not current_block:
+            return
+        for idx in current_block:
+            elem = content[idx]
+            props = elem.setdefault('properties', {})
+            if props.get('ilvl') is None:
+                props['ilvl'] = "0"
+
     for idx, element in enumerate(content):
         if not is_professional_tagged(element):
             if in_entry:
                 finalize_block()
                 finalize_technical_block()
+                finalize_paras_without_ilvl_in_block()
             in_entry = False
             in_technical_block = False
             current_block = []
             technical_block = []
             continue
 
-        if element.get('type') == 'Paragraph' and element.get('xp_split_part') == 'xp_date':
+        # Démarrer une entry sur xp_split_part == 'xp_date' OU xp_entry_start
+        if element.get('type') == 'Paragraph' and (element.get('xp_split_part') == 'xp_date' or element.get('xp_entry_start')):
             if in_entry:
                 finalize_block()
                 finalize_technical_block()
+                finalize_paras_without_ilvl_in_block()
             in_entry = True
             in_technical_block = False
             current_block = []
@@ -1492,10 +1512,14 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
             continue
         if element.get('xp_split_part'):
             continue
+        if element.get('xp_entry_start'):
+            continue  # Ne pas marquer le titre du bloc comme bullet
+        if element.get('xp_technical'):
+            continue  # Ne pas marquer les bullets techniques comme xp_bullet
         if is_professional_section_header(element):
             continue
         if is_empty_paragraph(element):
-            continue
+            continue  # Paragraphes vides restent vides
 
         element['xp_bullet'] = True
         current_block.append(idx)
@@ -1503,6 +1527,7 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     if in_entry:
         finalize_block()
         finalize_technical_block()
+        finalize_paras_without_ilvl_in_block()
     else:
         finalize_technical_block()  # Finaliser le dernier bloc technique même s'il n'y a pas d'entry
 
