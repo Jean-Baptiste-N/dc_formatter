@@ -1182,12 +1182,12 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
         if not has_ilvl:
 
             # Détection xp_description (texte long avec "contexte" ou "projet" ou "mission")
-            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in ['contexte', 'projet', 'mission']):
+            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in ['contexte', 'projet', 'mission', 'développement', 'réalisation', 'conception', 'montage']):
                 para['xp_metadata']['detected_xp_description'] = True
                 return  # Ne pas faire d'autres détections si c'est une description
 
             # Détection xp_poste (KEYWORDS STRICTS SEULEMENT - pas de pattern générique)
-            poste_keywords = ['Développeur', 'Ingénieur', 'Manager', 'Responsable', 'Chef', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Consultant', 'Architecte', 'Directeur', 'Senior', 'Gestion', 'Product Owner', 'Scrum', 'DevOps', 'Admin']
+            poste_keywords = ['Développeur', 'Ingénieur', 'Manager', 'Responsable', 'Chef', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Consultant', 'Architecte', 'Directeur', 'Senior', 'Gestion', 'Product Owner', 'Scrum', 'DevOps', 'Admin', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
             # Vérifier si un mot-clé apparaît au début OU après un préfixe comme "Data"
             is_poste_keyword = False
             text_lower = text.lower()
@@ -1205,7 +1205,7 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
             # Détection xp_company (nom propre court qui n'a pas été marqué comme poste)
             # Critères: court, commence par majuscule, pas de verbes d'action courants
             is_very_short = len(text) < 50
-            has_no_common_verbs = not any(word in text.lower() for word in ['recueil', 'etude', 'communication', 'rédaction', 'construction', 'gestion', 'traitement', 'stockage', 'sauvegarde', 'parsing', 'dashbo'])
+            has_no_common_verbs = not any(word in text.lower() for word in ['recueil', 'etude', 'communication', 'rédaction', 'construction', 'gestion', 'traitement', 'stockage', 'sauvegarde', 'parsing', 'dashbo', 'thèse'])
             starts_with_capital = text[0].isupper()
             if is_very_short and starts_with_capital and has_no_common_verbs:
                 para['xp_metadata']['detected_xp_company'] = True

@@ -14,7 +14,7 @@
         ]
       },
       {
-        "index": 14,
+        "index": 1,
         "type": "Paragraph",
         "properties": {
           "style": "DC_H_DC"
@@ -32,7 +32,7 @@
         ]
       },
       {
-        "index": 15,
+        "index": 2,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -43,7 +43,7 @@
         ]
       },
       {
-        "index": 17,
+        "index": 3,
         "type": "Paragraph",
         "properties": {
           "style": "DC_H_Trigramme"
@@ -61,7 +61,7 @@
         ]
       },
       {
-        "index": 18,
+        "index": 4,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -72,7 +72,7 @@
         ]
       },
       {
-        "index": 20,
+        "index": 5,
         "type": "Paragraph",
         "properties": {
           "style": "DC_H_Poste"
@@ -90,7 +90,7 @@
         ]
       },
       {
-        "index": 21,
+        "index": 6,
         "type": "Paragraph",
         "properties": {
           "style": "DC_H_Poste"
@@ -108,7 +108,7 @@
         ]
       },
       {
-        "index": 22,
+        "index": 7,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -119,7 +119,7 @@
         ]
       },
       {
-        "index": 23,
+        "index": 8,
         "type": "Paragraph",
         "properties": {
           "style": "DC_H_XP"
@@ -137,7 +137,7 @@
         ]
       },
       {
-        "index": 24,
+        "index": 9,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -148,7 +148,7 @@
         ]
       },
       {
-        "index": 26,
+        "index": 10,
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
@@ -165,7 +165,7 @@
         ]
       },
       {
-        "index": 27,
+        "index": 11,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -176,7 +176,7 @@
         ]
       },
       {
-        "index": 29,
+        "index": 12,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -466,10 +466,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 13
       },
       {
-        "index": 30,
+        "index": 14,
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
@@ -490,10 +491,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 15
       },
       {
-        "index": 32,
+        "index": 16,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -724,10 +726,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 17
       },
       {
-        "index": 34,
+        "index": 18,
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
@@ -748,10 +751,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 19
       },
       {
-        "index": 36,
+        "index": 20,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -932,10 +936,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 21
       },
       {
-        "index": 38,
+        "index": 22,
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
@@ -956,10 +961,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 23
       },
       {
-        "index": 40,
+        "index": 24,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -974,8 +980,7 @@
             "insideH": null,
             "insideV": null
           },
-          "style": "DC_T1_Sections",
-          "outline_level": 0
+          "style": "DC_Table_Content"
         },
         "tags": [
           "education"
@@ -1103,10 +1108,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 25
       },
       {
-        "index": 41,
+        "index": 26,
         "type": "Paragraph",
         "properties": {
           "style": "DC_T1_Sections",
@@ -1123,7 +1129,7 @@
         ]
       },
       {
-        "index": 42,
+        "index": 27,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1133,7 +1139,7 @@
         ]
       },
       {
-        "index": 43,
+        "index": 28,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1182,7 +1188,10 @@
                         "text": "CEA, Paris-Saclay",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -1207,7 +1216,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -1237,7 +1250,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_poste": true
+                    }
                   }
                 ]
               },
@@ -1259,10 +1275,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 29
       },
       {
-        "index": 44,
+        "index": 30,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1275,10 +1292,14 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 45,
+        "index": 31,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1288,7 +1309,7 @@
         ]
       },
       {
-        "index": 46,
+        "index": 32,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -1306,10 +1327,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 47,
+        "index": 33,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1324,10 +1348,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 48,
+        "index": 34,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1342,10 +1369,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 49,
+        "index": 35,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1360,10 +1390,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 50,
+        "index": 36,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1378,10 +1411,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 51,
+        "index": 37,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -1399,10 +1435,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 52,
+        "index": 38,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1417,10 +1456,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 53,
+        "index": 39,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1435,10 +1477,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 54,
+        "index": 40,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1453,10 +1498,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 55,
+        "index": 41,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1471,10 +1519,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 56,
+        "index": 42,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1489,10 +1540,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 57,
+        "index": 43,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -1510,10 +1564,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 58,
+        "index": 44,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1528,10 +1585,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 59,
+        "index": 45,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1546,10 +1606,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 60,
+        "index": 46,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1564,10 +1627,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 61,
+        "index": 47,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1582,10 +1648,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 62,
+        "index": 48,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1600,10 +1669,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 63,
+        "index": 49,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1613,7 +1685,7 @@
         ]
       },
       {
-        "index": 65,
+        "index": 50,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -1662,7 +1734,10 @@
                         "text": "Giant Consulting, Lyon",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -1687,7 +1762,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -1717,7 +1796,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_poste": true
+                    }
                   }
                 ]
               },
@@ -1739,10 +1821,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 51
       },
       {
-        "index": 65,
+        "index": 52,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1755,10 +1838,14 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 66,
+        "index": 53,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1769,7 +1856,7 @@
         ]
       },
       {
-        "index": 67,
+        "index": 54,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -1787,10 +1874,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 68,
+        "index": 55,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1805,10 +1895,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 69,
+        "index": 56,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1823,10 +1916,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 70,
+        "index": 57,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1841,10 +1937,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 71,
+        "index": 58,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1855,7 +1954,7 @@
         ]
       },
       {
-        "index": 72,
+        "index": 59,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -1873,10 +1972,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 73,
+        "index": 60,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1891,10 +1993,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 74,
+        "index": 61,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1909,10 +2014,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 75,
+        "index": 62,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1927,10 +2035,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 76,
+        "index": 63,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1945,10 +2056,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 77,
+        "index": 64,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -1963,10 +2077,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 78,
+        "index": 65,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -1977,7 +2094,7 @@
         ]
       },
       {
-        "index": 79,
+        "index": 66,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -1999,17 +2116,24 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_technical": true
+        }
       },
       {
+        "index": 67,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
-        "index": 82,
+        "index": 68,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2058,7 +2182,10 @@
                         "text": "Projet Indépendant",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -2083,7 +2210,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -2113,7 +2244,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_poste": true
+                    }
                   }
                 ]
               },
@@ -2135,10 +2269,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 69
       },
       {
-        "index": 82,
+        "index": 70,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -2151,7 +2286,249 @@
         ],
         "tags": [
           "professional_experience"
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
+      },
+      {
+        "index": 71,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "professional_experience"
         ]
+      },
+      {
+        "index": 72,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Gestion de projet",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 73,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Définition du rendu de l’interface",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 74,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Définition des fonctionnalités spécifiques pour la lecture des sons",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 75,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Veille technologique sur les logiciels existants",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 76,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Recherche de l’originalité du produit ",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 77,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_Normal"
+        },
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
+      },
+      {
+        "index": 78,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_1st_bullet",
+          "ilvl": "0",
+          "numId": "1",
+          "outline_level": 2
+        },
+        "runs": [
+          {
+            "text": "Developpement d’une interface",
+            "properties": {
+              "bold": true
+            }
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 79,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Définition de l’interface visuelle",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 80,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Gestion des interactions utilisateur",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 81,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Lecture en temps réel sans latence des fichiers audio",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
+      },
+      {
+        "index": 82,
+        "type": "Paragraph",
+        "properties": {
+          "style": "DC_2nd_bullet",
+          "ilvl": "1",
+          "numId": "1"
+        },
+        "runs": [
+          {
+            "text": "Simplification de la visualisation des fichiers audio",
+            "properties": {}
+          }
+        ],
+        "tags": [
+          "professional_experience"
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
         "index": 83,
@@ -2170,214 +2547,6 @@
         "properties": {
           "style": "DC_1st_bullet",
           "ilvl": "0",
-          "numId": "1",
-          "outline_level": 2
-        },
-        "runs": [
-          {
-            "text": "Gestion de projet",
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 85,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Définition du rendu de l’interface",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 86,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Définition des fonctionnalités spécifiques pour la lecture des sons",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 87,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Veille technologique sur les logiciels existants",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 88,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Recherche de l’originalité du produit ",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 89,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": [],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 90,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_1st_bullet",
-          "ilvl": "0",
-          "numId": "1",
-          "outline_level": 2
-        },
-        "runs": [
-          {
-            "text": "Developpement d’une interface",
-            "properties": {
-              "bold": true
-            }
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 91,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Définition de l’interface visuelle",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 92,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Gestion des interactions utilisateur",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 93,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Lecture en temps réel sans latence des fichiers audio",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 94,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_2nd_bullet",
-          "ilvl": "1",
-          "numId": "1"
-        },
-        "runs": [
-          {
-            "text": "Simplification de la visualisation des fichiers audio",
-            "properties": {}
-          }
-        ],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 95,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_Normal"
-        },
-        "runs": [],
-        "tags": [
-          "professional_experience"
-        ]
-      },
-      {
-        "index": 96,
-        "type": "Paragraph",
-        "properties": {
-          "style": "DC_1st_bullet",
-          "ilvl": "0",
           "numId": "3",
           "outline_level": 2
         },
@@ -2391,10 +2560,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 97,
+        "index": 85,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -2410,10 +2582,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 98,
+        "index": 86,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -2429,10 +2604,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 99,
+        "index": 87,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -2448,10 +2626,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 100,
+        "index": 88,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -2462,7 +2643,7 @@
         ]
       },
       {
-        "index": 101,
+        "index": 89,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -2480,10 +2661,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 102,
+        "index": 90,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -2499,10 +2683,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 103,
+        "index": 91,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -2518,10 +2705,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 104,
+        "index": 92,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -2536,17 +2726,24 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_technical": true
+        }
       },
       {
+        "index": 93,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
-        "index": 108,
+        "index": 94,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2595,7 +2792,10 @@
                         "text": "CEA, Saclay",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -2620,7 +2820,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -2650,7 +2854,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_poste": true
+                    }
                   }
                 ]
               },
@@ -2672,10 +2879,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 95
       },
       {
-        "index": 107,
+        "index": 96,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -2688,10 +2896,14 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 108,
+        "index": 97,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -2701,7 +2913,7 @@
         ]
       },
       {
-        "index": 109,
+        "index": 98,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -2719,10 +2931,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 110,
+        "index": 99,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -2737,10 +2952,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 111,
+        "index": 100,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -2755,10 +2973,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 112,
+        "index": 101,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -2773,10 +2994,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 113,
+        "index": 102,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -2791,10 +3015,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 114,
+        "index": 103,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -2809,10 +3036,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 115,
+        "index": 104,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -2827,10 +3057,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 116,
+        "index": 105,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -2841,7 +3074,7 @@
         ]
       },
       {
-        "index": 117,
+        "index": 106,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -2856,17 +3089,24 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_technical": true
+        }
       },
       {
+        "index": 107,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
-        "index": 122,
+        "index": 108,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -2915,7 +3155,10 @@
                         "text": "Laboratoire Vibration Acoustique, INSA Lyon",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -2940,7 +3183,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -2970,7 +3217,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_poste": true
+                    }
                   }
                 ]
               },
@@ -2992,10 +3242,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 109
       },
       {
-        "index": 120,
+        "index": 110,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -3008,10 +3259,14 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 121,
+        "index": 111,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -3022,7 +3277,7 @@
         ]
       },
       {
-        "index": 122,
+        "index": 112,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -3040,10 +3295,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 123,
+        "index": 113,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3058,10 +3316,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 124,
+        "index": 114,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3076,10 +3337,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 125,
+        "index": 115,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3094,10 +3358,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 126,
+        "index": 116,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3112,10 +3379,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 127,
+        "index": 117,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3130,10 +3400,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 128,
+        "index": 118,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3148,10 +3421,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 129,
+        "index": 119,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -3166,17 +3442,25 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_company": true,
+          "xp_technical": true
+        }
       },
       {
+        "index": 120,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
-        "index": 135,
+        "index": 121,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3225,7 +3509,10 @@
                         "text": "Genesis, Aix-en-Provence",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -3250,7 +3537,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -3280,7 +3571,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_poste": true
+                    }
                   }
                 ]
               },
@@ -3302,10 +3596,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 122
       },
       {
-        "index": 132,
+        "index": 123,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -3318,10 +3613,14 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 133,
+        "index": 124,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -3332,7 +3631,7 @@
         ]
       },
       {
-        "index": 134,
+        "index": 125,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -3342,18 +3641,25 @@
         },
         "runs": [
           {
-            "text": "Activités ",
+            "text": "Activités :  ",
             "properties": {
               "bold": true
             }
+          },
+          {
+            "text": "",
+            "properties": {}
           }
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 135,
+        "index": 126,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3368,10 +3674,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 136,
+        "index": 127,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3386,10 +3695,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 137,
+        "index": 128,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3404,10 +3716,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 138,
+        "index": 129,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -3422,17 +3737,25 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_company": true,
+          "xp_technical": true
+        }
       },
       {
+        "index": 130,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
-        "index": 145,
+        "index": 131,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3481,7 +3804,10 @@
                         "text": "CNRS, Université de Bordeaux",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -3506,7 +3832,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -3536,7 +3866,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -3558,10 +3891,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 132
       },
       {
-        "index": 141,
+        "index": 133,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -3574,10 +3908,14 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 142,
+        "index": 134,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -3588,7 +3926,7 @@
         ]
       },
       {
-        "index": 143,
+        "index": 135,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -3606,10 +3944,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 144,
+        "index": 136,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3624,10 +3965,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 145,
+        "index": 137,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3642,10 +3986,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 146,
+        "index": 138,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3660,10 +4007,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 147,
+        "index": 139,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3678,10 +4028,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 148,
+        "index": 140,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3696,10 +4049,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 149,
+        "index": 141,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3714,10 +4070,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 150,
+        "index": 142,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3732,10 +4091,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 151,
+        "index": 143,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -3746,7 +4108,7 @@
         ]
       },
       {
-        "index": 152,
+        "index": 144,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -3764,10 +4126,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 153,
+        "index": 145,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3782,10 +4147,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 154,
+        "index": 146,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3800,10 +4168,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 155,
+        "index": 147,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3818,10 +4189,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 156,
+        "index": 148,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -3836,10 +4210,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 157,
+        "index": 149,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -3854,17 +4231,25 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_company": true,
+          "xp_technical": true
+        }
       },
       {
+        "index": 150,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
-        "index": 165,
+        "index": 151,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -3938,7 +4323,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -3968,7 +4357,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -3990,10 +4382,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 152
       },
       {
-        "index": 160,
+        "index": 153,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -4006,10 +4399,14 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 161,
+        "index": 154,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -4027,10 +4424,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 162,
+        "index": 155,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4045,10 +4445,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 163,
+        "index": 156,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4063,10 +4466,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 164,
+        "index": 157,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4081,10 +4487,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 165,
+        "index": 158,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4099,10 +4508,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 166,
+        "index": 159,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4117,10 +4529,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 167,
+        "index": 160,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -4131,7 +4546,7 @@
         ]
       },
       {
-        "index": 168,
+        "index": 161,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -4149,10 +4564,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 169,
+        "index": 162,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4167,10 +4585,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 170,
+        "index": 163,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4185,10 +4606,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 171,
+        "index": 164,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4203,10 +4627,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 172,
+        "index": 165,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4221,10 +4648,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 173,
+        "index": 166,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -4239,17 +4669,25 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_description": true,
+          "xp_technical": true
+        }
       },
       {
+        "index": 167,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "tags": [
+          "professional_experience"
+        ]
       },
       {
-        "index": 182,
+        "index": 168,
         "type": "Table",
         "auto_generated": true,
         "properties": {
@@ -4298,7 +4736,10 @@
                         "text": "Airbus, Toulouse",
                         "properties": {}
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_company": true
+                    }
                   }
                 ]
               },
@@ -4323,7 +4764,11 @@
                           "italic": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_date": true,
+                      "xp_entry_start": true
+                    }
                   }
                 ]
               }
@@ -4353,7 +4798,10 @@
                           "bold": true
                         }
                       }
-                    ]
+                    ],
+                    "xp_metadata": {
+                      "detected_xp_poste": true
+                    }
                   }
                 ]
               },
@@ -4375,10 +4823,11 @@
         "properties": {
           "style": "DC_Normal"
         },
-        "runs": []
+        "runs": [],
+        "index": 169
       },
       {
-        "index": 176,
+        "index": 170,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -4391,10 +4840,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_split_part": "xp_description"
+        }
       },
       {
-        "index": 177,
+        "index": 171,
         "type": "Paragraph",
         "properties": {
           "style": "DC_Normal"
@@ -4405,7 +4857,7 @@
         ]
       },
       {
-        "index": 178,
+        "index": 172,
         "type": "Paragraph",
         "properties": {
           "style": "DC_1st_bullet",
@@ -4423,10 +4875,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 179,
+        "index": 173,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4441,10 +4896,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 180,
+        "index": 174,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4459,10 +4917,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 181,
+        "index": 175,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4477,10 +4938,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 182,
+        "index": 176,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4495,10 +4959,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 183,
+        "index": 177,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4513,10 +4980,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 184,
+        "index": 178,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4531,10 +5001,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 185,
+        "index": 179,
         "type": "Paragraph",
         "properties": {
           "style": "DC_2nd_bullet",
@@ -4549,10 +5022,13 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "xp_bullet": true
+        }
       },
       {
-        "index": 186,
+        "index": 180,
         "type": "Paragraph",
         "properties": {
           "style": "DC_XP_BlueContent"
@@ -4567,7 +5043,11 @@
         ],
         "tags": [
           "professional_experience"
-        ]
+        ],
+        "xp_metadata": {
+          "detected_xp_company": true,
+          "xp_technical": true
+        }
       }
     ],
     "stats": {
