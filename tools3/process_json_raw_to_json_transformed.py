@@ -2546,6 +2546,10 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # Remplir le contenu et supprimer les sources
     insert_text_xp_tables(data, xp_creation_result, page_dims=page_dimensions)
 
+    # Appliquer la détection XP aux paragraphes dans les tables nouvellement remplies
+    # (car detect_xp_patterns() a été appelée avant la création des tables)
+    detect_xp_patterns(data)
+
     # ===== AJOUT DES PARAGRAPHES VIDES AUTOUR DES TABLES =====
     # Ajouter un paragraphe vide avant et après chaque table
     # (après que toutes les tables aient été créées/remplies)
