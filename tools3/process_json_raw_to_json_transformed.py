@@ -192,6 +192,10 @@ def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
     if 'tags' in para:
         new_para['tags'] = para['tags'].copy()
 
+    # Copier xp_metadata si présent (important pour préserver les détections XP)
+    if 'xp_metadata' in para:
+        new_para['xp_metadata'] = para['xp_metadata'].copy()
+
     return new_para
 
 # MARK: TABLE CREATION
@@ -1132,6 +1136,81 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 # MARK: SECTION PROFESSIONAL EXPERIENCE
 # ===== 7. SECTION PROFESSIONAL EXPERIENCE =====
 
+# ## XP Pattern Detection
+def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
+    """
+    Détecte et tague le contenu XP basé sur des patterns.
+    Tagge le paragraphe avec les champs xp_* appropriés même s'il n'a pas été splité.
+
+    Détection:
+    - xp_date: contient une date (regex XP_DATE_PATTERN)
+    - xp_entry_start: marqué True si c'est une xp_date (début d'une entry)
+    - xp_company: NOM MAJUSCULE SEUL ou très court (pas de verbes, pas de conjonctions)
+    - xp_poste: titre de poste (pattern spécifique: Verbe+Nom, titres métier)
+    - xp_description: texte long (> MAX_XP_DESCRIPTION_LENGTH) contenant "contexte"
+
+    Args:
+        para: Paragraphe JSON à tagger (modifié in-place)
+    """
+    if not para.get('xp_split_part'):  # Ne pas retagger les paragraphes déjà splittés
+        # Ne pas tagger les titres de section
+        style = para.get('properties', {}).get('style', '')
+        if style in ['DC_T1_Sections']:
+            return
+
+        text = get_raw_text_from_paragraph(para).strip()
+
+        if not text:
+            return
+
+        # Initialiser xp_metadata s'il n'existe pas
+        if 'xp_metadata' not in para:
+            para['xp_metadata'] = {}
+
+        # Détection xp_date (contient une date)
+        if match_xp_date(text):
+            para['xp_metadata']['detected_xp_date'] = True
+            # Marquer aussi que c'est le début d'une entry - AJOUTER À xp_metadata directement
+            para['xp_metadata']['xp_entry_start'] = True
+            para['xp_entry_start'] = True  # Aussi en propriété directe pour traitement immédiat
+            return  # Ne pas faire d'autres détections si c'est une date
+
+        # Ne pas détecter company/poste dans les bullets/sous-points (ilvl défini)
+        # car company/poste ne doivent être détectés qu'au niveau principal de l'entrée XP
+        has_ilvl = 'ilvl' in para.get('properties', {})
+
+        if not has_ilvl:
+
+            # Détection xp_description (texte long avec "contexte" ou "projet" ou "mission")
+            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in ['contexte', 'projet', 'mission']):
+                para['xp_metadata']['detected_xp_description'] = True
+                return  # Ne pas faire d'autres détections si c'est une description
+
+            # Détection xp_poste (KEYWORDS STRICTS SEULEMENT - pas de pattern générique)
+            poste_keywords = ['Développeur', 'Ingénieur', 'Manager', 'Responsable', 'Chef', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Consultant', 'Architecte', 'Directeur', 'Senior', 'Gestion', 'Product Owner', 'Scrum', 'DevOps', 'Admin']
+            # Vérifier si un mot-clé apparaît au début OU après un préfixe comme "Data"
+            is_poste_keyword = False
+            text_lower = text.lower()
+            for kw in poste_keywords:
+                kw_lower = kw.lower()
+                # Check if text starts with keyword OR contains it as a word (not substring)
+                if text.startswith(kw) or f' {kw_lower}' in f' {text_lower}' or text_lower.startswith(f'data {kw_lower}'):
+                    is_poste_keyword = True
+                    break
+            # Si c'est un poste connu, le marquer
+            if is_poste_keyword and len(text) < 50:
+                para['xp_metadata']['detected_xp_poste'] = True
+                return  # Ne pas faire d'autres détections si c'est un poste
+
+            # Détection xp_company (nom propre court qui n'a pas été marqué comme poste)
+            # Critères: court, commence par majuscule, pas de verbes d'action courants
+            is_very_short = len(text) < 50
+            has_no_common_verbs = not any(word in text.lower() for word in ['recueil', 'etude', 'communication', 'rédaction', 'construction', 'gestion', 'traitement', 'stockage', 'sauvegarde', 'parsing', 'dashbo'])
+            starts_with_capital = text[0].isupper()
+            if is_very_short and starts_with_capital and has_no_common_verbs:
+                para['xp_metadata']['detected_xp_company'] = True
+                return  # Ne pas faire d'autres détections si c'est une compagnie
+
 def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Scinde une entrée d'expérience pro détectée par une DATE présente dans le texte.
@@ -1234,18 +1313,28 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     date_para = clone_paragraph_clean(para)
     date_para['runs'] = [{"text": date_text, "properties": first_run_props}]
     date_para['xp_split_part'] = 'xp_date'
+    date_para['xp_entry_start'] = True  # Marquer que c'est le début d'une entry
+    # Nettoyer les metadata du clone (ne pas propager celles du source)
+    if 'xp_metadata' in date_para:
+        del date_para['xp_metadata']
     result.append(date_para)
 
     # 2. Paragraphe COMPANY
     company_para = clone_paragraph_clean(para)
     company_para['runs'] = [{"text": company_text, "properties": first_run_props}]
     company_para['xp_split_part'] = 'xp_company'
+    # Nettoyer les metadata du clone (ne pas propager celles du source)
+    if 'xp_metadata' in company_para:
+        del company_para['xp_metadata']
     result.append(company_para)
 
     # 3. Paragraphe POSTE
     poste_para = clone_paragraph_clean(para)
     poste_para['runs'] = [{"text": poste_text, "properties": first_run_props}]
     poste_para['xp_split_part'] = 'xp_poste'
+    # Nettoyer les metadata du clone (ne pas propager celles du source)
+    if 'xp_metadata' in poste_para:
+        del poste_para['xp_metadata']
     result.append(poste_para)
 
     return result
@@ -1369,6 +1458,15 @@ def has_bullets_after(content: List[Dict[str, Any]], start_idx: int, max_lookhea
                 return True
     return False
 
+def table_contains_xp_entry_start(table: Dict[str, Any]) -> bool:
+    """Vérifie si une table contient au moins un paragraphe avec xp_entry_start."""
+    for row in table.get('rows', []):
+        for cell in row.get('cells', []):
+            for para in cell.get('paragraphs', []):
+                if para.get('xp_entry_start'):
+                    return True
+    return False
+
 def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     """
     Flag tous les paragraphes d'une XP entry en xp_bullet et ajuste les ilvl si nécessaire.
@@ -1439,7 +1537,19 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
             technical_block = []
             continue
 
-        # Démarrer une entry sur xp_split_part == 'xp_date' OU xp_entry_start
+        # Vérifier si une table contient xp_entry_start (dates XP dans les cellules)
+        if element.get('type') == 'Table' and table_contains_xp_entry_start(element):
+            if in_entry:
+                finalize_block()
+                finalize_technical_block()
+                finalize_paras_without_ilvl_in_block()
+            in_entry = True
+            in_technical_block = False
+            current_block = []
+            technical_block = []
+            continue
+
+        # Démarrer une entry sur xp_split_part == 'xp_date' OU xp_entry_start (paragraphes racine)
         if element.get('type') == 'Paragraph' and (element.get('xp_split_part') == 'xp_date' or element.get('xp_entry_start')):
             if in_entry:
                 finalize_block()
@@ -1503,6 +1613,49 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
         finalize_paras_without_ilvl_in_block()
     else:
         finalize_technical_block()  # Finaliser le dernier bloc technique même s'il n'y a pas d'entry
+
+def detect_xp_patterns(data: Dict[str, Any]) -> None:
+    """
+    Applique la détection automatique de patterns XP sur tous les paragraphes, y compris ceux dans les tables.
+
+    Pour chaque paragraphe dans la section professionnelle:
+    - Si déjà tagué avec xp_split_part, rien à faire (c'est explicite)
+    - Sinon, applique _detect_and_tag_xp_content() pour les détections automatiques
+
+    Les détections automatiques sont sauvegardées dans xp_metadata avec les clés:
+    - detected_xp_date
+    - detected_xp_company
+    - detected_xp_poste
+    - detected_xp_description
+
+    Cela permet de vérifier quels paragraphes ont été détectés comme quoi,
+    même s'ils n'ont pas été splittés.
+    """
+    content = data.get('document', {}).get('content', [])
+
+    # Parcourir les paragraphes au niveau racine
+    for element in content:
+        if element.get('type') == 'Paragraph':
+            tags = element.get('tags', [])
+            if isinstance(tags, str):
+                tags = [tags]
+
+            # Appliquer la détection aux paragraphes professionnels non-splittés
+            if 'professional_experience' in tags:
+                _detect_and_tag_xp_content(element)
+
+        # Parcourir aussi les paragraphes dans les tables
+        elif element.get('type') == 'Table':
+            tags = element.get('tags', [])
+            if isinstance(tags, str):
+                tags = [tags]
+
+            # Si la table est une table professionnelle, détecter les patterns dans ses paragraphes
+            if 'professional_experience' in tags:
+                for row in element.get('rows', []):
+                    for cell in row.get('cells', []):
+                        for para in cell.get('paragraphs', []):
+                            _detect_and_tag_xp_content(para)
 
 def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     """
@@ -1800,6 +1953,87 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
 # MARK: FINAL PROCESSING & RENDERING
 # ===== 8. FINAL PROCESSING & RENDERING =====
 
+def preserve_xp_metadata(data: Dict[str, Any]) -> None:
+    """
+    Préserve et explicite tous les tags xp_* dans le JSON transformé.
+
+    Crée un champ `xp_metadata` contenant les métadonnées XP pour chaque paragraphe
+    dans la section professionnelle, pour permettre les vérifications.
+
+    Métadonnées préservées:
+    - xp_split_part: ('xp_date', 'xp_company', 'xp_poste', 'xp_description')
+    - xp_bullet: True si paragraphe bullet
+    - xp_technical: True si dans bloc technique
+    - xp_technical_bullet: True si bullet dans bloc technique
+    - xp_entry_start: True si début d'une entry
+    - ilvl: Niveau de liste
+
+    Args:
+        data: Structure du document JSON (modifiée in-place)
+    """
+    content = data.get('document', {}).get('content', [])
+
+    for element in content:
+        # Parcourir aussi les paragraphes dans les tables
+        if element.get('type') == 'Table':
+            for row in element.get('rows', []):
+                for cell in row.get('cells', []):
+                    for para in cell.get('paragraphs', []):
+                        _build_xp_metadata(para)
+        elif element.get('type') == 'Paragraph':
+            _build_xp_metadata(element)
+
+def _build_xp_metadata(para: Dict[str, Any]) -> None:
+    """
+    Construit le champ xp_metadata pour un paragraphe.
+
+    Les xp_metadata ne sont créées que pour les paragraphes ayant des propriétés XP réelles.
+    ilvl n'est PAS inclus (c'est une propriété standard du paragraphe, pas une métadonnée XP).
+
+    Les flags xp_* directs sont supprimés après avoir été copiés dans xp_metadata.
+    """
+    metadata = {}
+
+    # Récupérer les métadonnées existantes (si présentes) - mais pas ilvl
+    if 'xp_metadata' in para:
+        for key, value in para['xp_metadata'].items():
+            if key != 'ilvl':  # Exclure ilvl des metadata copiées
+                metadata[key] = value
+
+    # Récupérer TOUS les champs xp_* du paragraphe (en tant que propriétés directes)
+    # Ces champs marquent le paragraphe comme ayant des propriétés XP
+    has_xp_property = False
+
+    if 'xp_split_part' in para:
+        metadata['xp_split_part'] = para['xp_split_part']
+        has_xp_property = True
+    if 'xp_bullet' in para:
+        metadata['xp_bullet'] = para['xp_bullet']
+        has_xp_property = True
+    if 'xp_technical' in para:
+        metadata['xp_technical'] = para['xp_technical']
+        has_xp_property = True
+    if 'xp_technical_bullet' in para:
+        metadata['xp_technical_bullet'] = para['xp_technical_bullet']
+        has_xp_property = True
+    if 'xp_entry_start' in para:
+        metadata['xp_entry_start'] = para['xp_entry_start']
+        has_xp_property = True
+
+    # IMPORTANT: Ajouter le champ xp_metadata au paragraphe SEULEMENT s'il a des propriétés XP
+    # Ne pas créer de xp_metadata vide ou seulement basée sur ilvl
+    if has_xp_property or metadata:
+        para['xp_metadata'] = metadata
+    elif 'xp_metadata' in para:
+        # Si aucune propriété XP et pas de metadata existante, supprimer le champ vide
+        del para['xp_metadata']
+
+    # Nettoyer les flags xp_* directs du paragraphe après les avoir copiés dans xp_metadata
+    # Garder SEULEMENT dans xp_metadata, pas en propriété directe
+    for key in ['xp_split_part', 'xp_bullet', 'xp_technical', 'xp_technical_bullet', 'xp_entry_start']:
+        if key in para:
+            del para[key]
+
 def add_empty_paragraphs_around_tables(data: Dict[str, Any]) -> None:
     """
     Ajoute un paragraphe vide AVANT et APRÈS chaque table du document.
@@ -1903,15 +2137,15 @@ def remove_double_paras_and_spaces (data: Dict[str, Any]) -> None:
 def recalculate_indices(data: Dict[str, Any]) -> None:
     """
     Recalcule les indices de tous les éléments du document de manière continue.
-    
+
     Après les transformations (ajout/suppression d'éléments), les indices peuvent avoir
     des trous. Cette fonction les recalcule de 0 à n de manière séquentielle.
-    
+
     Args:
         data: Structure du document JSON (modifiée in-place)
     """
     content = data.get('document', {}).get('content', [])
-    
+
     for i, element in enumerate(content):
         element['index'] = i
 
@@ -2281,6 +2515,10 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # Appliquer le style DC_T1_Sections aux headers de section
     apply_section_header_styles(data)
 
+    # Détecter les patterns XP sur tous les paragraphes (même ceux non-splittés)
+    # DOIT ÊTRE AVANT apply_xp_bullet_flags_and_levels car elle se sert de xp_entry_start
+    detect_xp_patterns(data)
+
     # Flagger les bullets des XP entries et ajuster les ilvl si nécessaire
     apply_xp_bullet_flags_and_levels(data)
 
@@ -2322,6 +2560,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
 
     # Recalculer les indices de manière continue après toutes les transformations
     recalculate_indices(data)
+
+    # Préserver et expliciter tous les tags xp_* pour vérification des détections
+    preserve_xp_metadata(data)
 
     # Appliquer les styles
     apply_styles_in_json(data)
