@@ -26,8 +26,8 @@ COPY requirements-api.txt .
 RUN pip install --no-cache-dir -r requirements-api.txt
 
 # Copy application code (tools3 module and assets)
-COPY tools3 /app/tools3
-COPY assets /app/assets
+COPY tools3 /app/tools
+COPY assets/TEMPLATE.docx /app/template/TEMPLATE.docx
 COPY app.py /app/app.py
 COPY index.html /app/index.html
 

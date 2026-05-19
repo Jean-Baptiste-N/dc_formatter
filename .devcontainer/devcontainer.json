@@ -1,7 +1,8 @@
 {
   "name": "DC Formatter Dev",
-  "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  
+  "image": "dc-formatter:latest",
+  "workspaceFolder": "/app",
+
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
       "version": "latest"
@@ -16,6 +17,7 @@
         "ms-python.debugpy",
         "charliermarsh.ruff",
         "ms-vscode-remote.remote-containers",
+        "ms-vscode.makefile-tools",
         "docker"
       ],
       "settings": {
@@ -34,12 +36,12 @@
     }
   },
 
-  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements-api.txt && pip install pytest black flake8 pytest-asyncio",
+  "postCreateCommand": "pip install --upgrade pip && pip install -r requirements-api.txt && pip install pytest black flake8 pytest-asyncio httpx",
 
-  "remoteUser": "vscode",
+  "remoteUser": "dcformatter",
 
   "mounts": [
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,readonly",
+    "source=${localEnv:HOME}/.ssh,target=/home/dcformatter/.ssh,readonly",
     "source=/var/run/docker.sock,target=/var/run/docker.sock"
   ],
 
