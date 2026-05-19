@@ -1,0 +1,82 @@
+# Version control
+.git
+.gitignore
+.github
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+
+# Virtual environments and caches
+.venv
+.env
+.env.local
+.env.*.local
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Development and test files
+.pytest_cache
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.flake8
+
+# Jupyter and notebooks
+.ipynb_checkpoints
+*.ipynb
+
+# Build outputs (we don't need these in production)
+*.pyc
+.pytest_cache
+.mypy_cache
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Docker files (not needed in image)
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.circleci
+
+# Documentation
+Z_DOCUMENTATION
+README.md
+fixes_to_do.md
+
+# Development directories
+test/
+archive/
+assets/
+
+# Output directories (these can be mounted as volumes)
+# OUTPUT1_XML-RAW/
+# OUTPUT2_JSON-RAW/
+# OUTPUT3_JSON-TRANSFORMED/
+# OUTPUT4_DOCX-RESULT/

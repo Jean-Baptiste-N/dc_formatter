@@ -1287,7 +1287,7 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
         else:
             if not is_single_xp_date(date_body):
                 return [para]
-            date_text = f"{prefix}{re.sub(r'\s*([/–-])\s*', r'\1', date_body)}"
+            date_text = prefix + re.sub(r'\s*([/–-])\s*', r'\1', date_body)
     remaining_after_date = text[colon_match.end():].strip()
 
     # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
