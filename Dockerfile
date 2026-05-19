@@ -1,4 +1,6 @@
-# Build stage for Python 3.11
+# DC Formatter - All-in-One Image
+# Single container with API, Frontend, and Pipeline
+
 FROM python:3.11-slim
 
 # Set environment variables for Python
@@ -17,27 +19,34 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy production requirements first for better layer caching
-COPY requirements-prod.txt .
+# Copy requirements (API + pipeline)
+COPY requirements-api.txt .
 
-# Install Python dependencies (production-only)
-RUN pip install --no-cache-dir -r requirements-prod.txt
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements-api.txt
 
 # Copy application code (tools3 module and assets)
 COPY tools3 /app/tools3
 COPY assets /app/assets
+COPY app.py /app/app.py
+COPY index.html /app/index.html
 
-# Create non-root user for security
+# Create non-root user for security with home directory
 RUN groupadd -g 1000 dcformatter && \
-    useradd -u 1000 -g 1000 -s /sbin/nologin -c "Docker app user" dcformatter && \
-    chown -R dcformatter:dcformatter /app
+    useradd -m -u 1000 -g 1000 -s /bin/bash -c "Docker app user" dcformatter && \
+    chown -R dcformatter:dcformatter /app && \
+    mkdir -p /home/dcformatter/.vscode-server && \
+    chown -R dcformatter:dcformatter /home/dcformatter
 
 # Switch to non-root user
 USER dcformatter
 
-# Health check to verify the application can be called
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python3 -m tools3.pipeline --help > /dev/null 2>&1 || exit 1
+# Expose API port
+EXPOSE 8000
 
-# Default command - show help
-CMD ["python3", "-m", "tools3.pipeline", "--help"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python3 -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
+
+# Start API with FastAPI + Uvicorn
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

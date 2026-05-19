@@ -1,11 +1,12 @@
 version: '3.8'
 
 services:
-  dc-formatter-api:
+  dc-formatter:
     build:
       context: .
-      dockerfile: Dockerfile.api
-    container_name: dc-formatter-api
+      dockerfile: Dockerfile
+    image: dc-formatter:latest
+    container_name: dc-formatter
     ports:
       - "8000:8000"
     volumes:
