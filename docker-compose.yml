@@ -3,15 +3,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    user: "1000:1000"  # Run as non-root user (uid:gid)
     image: dc-formatter:latest
     container_name: dc-formatter
     ports:
       - "8000:8000"
     volumes:
       # Input documents via upload API
-      - ./uploads:/app/DC_SOURCES
+      - ./app/DC_SOURCES:/app/DC_SOURCES
       # Output results (corresponds to OUTPUT4_DOCX-RESULT)
-      - ./output:/app/OUTPUT4_DOCX-RESULT
+      - ./app/OUTPUT4_DOCX-RESULT:/app/OUTPUT4_DOCX-RESULT
     environment:
       # Application configuration
       PYTHONUNBUFFERED: "1"
