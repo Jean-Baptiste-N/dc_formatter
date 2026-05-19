@@ -15,11 +15,11 @@ from typing import Optional
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from tools3.extract_xml_raw import export_all_xml
-from tools3.parse_template import extract_page_dimensions_from_template
-from tools3.parse_xml_raw_to_json_raw import xml_to_json
-from tools3.process_json_raw_to_json_transformed import apply_tags_and_styles
-from tools3.render_json_transformed_to_docx import json_to_docx
+from tools.extract_xml_raw import export_all_xml
+from tools.parse_template import extract_page_dimensions_from_template
+from tools.parse_xml_raw_to_json_raw import xml_to_json
+from tools.process_json_raw_to_json_transformed import apply_tags_and_styles
+from tools.render_json_transformed_to_docx import json_to_docx
 
 # Configure logging
 logging.basicConfig(
@@ -30,9 +30,14 @@ logger = logging.getLogger(__name__)
 
 # Constants
 TEMPLATE_PATH = Path("assets/TEMPLATE.docx")
-UPLOAD_DIR = Path("uploads")
-OUTPUT_DIR = Path("output")
+UPLOAD_DIR = Path("DC_SOURCES")  # Bind volume from ./uploads
+OUTPUT_DIR = Path("OUTPUT4_DOCX-RESULT")  # Bind volume to ./output
+# Create output directories
 UPLOAD_DIR.mkdir(exist_ok=True)
+OUTPUT_DIR.mkdir(exist_ok=True)
+Path("OUTPUT1_XML-RAW").mkdir(exist_ok=True)
+Path("OUTPUT2_JSON-RAW").mkdir(exist_ok=True)
+Path("OUTPUT3_JSON-TRANSFORMED").mkdir(exist_ok=True)
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 app = FastAPI(

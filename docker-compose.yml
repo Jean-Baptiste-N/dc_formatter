@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   dc-formatter:
     build:
@@ -10,12 +8,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      # Input documents (read-only)
-      - ./DC_SOURCES:/app/DC_SOURCES:ro
-      # Output directory (bind volume - files persisted on host)
-      - ./output:/app/output
-      # Uploads temporary storage
-      - dc-uploads:/app/uploads
+      # Input documents via upload API
+      - ./uploads:/app/DC_SOURCES
+      # Output results (corresponds to OUTPUT4_DOCX-RESULT)
+      - ./output:/app/OUTPUT4_DOCX-RESULT
     environment:
       # Application configuration
       PYTHONUNBUFFERED: "1"
