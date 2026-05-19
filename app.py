@@ -30,9 +30,14 @@ logger = logging.getLogger(__name__)
 # Constants
 TEMPLATE_PATH = Path("template/TEMPLATE.docx")
 UPLOAD_DIR = Path("DC_SOURCES")  # Bind volume from ./uploads
-OUTPUT_DIR = Path("OUTPUT4_DOCX-RESULT")  # Bind volume to ./output
+OUTPUT_DIR = Path("OUTPUTS_FORMATTED")  # Bind volume to ./output
+OUTPUT1_XML_RAW = Path("OUTPUT1_XML-RAW")  # Intermediate: Raw XML
+OUTPUT2_JSON_RAW = Path("OUTPUT2_JSON-RAW")  # Intermediate: Raw JSON
+OUTPUT3_JSON_TRANSFORMED = Path("OUTPUT3_JSON-TRANSFORMED")  # Intermediate: Transformed JSON
+OUTPUT4_DOCX_RESULT = Path("OUTPUT4_DOCX-RESULT")  # Final: DOCX result
+
 # Create output directories with proper permissions
-for output_path in [UPLOAD_DIR, OUTPUT_DIR, Path("OUTPUT1_XML-RAW"), Path("OUTPUT2_JSON-RAW"), Path("OUTPUT3_JSON-TRANSFORMED")]:
+for output_path in [UPLOAD_DIR, OUTPUT_DIR, OUTPUT1_XML_RAW, OUTPUT2_JSON_RAW, OUTPUT3_JSON_TRANSFORMED, OUTPUT4_DOCX_RESULT]:
     try:
         output_path.mkdir(exist_ok=True, mode=0o777)
         # Ensure directory is writable
@@ -96,7 +101,7 @@ async def process_document(
         file: DOCX file to process
 
     Returns:
-        Processed DOCX file from OUTPUT4_DOCX-RESULT directory
+        Processed DOCX file into OUTPUTS_FORMATTED directory
     """
     if not file.filename.endswith('.docx'):
         raise HTTPException(
@@ -137,44 +142,46 @@ async def process_document(
         dims = extract_page_dimensions_from_template(TEMPLATE_PATH)
         logger.info(f"Template dimensions: {dims}")
 
-        # Stage 1: Extract XML (saves to temp_dir)
+        # Stage 1: Extract XML (saves to OUTPUT1_XML_RAW)
         logger.info("Stage 1: Extracting XML from DOCX...")
-        global_xml_path = export_all_xml(temp_source_docx, temp_dir)
-        logger.info(f"XML extracted: {global_xml_path}")
+        global_xml_path = export_all_xml(temp_source_docx, str(OUTPUT1_XML_RAW))
+        logger.info(f"✓ XML extracted to OUTPUT1: {global_xml_path}")
 
-        # Stage 2: Convert XML to JSON raw (saves to temp_dir)
+        # Stage 2: Convert XML to JSON raw (saves to OUTPUT2_JSON_RAW)
         logger.info("Stage 2: Converting XML to JSON (raw)...")
-        raw_json_path = xml_to_json(global_xml_path, temp_dir)
-        logger.info(f"Raw JSON created: {raw_json_path}")
+        raw_json_path = xml_to_json(global_xml_path, str(OUTPUT2_JSON_RAW))
+        logger.info(f"✓ Raw JSON created in OUTPUT2: {raw_json_path}")
 
-        # Stage 3: Transform JSON (apply tags and styles, saves to temp_dir)
+        # Stage 3: Transform JSON (apply tags and styles, saves to OUTPUT3_JSON_TRANSFORMED)
         logger.info("Stage 3: Transforming JSON (applying tags and styles)...")
-        transformed_json_path = apply_tags_and_styles(raw_json_path, temp_dir, dims)
-        logger.info(f"Transformed JSON created: {transformed_json_path}")
+        transformed_json_path = apply_tags_and_styles(raw_json_path, str(OUTPUT3_JSON_TRANSFORMED), dims)
+        logger.info(f"✓ Transformed JSON created in OUTPUT3: {transformed_json_path}")
 
-        # Stage 4: Render back to DOCX (saves to OUTPUT4)
+        # Stage 4: Render back to DOCX (saves to OUTPUT4 and OUTPUT_DIR)
         logger.info("Stage 4: Rendering JSON to DOCX...")
-        final_docx_path = json_to_docx(transformed_json_path, TEMPLATE_PATH, OUTPUT_DIR)
-        logger.info(f"Final DOCX created: {final_docx_path}")
-        logger.info(f"Successfully processed document: {file.filename}")
+        final_docx_path = json_to_docx(transformed_json_path, TEMPLATE_PATH, str(OUTPUT4_DOCX_RESULT))
+        logger.info(f"✓ Final DOCX created in OUTPUT4: {final_docx_path}")
 
-        # Try to copy final result to OUTPUT4 output directory
+        # Also copy to OUTPUTS_FORMATTED for download
         try:
-            output_filename = f"processed_{file.filename}"
+            output_filename = f"{Path(file.filename).stem}_formatted.docx"
             output_path = OUTPUT_DIR / output_filename
-            logger.info(f"Copying result to output directory: {output_path}")
+            logger.info(f"Copying result to OUTPUTS_FORMATTED: {output_path}")
             shutil.copy2(final_docx_path, output_path)
-            logger.info(f"✓ Result copied to OUTPUT4: {output_path}")
+            logger.info(f"✓ Result copied to OUTPUTS_FORMATTED: {output_path}")
+            final_docx_path = output_path
         except PermissionError:
-            logger.warning(f"⚠ Could not copy to OUTPUT4 (permission denied) - result still available from temp")
+            logger.warning(f"⚠ Could not copy to OUTPUTS_FORMATTED (permission denied) - using OUTPUT4 version")
         except Exception as e:
-            logger.warning(f"⚠ Could not copy to OUTPUT4: {e} - result still available from temp")
+            logger.warning(f"⚠ Could not copy to OUTPUTS_FORMATTED: {e} - using OUTPUT4 version")
+
+        logger.info(f"Successfully processed document: {file.filename}")
 
         # Return the processed file for download
         return FileResponse(
             path=final_docx_path,
             media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            filename=f"processed_{file.filename}"
+            filename=f"{file.filename}_formatted.docx"
         )
 
     except Exception as e:
@@ -207,46 +214,41 @@ async def process_batch(
     dims = extract_page_dimensions_from_template(TEMPLATE_PATH)
 
     for file in files:
+        if not file.filename.endswith('.docx'):
+            results.append({
+                "filename": file.filename,
+                "status": "error",
+                "error": "File must be DOCX format"
+            })
+            continue
+
         try:
-            if not file.filename.endswith('.docx'):
-                results.append({
-                    "filename": file.filename,
-                    "status": "error",
-                    "error": "File must be DOCX format"
-                })
-                continue
+            logger.info(f"Batch: Processing {file.filename}")
 
-            temp_dir = Path(tempfile.mkdtemp(prefix="dc_formatter_"))
+            # Save to DC_SOURCES
+            source_docx = UPLOAD_DIR / file.filename
+            with open(source_docx, "wb") as f:
+                content = await file.read()
+                f.write(content)
+            logger.info(f"Batch: Saved {file.filename} to DC_SOURCES")
 
-            try:
-                logger.info(f"Batch: Processing {file.filename}")
+            # Execute pipeline with proper output directories
+            global_xml_path = export_all_xml(source_docx, str(OUTPUT1_XML_RAW))
+            raw_json_path = xml_to_json(global_xml_path, str(OUTPUT2_JSON_RAW))
+            transformed_json_path = apply_tags_and_styles(raw_json_path, str(OUTPUT3_JSON_TRANSFORMED), dims)
+            final_docx_path = json_to_docx(transformed_json_path, TEMPLATE_PATH, str(OUTPUT4_DOCX_RESULT))
 
-                # Save to DC_SOURCES
-                source_docx = UPLOAD_DIR / file.filename
-                with open(source_docx, "wb") as f:
-                    content = await file.read()
-                    f.write(content)
-                logger.info(f"Batch: Saved {file.filename} to DC_SOURCES")
+            # Copy to OUTPUTS_FORMATTED for download
+            output_filename = f"{Path(file.filename).stem}_formatted.docx"
+            output_path = OUTPUT_DIR / output_filename
+            shutil.copy2(final_docx_path, output_path)
 
-                # Execute pipeline
-                global_xml_path = export_all_xml(source_docx, temp_dir)
-                raw_json_path = xml_to_json(global_xml_path, temp_dir)
-                transformed_json_path = apply_tags_and_styles(raw_json_path, temp_dir, dims)
-                final_docx_path = json_to_docx(transformed_json_path, TEMPLATE_PATH, OUTPUT_DIR)
-
-                results.append({
-                    "filename": file.filename,
-                    "status": "success",
-                    "output_path": str(final_docx_path)
-                })
-                logger.info(f"Batch: Successfully processed {file.filename}")
-
-            finally:
-                # Cleanup temp dir for this file
-                try:
-                    shutil.rmtree(temp_dir)
-                except Exception as e:
-                    logger.warning(f"Could not remove temp directory {temp_dir}: {e}")
+            results.append({
+                "filename": file.filename,
+                "status": "success",
+                "output_path": str(output_path)
+            })
+            logger.info(f"Batch: Successfully processed {file.filename}")
 
         except Exception as e:
             logger.error(f"Batch error for {file.filename}: {str(e)}")

@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    user: "1000:1000"  # Run as non-root user (uid:gid)
+    # user: "1000:1000"  # Run as non-root user (uid:gid)
     image: dc-formatter:latest
     container_name: dc-formatter
     ports:
@@ -11,8 +11,11 @@ services:
     volumes:
       # Input documents via upload API
       - ./app/DC_SOURCES:/app/DC_SOURCES
-      # Output results (corresponds to OUTPUT4_DOCX-RESULT)
+      - ./app/OUTPUT1_XML-RAW:/app/OUTPUT1_XML-RAW
+      - ./app/OUTPUT2_JSON-RAW:/app/OUTPUT2_JSON-RAW
+      - ./app/OUTPUT3_JSON-TRANSFORMED:/app/OUTPUT3_JSON-TRANSFORMED
       - ./app/OUTPUT4_DOCX-RESULT:/app/OUTPUT4_DOCX-RESULT
+      - ./app/OUTPUTS_FORMATTED:/app/OUTPUTS_FORMATTED
     environment:
       # Application configuration
       PYTHONUNBUFFERED: "1"
@@ -41,3 +44,4 @@ volumes:
 networks:
   default:
     name: dc-formatter-network
+    external: true
