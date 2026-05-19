@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  dc-formatter-api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: dc-formatter-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Input documents (read-only)
+      - ./DC_SOURCES:/app/DC_SOURCES:ro
+      # Output directory (bind volume - files persisted on host)
+      - ./output:/app/output
+      # Uploads temporary storage
+      - dc-uploads:/app/uploads
+    environment:
+      # Application configuration
+      PYTHONUNBUFFERED: "1"
+      LOG_LEVEL: "INFO"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+    # Resource limits (ajustez selon vos besoins)
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2G
+        reservations:
+          cpus: '1'
+          memory: 1G
+
+volumes:
+  dc-uploads:
+    driver: local
+
+networks:
+  default:
+    name: dc-formatter-network

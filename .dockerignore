@@ -73,7 +73,6 @@ fixes_to_do.md
 # Development directories
 test/
 archive/
-assets/
 
 # Output directories (these can be mounted as volumes)
 # OUTPUT1_XML-RAW/

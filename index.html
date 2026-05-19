@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DC Formatter - Document Processor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .api-status {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            transition: background 0.3s;
+        }
+
+        .status-dot.healthy {
+            background: #4caf50;
+        }
+
+        .status-text {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 40px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background: #f8f9ff;
+        }
+
+        .file-input-label:hover {
+            background: #f0f2ff;
+            border-color: #764ba2;
+        }
+
+        .file-input-label.dragover {
+            background: #e8ebff;
+            border-color: #764ba2;
+        }
+
+        .file-name {
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-process {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-process:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-process:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-clear {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-clear:hover {
+            background: #e0e0e0;
+        }
+
+        .progress {
+            display: none;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #f0f0f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            width: 0;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { width: 0; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .download-link:hover {
+            background: #45a049;
+        }
+
+        .info {
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1565c0;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f0f0f0;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .api-url {
+            color: #666;
+            font-size: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f0;
+            text-align: center;
+        }
+
+        .api-url code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 DC Formatter</h1>
+            <p>Upload your DOCX document for processing</p>
+        </div>
+
+        <div class="api-status">
+            <div class="status-dot" id="statusDot"></div>
+            <div class="status-text" id="statusText">Checking API...</div>
+        </div>
+
+        <div class="info">
+            📄 Upload a DOCX file. It will be processed through the pipeline and saved to the output folder.
+        </div>
+
+        <form id="uploadForm">
+            <div class="form-group">
+                <label>Select DOCX File</label>
+                <div class="file-input-wrapper">
+                    <input 
+                        type="file" 
+                        id="fileInput" 
+                        class="file-input" 
+                        accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        required
+                    >
+                    <label for="fileInput" class="file-input-label" id="fileInputLabel">
+                        <span>📁 Click to browse or drag file here</span>
+                        <span class="file-name" id="fileName"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button type="submit" class="btn-process" id="processBtn">Process Document</button>
+                <button type="button" class="btn-clear" id="clearBtn">Clear</button>
+            </div>
+        </form>
+
+        <div class="progress" id="progress">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <p style="text-align: center; margin-top: 10px; color: #666;">
+                <span class="spinner"></span> Processing...
+            </p>
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <div class="api-url">
+            API Endpoint: <code id="apiUrl">http://localhost:8000</code>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = window.location.protocol + '//' + window.location.hostname + ':8000';
+        const fileInput = document.getElementById('fileInput');
+        const fileInputLabel = document.getElementById('fileInputLabel');
+        const fileName = document.getElementById('fileName');
+        const form = document.getElementById('uploadForm');
+        const processBtn = document.getElementById('processBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const message = document.getElementById('message');
+        const progress = document.getElementById('progress');
+        const statusDot = document.getElementById('statusDot');
+        const statusText = document.getElementById('statusText');
+        const apiUrlElement = document.getElementById('apiUrl');
+
+        // Set API URL
+        apiUrlElement.textContent = API_URL;
+
+        // Check API health
+        async function checkHealth() {
+            try {
+                const response = await fetch(`${API_URL}/health`, { 
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                if (response.ok) {
+                    statusDot.classList.add('healthy');
+                    statusText.textContent = '✅ API is running';
+                } else {
+                    statusDot.classList.remove('healthy');
+                    statusText.textContent = '⚠️ API error';
+                }
+            } catch (error) {
+                statusDot.classList.remove('healthy');
+                statusText.textContent = '❌ Cannot reach API';
+                console.error('Health check error:', error);
+            }
+        }
+
+        // Initial health check
+        checkHealth();
+        // Check every 30 seconds
+        setInterval(checkHealth, 30000);
+
+        // File input handling
+        fileInput.addEventListener('change', (e) => {
+            updateFileName();
+        });
+
+        // Drag and drop
+        fileInputLabel.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileInputLabel.classList.add('dragover');
+        });
+
+        fileInputLabel.addEventListener('dragleave', () => {
+            fileInputLabel.classList.remove('dragover');
+        });
+
+        fileInputLabel.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileInputLabel.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                updateFileName();
+            }
+        });
+
+        function updateFileName() {
+            if (fileInput.files.length > 0) {
+                fileName.textContent = `📄 ${fileInput.files[0].name}`;
+            } else {
+                fileName.textContent = '';
+            }
+        }
+
+        // Clear button
+        clearBtn.addEventListener('click', () => {
+            fileInput.value = '';
+            fileName.textContent = '';
+            message.className = 'message';
+            message.textContent = '';
+            progress.style.display = 'none';
+        });
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            if (!fileInput.files.length) {
+                showMessage('Please select a file', 'error');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            
+            // Validate file type
+            if (!file.name.endsWith('.docx')) {
+                showMessage('Please select a DOCX file', 'error');
+                return;
+            }
+
+            await processFile(file);
+        });
+
+        async function processFile(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+
+            try {
+                processBtn.disabled = true;
+                progress.style.display = 'block';
+                message.className = 'message';
+                message.textContent = '';
+
+                const response = await fetch(`${API_URL}/process`, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'cors'
+                });
+
+                progress.style.display = 'none';
+
+                if (response.ok) {
+                    // Get filename from response
+                    const contentDisposition = response.headers.get('content-disposition');
+                    let filename = 'processed_document.docx';
+                    if (contentDisposition) {
+                        const match = contentDisposition.match(/filename="?([^"]+)"?/);
+                        if (match) filename = match[1];
+                    }
+
+                    // Download file
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+
+                    showMessage(
+                        `✅ Success! Document processed and saved to the output folder.`,
+                        'success'
+                    );
+                    
+                    // Reset form
+                    form.reset();
+                    fileName.textContent = '';
+                } else {
+                    const error = await response.json();
+                    showMessage(
+                        `❌ Error: ${error.detail || 'Unknown error'}`,
+                        'error'
+                    );
+                }
+            } catch (error) {
+                progress.style.display = 'none';
+                showMessage(
+                    `❌ Error: ${error.message}. Make sure the API is running on ${API_URL}`,
+                    'error'
+                );
+                console.error('Upload error:', error);
+            } finally {
+                processBtn.disabled = false;
+            }
+        }
+
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = `message ${type}`;
+        }
+    </script>
+</body>
+</html>
