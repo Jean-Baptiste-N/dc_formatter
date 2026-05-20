@@ -8,7 +8,7 @@ from docx.text.run import Run
 
 
 # Path to the template document, which defines page style and numbering and contains the EPSYL logo
-TEMPLATE_DC_PATH = "assets/template.docx"
+TEMPLATE_DC_PATH = "TEMPLATE/TEMPLATE.docx"
 
 
 # Default font property values used when no local values can be found

@@ -10,7 +10,7 @@ from docx import Document
 
 # Import local modules
 sys.path.insert(0, str(Path(__file__).parent))
-from tools2.hierarchy_detector import HierarchyDetector
+from tools_explo.hierarchy_detector import HierarchyDetector
 
 
 def reformat_and_apply_styles(input_path: str, output_path: str, 

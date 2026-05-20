@@ -17,9 +17,9 @@ from docx.table import Table
 from docx.text.paragraph import Paragraph
 from docx.text.run import Run
 
-from tools.utils import get_ilvl
-from tools.utils import rec_add_xml_children
-from tools.utils import TEMPLATE_DC_PATH
+from tools_origin.utils import get_ilvl
+from tools_origin.utils import rec_add_xml_children
+from tools_origin.utils import TEMPLATE_DC_PATH
 
 
 BLACK = "000000"

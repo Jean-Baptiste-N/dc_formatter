@@ -17,7 +17,7 @@
 # Description: Orchestre les 4 phases complètes en une seule commande
 #
 # Syntaxe:
-#   python3 -m tools3.pipeline full -s DOCUMENT.docx [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline full -s DOCUMENT.docx [-o OUTPUT_DIR]
 #
 # Paramètres:
 #   -s, --source DOCUMENT.docx    : Nom du fichier dans DC_SOURCES/ ou chemin complet
@@ -25,13 +25,13 @@
 #                                   (défaut: répertoire courant)
 
 # Exemple 1: Pipeline simple
-python3 -m tools3.pipeline full -s DC_JNZ_2026.docx
+python3 -m tools.pipeline full -s DC_JNZ_2026.docx
 
 # Exemple 2: Pipeline avec output custom
-python3 -m tools3.pipeline full -s DC_BM2.docx -o results/
+python3 -m tools.pipeline full -s DC_BM2.docx -o results/
 
 # Exemple 3: Fichier avec chemin complet
-python3 -m tools3.pipeline full -s /chemin/complet/document.docx
+python3 -m tools.pipeline full -s /chemin/complet/document.docx
 
 # Résultat:
 #   OUTPUT1_XML-RAW/DC_JNZ_2026_GLOBAL.xml
@@ -50,10 +50,10 @@ python3 -m tools3.pipeline full -s /chemin/complet/document.docx
 # Utile: Quand vous voulez examiner la structure brute avant transformation
 
 # Syntaxe:
-#   python3 -m tools3.pipeline extract -s DOCUMENT.docx [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline extract -s DOCUMENT.docx [-o OUTPUT_DIR]
 
 # Exemple:
-python3 -m tools3.pipeline extract -s DC_JNZ_2026.docx
+python3 -m tools.pipeline extract -s DC_JNZ_2026.docx
 
 # Résultat:
 #   OUTPUT1_XML-RAW/DC_JNZ_2026_GLOBAL.xml
@@ -72,13 +72,13 @@ python3 -m tools3.pipeline extract -s DC_JNZ_2026.docx
 #    → -o affecte la sortie finale
 
 # Syntaxe - Cas 1 (inférence depuis DOCX):
-#   python3 -m tools3.pipeline transform-render -s DOCUMENT.docx [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline transform-render -s DOCUMENT.docx [-o OUTPUT_DIR]
 
 # Exemple 1a: Inférence simple (JSON RAW dans dossier par défaut)
-python3 -m tools3.pipeline transform-render -s DC_JNZ_2026.docx
+python3 -m tools.pipeline transform-render -s DC_JNZ_2026.docx
 
 # Exemple 1b: Inférence + output custom (cherche JSON RAW dans OUTPUT2_JSON-RAW/, résultats dans output_dir)
-python3 -m tools3.pipeline transform-render -s DC_JNZ_2026.docx -o renders/
+python3 -m tools.pipeline transform-render -s DC_JNZ_2026.docx -o renders/
 
 # Résultat (Cas 1):
 #   Cherche: OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
@@ -86,13 +86,13 @@ python3 -m tools3.pipeline transform-render -s DC_JNZ_2026.docx -o renders/
 #   Crée: OUTPUT4_DOCX-RESULT/DC_JNZ_2026_GLOBAL_formatted.docx (ou renders/OUTPUT4_... avec -o)
 
 # Syntaxe - Cas 2 (JSON RAW direct):
-#   python3 -m tools3.pipeline transform-render -s JSON_RAW_FILE.json [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline transform-render -s JSON_RAW_FILE.json [-o OUTPUT_DIR]
 
 # Exemple 2a: JSON RAW direct
-python3 -m tools3.pipeline transform-render -s OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
+python3 -m tools.pipeline transform-render -s OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
 
 # Exemple 2b: JSON RAW direct + output custom
-python3 -m tools3.pipeline transform-render -s structures/custom_raw.json -o renders/
+python3 -m tools.pipeline transform-render -s structures/custom_raw.json -o renders/
 
 # Résultat (Cas 2):
 #   Utilise: structures/custom_raw.json (aucune inférence)
@@ -109,7 +109,7 @@ python3 -m tools3.pipeline transform-render -s structures/custom_raw.json -o ren
 # Aucun paramètre requis
 # Sortie: Affichage des dimensions du template par défaut
 
-python3 -m tools3.pipeline extract-dims
+python3 -m tools.pipeline extract-dims
 
 # Résultat:
 #   Affiche:
@@ -127,10 +127,10 @@ python3 -m tools3.pipeline extract-dims
 # Sortie: XML global uniquement (pas de conversion JSON)
 
 # Syntaxe:
-#   python3 -m tools3.pipeline extract-xml -s DOCUMENT.docx [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline extract-xml -s DOCUMENT.docx [-o OUTPUT_DIR]
 
 # Exemple:
-python3 -m tools3.pipeline extract-xml -s DC_JNZ_2026.docx
+python3 -m tools.pipeline extract-xml -s DC_JNZ_2026.docx
 
 # Résultat:
 #   OUTPUT1_XML-RAW/DC_JNZ_2026_GLOBAL.xml
@@ -142,10 +142,10 @@ python3 -m tools3.pipeline extract-xml -s DC_JNZ_2026.docx
 # Sortie: JSON RAW avec structure complète
 
 # Syntaxe:
-#   python3 -m tools3.pipeline xml-to-json -s XML_FILE.xml [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline xml-to-json -s XML_FILE.xml [-o OUTPUT_DIR]
 
 # Exemple:
-python3 -m tools3.pipeline xml-to-json -s OUTPUT1_XML-RAW/DC_JNZ_2026_GLOBAL.xml
+python3 -m tools.pipeline xml-to-json -s OUTPUT1_XML-RAW/DC_JNZ_2026_GLOBAL.xml
 
 # Résultat:
 #   OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
@@ -157,10 +157,10 @@ python3 -m tools3.pipeline xml-to-json -s OUTPUT1_XML-RAW/DC_JNZ_2026_GLOBAL.xml
 # Sortie: JSON TRANSFORMED avec structure enrichie
 
 # Syntaxe:
-#   python3 -m tools3.pipeline transform -s JSON_RAW.json [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline transform -s JSON_RAW.json [-o OUTPUT_DIR]
 
 # Exemple:
-python3 -m tools3.pipeline transform -s OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
+python3 -m tools.pipeline transform -s OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json
 
 # Résultat:
 #   OUTPUT3_JSON-TRANSFORMED/DC_JNZ_2026_GLOBAL_transformed.json
@@ -172,10 +172,10 @@ python3 -m tools3.pipeline transform -s OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.
 # Sortie: DOCX final formaté
 
 # Syntaxe:
-#   python3 -m tools3.pipeline render -s JSON_TRANSFORMED.json [-o OUTPUT_DIR]
+#   python3 -m tools.pipeline render -s JSON_TRANSFORMED.json [-o OUTPUT_DIR]
 
 # Exemple:
-python3 -m tools3.pipeline render -s OUTPUT3_JSON-TRANSFORMED/DC_JNZ_2026_GLOBAL_transformed.json
+python3 -m tools.pipeline render -s OUTPUT3_JSON-TRANSFORMED/DC_JNZ_2026_GLOBAL_transformed.json
 
 # Résultat:
 #   OUTPUT4_DOCX-RESULT/DC_JNZ_2026_GLOBAL_formatted.docx
@@ -186,19 +186,19 @@ python3 -m tools3.pipeline render -s OUTPUT3_JSON-TRANSFORMED/DC_JNZ_2026_GLOBAL
 # =============================================================================
 
 # Afficher l'aide générale
-python3 -m tools3.pipeline --help
+python3 -m tools.pipeline --help
 
 # Afficher l'aide d'une commande spécifique
-python3 -m tools3.pipeline full --help
+python3 -m tools.pipeline full --help
 
-python3 -m tools3.pipeline extract --help
-python3 -m tools3.pipeline transform-render --help
+python3 -m tools.pipeline extract --help
+python3 -m tools.pipeline transform-render --help
 
-python3 -m tools3.pipeline extract-dims --help
-python3 -m tools3.pipeline extract-xml --help
-python3 -m tools3.pipeline xml-to-json --help
-python3 -m tools3.pipeline transform --help
-python3 -m tools3.pipeline render --help
+python3 -m tools.pipeline extract-dims --help
+python3 -m tools.pipeline extract-xml --help
+python3 -m tools.pipeline xml-to-json --help
+python3 -m tools.pipeline transform --help
+python3 -m tools.pipeline render --help
 
 
 # =============================================================================
@@ -213,11 +213,11 @@ python3 -m tools3.pipeline render --help
 # Description: Archive un DOCX avec timestamp
 
 # Python:
-# from tools3.zip_docx import archive_docx
+# from tools.zip_docx import archive_docx
 # result = archive_docx('document.docx', 'archive/')
 
 # Exécuter l'archivage zip d'un docx pour l'explorer
-python3 -m tools3.zip_docx archive_docx -s DC_JNZ_2026.docx -o archive/
+python3 -m tools.zip_docx archive_docx -s DC_JNZ_2026.docx -o archive/
 
 
 # =============================================================================
@@ -230,7 +230,7 @@ python3 -m tools3.zip_docx archive_docx -s DC_JNZ_2026.docx -o archive/
 ls -la DC_SOURCES/DC_JNZ_2026.docx
 
 # Étape 2: Exécuter le pipeline complet
-python3 -m tools3.pipeline full -s DC_JNZ_2026.docx
+python3 -m tools.pipeline full -s DC_JNZ_2026.docx
 
 # Étape 3: Vérifier les résultats
 ls -la OUTPUT1_XML-RAW/
@@ -249,13 +249,13 @@ open OUTPUT4_DOCX-RESULT/DC_JNZ_2026_GLOBAL_formatted.docx
 # Scénario: Vous voulez examiner le JSON RAW avant transformation
 
 # Étape 1: Exécuter seulement Phase 1 (extraction)
-python3 -m tools3.pipeline extract -s DC_JNZ_2026.docx
+python3 -m tools.pipeline extract -s DC_JNZ_2026.docx
 
 # Étape 2: Examiner le JSON RAW
 cat OUTPUT2_JSON-RAW/DC_JNZ_2026_GLOBAL_raw.json | head -100
 
 # Étape 3: Si satisfait, continuer Phase 2
-python3 -m tools3.pipeline transform-render -s DC_JNZ_2026.docx
+python3 -m tools.pipeline transform-render -s DC_JNZ_2026.docx
 
 
 # =============================================================================
@@ -272,7 +272,7 @@ OUTPUT3_JSON-TRANSFORMED/  # Phase 3: JSON transformé
 OUTPUT4_DOCX-RESULT/    # Phase 4: DOCX final
 
 # Template par défaut
-assets/TEMPLATE.docx
+TEMPLATE/TEMPLATE.docx
 
 
 # =============================================================================
@@ -281,16 +281,16 @@ assets/TEMPLATE.docx
 
 # Erreur: "Fichier non trouvé"
 # Solution: Assurez-vous que le fichier est dans DC_SOURCES/ ou utilisez chemin complet
-python3 -m tools3.pipeline full -s DC_SOURCES/DC_JNZ_2026.docx
+python3 -m tools.pipeline full -s DC_SOURCES/DC_JNZ_2026.docx
 
-# Erreur: "Module not found: tools3"
+# Erreur: "Module not found: tools"
 # Solution: Assurez-vous d'être dans le répertoire /home/jbn/dc_formatter
 cd /home/jbn/dc_formatter
-python3 -m tools3.pipeline full -s DC_JNZ_2026.docx
+python3 -m tools.pipeline full -s DC_JNZ_2026.docx
 
 # Erreur: "Transformation failed"
 # Solution: Exécutez Phase 1 séparément pour vérifier XML/JSON RAW
-python3 -m tools3.pipeline extract -s DC_JNZ_2026.docx
+python3 -m tools.pipeline extract -s DC_JNZ_2026.docx
 # Vérifiez les fichiers avant de continuer
 
 
@@ -299,13 +299,13 @@ python3 -m tools3.pipeline extract -s DC_JNZ_2026.docx
 # =============================================================================
 
 # ✅ BON: Utiliser le pipeline complet (plus simple)
-python3 -m tools3.pipeline full -s document.docx
+python3 -m tools.pipeline full -s document.docx
 
 # ✅ BON: Utiliser chemins relatifs si fichier dans DC_SOURCES/
-python3 -m tools3.pipeline full -s document.docx
+python3 -m tools.pipeline full -s document.docx
 
 # ✅ BON: Spécifier output pour éviter mélange avec autres résultats
-python3 -m tools3.pipeline full -s document.docx -o results/project1/
+python3 -m tools.pipeline full -s document.docx -o results/project1/
 
 # ❌ MAUVAIS: Mélanger phases sans vérifier intermédiaires
 # (Difficile de déboguer si erreur)
@@ -321,14 +321,14 @@ python3 -m tools3.pipeline full -s document.docx -o results/project1/
 # Traiter plusieurs documents en boucle
 for doc in DC_SOURCES/*.docx; do
     echo "Traitement: $doc"
-    python3 -m tools3.pipeline full -s "$doc" -o "results/$(basename "$doc" .docx)/"
+    python3 -m tools.pipeline full -s "$doc" -o "results/$(basename "$doc" .docx)/"
 done
 
 # Extraire dimensions du template et sauvegarder dans fichier
-python3 -m tools3.pipeline extract-dims > template_dimensions.txt
+python3 -m tools.pipeline extract-dims > template_dimensions.txt
 
 # Pipeline avec vérification d'erreur
-python3 -m tools3.pipeline full -s document.docx && \
+python3 -m tools.pipeline full -s document.docx && \
     echo "✓ Pipeline réussi" || \
     echo "✗ Pipeline échoué"
 
@@ -341,12 +341,12 @@ python3 -m tools3.pipeline full -s document.docx && \
 # /home/jbn/dc_formatter/
 # ├── README.md
 # ├── requirements.txt
-# ├── assets/
+# ├── TEMPLATE/
 # │   └── TEMPLATE.docx
 # ├── DC_SOURCES/
 # │   ├── DC_JNZ_2026.docx
 # │   └── DC_BM2.docx
-# ├── tools3/
+# ├── tools/
 # │   ├── __init__.py
 # │   ├── pipeline.py
 # │   ├── extract_xml_raw.py

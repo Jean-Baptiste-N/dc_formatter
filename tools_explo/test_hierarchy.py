@@ -10,7 +10,7 @@ from tabulate import tabulate  # pip install tabulate
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "tools"))
 
-from tools2.hierarchy_detector import HierarchyDetector
+from tools_explo.hierarchy_detector import HierarchyDetector
 
 
 def test_document(doc_path: str) -> dict:

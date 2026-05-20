@@ -33,11 +33,11 @@ try:
     from .parse_template import extract_page_dimensions_from_template
 except (ImportError, ValueError):
     # Fallback pour exécution directe (python3 script.py)
-    from tools3.parse_template import extract_page_dimensions_from_template
+    from tools.parse_template import extract_page_dimensions_from_template
 
 # MARK: CONFIGURATION & CONSTANTES
 # ===== CONSTANTES =====
-TEMPLATE_PATH = 'assets/TEMPLATE.docx'
+TEMPLATE_PATH = 'TEMPLATE/TEMPLATE.docx'
 
 # ===== NAMESPACES =====
 NS = {

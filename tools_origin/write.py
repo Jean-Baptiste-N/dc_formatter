@@ -12,11 +12,11 @@ from docx.shared import RGBColor
 from docx.table import Table
 from docx.text.paragraph import Paragraph
 
-from tools.utils import get_font_props
-from tools.utils import get_format_props
-from tools.utils import get_ilvl
-from tools.utils import rec_add_xml_children
-from tools.utils import TEMPLATE_DC_PATH
+from tools_origin.utils import get_font_props
+from tools_origin.utils import get_format_props
+from tools_origin.utils import get_ilvl
+from tools_origin.utils import rec_add_xml_children
+from tools_origin.utils import TEMPLATE_DC_PATH
 
 
 def write_simplified_runs(src_p: Paragraph, dst_p: Paragraph) -> None:

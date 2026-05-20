@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import json
 from pathlib import Path
 
-docx_path = 'assets/TEMPLATE_DC_new.docx'
+docx_path = 'TEMPLATE/TEMPLATE.docx'
 
 # Extraire styles.xml
 with zipfile.ZipFile(docx_path, 'r') as z:

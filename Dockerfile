@@ -26,9 +26,9 @@ COPY requirements-api.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements-api.txt
 
-# Copy application code (tools3 module and assets)
-COPY tools3 /app/tools
-COPY assets/TEMPLATE.docx /app/template/TEMPLATE.docx
+# Copy application code tools and template
+COPY tools /app/tools
+COPY TEMPLATE /app/TEMPLATE
 COPY app.py /app/app.py
 COPY index.html /app/index.html
 COPY entrypoint.sh /app/entrypoint.sh

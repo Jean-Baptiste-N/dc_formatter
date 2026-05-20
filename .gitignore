@@ -34,7 +34,7 @@ htmlcov/
 .nox/
 .pytest_cache/
 /archive
-/assets/old
+/assets
 /DC_SOURCES
 /OUTPUT1_XML-RAW
 /OUTPUT2_JSON-RAW
@@ -47,3 +47,4 @@ API_QUICKSTART.md
 QUICKSTART.md
 DEPLOYMENT.md
 /app
+/.azure

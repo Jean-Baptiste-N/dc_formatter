@@ -38,14 +38,14 @@ try:
     from .render_json_transformed_to_docx import json_to_docx
 except (ImportError, ValueError):
     # Fallback pour exécution directe (python3 script.py)
-    from tools3.extract_xml_raw import export_all_xml
-    from tools3.parse_template import extract_page_dimensions_from_template
-    from tools3.parse_xml_raw_to_json_raw import xml_to_json
-    from tools3.process_json_raw_to_json_transformed import apply_tags_and_styles
-    from tools3.render_json_transformed_to_docx import json_to_docx
+    from tools.extract_xml_raw import export_all_xml
+    from tools.parse_template import extract_page_dimensions_from_template
+    from tools.parse_xml_raw_to_json_raw import xml_to_json
+    from tools.process_json_raw_to_json_transformed import apply_tags_and_styles
+    from tools.render_json_transformed_to_docx import json_to_docx
 
 # ===== CONSTANTES =====
-TEMPLATE_PATH = 'assets/TEMPLATE.docx'
+TEMPLATE_PATH = 'TEMPLATE/TEMPLATE.docx'
 SOURCE_DOCX_DIR = 'DC_SOURCES'
 OUTPUT_XML_RAW = 'OUTPUT1_XML-RAW'
 OUTPUT_JSON_RAW = 'OUTPUT2_JSON-RAW'
@@ -71,7 +71,7 @@ def _resolve_source_path(filename):
 
 
 def cmd_extract_dims(args):
-    """Extrait les dimensions du template DOCX (par défaut: assets/TEMPLATE.docx)"""
+    """Extrait les dimensions du template DOCX (par défaut: TEMPLATE/TEMPLATE.docx)"""
     print(f"\n🔧 ÉTAPE 1: EXTRACTION DES DIMENSIONS DU TEMPLATE")
     print(f"{'='*70}\n")
 
@@ -246,7 +246,7 @@ def cmd_transform_and_render(args):
 
         if not json_raw.exists():
             print(f"❌ Erreur: {json_raw} non trouvé")
-            print(f"   Exécutez d'abord: python3 -m tools3.pipeline extract -s {args.source}")
+            print(f"   Exécutez d'abord: python3 -m tools.pipeline extract -s {args.source}")
             sys.exit(1)
 
     # Dossiers de sortie pour cette phase
@@ -366,27 +366,27 @@ RÉSULTATS:
   - OUTPUT4_DOCX-RESULT/    → DOCX final généré
 
 TEMPLATE:
-  Utilise par défaut: assets/TEMPLATE.docx (pas besoin de le spécifier)
+  Utilise par défaut: TEMPLATE/TEMPLATE.docx (pas besoin de le spécifier)
 
 EXEMPLES:
   # Pipeline complète (d'un coup)
-  python -m tools3.pipeline full document.docx
+  python -m tools.pipeline full document.docx
 
   # Pipeline complète avec résultats dans un dossier custom
-  python -m tools3.pipeline full document.docx -o results/
+  python -m tools.pipeline full document.docx -o results/
 
   # Phase 1: Extraction (dims + xml + json raw)
-  python -m tools3.pipeline extract document.docx
+  python -m tools.pipeline extract document.docx
 
   # Phase 2: Transformation + Rendu (après phase 1)
-  python -m tools3.pipeline transform-render document.docx
+  python -m tools.pipeline transform-render document.docx
 
   # Commandes individuelles (rarement utilisées)
-  python -m tools3.pipeline extract-dims
-  python -m tools3.pipeline extract-xml document.docx
-  python -m tools3.pipeline xml-to-json input.xml output.json
-  python -m tools3.pipeline transform raw.json
-  python -m tools3.pipeline render transformed.json
+  python -m tools.pipeline extract-dims
+  python -m tools.pipeline extract-xml document.docx
+  python -m tools.pipeline xml-to-json input.xml output.json
+  python -m tools.pipeline transform raw.json
+  python -m tools.pipeline render transformed.json
         """
     )
 
@@ -397,7 +397,7 @@ EXEMPLES:
     # extract-dims
     extract_dims_parser = subparsers.add_parser(
         'extract-dims',
-        help='Extrait les dimensions du template DOCX (défaut: assets/TEMPLATE.docx)'
+        help='Extrait les dimensions du template DOCX (défaut: TEMPLATE/TEMPLATE.docx)'
     )
     extract_dims_parser.set_defaults(func=cmd_extract_dims)
 

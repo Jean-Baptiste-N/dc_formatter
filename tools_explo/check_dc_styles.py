@@ -2,7 +2,7 @@
 import zipfile
 import xml.etree.ElementTree as ET
 
-docx = 'assets/TEMPLATE_DC_new.docx'
+docx = 'TEMPLATE/TEMPLATE.docx'
 
 with zipfile.ZipFile(docx, 'r') as z:
     styles_xml = z.read('word/styles.xml')

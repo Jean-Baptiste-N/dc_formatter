@@ -125,7 +125,7 @@ def main():
     parser.add_argument(
         '--template',
         type=str,
-        default='assets/TEMPLATE.docx',
+        default='TEMPLATE/TEMPLATE.docx',
         help='Chemin du TEMPLATE.docx')
     args = parser.parse_args()
 

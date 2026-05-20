@@ -86,7 +86,7 @@ DC Formatter traite les documents Word selon un pipeline en 4 étapes:
 
 ### Composants Clés
 
-- **Template DOCX** (`assets/TEMPLATE.docx`): Référence pour dimensions et styles
+- **Template DOCX** (`TEMPLATE/TEMPLATE.docx`): Référence pour dimensions et styles
 - **Namespaces XML**: Standards OOXML (word, drawing, etc.)
 - **JSON intermédiaire**: Format de travail pour transformations
 - **Configuration**: Détecteurs de hiérarchie, keywords, dimensions
@@ -113,7 +113,7 @@ DC Formatter traite les documents Word selon un pipeline en 4 étapes:
 #### Exemple
 
 ```python
-from tools3.extract_xml_raw import export_all_xml
+from tools.extract_xml_raw import export_all_xml
 xml_file = export_all_xml("document.docx", "OUTPUT1_XML-RAW/")
 # Crée: OUTPUT1_XML-RAW/document_GLOBAL.xml
 ```
@@ -284,7 +284,7 @@ Responsable de l'extraction du contenu XML depuis le DOCX.
 Extrait les dimensions et paramètres du template DOCX.
 
 **Classe principale**:
-- `extract_page_dimensions_from_template(template_path)` → dict
+- `extract_page_dimensions_from_template(app/TEMPLATE/TEMPLATE.docx)` → dict
 
 **Dimensions extraites**:
 ```python

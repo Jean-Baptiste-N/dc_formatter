@@ -9,7 +9,7 @@ Usage:
 import sys
 from pathlib import Path
 from detect_custom_styles import detect_styles
-from tools2.generate_style_code import generate_from_json
+from tools_explo.generate_style_code import generate_from_json
 
 
 def analyze_and_generate(docx_path: str):

@@ -303,8 +303,8 @@ if __name__ == "__main__":
         print("Usage:")
         print("  python3 detect_styles_v2.py <docx> [dc|custom]")
         print("\nExemples:")
-        print("  python3 detect_styles_v2.py assets/TEMPLATE_DC_new.docx dc")
-        print("  python3 detect_styles_v2.py assets/TEMPLATE_DC_new.docx custom")
+        print("  python3 detect_styles_v2.py TEMPLATE/TEMPLATE.docx dc")
+        print("  python3 detect_styles_v2.py TEMPLATE/TEMPLATE.docx custom")
         sys.exit(1)
     
     docx_file = sys.argv[1]

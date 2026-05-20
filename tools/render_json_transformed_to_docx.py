@@ -15,7 +15,7 @@ from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 
 # # Approche template (2 lignes)
-# template_doc = Document('assets/TEMPLATE.docx')
+# template_doc = Document('TEMPLATE/TEMPLATE.docx')
 
 # KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", "dossier de competences", "dossier de competences"]
 # KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
@@ -481,8 +481,8 @@ def main():
 
     parser.add_argument(
         "-t", "--template",
-        default="assets/TEMPLATE.docx",
-        help="Chemin du template DOCX (défaut: assets/TEMPLATE.docx)"
+        default="TEMPLATE/TEMPLATE.docx",
+        help="Chemin du template DOCX (défaut: TEMPLATE/TEMPLATE.docx)"
     )
 
     parser.add_argument(
