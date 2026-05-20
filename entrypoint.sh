@@ -3,7 +3,7 @@ set -e
 
 # Fix permissions for bind-mounted volumes at runtime
 # This allows dcformatter user to write to volumes created by host user
-for dir in DC_SOURCES OUTPUT4_DOCX-RESULT; do
+for dir in DC_SOURCES OUTPUTS_FORMATTED; do
     if [ -d "$dir" ]; then
         echo "Fixing permissions for $dir..."
         chmod 777 "$dir" 2>/dev/null || true
@@ -12,7 +12,7 @@ for dir in DC_SOURCES OUTPUT4_DOCX-RESULT; do
 done
 
 # Ensure ephemeral volume directories have proper ownership
-for dir in OUTPUT1_XML-RAW OUTPUT2_JSON-RAW OUTPUT3_JSON-TRANSFORMED; do
+for dir in OUTPUT1_XML-RAW OUTPUT2_JSON-RAW OUTPUT3_JSON-TRANSFORMED OUTPUT4_DOCX-RESULT TEMPLATE; do
     if [ -d "$dir" ]; then
         chown -R dcformatter:dcformatter "$dir" 2>/dev/null || true
         chmod 777 "$dir" 2>/dev/null || true

@@ -511,7 +511,7 @@ docker-compose logs dc-formatter
   → Vérifier: `ls -la tools/`
 
 - ❌ Dockerfile corrompu
-  → Rebuild: `docker-compose build --no-cache`
+  → Rebuild complet sans cache: `docker-compose down && docker build --no-cache -t dc-formatter:latest . && docker-compose up -d`
 
 ### API répond lentement
 

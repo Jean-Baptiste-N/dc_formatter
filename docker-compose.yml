@@ -10,7 +10,7 @@ services:
       - "8000:8000"
     volumes:
       # Input documents via upload API
-      - ./app/TEMPLATE:/app/TEMPLATE
+      - ./TEMPLATE:/app/TEMPLATE
       - ./app/DC_SOURCES:/app/DC_SOURCES
       - ./app/OUTPUT1_XML-RAW:/app/OUTPUT1_XML-RAW
       - ./app/OUTPUT2_JSON-RAW:/app/OUTPUT2_JSON-RAW

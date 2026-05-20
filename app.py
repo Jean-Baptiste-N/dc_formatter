@@ -28,13 +28,13 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Constants
-TEMPLATE_PATH = Path("template/TEMPLATE.docx")
-UPLOAD_DIR = Path("DC_SOURCES")  # Bind volume from ./uploads
-OUTPUT_DIR = Path("OUTPUTS_FORMATTED")  # Bind volume to ./output
-OUTPUT1_XML_RAW = Path("OUTPUT1_XML-RAW")  # Intermediate: Raw XML
-OUTPUT2_JSON_RAW = Path("OUTPUT2_JSON-RAW")  # Intermediate: Raw JSON
-OUTPUT3_JSON_TRANSFORMED = Path("OUTPUT3_JSON-TRANSFORMED")  # Intermediate: Transformed JSON
-OUTPUT4_DOCX_RESULT = Path("OUTPUT4_DOCX-RESULT")  # Final: DOCX result
+TEMPLATE_PATH = Path("/app/TEMPLATE/TEMPLATE.docx")
+UPLOAD_DIR = Path("/app/DC_SOURCES")  # Bind volume from ./uploads
+OUTPUT_DIR = Path("/app/OUTPUTS_FORMATTED")  # Bind volume to ./output
+OUTPUT1_XML_RAW = Path("/app/OUTPUT1_XML-RAW")  # Intermediate: Raw XML
+OUTPUT2_JSON_RAW = Path("/app/OUTPUT2_JSON-RAW")  # Intermediate: Raw JSON
+OUTPUT3_JSON_TRANSFORMED = Path("/app/OUTPUT3_JSON-TRANSFORMED")  # Intermediate: Transformed JSON
+OUTPUT4_DOCX_RESULT = Path("/app/OUTPUT4_DOCX-RESULT")  # Final: DOCX result
 
 # Create output directories with proper permissions
 for output_path in [UPLOAD_DIR, OUTPUT_DIR, OUTPUT1_XML_RAW, OUTPUT2_JSON_RAW, OUTPUT3_JSON_TRANSFORMED, OUTPUT4_DOCX_RESULT]:
@@ -170,8 +170,8 @@ async def process_document(
             shutil.copy2(final_docx_path, output_path)
             logger.info(f"✓ Result copied to OUTPUTS_FORMATTED: {output_path}")
             final_docx_path = output_path
-        except PermissionError:
-            logger.warning(f"⚠ Could not copy to OUTPUTS_FORMATTED (permission denied) - using OUTPUT4 version")
+        except PermissionError as e:
+            logger.warning(f"⚠ Could not copy to OUTPUTS_FORMATTED (permission denied): {e} - using OUTPUT4 version")
         except Exception as e:
             logger.warning(f"⚠ Could not copy to OUTPUTS_FORMATTED: {e} - using OUTPUT4 version")
 
@@ -181,7 +181,7 @@ async def process_document(
         return FileResponse(
             path=final_docx_path,
             media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            filename=f"{file.filename}_formatted.docx"
+            filename=f"{Path(file.filename).stem}_formatted.docx"
         )
 
     except Exception as e:
