@@ -56,7 +56,7 @@ KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
 XP_DATE_PATTERN = r'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}|\d{4}\s*[–-]\s*\d{4})'
-MAX_XP_DESCRIPTION_LENGTH = 75
+MAX_XP_DESCRIPTION_LENGTH = 60  # Limite de caractères pour la description d'une expérience professionnelle
 SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
 
 # MARK: FONCTIONS UTILITAIRES
@@ -1182,12 +1182,12 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
         if not has_ilvl:
 
             # Détection xp_description (texte long avec "contexte" ou "projet" ou "mission")
-            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in ['contexte', 'projet', 'mission', 'développement', 'réalisation', 'conception', 'montage']):
+            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in ['contexte', 'projet', 'projets', 'mission', 'missions', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'réalisation', 'realisation', 'réalisations', 'realisations', 'conception', 'montage', 'montages']):
                 para['xp_metadata']['detected_xp_description'] = True
                 return  # Ne pas faire d'autres détections si c'est une description
 
             # Détection xp_poste (KEYWORDS STRICTS SEULEMENT - pas de pattern générique)
-            poste_keywords = ['Développeur', 'Ingénieur', 'Manager', 'Responsable', 'Chef', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Consultant', 'Architecte', 'Directeur', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
+            poste_keywords = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
             # Vérifier si un mot-clé apparaît au début OU après un préfixe comme "Data"
             is_poste_keyword = False
             text_lower = text.lower()
@@ -1205,7 +1205,7 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
             # Détection xp_company (nom propre court qui n'a pas été marqué comme poste)
             # Critères: court, commence par majuscule, pas de verbes d'action courants
             is_very_short = len(text) < 50
-            has_no_common_verbs = not any(word in text.lower() for word in ['recueil', 'etude', 'communication', 'rédaction', 'construction', 'évolutions', 'système', 'gestion', 'traitement', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse'])
+            has_no_common_verbs = not any(word in text.lower() for word in ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these'])
             starts_with_capital = text[0].isupper()
             if is_very_short and starts_with_capital and has_no_common_verbs:
                 para['xp_metadata']['detected_xp_company'] = True
@@ -2093,46 +2093,140 @@ def add_empty_paragraphs_around_tables(data: Dict[str, Any]) -> None:
     # Remplacer le contenu du document
     data['document']['content'] = new_content
 
-def remove_double_paras_and_spaces (data: Dict[str, Any]) -> None:
+def _clean_paragraphs_list(paragraphs: List[Dict[str, Any]]) -> bool:
+    """
+    Nettoie une liste de paragraphes en supprimant les doublons vides et les doubles espaces.
+
+    Retourne True si des changements ont été faits, False sinon.
+    Modifie la liste in-place.
+
+    Args:
+        paragraphs: Liste de paragraphes à nettoyer
+
+    Returns:
+        bool: True si des changements ont été faits
+    """
+    if not paragraphs:
+        return False
+
+    new_list = []
+    last_was_empty = False
+    changes_made = False
+    initial_length = len(paragraphs)
+
+    for para in paragraphs:
+        text = get_text_from_element(para)
+        is_empty = not text.strip()
+
+        if is_empty:
+            # Garder seulement 1 paragraphe vide (éviter 2 consécutifs)
+            if not last_was_empty:
+                new_list.append(para)
+            else:
+                changes_made = True  # On a supprimé un paragraphe vide
+            last_was_empty = True
+        else:
+            # Paragraphe non-vide : nettoyer les doubles espaces dans les runs
+            if 'runs' in para:
+                for run in para['runs']:
+                    if 'text' in run:
+                        original_text = run['text']
+                        # Remplacer TOUS les espaces multiples par un simple espace (boucle)
+                        while '  ' in run['text']:
+                            run['text'] = run['text'].replace('  ', ' ')
+                        if original_text != run['text']:
+                            changes_made = True
+
+            new_list.append(para)
+            last_was_empty = False
+
+    # Remplacer la liste in-place
+    paragraphs.clear()
+    paragraphs.extend(new_list)
+
+    # Vérifier si la taille a changé
+    if len(new_list) != initial_length:
+        changes_made = True
+
+    return changes_made
+
+
+def remove_double_paras_and_spaces(data: Dict[str, Any]) -> None:
     """
     Supprime les paragraphes vides doublons et nettoie les doubles espaces.
     Modifie in-place.
 
+    Boucle jusqu'à ce qu'aucun changement ne soit détecté.
+
     Logique:
-    - Parcourir le contenu du document
+    - Parcourir le contenu du document (paragraphes root + paragraphes dans les tables)
     - Garder une trace du dernier paragraphe ajouté
     - Supprimer les paragraphes vides doublons (garder max 1 paragraphe vide consécutif)
     - Remplacer les doubles espaces ("  ") par un simple espace (" ") dans les runs
+    - Répéter jusqu'à stabilité (aucun changement)
+    - Nettoyer aussi les paragraphes à l'intérieur des cellules des tables
     """
-    content = data.get('document', {}).get('content', [])
-    new_content = []
-    last_para_was_empty = False
+    import sys
+    iteration = 0
+    while True:
+        iteration += 1
+        content = data.get('document', {}).get('content', [])
+        changes_made = False
+        initial_length = len(content)
 
-    for element in content:
-        if element.get('type') == 'Paragraph':
-            text = get_text_from_element(element)
-            is_empty = not text.strip()
+        # ÉTAPE 1: Nettoyer les paragraphes root
+        new_content = []
+        last_para_was_empty = False
 
-            if is_empty:
-                # Garder seulement 1 paragraphe vide (éviter 2 consécutifs)
-                if not last_para_was_empty:
+        for element in content:
+            if element.get('type') == 'Paragraph':
+                text = get_text_from_element(element)
+                is_empty = not text.strip()
+
+                if is_empty:
+                    # Garder seulement 1 paragraphe vide (éviter 2 consécutifs)
+                    if not last_para_was_empty:
+                        new_content.append(element)
+                    else:
+                        changes_made = True  # On a supprimé un paragraphe vide
+                    last_para_was_empty = True
+                else:
+                    # Paragraphe non-vide : nettoyer les doubles espaces dans les runs
+                    if 'runs' in element:
+                        for run in element['runs']:
+                            if 'text' in run:
+                                original_text = run['text']
+                                # Remplacer TOUS les espaces multiples par un simple espace (boucle)
+                                while '  ' in run['text']:
+                                    run['text'] = run['text'].replace('  ', ' ')
+                                if original_text != run['text']:
+                                    changes_made = True
+
                     new_content.append(element)
-                last_para_was_empty = True
-            else:
-                # Paragraphe non-vide : nettoyer les doubles espaces dans les runs
-                if 'runs' in element:
-                    for run in element['runs']:
-                        if 'text' in run:
-                            # Remplacer les doubles espaces par un simple espace
-                            run['text'] = run['text'].replace('  ', ' ')
+                    last_para_was_empty = False
+            elif element.get('type') == 'Table':
+                # ÉTAPE 2: Nettoyer les paragraphes dans les cellules des tables
+                rows = element.get('rows', [])
+                for row in rows:
+                    cells = row.get('cells', [])
+                    for cell in cells:
+                        paragraphs = cell.get('paragraphs', [])
+                        if paragraphs:
+                            # Nettoyer cette liste de paragraphes
+                            if _clean_paragraphs_list(paragraphs):
+                                changes_made = True
 
                 new_content.append(element)
                 last_para_was_empty = False
-        else:
-            new_content.append(element)
-            last_para_was_empty = False
+            else:
+                new_content.append(element)
+                last_para_was_empty = False
 
-    data['document']['content'] = new_content
+        data['document']['content'] = new_content
+
+        # Si la taille a changé ou aucun changement détecté, s'arrêter
+        if len(new_content) == initial_length and not changes_made:
+            break
 
 def recalculate_indices(data: Dict[str, Any]) -> None:
     """
@@ -2344,6 +2438,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                 text = text.capitalize()
                 if 'runs' in ilist and ilist['runs']:
                     ilist['runs'][0]['text'] = text
+                    # Supprimer les runs supplémentaires qui étaient fusionnés
+                    if len(ilist['runs']) > 1:
+                        ilist['runs'] = ilist['runs'][:1]
         elif ilvl == "1":
             props['style'] = 'DC_2nd_bullet'
         elif ilvl == "2":
@@ -2570,6 +2667,10 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
 
     # Appliquer les styles
     apply_styles_in_json(data)
+
+    # DEUXIÈME PASSE DE NETTOYAGE: Après la fusion des runs dans apply_styles_in_json
+    # (qui peut reintroduire des doubles espaces lors de text.capitalize())
+    remove_double_paras_and_spaces(data)
 
     # Sauvegarder le JSON transformé
     with open(output_file, 'w', encoding='utf-8') as f:

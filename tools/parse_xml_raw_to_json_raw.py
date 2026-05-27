@@ -248,15 +248,17 @@ def normalize_paragraph_runs(para: Dict[str, Any]) -> Dict[str, Any]:
     3. La structure JSON soit plus propre
 
     Logique:
-    - Fusionne les runs consécutifs avec EXACTEMENT les mêmes propriétés
+    - SEULS Bold et Italic déterminent si un run est séparé
+    - Toutes les autres propriétés (size, color, font, alignment, etc.) sont IGNORÉES
+    - Fusionne les runs consécutifs si bold et italic sont identiques
     - Concatène les textes avec un espace si nécessaire
-    - Préserve les runs avec propriétés différentes
+    - Préserve les runs SEULEMENT si bold ou italic diffèrent
 
     Exemple:
-    - Input: [{"text": "dossier ", "properties": {}},
-              {"text": "de ", "properties": {}},
-              {"text": "compétences", "properties": {}}]
-    - Output: [{"text": "dossier de compétences", "properties": {}}]
+    - Input: [{"text": "dossier ", "properties": {"bold": false, "italic": false, "size": "12"}},
+              {"text": "de ", "properties": {"bold": false, "italic": false, "color": "red"}},
+              {"text": "compétences", "properties": {"bold": false, "italic": false}}]
+    - Output: [{"text": "dossier de compétences", "properties": {"bold": false, "italic": false, ...}}]
 
     Args:
         para: Paragraphe JSON avec runs
@@ -270,18 +272,30 @@ def normalize_paragraph_runs(para: Dict[str, Any]) -> Dict[str, Any]:
     runs = para['runs']
     normalized_runs = []
 
+    def get_style_signature(props: Dict[str, Any]) -> str:
+        """
+        Extrait SEULEMENT les propriétés qui déterminent un style distinct:
+        - Bold (défaut: false)
+        - Italic (défaut: false)
+        Toutes les autres propriétés sont ignorées.
+        """
+        return json.dumps({
+            'bold': props.get('bold', False),
+            'italic': props.get('italic', False)
+        }, sort_keys=True)
+
     for run in runs:
         # Ignorer les runs sans texte
         if 'text' not in run or not run['text']:
             continue
 
-        # Obtenir les propriétés du run (ou dict vide si aucune)
-        run_props = json.dumps(run.get('properties', {}), sort_keys=True)
+        run_style_sig = get_style_signature(run.get('properties', {}))
 
         # Vérifier s'il faut fusionner avec le dernier run
         if normalized_runs and 'text' in normalized_runs[-1]:
-            last_run_props = json.dumps(normalized_runs[-1].get('properties', {}), sort_keys=True)
+            last_style_sig = get_style_signature(normalized_runs[-1].get('properties', {}))
 
+            # Traitement spécial pour les tabs
             if run.get('properties', {}).get('tab') or '\t' in run.get('text', ''):
                 normalized_runs.append({
                     'text': run['text'],
@@ -296,8 +310,9 @@ def normalize_paragraph_runs(para: Dict[str, Any]) -> Dict[str, Any]:
                 })
                 continue
 
-            if run_props == last_run_props:
-                # Mêmes propriétés: fusionner les textes
+            # Comparer SEULEMENT bold et italic
+            if run_style_sig == last_style_sig:
+                # Mêmes bold et italic: fusionner les textes
                 last_text = normalized_runs[-1]['text']
                 new_text = run['text']
 
