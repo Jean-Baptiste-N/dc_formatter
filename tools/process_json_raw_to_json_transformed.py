@@ -128,6 +128,28 @@ def get_text_from_element(element: Dict[str, Any], lower: bool = True) -> str:
     text = ' '.join(texts)
     return text.lower() if lower else text
 
+def capitalize_preserve_case(text: str) -> str:
+    """
+    Capitalise le premier caractère non-espace, en préservant la casse du reste du texte.
+    Contrairement à .capitalize() qui force tout en minuscule, cela préserve la casse existante.
+
+    Exemples:
+        " Chargé d'affaires" → " Chargé d'affaires" (inchangé)
+        " chargé d'affaires" → " Chargé d'affaires" (première lettre en majuscule)
+        " CHARGÉ D'AFFAIRES" → " Chargé d'affaires" (abaissement de la casse après la première lettre)
+    """
+    if not text:
+        return text
+
+    # Trouver le premier caractère non-espace
+    for i, char in enumerate(text):
+        if char != ' ':
+            # Capitaliser ce caractère et retourner
+            return text[:i] + text[i].upper() + text[i+1:]
+
+    # Si tout est des espaces, retourner tel quel
+    return text
+
 def get_raw_text_from_paragraph(para: Dict[str, Any]) -> str:
     """Retourne le texte brut d'un paragraphe sans forcer la casse."""
     return ''.join(run.get('text', '') for run in para.get('runs', [])) or para.get('text', '') or get_text_from_element(para, lower=False)
@@ -2435,7 +2457,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             # Ajouter outline_level pour DC_1st_bullet
             if 'DC_1st_bullet' in STYLE_OUTLINE_MAPPING:
                 props['outline_level'] = STYLE_OUTLINE_MAPPING['DC_1st_bullet']
-                text = text.capitalize()
+                text = capitalize_preserve_case(text)
                 if 'runs' in ilist and ilist['runs']:
                     ilist['runs'][0]['text'] = text
                     # Supprimer les runs supplémentaires qui étaient fusionnés
@@ -2465,17 +2487,17 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                 itag['runs'][0]['text'] = text
         elif 'main_skills' in tags and is_promotable_section_title(itag, KEYWORDS_MAIN_SKILLS):
             props['style'] = 'DC_T1_Sections'
-            text = text.capitalize()
+            text = capitalize_preserve_case(text)
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
         elif 'education' in tags and is_promotable_section_title(itag, KEYWORDS_EDUCATION):
             props['style'] = 'DC_T1_Sections'
-            text = text.capitalize()
+            text = capitalize_preserve_case(text)
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
         elif 'professional_experience' in tags and is_promotable_section_title(itag, KEYWORDS_PROFESSIONAL_EXPERIENCE):
             props['style'] = 'DC_T1_Sections'
-            text = text.capitalize()
+            text = capitalize_preserve_case(text)
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
 
