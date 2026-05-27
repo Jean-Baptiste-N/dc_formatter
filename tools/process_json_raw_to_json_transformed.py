@@ -2388,7 +2388,7 @@ def add_page_breaks_after_xp_headers(data: Dict[str, Any]) -> None:
                     'properties': {
                         'page_break': True
                     },
-                    'runs': [{'page_break': True}]
+                    'runs': []
                 }
                 new_content.append(page_break_para)
 
