@@ -102,6 +102,11 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
             if 'font' in run_props:
                 run.font.name = run_props['font']
 
+    # Vérifier s'il y a un saut de page au niveau du paragraphe (propriété principale)
+    if props.get('page_break'):
+        run = para.add_run()
+        run.add_break(WD_BREAK_TYPE.PAGE)
+
     # Section break (saut de section) - ajouter via XML
     if 'section_break' in props:
         section_type = props['section_break']

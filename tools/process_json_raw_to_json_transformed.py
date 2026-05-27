@@ -2204,16 +2204,18 @@ def remove_double_paras_and_spaces(data: Dict[str, Any]) -> None:
             if element.get('type') == 'Paragraph':
                 text = get_text_from_element(element)
                 is_empty = not text.strip()
+                has_page_break = element.get('properties', {}).get('page_break', False)
 
-                if is_empty:
+                if is_empty and not has_page_break:
                     # Garder seulement 1 paragraphe vide (éviter 2 consécutifs)
+                    # MAIS TOUJOURS garder les paragraphes avec page_break (même s'ils sont vides)
                     if not last_para_was_empty:
                         new_content.append(element)
                     else:
                         changes_made = True  # On a supprimé un paragraphe vide
                     last_para_was_empty = True
                 else:
-                    # Paragraphe non-vide : nettoyer les doubles espaces dans les runs
+                    # Paragraphe non-vide ou avec page_break: nettoyer les doubles espaces dans les runs
                     if 'runs' in element:
                         for run in element['runs']:
                             if 'text' in run:
@@ -2264,6 +2266,134 @@ def recalculate_indices(data: Dict[str, Any]) -> None:
 
     for i, element in enumerate(content):
         element['index'] = i
+
+def remove_all_page_breaks(data: Dict[str, Any]) -> None:
+    """
+    Supprime tous les sauts de page du document, que ce soit au niveau des paragraphes ou des runs.
+
+    Logique:
+    - Parcourir tous les éléments du contenu
+    - Si c'est un paragraphe avec 'page_break' dans ses propriétés, le supprimer
+    - Si c'est un run avec 'page_break' dans ses propriétés, le supprimer
+    - Nettoyer les paragraphes qui deviennent vides après suppression
+
+    Modifie in-place.
+    """
+    content = data.get('document', {}).get('content', [])
+    new_content = []
+
+    for element in content:
+        if element.get('type') == 'Paragraph':
+            props = element.get('properties', {})
+            if props.get('page_break', False):
+                continue  # Supprimer ce paragraphe entier
+
+            # Sinon, vérifier les runs
+            new_runs = []
+            for run in element.get('runs', []):
+                if run.get('properties', {}).get('page_break', False):
+                    continue  # Supprimer ce run
+                new_runs.append(run)
+
+            # Mettre à jour les runs du paragraphe
+            element['runs'] = new_runs
+
+            # Si le paragraphe n'a plus de runs ou de texte, le nettoyer (optionnel)
+            if not new_runs and not get_text_from_element(element).strip():
+                element['runs'] = []  # Paragraphe vide sans runs
+
+            new_content.append(element)
+        else:
+            new_content.append(element)
+
+    data['document']['content'] = new_content
+
+def add_page_breaks_after_xp_headers(data: Dict[str, Any]) -> None:
+    # Ajoute un saut de page après les paragraphes avec style DC_H_XP
+    # s'il n'y en a pas déjà un jusqu'au prochain paragraphe contenant du texte.
+    """
+    Ajoute un saut de page après les paragraphes avec style DC_H_XP.
+
+    Note: Cette fonction suppose que tous les page_breaks existants ont été
+    supprimés au préalable par remove_all_page_breaks().
+
+    Modifie in-place.
+    """
+    content = data.get('document', {}).get('content', [])
+    if not content:
+        return
+
+    new_content = []
+
+    # for idx, element in enumerate(content):
+    #     new_content.append(element)
+
+    #     # Vérifier si c'est un paragraphe avec style DC_H_XP
+    #     if element.get('type') == 'Paragraph':
+    #         props = element.get('properties', {})
+    #         style = props.get('style')
+
+    #         if style == 'DC_H_XP':
+    #             # Vérifier s'il y a déjà un saut de page dans cet élément
+    #             has_page_break = props.get('page_break', False)
+
+    #             if not has_page_break:
+    #                 # Parcourir les éléments suivants jusqu'au prochain paragraphe avec du texte
+    #                 found_page_break = False
+    #                 for j in range(idx + 1, len(content)):
+    #                     next_elem = content[j]
+
+    #                     # Vérifier si c'est un paragraphe avec du texte
+    #                     if next_elem.get('type') == 'Paragraph':
+    #                         next_text = get_text_from_element(next_elem)
+    #                         if next_text.strip():  # Paragraphe avec du texte
+    #                             # S'arrêter ici, on a trouvé le prochain paragraphe non-vide
+    #                             break
+    #                         else:
+    #                             # Vérifier s'il y a un saut de page dans ce paragraphe vide
+    #                             next_props = next_elem.get('properties', {})
+    #                             if next_props.get('page_break', False):
+    #                                 found_page_break = True
+    #                                 break
+    #                             next_runs = next_elem.get('runs', [])
+    #                             if any(run.get('page_break', False) for run in next_runs):
+    #                                 found_page_break = True
+    #                                 break
+    #                     elif next_elem.get('type') == 'Table':
+    #                         # Une table après DC_H_XP, on s'arrête
+    #                         break
+
+    #                 # Ajouter un saut de page si pas trouvé
+    #                 if not found_page_break:
+    #                     page_break_para = {
+    #                         'type': 'Paragraph',
+    #                         'properties': {
+    #                             'page_break': True
+    #                         },
+    #                         'runs': [{'page_break': True}]
+    #                     }
+    #                     new_content.append(page_break_para)
+    for element in content:
+        new_content.append(element)
+
+        # Vérifier si c'est un paragraphe avec style DC_H_XP
+        if element.get('type') == 'Paragraph':
+            props = element.get('properties', {})
+            style = props.get('style')
+
+            if style == 'DC_H_XP':
+                # Ajouter un paragraphe avec saut de page après ce paragraphe
+                page_break_para = {
+                    'type': 'Paragraph',
+                    'properties': {
+                        'page_break': True
+                    },
+                    'runs': [{'page_break': True}]
+                }
+                new_content.append(page_break_para)
+
+    # Remplacer le contenu
+    data['document']['content'] = new_content
 
 def add_colons_between_list_levels(data: Dict[str, Any]) -> None:
     """
@@ -2538,7 +2668,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             props.pop('color', None)
             props.pop('font', None)
 
-        # Nettoyer aussi les runs des paragraphes (garder bold/italic uniquement)
+        # Nettoyer aussi les runs des paragraphes (garder bold/italic/page_break uniquement)
         if element.get('type') == 'Paragraph' and 'runs' in element:
             for run in element['runs']:
                 if 'properties' in run:
@@ -2548,6 +2678,8 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         kept_props['bold'] = run_props['bold']
                     if 'italic' in run_props:
                         kept_props['italic'] = run_props['italic']
+                    if 'page_break' in run_props:
+                        kept_props['page_break'] = run_props['page_break']
                     run['properties'] = kept_props
 
     # Nettoyer aussi les propriétés des paragraphes à l'intérieur des tables
@@ -2675,6 +2807,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     add_empty_paragraphs_around_tables(data)
 
     # ===== NETTOYAGE et RENDU FINAL POUR CHAQUE ELEMENT =====
+    # Supprimer tous les sauts de page existants (pour éviter les conflits et doublons)
+    remove_all_page_breaks(data)
+
     # Ajouter les ":" entre les niveaux de listes successifs
     add_colons_between_list_levels(data)
 
@@ -2690,8 +2825,13 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # Appliquer les styles
     apply_styles_in_json(data)
 
+    # Ajouter les sauts de page après les paragraphes DC_H_XP
+    # (APRÈS apply_styles_in_json pour que les styles soient déjà appliqués)
+    add_page_breaks_after_xp_headers(data)
+
     # DEUXIÈME PASSE DE NETTOYAGE: Après la fusion des runs dans apply_styles_in_json
     # (qui peut reintroduire des doubles espaces lors de text.capitalize())
+    # ET après l'ajout des page_breaks (mais préserver les page_breaks vides)
     remove_double_paras_and_spaces(data)
 
     # Sauvegarder le JSON transformé

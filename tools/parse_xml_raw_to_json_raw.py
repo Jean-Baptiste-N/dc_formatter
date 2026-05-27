@@ -106,17 +106,27 @@ def extract_paragraph_properties(paragraph, ns: Dict) -> Dict[str, Any]:
 
     return props
 
-def extract_runs_from_paragraph(paragraph, ns: Dict) -> List[Dict[str, Any]]:
-    """Extrait tous les runs d'un paragraphe"""
+def extract_runs_from_paragraph(paragraph, ns: Dict) -> tuple:
+    """
+    Extrait tous les runs d'un paragraphe.
+    
+    Retourne:
+        tuple: (runs_list, has_page_break) où has_page_break indique si un saut de page est détecté
+    """
     runs = []
+    has_page_break = False
 
     for run in paragraph.findall('w:r', ns):
-        # Vérifier les sauts de page
-        br_elem = run.find('w:br', ns)
+        # Vérifier les sauts de page/section
+        br_elem = run.find(f'{{{ns["w"]}}}br', ns)
         if br_elem is not None:
             br_type = br_elem.get(f'{{{ns["w"]}}}type')
             if br_type == 'page':
+                has_page_break = True
                 runs.append({'page_break': True})
+                continue
+            elif br_type == 'section':
+                runs.append({'section_break': True})
                 continue
 
         # Propriétés du run (partagées par tous les segments issus de ce run XML)
@@ -166,7 +176,7 @@ def extract_runs_from_paragraph(paragraph, ns: Dict) -> List[Dict[str, Any]]:
         if not has_inline_content and run_props:
             runs.append({'properties': run_props})
 
-    return runs
+    return runs, has_page_break
 
 def parse_paragraph(paragraph, ns: Dict, index: int) -> Dict[str, Any]:
     """Parse un paragraphe"""
@@ -181,7 +191,14 @@ def parse_paragraph(paragraph, ns: Dict, index: int) -> Dict[str, Any]:
         para_obj['properties'] = para_props
 
     # Runs
-    runs = extract_runs_from_paragraph(paragraph, ns)
+    runs, has_page_break = extract_runs_from_paragraph(paragraph, ns)
+    
+    # Ajouter le flag page_break au paragraphe si détecté
+    if has_page_break:
+        if 'properties' not in para_obj:
+            para_obj['properties'] = {}
+        para_obj['properties']['page_break'] = True
+    
     if runs:
         para_obj['runs'] = runs
     else:
