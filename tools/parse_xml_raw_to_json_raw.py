@@ -9,7 +9,7 @@ from argparse import ArgumentParser
 import xml.etree.ElementTree as ET
 import json
 from pathlib import Path
-from typing import Dict, Any, List
+from typing import Dict, Any
 
 # ===== NAMESPACES =====
 NS = {

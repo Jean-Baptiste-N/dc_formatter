@@ -1,6 +1,5 @@
 """
-Script simplifié pour extraire un fichier XML global en JSON avec tous les détails.
-Entrée: fichier _GLOBAL.xml
+Script pour transformer un fichier JSON RAW en JSON avec tous les process de retraitements
 Sortie: fichier _GLOBAL_raw.json (xml brut traduit en json)
 Sortie: fichier _GLOBAL_transformed.json (après taggings et transformations)
 
@@ -2352,7 +2351,7 @@ def remove_double_paras_and_spaces(data: Dict[str, Any]) -> None:
     - Répéter jusqu'à stabilité (aucun changement)
     - Nettoyer aussi les paragraphes à l'intérieur des cellules des tables
     """
-    import sys
+
     iteration = 0
     while True:
         iteration += 1
