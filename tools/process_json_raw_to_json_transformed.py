@@ -221,39 +221,58 @@ def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
     return new_para
 
 # MARK: TABLE CREATION
-def create_empty_table_2x2(index: int, row_height: int = 360,
-                           col1_width: int = None, col2_width: int = None,
-                           section: str = None,
-                           auto_generated: bool = False,
-                           num_rows: int = 2,
-                           page_dims: dict = None) -> Dict[str, Any]:
+def create_empty_table_generic(index: int, num_cols: int = 2, num_rows: int = 2,
+                               row_height: int = 360,
+                               col_widths: List[int] = None,
+                               section: str = None,
+                               auto_generated: bool = False,
+                               page_dims: dict = None) -> Dict[str, Any]:
     """
-    Crée une table 2xN vide (sans paragraphes de remplissage) avec dimensions spécifiques par colonne.
-    Les dimensions sont calculées selon la section et les marges du template, elles sont récupérées de la fonction get_table_widths_for_section.
+    Crée une table vide avec N colonnes x M rows.
+
+    Les largeurs de colonnes peuvent être:
+    - Spécifiées explicitement via col_widths (liste d'entiers)
+    - Calculées automatiquement selon la section (get_table_widths_for_section)
+    - Divisées équitablement (usable_width / num_cols) si aucune largeur fournie
 
     Args:
         index: Index dans le document
+        num_cols: Nombre de colonnes (défaut 2)
+        num_rows: Nombre de rows (défaut 2)
         row_height: Hauteur de la ligne en twips
-        col1_width: Largeur colonne 1 (twips) - si None, utilisé section+page_dims
-        col2_width: Largeur colonne 2 (twips) - si None, utilisé section+page_dims
-        section: 'education' ou 'professional_experience' ou 'autre'
+        col_widths: Liste des largeurs des colonnes (twips) - si None, calculé automatiquement
+        section: 'education', 'professional_experience', 'main_skills', ou None
         auto_generated: Flag pour indiquer que la table a été créée automatiquement
-        num_rows: Nombre de rows à créer (défaut 2)
-        page_dims: Dictionnaire avec dimensions de page (col_fixed_width_3, col_fixed_width_5, usable_width, etc.)
+        page_dims: Dictionnaire avec dimensions de page
 
     Returns:
-        Table 2xN structurée avec dimensions (sans paragraphes vides)
+        Table structurée avec N colonnes et M rows
     """
 
-    if col1_width is None or col2_width is None:
-        if section == 'education':
-            col1_width, col2_width = get_table_widths_for_section('education', page_dims)
-        elif section == 'professional_experience':
-            col1_width, col2_width = get_table_widths_for_section('professional_experience', page_dims)
+    # Calculer les largeurs de colonnes
+    if col_widths is None:
+        if section in ['education', 'professional_experience']:
+            # Pour education et professional: utiliser les largeurs spécifiques 2 colonnes
+            col1_width, col2_width = get_table_widths_for_section(section, page_dims)
+            if num_cols == 2:
+                col_widths = [col1_width, col2_width]
+            else:
+                # Fallback: diviser équitablement si nombre colonnes != 2
+                usable_width = page_dims.get('usable_width', 9638)
+                col_widths = [usable_width // num_cols] * num_cols
+                # Ajouter le reste à la dernière colonne
+                col_widths[-1] += usable_width % num_cols
         else:
-            col1_width, col2_width = get_table_widths_for_section(None, page_dims)
+            # Pour main_skills ou autre: diviser équitablement
+            usable_width = page_dims.get('usable_width', 9638) if page_dims else 9638
+            col_widths = [usable_width // num_cols] * num_cols
+            # Ajouter le reste à la dernière colonne
+            col_widths[-1] += usable_width % num_cols
 
-    table_total_width = col1_width + col2_width
+    # Vérifier que le nombre de largeurs correspond au nombre de colonnes
+    assert len(col_widths) == num_cols, f"col_widths doit avoir {num_cols} éléments"
+
+    table_total_width = sum(col_widths)
 
     # Définir les bordures selon la section
     if section == 'professional_experience':
@@ -280,29 +299,23 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
     # Créer les rows dynamiquement
     rows = []
     for row_idx in range(num_rows):
+        cells = []
+        for col_idx in range(num_cols):
+            cell = {
+                'col_index': col_idx,
+                'width': col_widths[col_idx],
+                'properties': {
+                    'hAlign': 'center' if section == 'main_skills' else ('right' if col_idx == num_cols - 1 and section == 'professional_experience' else 'left'),
+                    'vAlign': 'center'
+                },
+                'paragraphs': []
+            }
+            cells.append(cell)
+
         row = {
             'row_index': row_idx,
             'height': row_height,
-            'cells': [
-                {
-                    'col_index': 0,
-                    'width': col1_width,
-                    'properties': {
-                        'hAlign': 'center' if section == 'main_skills' else 'left',
-                        'vAlign': 'center'
-                    },
-                    'paragraphs': []
-                },
-                {
-                    'col_index': 1,
-                    'width': col2_width,
-                    'properties': {
-                        'hAlign': 'right' if section == 'professional_experience' else 'left',
-                        'vAlign': 'center'
-                    },
-                    'paragraphs': []
-                }
-            ]
+            'cells': cells
         }
         rows.append(row)
 
@@ -320,7 +333,7 @@ def create_empty_table_2x2(index: int, row_height: int = 360,
         },
         'tags': [section] if section else [],
         'row_count': num_rows,
-        'col_count': 2,
+        'col_count': num_cols,
         'rows': rows
     }
 
@@ -475,9 +488,14 @@ def apply_section_header_styles(data: Dict[str, Any]) -> None:
 # MARK: SECTION MAIN SKILLS
 # ===== 5. SECTION MAIN SKILLS =====
 
-def create_main_skills_table (data: Dict[str, Any]) -> Dict[str, Any]:
+def create_main_skills_table(data: Dict[str, Any]) -> Dict[str, Any]:
     """
-    Crée les structures des tables main skills uniquement quand une table est présente au départ dans la source
+    Crée les structures des tables main skills uniquement quand une table est présente au départ dans la source.
+
+    IMPORTANT: Préserve le nombre de colonnes de la table source!
+    - Si la table source a 3 colonnes: créer une table avec 3 colonnes (largeur = usable_width / 3)
+    - Si la table source a 2 colonnes: créer une table avec 2 colonnes
+    - Si la table source a N colonnes: créer une table avec N colonnes
 
     Responsabilité:
     - Itérer sur le titre de main skills contenant KEYWORDS_MAIN_SKILLS
@@ -539,12 +557,22 @@ def create_main_skills_table (data: Dict[str, Any]) -> Dict[str, Any]:
             source_table = content[source_table_idx]
             source_rows = source_table.get('rows', [])
 
-            # Créer une table vide avec les largeurs par défaut de create_empty_table_2x2
-            new_table = create_empty_table_2x2(
+            # CLÉS: Détecter le nombre de colonnes de la table source
+            source_col_count = source_table.get('col_count', 2)
+            if source_col_count is None or source_col_count < 1:
+                # Si col_count n'existe pas, compter les cells de la première row
+                if source_rows:
+                    source_col_count = len(source_rows[0].get('cells', []))
+                else:
+                    source_col_count = 2  # Fallback par défaut
+
+            # Créer une table vide avec le même nombre de colonnes
+            new_table = create_empty_table_generic(
                 source_table_idx,
+                num_cols=source_col_count,
+                num_rows=len(source_rows),
                 section='main_skills',
                 auto_generated=True,
-                num_rows=len(source_rows),
                 page_dims=page_dims
             )
 
@@ -555,7 +583,8 @@ def create_main_skills_table (data: Dict[str, Any]) -> Dict[str, Any]:
             result['tables_created'].append({
                 'index': source_table_idx,
                 'source_table_index': source_table_idx + 1,
-                'row_count': len(source_rows)
+                'row_count': len(source_rows),
+                'col_count': source_col_count
             })
 
     return result
@@ -760,6 +789,72 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     return result
 
+def split_paragraph_at_tabs(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Splite un paragraphe de formation au premier tab détecté.
+
+    Pour les paragraphes avec tabs (format tabulé):
+    - Avant premier tab: Colonne 1 (année typiquement)
+    - Après premier tab: Colonne 2 (diplôme + école)
+
+    Supprime tous les runs de tab du résultat.
+
+    Args:
+        para: Paragraphe JSON source
+
+    Returns:
+        List[Dict]: Liste de 1 ou 2 paragraphes
+    """
+    runs = para.get('runs', [])
+
+    if not runs:
+        return [para]
+
+    # Chercher le premier run avec un tab
+    first_tab_idx = None
+    for idx, run in enumerate(runs):
+        if run.get('properties', {}).get('tab', False):
+            first_tab_idx = idx
+            break
+
+    if first_tab_idx is None:
+        # Pas de tab trouvé, retourner le paragraphe original
+        return [para]
+
+    first_run_props = runs[0].get('properties', {}) if runs else {}
+
+    # Collecter les runs avant le premier tab
+    col1_runs = runs[:first_tab_idx]
+
+    # Collecter les runs après le premier tab (en excluant les runs de tab)
+    col2_runs = [run for run in runs[first_tab_idx + 1:]
+                 if not run.get('properties', {}).get('tab', False)]
+
+    result = []
+
+    # Créer le paragraphe colonne 1
+    col1_para = clone_paragraph_clean(para)
+    col1_para['runs'] = col1_runs if col1_runs else [{"text": "", "properties": first_run_props}]
+    result.append(col1_para)
+
+    # Créer le paragraphe colonne 2 s'il y a du contenu
+    if col2_runs:
+        col2_para = clone_paragraph_clean(para)
+
+        # Joindre les runs de colonne 2 avec " - " pour créer un seul run
+        col2_texts = [run.get('text', '') for run in col2_runs]
+        col2_joined_text = ' - '.join(text for text in col2_texts if text.strip())
+
+        col2_para['runs'] = [{"text": col2_joined_text, "properties": first_run_props}]
+        result.append(col2_para)
+    else:
+        # Si pas de contenu après le tab, ajouter un paragraphe vide
+        col2_para = clone_paragraph_clean(para)
+        col2_para['runs'] = []
+        result.append(col2_para)
+
+    return result
+
 def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Dict[str, Any]]]:
     """
     Groupe les paragraphes éducation en blocs basés sur les dates.
@@ -901,11 +996,12 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
             insert_idx = header_idx + 1
 
             # Créer une table vide pour cette section
-            new_table = create_empty_table_2x2(
+            new_table = create_empty_table_generic(
                 insert_idx,
+                num_cols=2,
+                num_rows=0,  # Commencer avec 0 rows, sera remplies par insert_text_edu_table
                 section='education',
                 auto_generated=True,
-                num_rows=0,  # Commencer avec 0 rows, sera remplies par insert_text_edu_table
                 page_dims=page_dims
             )
             new_table['edu_type'] = edu_type
@@ -969,11 +1065,12 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                         source_col_count = existing_table.get('col_count', 0)
 
                         if source_rows and source_col_count == 2:
-                            temp_table = create_empty_table_2x2(
+                            temp_table = create_empty_table_generic(
                                 0,  # index fictif
+                                num_cols=2,
+                                num_rows=len(source_rows),
                                 section='education',
                                 auto_generated=True,
-                                num_rows=len(source_rows),
                                 page_dims=page_dims
                             )
                             rows = temp_table['rows']
@@ -1009,12 +1106,13 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                             # Créer les rows avec le nombre exact requis
                             if blocks:
-                                # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
-                                temp_table = create_empty_table_2x2(
+                                # Utiliser create_empty_table_generic pour générer les rows avec le bon nombre
+                                temp_table = create_empty_table_generic(
                                     0,  # index fictif
+                                    num_cols=2,
+                                    num_rows=len(blocks),
                                     section='education',
                                     auto_generated=True,
-                                    num_rows=len(blocks),
                                     page_dims=page_dims
                                 )
                                 rows = temp_table['rows']
@@ -1033,6 +1131,67 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                         # Marquer pour suppression
                         indices_to_remove.append(j)
+                    else:
+                        # Pas de table source trouvée - chercher des paragraphes avec contenu
+                        source_paragraphs = []
+                        source_indices = []
+                        j = i + 1
+
+                        while j < len(content):
+                            next_elem = content[j]
+
+                            # Arrêter si on rencontre une autre section
+                            if next_elem.get('type') == 'Paragraph':
+                                text = get_text_from_element(next_elem)
+                                style = next_elem.get('properties', {}).get('style', '')
+                                is_section_header = style == 'DC_T1_Sections'
+
+                                if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
+                                    break
+
+                                # Collecter les paragraphes non-vides
+                                if text.strip() and style != 'DC_T1_Sections':
+                                    source_paragraphs.append(next_elem)
+                                    source_indices.append(j)
+
+                            elif next_elem.get('type') == 'Table':
+                                break
+
+                            j += 1
+
+                        # Transformer les paragraphes en lignes de tableau (split par tabs)
+                        if source_paragraphs:
+                            split_rows = []
+
+                            for para in source_paragraphs:
+                                split_parts = split_paragraph_at_tabs(para)
+
+                                if split_parts and len(split_parts) >= 2:
+                                    split_rows.append((split_parts[0], split_parts[1]))
+                                elif split_parts and len(split_parts) == 1:
+                                    # Si un seul paragraphe, c'est la colonne 1, la 2 est vide
+                                    split_rows.append((split_parts[0], None))
+
+                            if split_rows:
+                                temp_table = create_empty_table_generic(
+                                    0,
+                                    num_cols=2,
+                                    num_rows=len(split_rows),
+                                    section='education',
+                                    auto_generated=True,
+                                    page_dims=page_dims
+                                )
+                                rows = temp_table['rows']
+
+                                for row_idx, (col1_para, col2_para) in enumerate(split_rows):
+                                    rows[row_idx]['cells'][0]['paragraphs'] = [clone_paragraph_clean(col1_para)]
+                                    rows[row_idx]['cells'][1]['paragraphs'] = [clone_paragraph_clean(col2_para)] if col2_para else []
+
+                                elem['rows'] = rows
+                                elem['row_count'] = len(rows)
+
+                                # Marquer les sources pour suppression
+                                indices_to_remove.extend(source_indices)
 
                 # ===== LANGUES =====
                 elif edu_type == 'langues':
@@ -1070,12 +1229,13 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                     if existing_table is not None:
                         source_rows = existing_table.get('rows', [])
 
-                        # Utiliser create_empty_table_2x2 pour générer les rows avec le bon nombre
-                        temp_table = create_empty_table_2x2(
+                        # Utiliser create_empty_table_generic pour générer les rows avec le bon nombre
+                        temp_table = create_empty_table_generic(
                             0,  # index fictif
+                            num_cols=2,
+                            num_rows=len(source_rows),
                             section='education',
                             auto_generated=True,
-                            num_rows=len(source_rows),
                             page_dims=page_dims
                         )
                         rows = temp_table['rows']
@@ -1129,11 +1289,12 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                             split_rows.append((lang_para, desc_para))
 
                         if split_rows:
-                            temp_table = create_empty_table_2x2(
+                            temp_table = create_empty_table_generic(
                                 0,
+                                num_cols=2,
+                                num_rows=len(split_rows),
                                 section='education',
                                 auto_generated=True,
-                                num_rows=len(split_rows),
                                 page_dims=page_dims
                             )
                             rows = temp_table['rows']
@@ -1778,8 +1939,10 @@ def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
                 should_create_table = False
 
         if should_create_table:
-            new_table = create_empty_table_2x2(
+            new_table = create_empty_table_generic(
                 len(new_content),
+                num_cols=2,
+                num_rows=2,
                 section='professional_experience',
                 auto_generated=True,
                 page_dims=page_dims
@@ -1881,11 +2044,12 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                 # Étape 2 : Distribuer dans les cellules
                 if all_paragraphs:
-                    temp_table = create_empty_table_2x2(
+                    temp_table = create_empty_table_generic(
                         0,
+                        num_cols=2,
+                        num_rows=2,
                         section='professional_experience',
                         auto_generated=True,
-                        num_rows=2,
                         page_dims=page_dims
                     )
                     element['rows'] = temp_table['rows']
