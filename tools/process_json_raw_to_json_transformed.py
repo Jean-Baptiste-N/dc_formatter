@@ -53,10 +53,13 @@ KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "doma
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes"]
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
+KEYWORDS_XP_POSTE = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
+KEYWORDS_XP_COMPANY = ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'constructions', 'realisation', 'realisations', 'réalisation', 'réalisations', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these']
+KEYWORDS_XP_DESCRIPTION = ['contexte', 'projet', 'projets', 'mission', 'missions', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'réalisation', 'realisation', 'réalisations', 'realisations', 'conception', 'montage', 'montages']
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
 XP_DATE_PATTERN = r'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}(?:\s*[–-]\s*\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4})?|\d{4}\s*[–-]\s*\d{4})'
-MAX_XP_DESCRIPTION_LENGTH = 60  # Limite de caractères pour la description d'une expérience professionnelle
 SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
+MAX_XP_DESCRIPTION_LENGTH = 70  # Limite de caractères pour la description d'une expérience professionnelle
 
 # MARK: FONCTIONS UTILITAIRES
 # ===== 2. FONCTIONS UTILITAIRES =====
@@ -1397,16 +1400,14 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
         if not has_ilvl:
 
             # Détection xp_description (texte long avec "contexte" ou "projet" ou "mission")
-            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in ['contexte', 'projet', 'projets', 'mission', 'missions', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'réalisation', 'realisation', 'réalisations', 'realisations', 'conception', 'montage', 'montages']):
+            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in KEYWORDS_XP_DESCRIPTION):
                 para['xp_metadata']['detected_xp_description'] = True
                 return  # Ne pas faire d'autres détections si c'est une description
 
-            # Détection xp_poste (KEYWORDS STRICTS SEULEMENT - pas de pattern générique)
-            poste_keywords = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
             # Vérifier si un mot-clé apparaît au début OU après un préfixe comme "Data"
             is_poste_keyword = False
             text_lower = text.lower()
-            for kw in poste_keywords:
+            for kw in KEYWORDS_XP_POSTE:
                 kw_lower = kw.lower()
                 # Check if text starts with keyword OR contains it as a word (not substring)
                 if text.startswith(kw) or f' {kw_lower}' in f' {text_lower}' or text_lower.startswith(f'data {kw_lower}'):
@@ -1420,7 +1421,7 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
             # Détection xp_company (nom propre court qui n'a pas été marqué comme poste)
             # Critères: court, commence par majuscule, pas de verbes d'action courants
             is_very_short = len(text) < 50
-            has_no_common_verbs = not any(word in text.lower() for word in ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these'])
+            has_no_common_verbs = not any(word in text.lower() for word in KEYWORDS_XP_COMPANY)
             starts_with_capital = text[0].isupper()
             if is_very_short and starts_with_capital and has_no_common_verbs:
                 para['xp_metadata']['detected_xp_company'] = True
