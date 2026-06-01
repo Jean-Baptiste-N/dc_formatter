@@ -728,32 +728,52 @@ def create_language_header(data: Dict[str, Any]) -> None:
     }
     content.insert(first_language_idx, new_header)
 
-def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _split_and_create_paragraphs(
+    para: Dict[str, Any],
+    col1_text: str,
+    col2_text: str,
+    first_run_props: Dict[str, Any]
+) -> List[Dict[str, Any]]:
     """
-    Scinde un paragraphe au premier keyword de langue détecté.
-
-    Crée 2 paragraphes:
-    - Avant: le mot-clé de langue détecté (col 0)
-    - Après: la description nettoyée (col 1)
-
-    Nettoie le début de la description: supprime " : ", espaces, jusqu'à la première lettre.
-
-    ⚠️ IMPORTANT: Les runs sont normalisés au parsing, donc les keywords
-    sont maintenant directement accessibles sans fragmentation.
+    Helper: Crée 2 paragraphes à partir de textes col1 et col2.
 
     Args:
-        para: Paragraphe JSON source
+        para: Paragraphe source pour cloner
+        col1_text: Texte colonne 1
+        col2_text: Texte colonne 2
+        first_run_props: Properties du premier run
+
+    Returns:
+        List[Dict]: [col1_para, col2_para] ou [col1_para] si col2 vide
+    """
+    result = []
+
+    col1_para = clone_paragraph_clean(para)
+    col1_para['runs'] = [{"text": col1_text, "properties": first_run_props}]
+    result.append(col1_para)
+
+    if col2_text.strip():
+        col2_para = clone_paragraph_clean(para)
+        col2_para['runs'] = [{"text": col2_text, "properties": first_run_props}]
+        result.append(col2_para)
+
+    return result
+
+def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Scinde au premier keyword de langue détecté.
+
+    Crée 2 paragraphes: mot-clé (col 0) et description nettoyée (col 1).
 
     Returns:
         List[Dict]: Liste de 1 ou 2 paragraphes
     """
-    text = ''.join(run.get('text', '') for run in para.get('runs', [])) or para.get('text', '') or get_text_from_element(para)
+    text = get_text_from_element(para, lower=False)
     normalized_text = text.strip().lower()
 
-    # Ne pas splitter sur les mots-clés génériques si le paragraphe ne porte pas
-    # réellement une langue: ils servent surtout au header "Langues".
     split_keywords = [kw for kw in KEYWORDS_LANGUAGES if kw not in {'langue', 'langues'}]
 
+    # Trouver le premier keyword de langue
     lang_keyword = None
     lang_pos = len(text)
     for keyword in split_keywords:
@@ -765,7 +785,7 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     if lang_keyword is None:
         return [para]
 
-    # Séparer le label de langue et sa description au premier séparateur utile.
+    # Splitter jusqu'au ':' s'il existe après le keyword
     split_end = lang_pos + len(lang_keyword)
     colon_pos = text.find(':', split_end)
     if colon_pos != -1:
@@ -778,31 +798,16 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
         return [para]
 
     first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
-    result = []
-
-    lang_para = clone_paragraph_clean(para)
-    lang_para['runs'] = [{"text": lang_text, "properties": first_run_props}]
-    result.append(lang_para)
-
-    if desc_text:
-        desc_para = clone_paragraph_clean(para)
-        desc_para['runs'] = [{"text": desc_text, "properties": first_run_props}]
-        result.append(desc_para)
-
-    return result
+    return _split_and_create_paragraphs(para, lang_text, desc_text, first_run_props)
 
 def split_education_paragraph(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
-    Splite un paragraphe éducation (formations ou diplômes) en 2 colonnes.
+    Splite éducation (formation ou diplôme) en 2 colonnes.
 
     Stratégie:
-    1. D'abord: chercher une date au début du texte avec regex
-       - Si trouvée: splitter après la date
-       - Format dates: 2019, 2019-2024, 01/2019, 2019/2024, etc.
-    2. Si pas de date: chercher un tab et splitter
-
-    Args:
-        para: Paragraphe JSON source
+    1. Chercher une date au début avec regex
+    2. Si date trouvée: splitter après (nettoyer les séparateurs)
+    3. Sinon: chercher un tab et splitter
 
     Returns:
         List[Dict]: Liste de 1 ou 2 paragraphes
@@ -811,61 +816,39 @@ def split_education_paragraph(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     if not runs:
         return [para]
 
-    # Obtenir le texte complet du paragraphe (sans convertir en minuscules)
     full_text = get_text_from_element(para, lower=False)
     first_run_props = runs[0].get('properties', {}) if runs else {}
 
-    # Regex pour détecter une date au début: 2019, 2019-2024, 01/2019, etc.
-    # Couvre: YYYY, YYYY-YYYY, MM/YYYY, YYYY/YYYY, MM/DD/YYYY, etc.
+    # Regex pour détecter une date au début
     date_pattern = r'^\s*((?:0?[1-9]|1[0-2])[/\s]*)?(?:19|20)\d{2}(?:\s*(?:[-/]|à|au)\s*(?:0?[1-9]|1[0-2])?[/\s]*(?:19|20)\d{2})?\s+'
-
-    # Chercher la date dans le texte en minuscules mais conserver la position
     match = re.search(date_pattern, full_text.lower())
 
     if match:
-        # Date détectée: splitter après la date (utiliser la position sur le texte original)
+        # Date détectée: splitter après
         date_end_pos = match.end()
-        date_text = full_text[:date_end_pos].strip()
-        desc_text = full_text[date_end_pos:].strip()
+        date_text = full_text[:date_end_pos].strip().replace('\t', ' ')
+        desc_text = full_text[date_end_pos:].lstrip(' :\u00a0\t-').strip().replace('\t', ' ')
 
-        # Remplacer les tabulations par un espace simple
-        date_text = date_text.replace('\t', ' ')
-        desc_text = desc_text.replace('\t', ' ')
-
-        # Créer deux paragraphes
-        col1_para = clone_paragraph_clean(para)
-        col1_para['runs'] = [{"text": date_text, "properties": first_run_props}]
-
-        col2_para = clone_paragraph_clean(para)
-        col2_para['runs'] = [{"text": desc_text, "properties": first_run_props}]
-
-        return [col1_para, col2_para]
+        return _split_and_create_paragraphs(para, date_text, desc_text, first_run_props)
 
     # Pas de date: utiliser split_paragraph_at_tabs
     return split_paragraph_at_tabs(para)
 
 def split_paragraph_at_tabs(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
-    Splite un paragraphe de formation au premier tab détecté.
+    Splite au premier tab run détecté.
 
-    Pour les paragraphes avec tabs (format tabulé):
-    - Avant premier tab: Colonne 1 (année typiquement)
-    - Après premier tab: Colonne 2 (diplôme + école)
-
-    Supprime tous les runs de tab du résultat.
-
-    Args:
-        para: Paragraphe JSON source
+    Format: AVANT TAB (col 0) | APRÈS TAB (col 1)
+    Nettoie les séparateurs au début de col2.
 
     Returns:
         List[Dict]: Liste de 1 ou 2 paragraphes
     """
     runs = para.get('runs', [])
-
     if not runs:
         return [para]
 
-    # Chercher le premier run avec un tab
+    # Trouver le premier tab run
     first_tab_idx = None
     for idx, run in enumerate(runs):
         if run.get('properties', {}).get('tab', False):
@@ -873,48 +856,36 @@ def split_paragraph_at_tabs(para: Dict[str, Any]) -> List[Dict[str, Any]]:
             break
 
     if first_tab_idx is None:
-        # Pas de tab trouvé, retourner le paragraphe original
         return [para]
 
     first_run_props = runs[0].get('properties', {}) if runs else {}
 
-    # Collecter les runs avant le premier tab
+    # Collecter les runs avant/après le tab
     col1_runs = runs[:first_tab_idx]
-
-    # Collecter les runs après le premier tab (en excluant les runs de tab)
     col2_runs = [run for run in runs[first_tab_idx + 1:]
                  if not run.get('properties', {}).get('tab', False)]
 
-    result = []
-
-    # Nettoyer les tabulations dans les runs col1
+    # Nettoyer tabs dans col1
     for run in col1_runs:
         if 'text' in run:
             run['text'] = run['text'].replace('\t', ' ')
 
-    # Créer le paragraphe colonne 1
-    col1_para = clone_paragraph_clean(para)
-    col1_para['runs'] = col1_runs if col1_runs else [{"text": "", "properties": first_run_props}]
-    result.append(col1_para)
+    # Construire col1_text
+    col1_texts = [run.get('text', '') for run in col1_runs]
+    col1_text = ''.join(col1_texts).replace('\t', ' ')
 
-    # Créer le paragraphe colonne 2 s'il y a du contenu
-    if col2_runs:
-        col2_para = clone_paragraph_clean(para)
+    # Construire col2_text avec nettoyage des séparateurs
+    col2_texts = [run.get('text', '').replace('\t', ' ') for run in col2_runs]
 
-        # Joindre les runs de colonne 2 avec " - " pour créer un seul run
-        # Nettoyer les tabulations dans chaque texte
-        col2_texts = [run.get('text', '').replace('\t', ' ') for run in col2_runs]
-        col2_joined_text = ' - '.join(text for text in col2_texts if text.strip())
+    # Nettoyer les séparateurs au début du premier texte non-vide
+    for i in range(len(col2_texts)):
+        if col2_texts[i].strip():
+            col2_texts[i] = col2_texts[i].lstrip(' :\u00a0\t-')
+            break
 
-        col2_para['runs'] = [{"text": col2_joined_text, "properties": first_run_props}]
-        result.append(col2_para)
-    else:
-        # Si pas de contenu après le tab, ajouter un paragraphe vide
-        col2_para = clone_paragraph_clean(para)
-        col2_para['runs'] = []
-        result.append(col2_para)
+    col2_text = ' - '.join(text for text in col2_texts if text.strip())
 
-    return result
+    return _split_and_create_paragraphs(para, col1_text or '', col2_text, first_run_props)
 
 def group_education_paragraphs(paragraphs: List[Dict[str, Any]]) -> List[List[Dict[str, Any]]]:
     """
