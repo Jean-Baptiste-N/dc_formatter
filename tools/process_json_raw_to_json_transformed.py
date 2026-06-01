@@ -2432,44 +2432,34 @@ def recalculate_indices(data: Dict[str, Any]) -> None:
 
 def remove_all_page_breaks(data: Dict[str, Any]) -> None:
     """
-    Supprime tous les sauts de page du document, que ce soit au niveau des paragraphes ou des runs.
+    Supprime tous les sauts de page ET section breaks du document, que ce soit au niveau des paragraphes ou des runs.
 
     Logique:
     - Parcourir tous les éléments du contenu
-    - Si c'est un paragraphe avec 'page_break' dans ses propriétés, le supprimer
-    - Si c'est un run avec 'page_break' dans ses propriétés, le supprimer
-    - Nettoyer les paragraphes qui deviennent vides après suppression
+    - Supprimer SEULEMENT la propriété 'page_break' ou 'section_break' des paragraphes (garder le paragraphe lui-même)
+    - Supprimer les runs avec 'page_break' dans ses propriétés
+    - Nettoyer les propriétés vides après suppression des breaks
 
     Modifie in-place.
     """
     content = data.get('document', {}).get('content', [])
-    new_content = []
 
     for element in content:
         if element.get('type') == 'Paragraph':
             props = element.get('properties', {})
-            if props.get('page_break', False):
-                continue  # Supprimer ce paragraphe entier
 
-            # Sinon, vérifier les runs
+            # Supprimer SEULEMENT les propriétés de break, pas le paragraphe entier
+            props.pop('page_break', None)
+            props.pop('section_break', None)
+
+            # Vérifier les runs et supprimer ceux avec page_break
             new_runs = []
             for run in element.get('runs', []):
-                if run.get('properties', {}).get('page_break', False):
-                    continue  # Supprimer ce run
-                new_runs.append(run)
+                if not run.get('properties', {}).get('page_break', False):
+                    new_runs.append(run)
 
             # Mettre à jour les runs du paragraphe
             element['runs'] = new_runs
-
-            # Si le paragraphe n'a plus de runs ou de texte, le nettoyer (optionnel)
-            if not new_runs and not get_text_from_element(element).strip():
-                element['runs'] = []  # Paragraphe vide sans runs
-
-            new_content.append(element)
-        else:
-            new_content.append(element)
-
-    data['document']['content'] = new_content
 
 def add_page_breaks_after_xp_headers(data: Dict[str, Any]) -> None:
     # Ajoute un saut de page après les paragraphes avec style DC_H_XP
