@@ -54,7 +54,7 @@ KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certificatio
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
-XP_DATE_PATTERN = r'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}|\d{4}\s*[–-]\s*\d{4})'
+XP_DATE_PATTERN = r'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}(?:\s*[–-]\s*\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4})?|\d{4}\s*[–-]\s*\d{4})'
 MAX_XP_DESCRIPTION_LENGTH = 60  # Limite de caractères pour la description d'une expérience professionnelle
 SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
 
@@ -1455,44 +1455,119 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
                 para['xp_metadata']['detected_xp_company'] = True
                 return  # Ne pas faire d'autres détections si c'est une compagnie
 
-def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _create_xp_split_paragraphs(source_para: Dict[str, Any], date_text: str, company_text: str, poste_text: str = "") -> List[Dict[str, Any]]:
+    """
+    Helper: Crée les 3 paragraphes splittés (DATE | COMPANY | POSTE) à partir des textes extraits.
+
+    Args:
+        source_para: Paragraphe source (pour cloner et extraire properties)
+        date_text: Texte de la date
+        company_text: Texte de la company
+        poste_text: Texte du poste (optionnel, peut être vide)
+
+    Returns:
+        List[Dict]: [date_para, company_para, poste_para]
+    """
+    first_run_props = source_para.get('runs', [{}])[0].get('properties', {}) if source_para.get('runs') else {}
+    result = []
+
+    # 1. Paragraphe DATE
+    date_para = clone_paragraph_clean(source_para)
+    date_para['runs'] = [{"text": date_text, "properties": first_run_props}]
+    date_para['xp_split_part'] = 'xp_date'
+    date_para['xp_entry_start'] = True
+    if 'xp_metadata' in date_para:
+        del date_para['xp_metadata']
+    result.append(date_para)
+
+    # 2. Paragraphe COMPANY
+    company_para = clone_paragraph_clean(source_para)
+    company_para['runs'] = [{"text": company_text, "properties": first_run_props}]
+    company_para['xp_split_part'] = 'xp_company'
+    if 'xp_metadata' in company_para:
+        del company_para['xp_metadata']
+    result.append(company_para)
+
+    # 3. Paragraphe POSTE
+    poste_para = clone_paragraph_clean(source_para)
+    poste_para['runs'] = [{"text": poste_text, "properties": first_run_props}]
+    poste_para['xp_split_part'] = 'xp_poste'
+    if 'xp_metadata' in poste_para:
+        del poste_para['xp_metadata']
+    result.append(poste_para)
+
+    return result
+
+def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
     """
     Scinde une entrée d'expérience pro détectée par une DATE présente dans le texte.
 
     Utilise la détection de DATE (regex) pour identifier une XP entry valide.
-    Avec lazy matching, le POSTE peut être absent.
+    Peut regarder le paragraphe suivant si le POSTE n'est pas trouvé dans le paragraphe courant.
 
-    Format attendu: DATE : COMPANY - POSTE (POSTE optionnel)
-    ou COMPANY - POSTE - DATE (dans ce cas, la DATE est détectée à l'intérieur du texte)
-    ou COMPANY - DATE
-        POSTE en paragraphe suivant (pas obligatoire)
-    ou bien la table habituelle | COMPANY | DATE |
-                                | POSTE   |      |
+    Format attendu:
+    1. COMPANY [TAB] DATE - (format tabulé) → COMPANY | DATE | POSTE (du suivant si présent)
+    2. DATE : COMPANY - POSTE (format avec colon)
+    3. COMPANY - POSTE - DATE (DATE détectée à l'intérieur)
+    4. COMPANY - DATE avec POSTE en paragraphe suivant
+
     Exemples:
+    - "ALSTOM, Tarbes\tDepuis 07/2024" → COMPANY | DATE | POSTE (suivant si disponible)
     - "01/2021- 02/2024 : CALTOPO(USA)- Développeur Full Stack" → DATE | COMPANY | POSTE
-    - "09/2017 – 09/2020 : MICROSOFT(USA)" → DATE | COMPANY | "" (poste vide)
-    - "THALES - Ingénieur - 02-2022 à 05-2023" → COMPANY | POSTE | DATE (DATE détectée à l'intérieur du texte)
-    - "CAPGEMINI - 01/2020 à 12/2021" → COMPANY | "" (poste vide ici mais dans le paragraphe suivant) | DATE (DATE détectée à l'intérieur du texte)
+    - "THALES - Ingénieur - 02-2022 à 05-2023" → COMPANY | POSTE | DATE
 
     Crée 2 ou 3 paragraphes:
     1. DATE (avec style 'xp_date')
     2. COMPANY (avec style 'xp_title')
-    3. POSTE (avec style 'xp_poste') - optionnel
-
-    Détection:
-    - Cherche une DATE avec regex
-    - Puis cherche `: ` ou `- ` qui sépare DATE de COMPANY
-    - Puis cherche `- ` ou fin du texte (lazy) pour séparer COMPANY du POSTE
+    3. POSTE (avec style 'xp_poste') - optionnel, peut venir du paragraphe suivant
 
     Args:
         para: Paragraphe JSON source
+        next_para: Paragraphe suivant optionnel (pour extraire le POSTE s'il n'est pas dans para)
 
     Returns:
         List[Dict]: Liste de 1 (pas XP entry) ou 2-3 paragraphes (XP entry splittée)
     """
     text = get_raw_text_from_paragraph(para)
 
-    # Chercher `: ` qui sépare DATE de COMPANY
+    # Chercher d'abord un TAB qui pourrait séparer COMPANY de DATE (format tabulé)
+    tab_idx = text.find('\t')
+
+    if tab_idx != -1:
+        # Format tabulé: COMPANY [TAB] DATE [TAB] ...
+        company_text = text[:tab_idx].strip().replace('\t', ' ')
+        remaining = text[tab_idx+1:].strip().replace('\t', ' ')
+
+        # Extraire la DATE depuis la partie restante
+        date_match = match_xp_date(remaining)
+        if not date_match:
+            return [para]  # Pas de date trouvée après le tab
+
+        date_text = date_match.group(0).strip()
+
+        # Le POSTE pourrait être après la DATE dans le même paragraphe
+        after_date = remaining[date_match.end():].strip()
+        poste_text = ""
+
+        # Si pas de POSTE dans ce paragraphe, regarder dans le paragraphe suivant
+        if not after_date and next_para:
+            next_text = get_raw_text_from_paragraph(next_para).strip().replace('\t', ' ')
+            # Vérifier que ce n'est pas vide et qu'il contient probablement un POSTE (mot-clé de poste)
+            if next_text:
+                poste_keywords = ['Développeur', 'Ingénieur', 'Manager', 'Responsable', 'Chef', 'Lead', 'Engineer', 'Consultant', 'Architecte', 'Directeur', 'Senior', 'Scrum', 'DevOps', 'Administrateur', 'Product Owner', 'Technicien', 'Stagiaire', 'Alternance']
+                next_lower = next_text.lower()
+                for kw in poste_keywords:
+                    if kw.lower() in next_lower:
+                        poste_text = next_text
+                        break
+
+        # Vérifier que COMPANY et DATE ont du contenu
+        if not company_text or not date_text:
+            return [para]
+
+        return _create_xp_split_paragraphs(para, date_text, company_text, poste_text)
+
+    # Sinon, chercher le format `: ` qui sépare DATE de COMPANY
     colon_match = re.search(r':\s+', text)
     if not colon_match:
         return [para]  # Pas de `: ` trouvé
@@ -1549,39 +1624,7 @@ def split_xp_entry(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     if not date_text or not company_text:
         return [para]
 
-    # Créer les paragraphes
-    first_run_props = para.get('runs', [{}])[0].get('properties', {}) if para.get('runs') else {}
-    result = []
-
-    # 1. Paragraphe DATE
-    date_para = clone_paragraph_clean(para)
-    date_para['runs'] = [{"text": date_text, "properties": first_run_props}]
-    date_para['xp_split_part'] = 'xp_date'
-    date_para['xp_entry_start'] = True  # Marquer que c'est le début d'une entry
-    # Nettoyer les metadata du clone (ne pas propager celles du source)
-    if 'xp_metadata' in date_para:
-        del date_para['xp_metadata']
-    result.append(date_para)
-
-    # 2. Paragraphe COMPANY
-    company_para = clone_paragraph_clean(para)
-    company_para['runs'] = [{"text": company_text, "properties": first_run_props}]
-    company_para['xp_split_part'] = 'xp_company'
-    # Nettoyer les metadata du clone (ne pas propager celles du source)
-    if 'xp_metadata' in company_para:
-        del company_para['xp_metadata']
-    result.append(company_para)
-
-    # 3. Paragraphe POSTE
-    poste_para = clone_paragraph_clean(para)
-    poste_para['runs'] = [{"text": poste_text, "properties": first_run_props}]
-    poste_para['xp_split_part'] = 'xp_poste'
-    # Nettoyer les metadata du clone (ne pas propager celles du source)
-    if 'xp_metadata' in poste_para:
-        del poste_para['xp_metadata']
-    result.append(poste_para)
-
-    return result
+    return _create_xp_split_paragraphs(para, date_text, company_text, poste_text)
 
 def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
     """
@@ -1607,8 +1650,11 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
     """
     content = data.get('document', {}).get('content', [])
     new_content = []
+    i = 0
 
-    for element in content:
+    while i < len(content):
+        element = content[i]
+
         # Chercher les XP entries marquées avec le tag 'professional_experience'
         if (element.get('type') == 'Paragraph'):
             tags = element.get('tags', [])
@@ -1619,13 +1665,32 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
                 props = element.get('properties', {})
                 # Exclure les bullets (ilvl est défini)
                 if props.get('ilvl') is None:
+                    # Préparer le paragraphe suivant optionnel pour split_xp_entry
+                    next_para = None
+                    if i + 1 < len(content):
+                        next_elem = content[i + 1]
+                        if next_elem.get('type') == 'Paragraph':
+                            next_para = next_elem
+
                     # Laisser split_xp_entry decider si c'est une vraie XP entry
-                    split_result = split_xp_entry(element)
+                    split_result = split_xp_entry(element, next_para)
                     if len(split_result) > 1:
                         new_content.extend(split_result)
+                        # Vérifier si on a consommé le next_para (POSTE extrait du paragraphe suivant)
+                        # Si split_result a 3 éléments et le 3e (xp_poste) a du texte, on a utilisé next_para
+                        consumed_next_para = False
+                        if len(split_result) == 3 and next_para:
+                            poste_para = split_result[2]
+                            poste_text = ''.join(run.get('text', '') for run in poste_para.get('runs', []))
+                            if poste_text.strip():
+                                consumed_next_para = True
+
+                        # Incrémenter i: sauter next_para si on l'a consommé
+                        i += 2 if consumed_next_para else 1
                         continue
 
         new_content.append(element)
+        i += 1
 
     data['document']['content'] = new_content
 
