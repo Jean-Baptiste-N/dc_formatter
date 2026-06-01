@@ -363,7 +363,7 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     if isinstance(tags, str):
         tags = [tags]
 
-    if 'professional_experience' in tags and not any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+    if 'professional_experience' in tags and not any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
         return False
 
     if 'professional_experience' in tags and text.strip().startswith(('projet', 'projets')):
@@ -384,17 +384,17 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     if style in {'DC_T1_Sections', 'DC_XP_Title', 'DC_H_DC', 'DC_H_XP', 'DC_H_Poste'}:
         return True
 
-    return any(keyword in text for keyword in keywords)
+    return any(keyword in text.lower() for keyword in keywords)
 
 def detect_section_by_keyword(text: str) -> str:
     """Détecte le type de section basé sur les mots-clés (en ordre de priorité)"""
-    if any(keyword in text for keyword in KEYWORDS_HEADER_DOCUMENT):
+    if any(keyword in text.lower() for keyword in KEYWORDS_HEADER_DOCUMENT):
         return 'header'
-    elif any(keyword in text for keyword in KEYWORDS_MAIN_SKILLS):
+    elif any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS):
         return 'main_skills'
-    elif any(keyword in text for keyword in KEYWORDS_EDUCATION):
+    elif any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION):
         return 'education'
-    elif any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
+    elif any(keyword in text.lower() for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE):
         return 'professional_experience'
     return None
 
@@ -691,12 +691,15 @@ def create_language_header(data: Dict[str, Any]) -> None:
             style = element.get('properties', {}).get('style', '')
             # Check: c'est un vrai header "Langues" (pas "Français langue maternelle")
             if style.startswith('Heading') or style.startswith('Titre') or style == 'DC_T1_Sections':
-                if text.lower() == 'langues':
+                # Normaliser le texte: enlever les espaces et deux points pour la comparaison
+                normalized_text = text.lower().rstrip(':').strip()
+                if normalized_text == 'langues' or normalized_text == 'langue':
                     header_langues_exists = True
-                    break
-                if text.lower() == 'langue':
-                    element['runs'] = [{'text': 'Langues', 'properties': {}}]
-                    header_langues_exists = True
+                    # Normaliser: si c'est "Langue" ou "Langues :", le changer en "Langues"
+                    if normalized_text == 'langue':
+                        element['runs'] = [{'text': 'Langues', 'properties': {}}]
+                    elif text != 'Langues':  # Si ce n'est pas exactement "Langues", normaliser
+                        element['runs'] = [{'text': 'Langues', 'properties': {}}]
                     break
 
     if header_langues_exists:
@@ -707,7 +710,7 @@ def create_language_header(data: Dict[str, Any]) -> None:
     for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element)
-            if any(keyword in text for keyword in KEYWORDS_LANGUAGES):
+            if any(keyword in text.lower() for keyword in KEYWORDS_LANGUAGES):
                 first_language_idx = i
                 break
 
@@ -788,6 +791,59 @@ def split_paragraph_at_language(para: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     return result
 
+def split_education_paragraph(para: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Splite un paragraphe éducation (formations ou diplômes) en 2 colonnes.
+
+    Stratégie:
+    1. D'abord: chercher une date au début du texte avec regex
+       - Si trouvée: splitter après la date
+       - Format dates: 2019, 2019-2024, 01/2019, 2019/2024, etc.
+    2. Si pas de date: chercher un tab et splitter
+
+    Args:
+        para: Paragraphe JSON source
+
+    Returns:
+        List[Dict]: Liste de 1 ou 2 paragraphes
+    """
+    runs = para.get('runs', [])
+    if not runs:
+        return [para]
+
+    # Obtenir le texte complet du paragraphe (sans convertir en minuscules)
+    full_text = get_text_from_element(para, lower=False)
+    first_run_props = runs[0].get('properties', {}) if runs else {}
+
+    # Regex pour détecter une date au début: 2019, 2019-2024, 01/2019, etc.
+    # Couvre: YYYY, YYYY-YYYY, MM/YYYY, YYYY/YYYY, MM/DD/YYYY, etc.
+    date_pattern = r'^\s*((?:0?[1-9]|1[0-2])[/\s]*)?(?:19|20)\d{2}(?:\s*(?:[-/]|à|au)\s*(?:0?[1-9]|1[0-2])?[/\s]*(?:19|20)\d{2})?\s+'
+
+    # Chercher la date dans le texte en minuscules mais conserver la position
+    match = re.search(date_pattern, full_text.lower())
+
+    if match:
+        # Date détectée: splitter après la date (utiliser la position sur le texte original)
+        date_end_pos = match.end()
+        date_text = full_text[:date_end_pos].strip()
+        desc_text = full_text[date_end_pos:].strip()
+
+        # Remplacer les tabulations par un espace simple
+        date_text = date_text.replace('\t', ' ')
+        desc_text = desc_text.replace('\t', ' ')
+
+        # Créer deux paragraphes
+        col1_para = clone_paragraph_clean(para)
+        col1_para['runs'] = [{"text": date_text, "properties": first_run_props}]
+
+        col2_para = clone_paragraph_clean(para)
+        col2_para['runs'] = [{"text": desc_text, "properties": first_run_props}]
+
+        return [col1_para, col2_para]
+
+    # Pas de date: utiliser split_paragraph_at_tabs
+    return split_paragraph_at_tabs(para)
+
 def split_paragraph_at_tabs(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     """
     Splite un paragraphe de formation au premier tab détecté.
@@ -831,6 +887,11 @@ def split_paragraph_at_tabs(para: Dict[str, Any]) -> List[Dict[str, Any]]:
 
     result = []
 
+    # Nettoyer les tabulations dans les runs col1
+    for run in col1_runs:
+        if 'text' in run:
+            run['text'] = run['text'].replace('\t', ' ')
+
     # Créer le paragraphe colonne 1
     col1_para = clone_paragraph_clean(para)
     col1_para['runs'] = col1_runs if col1_runs else [{"text": "", "properties": first_run_props}]
@@ -841,7 +902,8 @@ def split_paragraph_at_tabs(para: Dict[str, Any]) -> List[Dict[str, Any]]:
         col2_para = clone_paragraph_clean(para)
 
         # Joindre les runs de colonne 2 avec " - " pour créer un seul run
-        col2_texts = [run.get('text', '') for run in col2_runs]
+        # Nettoyer les tabulations dans chaque texte
+        col2_texts = [run.get('text', '').replace('\t', ' ') for run in col2_runs]
         col2_joined_text = ' - '.join(text for text in col2_texts if text.strip())
 
         col2_para['runs'] = [{"text": col2_joined_text, "properties": first_run_props}]
@@ -1158,12 +1220,12 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                             j += 1
 
-                        # Transformer les paragraphes en lignes de tableau (split par tabs)
+                        # Transformer les paragraphes en lignes de tableau (split par date ou tabs)
                         if source_paragraphs:
                             split_rows = []
 
                             for para in source_paragraphs:
-                                split_parts = split_paragraph_at_tabs(para)
+                                split_parts = split_education_paragraph(para)
 
                                 if split_parts and len(split_parts) >= 2:
                                     split_rows.append((split_parts[0], split_parts[1]))
