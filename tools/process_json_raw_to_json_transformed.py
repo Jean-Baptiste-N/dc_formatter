@@ -57,7 +57,20 @@ KEYWORDS_XP_POSTE = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeu
 KEYWORDS_XP_COMPANY = ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'constructions', 'realisation', 'realisations', 'réalisation', 'réalisations', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these']
 KEYWORDS_XP_DESCRIPTION = ['contexte', 'projet', 'projets', 'mission', 'missions', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'réalisation', 'realisation', 'réalisations', 'realisations', 'conception', 'montage', 'montages']
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
-XP_DATE_PATTERN = r'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}(?:\s*[–-]\s*\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4})?|\d{4}\s*[–-]\s*\d{4})'
+
+# Pattern pour reconnaître les mois en français (avec/sans accents)
+MONTHS_FR = r'(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout|septembre|octobre|novembre|décembre|decembre|janv|févr|fevr|avr|juil|sept|oct|nov|déc|dec)'
+
+# Pattern XP_DATE amélioré pour reconnaître :
+# - Dates en chiffres: 01/12/2016 ou 01-12-2016 ou 2016-2017
+# - Dates en français: Décembre 2016 ou Décembre 2016 – Février 2017
+# - Avec préfixes optionnels: depuis, du, de, à partir de
+XP_DATE_PATTERN = rf'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:' \
+    rf'\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}}(?:\s*[–-]\s*\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}})?' \
+    rf'|\d{{4}}\s*[–-]\s*\d{{4}}' \
+    rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–-]\s*{MONTHS_FR}\s+\d{{4}})?' \
+    rf')'
+
 SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
 MAX_XP_DESCRIPTION_LENGTH = 70  # Limite de caractères pour la description d'une expérience professionnelle
 
@@ -1355,7 +1368,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 # ===== 7. SECTION PROFESSIONAL EXPERIENCE =====
 
 # ## XP Pattern Detection
-def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
+def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = False) -> None:
     """
     Détecte et tague le contenu XP basé sur des patterns.
     Tagge le paragraphe avec les champs xp_* appropriés même s'il n'a pas été splité.
@@ -1364,11 +1377,13 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
     - xp_date: contient une date (regex XP_DATE_PATTERN)
     - xp_entry_start: marqué True si c'est une xp_date (début d'une entry)
     - xp_company: NOM MAJUSCULE SEUL ou très court (pas de verbes, pas de conjonctions)
+      ⚠️ SAUF si after_description=True (on n'en détecte pas après une description)
     - xp_poste: titre de poste (pattern spécifique: Verbe+Nom, titres métier)
     - xp_description: texte long (> MAX_XP_DESCRIPTION_LENGTH) contenant "contexte"
 
     Args:
         para: Paragraphe JSON à tagger (modifié in-place)
+        after_description: Si True, ne pas détecter xp_company (nous sommes après une description XP)
     """
     if not para.get('xp_split_part'):  # Ne pas retagger les paragraphes déjà splittés
         # Ne pas tagger les titres de section
@@ -1420,12 +1435,14 @@ def _detect_and_tag_xp_content(para: Dict[str, Any]) -> None:
 
             # Détection xp_company (nom propre court qui n'a pas été marqué comme poste)
             # Critères: court, commence par majuscule, pas de verbes d'action courants
-            is_very_short = len(text) < 50
-            has_no_common_verbs = not any(word in text.lower() for word in KEYWORDS_XP_COMPANY)
-            starts_with_capital = text[0].isupper()
-            if is_very_short and starts_with_capital and has_no_common_verbs:
-                para['xp_metadata']['detected_xp_company'] = True
-                return  # Ne pas faire d'autres détections si c'est une compagnie
+            # MAIS: ne pas détecter si on est après une description
+            if not after_description:
+                is_very_short = len(text) < 50
+                has_no_common_verbs = not any(word in text.lower() for word in KEYWORDS_XP_COMPANY)
+                starts_with_capital = text[0].isupper()
+                if is_very_short and starts_with_capital and has_no_common_verbs:
+                    para['xp_metadata']['detected_xp_company'] = True
+                    return  # Ne pas faire d'autres détections si c'est une compagnie
 
 def _create_xp_split_paragraphs(source_para: Dict[str, Any], date_text: str, company_text: str, poste_text: str = "") -> List[Dict[str, Any]]:
     """
@@ -1755,11 +1772,11 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     Règle:
     - Dans chaque bloc XP (début: xp_date, fin: prochain xp_date ou sortie de section),
       tous les paragraphes non-vide entre les headers XP sont marqués xp_bullet.
-    - Si le premier xp_bullet n'a pas de ilvl, on décale tous les ilvl d'un niveau:
-      sans ilvl -> ilvl 0, ilvl0 -> ilvl1, etc.
-    - Si le premier xp_bullet a déjà un ilvl, ne rien faire.
+    - Si UN SEUL ilvl distinct est trouvé dans le bloc, décaler tous les ilvl d'un niveau:
+      ilvl0 -> ilvl1, ilvl1 -> ilvl2, etc.
+    - Si le bloc contient plusieurs ilvl distincts (ex: ilvl0 ET ilvl1), ne rien faire (hiérarchie déjà établie).
+    - Si un paragraphe n'a pas d'ilvl, lui appliquer ilvl = "0"
     - NOUVEAU: Dans un bloc "Environnement technique", tous les bullets doivent avoir ilvl = 2
-    - Correction : si un paragraphe xp_ bullets n'a finalement pas de ilvl, lui appliquer un ilvl = 0
     """
     content = data.get('document', {}).get('content', [])
     current_block: List[int] = []
@@ -1772,7 +1789,19 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
             return
         first_elem = content[current_block[0]]
         first_ilvl = first_elem.get('properties', {}).get('ilvl')
-        if first_ilvl is None:
+
+        # Collecter TOUS les ilvl uniques du bloc (excluant None)
+        unique_ilvls = set()
+        for idx in current_block:
+            ilvl = content[idx].get('properties', {}).get('ilvl')
+            if ilvl is not None:
+                unique_ilvls.add(ilvl)
+
+        # Règle 1: Si le premier n'a PAS d'ilvl (c'est un en-tête) → TOUJOURS abaisser
+        # Règle 2: Si UN SEUL ilvl distinct est trouvé dans TOUT le bloc → abaisse
+        should_lower = (first_ilvl is None) or (len(unique_ilvls) == 1)
+
+        if should_lower:
             for idx in current_block:
                 elem = content[idx]
                 props = elem.setdefault('properties', {})
@@ -1818,29 +1847,43 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
             technical_block = []
             continue
 
-        # Vérifier si une table contient xp_entry_start (dates XP dans les cellules)
-        if element.get('type') == 'Table' and table_contains_xp_entry_start(element):
-            if in_entry:
-                finalize_block()
-                finalize_technical_block()
-                finalize_paras_without_ilvl_in_block()
-            in_entry = True
-            in_technical_block = False
-            current_block = []
-            technical_block = []
-            continue
+        # Vérifier si une table est une table XP (auto-générée professionnelle)
+        if element.get('type') == 'Table':
+            # Une table XP auto-générée ou avec marqueurs xp_entry_start
+            is_xp_table = (element.get('auto_generated') and
+                          'professional_experience' in element.get('tags', []))
+            has_xp_entry_start = table_contains_xp_entry_start(element)
+
+            if is_xp_table or has_xp_entry_start:
+                if in_entry:
+                    finalize_block()
+                    finalize_technical_block()
+                    finalize_paras_without_ilvl_in_block()
+                in_entry = True
+                in_technical_block = False
+                current_block = []
+                technical_block = []
+                continue
 
         # Démarrer une entry sur xp_split_part == 'xp_date' OU xp_entry_start (paragraphes racine)
-        if element.get('type') == 'Paragraph' and (element.get('xp_split_part') == 'xp_date' or element.get('xp_entry_start')):
-            if in_entry:
-                finalize_block()
-                finalize_technical_block()
-                finalize_paras_without_ilvl_in_block()
-            in_entry = True
-            in_technical_block = False
-            current_block = []
-            technical_block = []
-            continue
+        # OU si le paragraphe a detected_xp_company ou xp_company directement
+        if element.get('type') == 'Paragraph':
+            xp_metadata = element.get('xp_metadata', {})
+            # Chercher les marqueurs directement OU dans les métadonnées
+            is_xp_date = element.get('xp_date') or xp_metadata.get('detected_xp_date')
+            is_xp_company = element.get('xp_company') or xp_metadata.get('detected_xp_company')
+            is_xp_entry_start = element.get('xp_entry_start') or element.get('xp_split_part') == 'xp_date'
+
+            if is_xp_date or is_xp_entry_start or is_xp_company:
+                if in_entry:
+                    finalize_block()
+                    finalize_technical_block()
+                    finalize_paras_without_ilvl_in_block()
+                in_entry = True
+                in_technical_block = False
+                current_block = []
+                technical_block = []
+                continue
 
         # Traiter les blocs techniques MÊME si on n'est pas en_entry
         if element.get('type') == 'Paragraph' and is_technical_skills_header(element):
@@ -1914,6 +1957,9 @@ def detect_xp_patterns(data: Dict[str, Any]) -> None:
     """
     content = data.get('document', {}).get('content', [])
 
+    # État pour tracker si on est après une description XP
+    after_description = False
+
     # Parcourir les paragraphes au niveau racine
     for element in content:
         if element.get('type') == 'Paragraph':
@@ -1923,7 +1969,16 @@ def detect_xp_patterns(data: Dict[str, Any]) -> None:
 
             # Appliquer la détection aux paragraphes professionnels non-splittés
             if 'professional_experience' in tags:
-                _detect_and_tag_xp_content(element)
+                _detect_and_tag_xp_content(element, after_description=after_description)
+
+                # Mettre à jour l'état after_description
+                metadata = element.get('xp_metadata', {})
+                if metadata.get('detected_xp_date') or element.get('xp_entry_start'):
+                    # Nouvelle entrée XP détectée (date trouvée)
+                    after_description = False
+                elif metadata.get('detected_xp_description'):
+                    # Description trouvée dans cette entrée
+                    after_description = True
 
         # Parcourir aussi les paragraphes dans les tables
         elif element.get('type') == 'Table':
@@ -1936,7 +1991,10 @@ def detect_xp_patterns(data: Dict[str, Any]) -> None:
                 for row in element.get('rows', []):
                     for cell in row.get('cells', []):
                         for para in cell.get('paragraphs', []):
-                            _detect_and_tag_xp_content(para)
+                            _detect_and_tag_xp_content(para, after_description=False)  # Dans les tables, pas de contexte
+
+                # Après une table, on est au début d'une nouvelle entry
+                after_description = False
 
 def create_xp_tables(data: Dict[str, Any]) -> Dict[str, Any]:
     """
