@@ -71,7 +71,7 @@ XP_DATE_PATTERN = rf'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:' \
     rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–-]\s*{MONTHS_FR}\s+\d{{4}})?' \
     rf')'
 
-SINGLE_XP_DATE_PATTERN = r'^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$'
+SINGLE_XP_DATE_PATTERN = r'(?:^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$|^\d{4}$)'
 MAX_XP_DESCRIPTION_LENGTH = 70  # Limite de caractères pour la description d'une expérience professionnelle
 
 # MARK: FONCTIONS UTILITAIRES
