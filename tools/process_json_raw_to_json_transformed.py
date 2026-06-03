@@ -52,7 +52,7 @@ KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes"]
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
-KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
+KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expérience professionnelles", "experience professionnelles", "expériences professionnelles", "experiences professionnelles"]
 KEYWORDS_XP_POSTE = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
 KEYWORDS_XP_COMPANY = ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'constructions', 'realisation', 'realisations', 'réalisation', 'réalisations', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these']
 KEYWORDS_XP_DESCRIPTION = ['contexte', 'projet', 'projets', 'mission', 'missions', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'réalisation', 'realisation', 'réalisations', 'realisations', 'conception', 'montage', 'montages', 'archtecte', 'architecture', 'environnement', 'environnements', 'technologies', 'technologie', 'outils', 'outil', 'méthodologie', 'methodologie', 'méthodes', 'methodes', 'logiciels', 'logiciel']
@@ -66,9 +66,9 @@ MONTHS_FR = r'(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout
 # - Dates en français: Décembre 2016 ou Décembre 2016 – Février 2017
 # - Avec préfixes optionnels: depuis, du, de, à partir de
 XP_DATE_PATTERN = rf'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:' \
-    rf'\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}}(?:\s*[–-]\s*\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}})?' \
-    rf'|\d{{4}}\s*[–-]\s*\d{{4}}' \
-    rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–-]\s*{MONTHS_FR}\s+\d{{4}})?' \
+    rf'\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}}(?:\s*[–à-]\s*\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}})?' \
+    rf'|\d{{4}}\s*[–à-]\s*\d{{4}}' \
+    rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–à-]\s*{MONTHS_FR}\s+\d{{4}})?' \
     rf')'
 
 SINGLE_XP_DATE_PATTERN = r'(?:^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$|^\d{4}$)'
@@ -1368,7 +1368,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 # ===== 7. SECTION PROFESSIONAL EXPERIENCE =====
 
 # ## XP Pattern Detection
-def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = False) -> None:
+def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = False, next_para: Dict[str, Any] = None) -> None:
     """
     Détecte et tague le contenu XP basé sur des patterns.
     Tagge le paragraphe avec les champs xp_* appropriés même s'il n'a pas été splité.
@@ -1378,12 +1378,14 @@ def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = F
     - xp_entry_start: marqué True si c'est une xp_date (début d'une entry)
     - xp_company: NOM MAJUSCULE SEUL ou très court (pas de verbes, pas de conjonctions)
       ⚠️ SAUF si after_description=True (on n'en détecte pas après une description)
+      ⚠️ SAUF si le paragraphe suivant est un bullet (c'est un titre de sous-section)
     - xp_poste: titre de poste (pattern spécifique: Verbe+Nom, titres métier)
     - xp_description: texte long (> MAX_XP_DESCRIPTION_LENGTH) contenant "contexte"
 
     Args:
         para: Paragraphe JSON à tagger (modifié in-place)
         after_description: Si True, ne pas détecter xp_company (nous sommes après une description XP)
+        next_para: Paragraphe suivant (pour contexte: vérifier si c'est un bullet)
     """
     if not para.get('xp_split_part'):  # Ne pas retagger les paragraphes déjà splittés
         # Ne pas tagger les titres de section
@@ -1436,7 +1438,13 @@ def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = F
             # Détection xp_company (nom propre court qui n'a pas été marqué comme poste)
             # Critères: court, commence par majuscule, pas de verbes d'action courants
             # MAIS: ne pas détecter si on est après une description
-            if not after_description:
+            # MAIS: ne pas détecter si le paragraphe suivant est un bullet (c'est un titre de sous-section)
+            next_is_bullet = False
+            if next_para and next_para.get('type') == 'Paragraph':
+                next_props = next_para.get('properties', {})
+                next_is_bullet = next_props.get('ilvl') is not None
+
+            if not after_description and not next_is_bullet:
                 is_very_short = len(text) < 50
                 has_no_common_verbs = not any(word in text.lower() for word in KEYWORDS_XP_COMPANY)
                 starts_with_capital = text[0].isupper()
@@ -1571,9 +1579,9 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
         prefix = prefix_match.group(1)
         date_body = prefix_match.group(2).strip()
 
-    range_sep = re.search(r'\s+[–-]\s+', date_body)
+    range_sep = re.search(r'\s+[–à-]\s+', date_body)
     if range_sep:
-        left, right = re.split(r'\s+[–-]\s+', date_body, maxsplit=1)
+        left, right = re.split(r'\s+[–à-]\s+', date_body, maxsplit=1)
         if not is_single_xp_date(left) or not is_single_xp_date(right):
             return [para]
         left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
@@ -1585,7 +1593,7 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
             left = date_tokens[0].group(0)
             right = date_tokens[1].group(0)
             between = date_body[date_tokens[0].end():date_tokens[1].start()]
-            if not re.search(r'[–-]', between):
+            if not re.search(r'[–à-]', between):
                 return [para]
             if not is_single_xp_date(left) or not is_single_xp_date(right):
                 return [para]
@@ -1600,7 +1608,7 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
 
     # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
     after_colon = remaining_after_date
-    dash_pattern = r'^(.+?)\s*[-–]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
+    dash_pattern = r'^(.+?)\s*[-–à]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
     dash_match = re.match(dash_pattern, after_colon)
     if dash_match:
         company_text = dash_match.group(1).strip()
@@ -1960,8 +1968,8 @@ def detect_xp_patterns(data: Dict[str, Any]) -> None:
     # État pour tracker si on est après une description XP
     after_description = False
 
-    # Parcourir les paragraphes au niveau racine
-    for element in content:
+    # Parcourir les paragraphes au niveau racine (avec accès au suivant)
+    for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
             tags = element.get('tags', [])
             if isinstance(tags, str):
@@ -1969,7 +1977,9 @@ def detect_xp_patterns(data: Dict[str, Any]) -> None:
 
             # Appliquer la détection aux paragraphes professionnels non-splittés
             if 'professional_experience' in tags:
-                _detect_and_tag_xp_content(element, after_description=after_description)
+                # Obtenir le prochain paragraphe s'il existe
+                next_para = content[i + 1] if i + 1 < len(content) else None
+                _detect_and_tag_xp_content(element, after_description=after_description, next_para=next_para)
 
                 # Mettre à jour l'état after_description
                 metadata = element.get('xp_metadata', {})
