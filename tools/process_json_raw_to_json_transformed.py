@@ -391,6 +391,11 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     if match_xp_date(text):
         return False
 
+    # Exclure les entrées de formation: paragraphes commençant par une année (YYYY - ...)
+    # Cela évite que "2018 - ÉCOLE SUPII..." soit marqué comme titre au lieu d'entrée de formation
+    if re.match(r'^\d{4}\s*[-–—–à]', text):
+        return False
+
     if element.get('auto_generated'):
         return True
 
@@ -2261,11 +2266,12 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
                     if date_para:
                         element['rows'][0]['cells'][1]['paragraphs'] = [clone_paragraph_clean(date_para)]
                     else:
-                        # Trouver date (contient "20")
+                        # Trouver date (contient "20" OU correspond au pattern d'année seule)
                         date_para = None
                         for para in remaining:
-                            text = get_text_from_element(para)
-                            if ' 20' in text or '/20' in text or '-20' in text:
+                            text = get_text_from_element(para).strip()
+                            # Cherche dates: pattern standard OU année seule (YYYY)
+                            if ' 20' in text or '/20' in text or '-20' in text or re.match(SINGLE_XP_DATE_PATTERN, text):
                                 date_para = para
                                 break
 
