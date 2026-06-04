@@ -2905,7 +2905,8 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             continue
 
         ilvl = props.get('ilvl')
-        text = get_text_from_element(ilist)
+        # Utiliser get_raw_text_from_paragraph pour préserver la casse du texte original
+        text = get_raw_text_from_paragraph(ilist) if ilist.get('type') == 'Paragraph' else get_text_from_element(ilist, lower=False)
         if not ilvl:
             continue
         elif ilvl == "0":
