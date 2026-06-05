@@ -51,7 +51,7 @@ KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", 
 KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes"]
-KEYWORDS_LANGUAGES = ["langue", "langues", "français", "anglais", "espagnol", "allemand", "italien", "chinois", "japonais", "russe"]
+KEYWORDS_LANGUAGES = ["langue", "langues", "français", "francais", "anglais", "espagnol", "allemand", "flamand", "néerlandais", "italien", "chinois", "japonais", "russe", "portugais"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expérience professionnelles", "experience professionnelles", "expériences professionnelles", "experiences professionnelles"]
 KEYWORDS_XP_POSTE = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
 KEYWORDS_XP_COMPANY = ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'constructions', 'realisation', 'realisations', 'réalisation', 'réalisations', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these']
@@ -399,7 +399,9 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     if element.get('auto_generated'):
         return True
 
-    if style.startswith('Titre') or style.startswith('Heading'):
+    # Only promote Titre1 or Heading 1 - not Titre2, Titre3, etc.
+    # These sub-titles (Titre2+) should remain as-is and not be promoted to T1_Sections
+    if style == 'Titre1' or style == 'Heading 1':
         return True
 
     if style in {'DC_T1_Sections', 'DC_XP_Title', 'DC_H_DC', 'DC_H_XP', 'DC_H_Poste'}:
@@ -840,17 +842,27 @@ def split_education_paragraph(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     full_text = get_text_from_element(para, lower=False)
     first_run_props = runs[0].get('properties', {}) if runs else {}
 
-    # Regex pour détecter une date au début
-    date_pattern = r'^\s*((?:0?[1-9]|1[0-2])[/\s]*)?(?:19|20)\d{2}(?:\s*(?:[-/]|à|au)\s*(?:0?[1-9]|1[0-2])?[/\s]*(?:19|20)\d{2})?\s+'
-    match = re.search(date_pattern, full_text.lower())
-
-    if match:
-        # Date détectée: splitter après
-        date_end_pos = match.end()
+    # Regex pour détecter une date
+    date_pattern = r'((?:0?[1-9]|1[0-2])[/\s]*)?(?:19|20)\d{2}(?:\s*(?:[-/]|à|au)\s*(?:0?[1-9]|1[0-2])?[/\s]*(?:19|20)\d{2})?'
+    
+    # Chercher date au début
+    match_start = re.match(r'^\s*' + date_pattern + r'\s+', full_text.lower())
+    if match_start:
+        # Date détectée au début: splitter après
+        date_end_pos = match_start.end()
         date_text = full_text[:date_end_pos].strip().replace('\t', ' ')
         desc_text = full_text[date_end_pos:].lstrip(' :\u00a0\t-').strip().replace('\t', ' ')
-
         return _split_and_create_paragraphs(para, date_text, desc_text, first_run_props)
+
+    # Chercher date à la fin avec séparateur avant (cas: "Contenu | Date")
+    match_end = re.search(r'\s*[|,\-–]\s*' + date_pattern + r'\s*$', full_text.lower())
+    if match_end:
+        # Date détectée à la fin: splitter avant
+        date_start_pos = match_end.start()
+        desc_text = full_text[:date_start_pos].strip().replace('\t', ' ')
+        date_text = full_text[date_start_pos:].lstrip(' :\u00a0\t-|,–').strip().replace('\t', ' ')
+        if desc_text and date_text:
+            return _split_and_create_paragraphs(para, date_text, desc_text, first_run_props)
 
     # Pas de date: utiliser split_paragraph_at_tabs
     return split_paragraph_at_tabs(para)
