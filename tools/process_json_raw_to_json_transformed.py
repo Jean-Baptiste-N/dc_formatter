@@ -64,11 +64,13 @@ MONTHS_FR = r'(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout
 # Pattern XP_DATE amélioré pour reconnaître :
 # - Dates en chiffres: 01/12/2016 ou 01-12-2016 ou 2016-2017
 # - Dates en français: Décembre 2016 ou Décembre 2016 – Février 2017
+# - Années seules: 2015, 2024
 # - Avec préfixes optionnels: depuis, du, de, à partir de
 XP_DATE_PATTERN = rf'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:' \
     rf'\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}}(?:\s*[–à-]\s*\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}})?' \
     rf'|\d{{4}}\s*[–à-]\s*\d{{4}}' \
     rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–à-]\s*{MONTHS_FR}\s+\d{{4}})?' \
+    rf'|\d{{4}}' \
     rf')'
 
 SINGLE_XP_DATE_PATTERN = r'(?:^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$|^\d{4}$)'
@@ -391,9 +393,9 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     if match_xp_date(text):
         return False
 
-    # Exclure les entrées de formation: paragraphes commençant par une année (YYYY - ...)
+    # Exclure les entrées de formation: paragraphes commençant par une année (YYYY - ... ou YYYY\t...)
     # Cela évite que "2018 - ÉCOLE SUPII..." soit marqué comme titre au lieu d'entrée de formation
-    if re.match(r'^\d{4}\s*[-–—–à]', text):
+    if re.match(r'^\d{4}(?:\s+|[-–—–à\t])', text):
         return False
 
     if element.get('auto_generated'):
@@ -1224,18 +1226,35 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
 
                             j += 1
 
-                        # Transformer les paragraphes en lignes de tableau (split par date ou tabs)
+                        # Transformer les paragraphes en lignes de tableau (group par date, split par tabs)
                         if source_paragraphs:
+                            # IMPORTANT: Group paragraphs by year/date first
+                            blocks = group_education_paragraphs(source_paragraphs)
                             split_rows = []
-
-                            for para in source_paragraphs:
-                                split_parts = split_education_paragraph(para)
-
+                            
+                            for block in blocks:
+                                if not block:
+                                    continue
+                                
+                                # First para of the block = date/year
+                                first_para = block[0]
+                                split_parts = split_education_paragraph(first_para)
+                                
+                                # Column 1: year/date part
+                                col1_para = split_parts[0] if split_parts else first_para
+                                
+                                # Column 2: remaining descriptions
+                                remaining_paras = block[1:]
+                                col2_paras = []
+                                
+                                # If split found a description in the first para, add it first
                                 if split_parts and len(split_parts) >= 2:
-                                    split_rows.append((split_parts[0], split_parts[1]))
-                                elif split_parts and len(split_parts) == 1:
-                                    # Si un seul paragraphe, c'est la colonne 1, la 2 est vide
-                                    split_rows.append((split_parts[0], None))
+                                    col2_paras.append(split_parts[1])
+                                
+                                # Then add all remaining paras from the block
+                                col2_paras.extend(remaining_paras)
+                                
+                                split_rows.append((col1_para, col2_paras))
 
                             if split_rows:
                                 temp_table = create_empty_table_generic(
@@ -1248,9 +1267,9 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                                 )
                                 rows = temp_table['rows']
 
-                                for row_idx, (col1_para, col2_para) in enumerate(split_rows):
+                                for row_idx, (col1_para, col2_paras) in enumerate(split_rows):
                                     rows[row_idx]['cells'][0]['paragraphs'] = [clone_paragraph_clean(col1_para)]
-                                    rows[row_idx]['cells'][1]['paragraphs'] = [clone_paragraph_clean(col2_para)] if col2_para else []
+                                    rows[row_idx]['cells'][1]['paragraphs'] = [clone_paragraph_clean(p) for p in col2_paras]
 
                                 elem['rows'] = rows
                                 elem['row_count'] = len(rows)
@@ -2922,6 +2941,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         if not ilvl:
             continue
         elif ilvl == "0":
+            # Skip bullet styling for technical skills headers (they need DC_XP_BlueContent)
+            if 'professional_experience' in ilist.get('tags', []) and is_technical_skills_header(ilist):
+                continue
             props['style'] = 'DC_1st_bullet'
             # Ajouter outline_level pour DC_1st_bullet
             if 'DC_1st_bullet' in STYLE_OUTLINE_MAPPING:
@@ -2937,6 +2959,10 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         elif ilvl == "2":
             props['style'] = 'DC_3rd_bullet'
         elif ilvl == "3":
+            props['style'] = 'DC_4th_bullet'
+        elif ilvl == "4":
+            props['style'] = 'DC_4th_bullet'
+        elif ilvl == "5":
             props['style'] = 'DC_4th_bullet'
         else:
             props['style'] = 'DC_Normal'  # fallback
