@@ -702,6 +702,10 @@ def create_language_header(data: Dict[str, Any]) -> None:
     Crée un header "Langues" juste avant le premier élément contenant KEYWORDS_LANGUAGES,
     si ce header n'existe pas déjà.
 
+    IMPORTANT: Ne crée le header QUE si le keyword est trouvé dans la section 'education'
+    et n'est pas dans un contexte XP (pour éviter de créer un header dans la section
+    professionnelle si un mot-clé comme "français" apparaît dans une description d'XP).
+
     Args:
         data: Structure du document JSON
     """
@@ -731,16 +735,27 @@ def create_language_header(data: Dict[str, Any]) -> None:
         return  # Header "Langues" existe déjà, rien à faire
 
     # Chercher le premier élément contenant KEYWORDS_LANGUAGES
+    # MAIS: seulement dans la section 'education' et pas dans 'professional_experience'
+    # (À ce stade, les tags de section sont présents, mais pas xp_metadata)
     first_language_idx = None
     for i, element in enumerate(content):
         if element.get('type') == 'Paragraph':
             text = get_text_from_element(element)
+            tags = element.get('tags', [])
+            
+            # Vérifier que c'est vraiment un keyword de langue
             if any(keyword in text.lower() for keyword in KEYWORDS_LANGUAGES):
-                first_language_idx = i
-                break
+                # EXCLUSION: Ne pas créer si le paragraphe est taggé 'professional_experience'
+                # (même si "français" apparaît accidentellement dans une XP description)
+                is_in_professional = 'professional_experience' in tags
+                is_in_education = 'education' in tags
+                
+                if is_in_education and not is_in_professional:
+                    first_language_idx = i
+                    break
 
     if first_language_idx is None:
-        return  # Aucun keyword détecté, rien à faire
+        return  # Aucun keyword détecté dans la section education, rien à faire
 
     # Créer et insérer le header "Langues" juste avant le premier keyword
     new_header = {
