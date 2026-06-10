@@ -49,8 +49,8 @@ NS = {
 
 KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", "dossier de competences", "dossier de competences"]
 KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
-KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
-KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes"]
+KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence", "compétences", "competences", "logiciels"]
+KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes", "habilitation", "habilitations", "scolarité", "scolarite", "parcours scolaire", "parcours scolaires", "parcours de formation", "parcours de formations"]
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "francais", "anglais", "espagnol", "allemand", "flamand", "néerlandais", "italien", "chinois", "japonais", "russe", "portugais"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expérience professionnelles", "experience professionnelles", "expériences professionnelles", "experiences professionnelles"]
 KEYWORDS_XP_POSTE = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
@@ -2279,11 +2279,28 @@ def insert_text_xp_tables(data: Dict[str, Any], creation_result: Dict[str, Any],
                                 return paras.pop(idx)
                         return None
 
+                    def pop_detected_metadata(paras: List[Dict[str, Any]], metadata_key: str) -> Optional[Dict[str, Any]]:
+                        """Retourne et retire le premier paragraphe avec la métadonnée détectée demandée."""
+                        for idx, para in enumerate(paras):
+                            meta = para.get('xp_metadata', {})
+                            if meta.get(metadata_key):
+                                return paras.pop(idx)
+                        return None
+
                     remaining = list(all_paragraphs)
 
+                    # Chercher d'abord les paragraphes splittés (xp_split_part)
                     company_para = pop_split_part(remaining, 'xp_company')
                     date_para = pop_split_part(remaining, 'xp_date')
                     poste_para = pop_split_part(remaining, 'xp_poste')
+                    
+                    # Fallback: chercher les métadonnées détectées si pas de split_part
+                    if not company_para:
+                        company_para = pop_detected_metadata(remaining, 'detected_xp_company')
+                    if not date_para:
+                        date_para = pop_detected_metadata(remaining, 'detected_xp_date')
+                    if not poste_para:
+                        poste_para = pop_detected_metadata(remaining, 'detected_xp_poste')
 
                     if company_para:
                         element['rows'][0]['cells'][0]['paragraphs'] = [clone_paragraph_clean(company_para)]
