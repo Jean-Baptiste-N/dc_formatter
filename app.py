@@ -5,6 +5,8 @@ Provides REST API endpoints for document processing
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+from urllib.parse import quote
 from pathlib import Path
 import tempfile
 import shutil
@@ -52,6 +54,16 @@ app = FastAPI(
     title="DC Formatter API",
     description="Document transformation pipeline API",
     version="1.0.0"
+)
+
+# Configure CORS to expose Content-Disposition header for file downloads
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["Content-Disposition"],
 )
 
 # Mount static files (HTML interface)
@@ -177,11 +189,13 @@ async def process_document(
 
         logger.info(f"Successfully processed document: {file.filename}")
 
-        # Return the processed file for download
+        # Return the processed file for download with proper filename header
+        output_filename = f"{Path(file.filename).stem}_formatted.docx"
         return FileResponse(
             path=final_docx_path,
             media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-            filename=f"{Path(file.filename).stem}_formatted.docx"
+            filename=output_filename,
+            headers={"Content-Disposition": f'attachment; filename="{output_filename}"'}
         )
 
     except Exception as e:

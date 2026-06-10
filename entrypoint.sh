@@ -22,4 +22,4 @@ done
 echo "✓ Permissions fixed, starting application..."
 
 # Run as dcformatter user using gosu
-exec gosu dcformatter python -m uvicorn app:app --host 0.0.0.0 --port 8000
+exec gosu dcformatter python -m uvicorn app:app --host 0.0.0.0 --port 8000 --reload
