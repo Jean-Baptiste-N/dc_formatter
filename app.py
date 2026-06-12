@@ -102,6 +102,95 @@ async def root():
     }
 
 
+@app.get("/download-manual")
+async def download_manual():
+    """Download the mode d'emploi.docx file"""
+    # Possible locations for the manual file
+    possible_paths = [
+        Path(__file__).parent / "TEMPLATE" / "MODE D EMPLOI.docx",
+        Path("/app/TEMPLATE/MODE D EMPLOI.docx"),
+        Path(__file__).parent / "MODE D EMPLOI.docx",
+        Path(__file__).parent / "MODE_D_EMPLOI.docx",
+        Path("/app/MODE D EMPLOI.docx"),
+        Path("/app/MODE_D_EMPLOI.docx"),
+    ]
+
+    manual_path = None
+    for path in possible_paths:
+        if path.exists():
+            manual_path = path
+            logger.info(f"Found manual at: {path}")
+            break
+
+    if not manual_path:
+        logger.error(f"Manual file not found. Searched: {possible_paths}")
+        raise HTTPException(
+            status_code=404,
+            detail="The file mode d'emploi.docx was not found. Please contact the administrator."
+        )
+
+    return FileResponse(
+        path=manual_path,
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        filename="mode d'emploi.docx",
+        headers={"Content-Disposition": 'attachment; filename="mode d\'emploi.docx"'}
+    )
+
+
+@app.get("/list-outputs")
+async def list_outputs():
+    """List all files in the OUTPUTS_FORMATTED directory"""
+    try:
+        if not OUTPUT_DIR.exists():
+            return {"files": []}
+        
+        files = []
+        for file_path in sorted(OUTPUT_DIR.glob("*.docx")):
+            if file_path.is_file():
+                files.append({
+                    "name": file_path.name,
+                    "size": file_path.stat().st_size,
+                    "modified": file_path.stat().st_mtime
+                })
+        
+        logger.info(f"Listed {len(files)} files in OUTPUTS_FORMATTED")
+        return {"files": files}
+    except Exception as e:
+        logger.error(f"Error listing outputs: {e}")
+        raise HTTPException(status_code=500, detail=f"Error listing files: {str(e)}")
+
+
+@app.get("/download-output/{filename}")
+async def download_output(filename: str):
+    """Download a file from the OUTPUTS_FORMATTED directory"""
+    try:
+        # Security: prevent directory traversal
+        if ".." in filename or "/" in filename or "\\" in filename:
+            raise HTTPException(status_code=400, detail="Invalid filename")
+        
+        file_path = OUTPUT_DIR / filename
+        
+        if not file_path.exists():
+            logger.error(f"File not found: {file_path}")
+            raise HTTPException(status_code=404, detail=f"File not found: {filename}")
+        
+        if not file_path.is_file():
+            raise HTTPException(status_code=400, detail="Path is not a file")
+        
+        logger.info(f"Downloading file: {filename}")
+        return FileResponse(
+            path=file_path,
+            media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            filename=filename,
+            headers={"Content-Disposition": f'attachment; filename="{filename}"'}
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error downloading file {filename}: {e}")
+        raise HTTPException(status_code=500, detail=f"Error downloading file: {str(e)}")
+
+
 @app.post("/process")
 async def process_document(
     file: UploadFile = File(...)

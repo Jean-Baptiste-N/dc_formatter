@@ -73,6 +73,50 @@
             font-size: 14px;
         }
 
+        .manual-download {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #548DD4;
+        }
+
+        .manual-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: #548DD4;
+            margin-bottom: 8px;
+        }
+
+        .manual-download p {
+            color: #5a6c7d;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .btn-manual {
+            background: #548DD4;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .btn-manual:hover {
+            background: #396aa7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(57, 106, 167, 0.3);
+        }
+
+        .btn-manual:active {
+            transform: translateY(0);
+        }
+
         .form-group {
             margin-bottom: 20px;
         }
@@ -210,11 +254,89 @@
             display: block;
         }
 
+        .outputs-section {
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .outputs-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .outputs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .output-file-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            padding: 12px 15px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.2s;
+        }
+
+        .output-file-item:hover {
+            background: #fafafa;
+            border-color: #548DD4;
+            box-shadow: 0 2px 8px rgba(84, 141, 212, 0.1);
+        }
+
+        .output-file-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .output-file-name {
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            color: #548DD4;
+            text-decoration: none;
+        }
+
+        .output-file-name:hover {
+            text-decoration: underline;
+        }
+
+        .output-file-size {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .output-file-download {
+            padding: 4px 4px;
+            background: #F69545;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .output-file-download:hover {
+            background: #e67d2b;
+        }
+
         .download-link {
             display: inline-block;
             margin-top: 10px;
-            padding: 8px 16px;
-            background: #4caf50;
+            padding: 4px 8px;
+            background: #548DD4;
             color: white;
             text-decoration: none;
             border-radius: 6px;
@@ -223,7 +345,7 @@
         }
 
         .download-link:hover {
-            background: #45a049;
+            background: #396aa7;
         }
 
         .info {
@@ -281,6 +403,12 @@
             <div class="status-text" id="statusText">Checking API...</div>
         </div>
 
+        <div class="manual-download">
+            <div class="manual-header">📚 User Manual</div>
+            <p>Download the complete user guide</p>
+            <button type="button" class="btn-manual" id="downloadManualBtn">📥 Download mode d'emploi.docx</button>
+        </div>
+
         <div class="info">
             📄 Upload a .docx DC file (No .pdf or .odt !)<br/>It will be processed through the tool, then saved into the output folder and available for download.
             <br/>
@@ -322,6 +450,13 @@
 
         <div class="message" id="message"></div>
 
+        <div class="outputs-section" id="outputsSection" style="display: none;">
+            <div class="outputs-header">📁 Files processed</div>
+            <div class="outputs-list" id="outputsList">
+                <p style="color: #999; text-align: center; padding: 20px;">No files</p>
+            </div>
+        </div>
+
         <div class="api-url">
             API Endpoint: <code id="apiUrl">http://localhost:8000</code>
         </div>
@@ -340,6 +475,9 @@
         const statusDot = document.getElementById('statusDot');
         const statusText = document.getElementById('statusText');
         const apiUrlElement = document.getElementById('apiUrl');
+        const downloadManualBtn = document.getElementById('downloadManualBtn');
+        const outputsSection = document.getElementById('outputsSection');
+        const outputsList = document.getElementById('outputsList');
 
         // Set API URL
         apiUrlElement.textContent = API_URL;
@@ -370,7 +508,145 @@
         // Check every 30 seconds
         setInterval(checkHealth, 30000);
 
-        // File input handling
+        // Load and display output files
+        async function loadOutputFiles() {
+            try {
+                const response = await fetch(`${API_URL}/list-outputs`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    displayOutputFiles(data.files);
+                }
+            } catch (error) {
+                console.error('Error loading files:', error);
+            }
+        }
+
+        function formatDate(timestamp) {
+            return new Date(timestamp * 1000).toLocaleDateString('fr-FR', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function displayOutputFiles(files) {
+            if (files.length === 0) {
+                outputsSection.style.display = 'none';
+                return;
+            }
+
+            outputsSection.style.display = 'block';
+            outputsList.innerHTML = '';
+
+            files.forEach(file => {
+                const fileItem = document.createElement('div');
+                fileItem.className = 'output-file-item';
+                
+                const fileInfo = document.createElement('div');
+                fileInfo.className = 'output-file-info';
+                
+                const fileName = document.createElement('div');
+                fileName.className = 'output-file-name';
+                fileName.textContent = file.name;
+                fileName.style.cursor = 'pointer';
+                
+                const fileDate = document.createElement('div');
+                fileDate.className = 'output-file-size';
+                fileDate.textContent = formatDate(file.modified);
+                
+                fileInfo.appendChild(fileName);
+                fileInfo.appendChild(fileDate);
+                
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'output-file-download';
+                downloadBtn.textContent = 'Download';
+                downloadBtn.type = 'button';
+                
+                downloadBtn.addEventListener('click', async () => {
+                    downloadOutputFile(file.name, downloadBtn);
+                });
+                
+                fileName.addEventListener('click', async () => {
+                    downloadOutputFile(file.name, downloadBtn);
+                });
+                
+                fileItem.appendChild(fileInfo);
+                fileItem.appendChild(downloadBtn);
+                outputsList.appendChild(fileItem);
+            });
+        }
+
+        async function downloadOutputFile(filename, button) {
+            try {
+                button.disabled = true;
+                button.textContent = '⏳...';
+
+                const response = await fetch(`${API_URL}/download-output/${encodeURIComponent(filename)}`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                } else {
+                    showMessage('❌ Error downloading file', 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+            } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        }
+
+        // Load output files on startup
+        loadOutputFiles();
+
+        // Download manual button
+        downloadManualBtn.addEventListener('click', async () => {
+            try {
+                downloadManualBtn.disabled = true;
+                downloadManualBtn.textContent = '⏳ Downloading...';
+
+                const response = await fetch(`${API_URL}/download-manual`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = "mode d'emploi.docx";
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                } else {
+                    showMessage('❌ Error downloading manual', 'error');
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
+            } finally {
+                downloadManualBtn.disabled = false;
+                downloadManualBtn.textContent = "📥 Download the mode d'emploi.docx";
+            }
+        });
         fileInput.addEventListener('change', (e) => {
             updateFileName();
         });
@@ -475,6 +751,9 @@
                         `✅ Success! Document processed and saved to the output folder.`,
                         'success'
                     );
+                    
+                    // Reload output files list
+                    loadOutputFiles();
                     
                     // Reset form
                     form.reset();
