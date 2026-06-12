@@ -47,7 +47,7 @@ NS = {
     'w15': 'http://schemas.microsoft.com/office/word/2012/wordml',
 }
 
-KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", "dossier de competences", "dossier de competences"]
+KEYWORDS_HEADER_DOCUMENT = ["dossier de compétence", "dossier de competence", "dossier de compétences", "dossier de competences"]
 KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience", "xp"]
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence", "compétences", "competences", "logiciels"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes", "habilitation", "habilitations", "scolarité", "scolarite", "parcours scolaire", "parcours scolaires", "parcours de formation", "parcours de formations"]
