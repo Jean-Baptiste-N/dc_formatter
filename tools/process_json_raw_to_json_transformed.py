@@ -1618,25 +1618,28 @@ def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = F
         if 'xp_metadata' not in para:
             para['xp_metadata'] = {}
 
-        # Détection xp_date (contient une date)
-        if match_xp_date(text):
-            para['xp_metadata']['detected_xp_date'] = True
-            # Marquer aussi que c'est le début d'une entry - AJOUTER À xp_metadata directement
-            para['xp_metadata']['xp_entry_start'] = True
-            para['xp_entry_start'] = True  # Aussi en propriété directe pour traitement immédiat
-            return  # Ne pas faire d'autres détections si c'est une date
-
         # Ne pas détecter company/poste dans les bullets/sous-points (ilvl défini)
         # car company/poste ne doivent être détectés qu'au niveau principal de l'entrée XP
         has_ilvl = para.get('properties', {}).get('ilvl') is not None
 
         if not has_ilvl:
-
-            # Détection xp_description (texte long avec "contexte" ou "projet" ou "mission")
+            # **PRIORITÉ 1**: Détection xp_description (texte long avec "contexte" ou "projet" ou "mission")
+            # Faire AVANT détection xp_date pour éviter de marquer une description contenant une année
             if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in KEYWORDS_XP_DESCRIPTION):
                 para['xp_metadata']['detected_xp_description'] = True
                 return  # Ne pas faire d'autres détections si c'est une description
 
+        # **PRIORITÉ 2**: Détection xp_date (contient une date)
+        # Fait pour tous les paragraphes (avec ou sans ilvl)
+        if match_xp_date(text):
+            para['xp_metadata']['detected_xp_date'] = True
+            # Marquer aussi que c'est le début d'une entry
+            para['xp_metadata']['xp_entry_start'] = True
+            para['xp_entry_start'] = True  # Aussi en propriété directe pour traitement immédiat
+            return  # Ne pas faire d'autres détections si c'est une date
+
+        if not has_ilvl:
+            # **PRIORITÉ 3**: Détection xp_poste
             # Vérifier si un mot-clé apparaît au début OU après un préfixe comme "Data"
             is_poste_keyword = False
             text_lower = text.lower()
@@ -1651,6 +1654,7 @@ def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = F
                 para['xp_metadata']['detected_xp_poste'] = True
                 return  # Ne pas faire d'autres détections si c'est un poste
 
+            # **PRIORITÉ 4**: Détection xp_company
             # Détection xp_company (nom propre court qui n'a pas été marqué comme poste)
             # Critères: court, commence par majuscule, pas de verbes d'action courants
             # MAIS: ne pas détecter si on est après une description
