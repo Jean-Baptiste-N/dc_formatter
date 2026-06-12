@@ -48,7 +48,7 @@ NS = {
 }
 
 KEYWORDS_HEADER_DOCUMENT = ["dossier de compétences", "dossier de competence", "dossier de competences", "dossier de competences"]
-KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience"]
+KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience", "xp"]
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence", "compétences", "competences", "logiciels"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes", "habilitation", "habilitations", "scolarité", "scolarite", "parcours scolaire", "parcours scolaires", "parcours de formation", "parcours de formations"]
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "francais", "anglais", "espagnol", "allemand", "flamand", "néerlandais", "italien", "chinois", "japonais", "russe", "portugais"]
@@ -236,6 +236,171 @@ def clone_paragraph_clean(para: Dict[str, Any]) -> Dict[str, Any]:
         new_para['xp_metadata'] = para['xp_metadata'].copy()
 
     return new_para
+
+def consolidate_dossier_de_competences(data: Dict[str, Any]) -> None:
+    """
+    Consolide le titre "Dossier de compétences" qui peut être éclaté sur 2 à 3 paragraphes
+    ou mal formaté.
+    
+    Règles:
+    1. Cherche le pattern "Dossier" (case-insensitive) dans les premiers paragraphes non vides
+    2. Si trouve "Dossier" suivi de "de" et/ou "Compétences": les fusionne en un seul
+       - Cas: "Dossier" + "de" + "Compétences" (3 paragraphes)
+       - Cas: "Dossier" + "de Compétences" (2 paragraphes)
+       - Cas: "Dossier de" + "Compétences" (2 paragraphes)
+    3. Si trouve "DC" ou variantes: remplace par "Dossier de compétences"
+    4. Limite la recherche aux 10 premiers paragraphes
+    
+    Args:
+        data: Document JSON avec structure {'document': {'content': [...]}}
+    """
+    # Accéder à la bonne structure: data['document']['content']
+    content = data.get('document', {}).get('content', [])
+    if not content:
+        return
+    
+    dossier_idx = None
+    
+    # Chercher le pattern "Dossier" dans les premiers paragraphes non vides
+    # Limiter la recherche aux 10 premiers pour ne pas chercher trop loin
+    non_empty_count = 0
+    for idx in range(len(content)):
+        element = content[idx]
+        
+        # Ignorer les tables et autres éléments non-paragraphes
+        if element.get('type') != 'Paragraph':
+            continue
+        
+        # Ignorer les paragraphes vides
+        text = get_raw_text_from_paragraph(element).strip()
+        if not text:
+            continue
+        
+        non_empty_count += 1
+        if non_empty_count > 10:
+            break
+        
+        # Chercher "Dossier" avec regex (case-insensitive)
+        if re.search(r'\bdossier\b', text, re.IGNORECASE):
+            dossier_idx = idx
+            break
+    
+    if dossier_idx is None:
+        return
+    
+    element = content[dossier_idx]
+    text = get_raw_text_from_paragraph(element).strip().lower()
+    
+    # Cas 1: "Dossier" seul, regarder ce qui suit jusqu'à 3 paragraphes
+    if text == 'dossier' or text.startswith('dossier '):
+        # Essayer de fusionner avec les paragraphes suivants
+        paragraphs_to_merge = [element]
+        accumulated_text = text
+        idx_offset = 1
+        
+        # Chercher jusqu'à 2 paragraphes supplémentaires (max 3 au total)
+        for next_offset in range(1, 3):
+            if dossier_idx + next_offset >= len(content):
+                break
+            
+            next_element = content[dossier_idx + next_offset]
+            if next_element.get('type') != 'Paragraph':
+                break
+            
+            next_text = get_raw_text_from_paragraph(next_element).strip().lower()
+            if not next_text:
+                break
+            
+            paragraphs_to_merge.append(next_element)
+            accumulated_text += ' ' + next_text
+            idx_offset = next_offset + 1
+        
+        # Vérifier si l'ensemble forme "Dossier de compétences"
+        if re.match(r'^dossier\s+(?:de\s+)?comp[eé]tences?$', accumulated_text):
+            # Fusionner tous les paragraphes trouvés
+            if len(paragraphs_to_merge) > 1:
+                # Récupérer les propriétés de style du premier paragraphe
+                first_run_props = element['runs'][0].get('properties', {}) if element.get('runs') else {}
+                
+                # Construire le texte final normalisé
+                final_text = 'Dossier de compétences'
+                
+                # Remplacer complètement les runs par un seul run unifié
+                element['runs'] = [
+                    {
+                        'text': final_text,
+                        'properties': first_run_props
+                    }
+                ]
+                
+                # Supprimer les paragraphes fusionnés (en commençant par la fin)
+                for _ in range(len(paragraphs_to_merge) - 1):
+                    content.pop(dossier_idx + 1)
+                
+                return
+    
+    # Cas 2: "Dossier de" suivi de "Compétences"
+    if text == 'dossier de' and dossier_idx + 1 < len(content):
+        next_element = content[dossier_idx + 1]
+        if next_element.get('type') == 'Paragraph':
+            next_text = get_raw_text_from_paragraph(next_element).strip().lower()
+            
+            # Vérifier si c'est "Compétences" (ou variantes)
+            if re.match(r'^comp[eé]tences?$', next_text):
+                # Fusionner les deux paragraphes
+                runs1 = element.get('runs', [])
+                runs2 = next_element.get('runs', [])
+                
+                # Récupérer les propriétés du premier run
+                first_run_props = runs1[0].get('properties', {}) if runs1 else {}
+                
+                # Remplacer par un seul run unifié
+                element['runs'] = [
+                    {
+                        'text': 'Dossier de compétences',
+                        'properties': first_run_props
+                    }
+                ]
+                
+                # Supprimer le second paragraphe
+                content.pop(dossier_idx + 1)
+                return
+    
+    # Cas 3: "DC" à transformer en "Dossier de compétences"
+    if re.match(r'^dc\s*$', text):
+        # Construire le nouveau contenu: "Dossier de compétences"
+        # Récupérer les propriétés du premier run pour préserver le style
+        if element.get('runs'):
+            first_run_props = element['runs'][0].get('properties', {})
+        else:
+            first_run_props = {}
+        
+        element['runs'] = [
+            {
+                'text': 'Dossier de compétences',
+                'properties': first_run_props
+            }
+        ]
+        return
+    
+    # Cas 4: "Dossier de Compétences" sur une seule ligne
+    # Normaliser l'écriture si besoin
+    if re.match(r'^dossier\s+de\s+comp[eé]tences?$', text):
+        # Vérifier si c'est mal formaté (genre "DOSSIER DE COMPETENCES" écrit en plusieurs runs)
+        if len(element.get('runs', [])) > 1:
+            # Reconstruire en un seul run
+            combined_text = 'Dossier de compétences'
+            if element['runs']:
+                first_run_props = element['runs'][0].get('properties', {})
+            else:
+                first_run_props = {}
+            
+            element['runs'] = [
+                {
+                    'text': combined_text,
+                    'properties': first_run_props
+                }
+            ]
 
 # MARK: TABLE CREATION
 def create_empty_table_generic(index: int, num_cols: int = 2, num_rows: int = 2,
@@ -3152,6 +3317,10 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # Stocker les dimensions dans le document pour utilisation ultérieure
     if 'page_dimensions' not in data:
         data['page_dimensions'] = page_dimensions
+
+    # ===== CONSOLIDATION DU TITRE "DOSSIER DE COMPETENCES" =====
+    # Normaliser le titre qui peut être éclaté ou mal formaté
+    consolidate_dossier_de_competences(data)
 
     # ===== DETECTER LES 4 SECTIONS =====
     # Appliquer les tags de section
