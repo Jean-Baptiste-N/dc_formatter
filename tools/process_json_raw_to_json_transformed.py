@@ -66,14 +66,15 @@ MONTHS_FR = r'(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout
 # - Dates en français: Décembre 2016 ou Décembre 2016 – Février 2017
 # - Années seules: 2015, 2024
 # - Avec préfixes optionnels: depuis, du, de, à partir de
+# - Avec em-dash (—), en-dash (–), ou hyphen (-)
 XP_DATE_PATTERN = rf'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:' \
-    rf'\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}}(?:\s*[–à-]\s*\d{{1,2}}(?:\s*[/–-]\s*\d{{1,2}})?\s*[/–-]\s*\d{{2,4}})?' \
-    rf'|\d{{4}}\s*[–à-]\s*\d{{4}}' \
-    rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–à-]\s*{MONTHS_FR}\s+\d{{4}})?' \
+    rf'\d{{1,2}}(?:\s*[/–—-]\s*\d{{1,2}})?\s*[/–—-]\s*\d{{2,4}}(?:\s*[–—à-]\s*\d{{1,2}}(?:\s*[/–—-]\s*\d{{1,2}})?\s*[/–—-]\s*\d{{2,4}})?' \
+    rf'|\d{{4}}\s*[–—à-]\s*\d{{4}}' \
+    rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–—à-]\s*{MONTHS_FR}\s+\d{{4}})?' \
     rf'|\d{{4}}' \
     rf')'
 
-SINGLE_XP_DATE_PATTERN = r'(?:^\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}$|^\d{4}$)'
+SINGLE_XP_DATE_PATTERN = r'(?:^\d{1,2}(?:\s*[/–—-]\s*\d{1,2})?\s*[/–—-]\s*\d{2,4}$|^\d{4}$)'
 MAX_XP_DESCRIPTION_LENGTH = 70  # Limite de caractères pour la description d'une expérience professionnelle
 
 # MARK: FONCTIONS UTILITAIRES
@@ -1789,7 +1790,30 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
     # Sinon, chercher le format `: ` qui sépare DATE de COMPANY
     colon_match = re.search(r':\s+', text)
     if not colon_match:
-        return [para]  # Pas de `: ` trouvé
+        # Format alternatif: POSTE — DATE1 — DATE2 (sans colon)
+        # Chercher une DATE dans le texte courant
+        date_match = match_xp_date(text)
+        if date_match:
+            # Vérifier que next_para contient probablement une company
+            if next_para:
+                next_text = get_raw_text_from_paragraph(next_para).strip().replace('\t', ' ')
+                # Chercher que next_para NE contient PAS de mot-clé POSTE/DATE
+                has_poste_keyword = any(kw.lower() in next_text.lower() for kw in KEYWORDS_XP_POSTE)
+                has_date = match_xp_date(next_text) is not None
+                
+                # Si next_para ne contient pas POSTE et pas DATE => c'est probablement la COMPANY
+                if next_text and not has_poste_keyword and not has_date:
+                    # Extraire DATE et POSTE du paragraphe courant
+                    date_text = date_match.group(0).strip()
+                    # Le POSTE est tout ce qui précède la DATE
+                    poste_text = text[:date_match.start()].strip().rstrip('—–- /')
+                    company_text = next_text
+                    
+                    # Vérifier que POSTE et DATE ont du contenu
+                    if poste_text and date_text and company_text:
+                        return _create_xp_split_paragraphs(para, date_text, company_text, poste_text)
+        
+        return [para]  # Pas de format reconnu
 
     # Extraire la portion DATE avant le `:` pour eviter les tronquages sur les plages
     date_candidate = text[:colon_match.start()].strip()
@@ -1801,36 +1825,36 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
         prefix = prefix_match.group(1)
         date_body = prefix_match.group(2).strip()
 
-    range_sep = re.search(r'\s+[–à-]\s+', date_body)
+    range_sep = re.search(r'\s+[–—à-]\s+', date_body)
     if range_sep:
-        left, right = re.split(r'\s+[–à-]\s+', date_body, maxsplit=1)
+        left, right = re.split(r'\s+[–—à-]\s+', date_body, maxsplit=1)
         if not is_single_xp_date(left) or not is_single_xp_date(right):
             return [para]
-        left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
-        right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
+        left_norm = re.sub(r'\s*([/–—-])\s*', r'\1', left)
+        right_norm = re.sub(r'\s*([/–—-])\s*', r'\1', right)
         date_text = f"{prefix}{left_norm}-{right_norm}"
     else:
-        date_tokens = list(re.finditer(r'\d{1,2}(?:\s*[/–-]\s*\d{1,2})?\s*[/–-]\s*\d{2,4}', date_body))
+        date_tokens = list(re.finditer(r'\d{1,2}(?:\s*[/–—-]\s*\d{1,2})?\s*[/–—-]\s*\d{2,4}', date_body))
         if len(date_tokens) >= 2:
             left = date_tokens[0].group(0)
             right = date_tokens[1].group(0)
             between = date_body[date_tokens[0].end():date_tokens[1].start()]
-            if not re.search(r'[–à-]', between):
+            if not re.search(r'[–—à-]', between):
                 return [para]
             if not is_single_xp_date(left) or not is_single_xp_date(right):
                 return [para]
-            left_norm = re.sub(r'\s*([/–-])\s*', r'\1', left)
-            right_norm = re.sub(r'\s*([/–-])\s*', r'\1', right)
+            left_norm = re.sub(r'\s*([/–—-])\s*', r'\1', left)
+            right_norm = re.sub(r'\s*([/–—-])\s*', r'\1', right)
             date_text = f"{prefix}{left_norm}-{right_norm}"
         else:
             if not is_single_xp_date(date_body):
                 return [para]
-            date_text = prefix + re.sub(r'\s*([/–-])\s*', r'\1', date_body)
+            date_text = prefix + re.sub(r'\s*([/–—-])\s*', r'\1', date_body)
     remaining_after_date = text[colon_match.end():].strip()
 
     # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
     after_colon = remaining_after_date
-    dash_pattern = r'^(.+?)\s*[-–à]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
+    dash_pattern = r'^(.+?)\s*[–—à-]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
     dash_match = re.match(dash_pattern, after_colon)
     if dash_match:
         company_text = dash_match.group(1).strip()
