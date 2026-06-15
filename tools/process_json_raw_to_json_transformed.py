@@ -2166,6 +2166,65 @@ def apply_xp_bullet_flags_and_levels(data: Dict[str, Any]) -> None:
     else:
         finalize_technical_block()  # Finaliser le dernier bloc technique même s'il n'y a pas d'entry
 
+def apply_section_bullet_indentation_reduction(data: Dict[str, Any], section_tag: str) -> None:
+    """
+    Applique la réduction d'indentation (ilvl) pour une section donnée.
+    
+    Règles:
+    - Si le premier paragraphe non-vide d'un groupe n'a pas d'ilvl, abaisser tous les ilvl du groupe de 1
+    - OU si UN SEUL ilvl distinct est trouvé dans le groupe, abaisser tous les ilvl de 1
+    - Les paragraphes sans ilvl se voient assigner ilvl = "0"
+    - EXCLUT les paragraphes avec le style 'DC_T1_Sections' (headers de sous-sections)
+    
+    Paramètres:
+    - section_tag: Le tag de la section ('main_skills', 'education', etc.)
+    """
+    content = data.get('document', {}).get('content', [])
+    
+    # Collecter les indices des paragraphes non-vides avec le tag de la section
+    # EXCLUSION: Ne pas modifier les paragraphes avec le style 'DC_T1_Sections'
+    section_indices = []
+    for idx, element in enumerate(content):
+        if element.get('type') == 'Paragraph':
+            tags = element.get('tags', [])
+            if section_tag in tags:
+                if not is_empty_paragraph(element):
+                    # Exclure les headers DC_T1_Sections
+                    if element.get('properties', {}).get('style') != 'DC_T1_Sections':
+                        section_indices.append(idx)
+    
+    if not section_indices:
+        return
+    
+    # Vérifier le premier paragraphe non-vide (parmi ceux non-DC_T1_Sections)
+    first_elem = content[section_indices[0]]
+    first_ilvl = first_elem.get('properties', {}).get('ilvl')
+    
+    # Collecter TOUS les ilvl uniques dans la section (excluant None)
+    unique_ilvls = set()
+    for idx in section_indices:
+        ilvl = content[idx].get('properties', {}).get('ilvl')
+        if ilvl is not None:
+            unique_ilvls.add(ilvl)
+    
+    # Appliquer la réduction si:
+    # - Le premier n'a PAS d'ilvl (c'est un en-tête)
+    # - OU UN SEUL ilvl distinct est trouvé
+    should_lower = (first_ilvl is None) or (len(unique_ilvls) == 1)
+    
+    if should_lower:
+        for idx in section_indices:
+            elem = content[idx]
+            props = elem.setdefault('properties', {})
+            ilvl = props.get('ilvl')
+            if ilvl is None:
+                props['ilvl'] = "0"
+            else:
+                try:
+                    props['ilvl'] = str(int(ilvl) + 1)
+                except (ValueError, TypeError):
+                    pass
+
 def detect_xp_patterns(data: Dict[str, Any]) -> None:
     """
     Applique la détection automatique de patterns XP sur tous les paragraphes, y compris ceux dans les tables.
@@ -3342,6 +3401,9 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
 
     # Flagger les bullets des XP entries et ajuster les ilvl si nécessaire
     apply_xp_bullet_flags_and_levels(data)
+
+    # Appliquer la réduction d'indentation pour la section main_skills (même logique que XP)
+    apply_section_bullet_indentation_reduction(data, 'main_skills')
 
     # ===== TABLE MAIN SKILLS si existante =====
     # Créer la table Main Skills si on détecte une table source des compétences techniques
