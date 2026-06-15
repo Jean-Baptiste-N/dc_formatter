@@ -1012,7 +1012,8 @@ def split_education_paragraph(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     Stratégie:
     1. Chercher une date au début avec regex
     2. Si date trouvée: splitter après (nettoyer les séparateurs)
-    3. Sinon: chercher un tab et splitter
+    3. Sinon: chercher une date à la fin avec séparateur [|,\-–] ou multiples espaces/tabs
+    4. Sinon: utiliser split_paragraph_at_tabs
 
     Returns:
         List[Dict]: Liste de 1 ou 2 paragraphes
@@ -1025,7 +1026,7 @@ def split_education_paragraph(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     first_run_props = runs[0].get('properties', {}) if runs else {}
 
     # Regex pour détecter une date
-    date_pattern = r'((?:0?[1-9]|1[0-2])[/\s]*)?(?:19|20)\d{2}(?:\s*(?:[-/]|à|au)\s*(?:0?[1-9]|1[0-2])?[/\s]*(?:19|20)\d{2})?'
+    date_pattern = r'((?:0?[1-9]|1[0-2])[/\s]*)?(?:19|20)\d{2}(?:\s*(?:[-/—–]|à|au)\s*(?:0?[1-9]|1[0-2])?[/\s]*(?:19|20)\d{2})?'
     
     # Chercher date au début
     match_start = re.match(r'^\s*' + date_pattern + r'\s+', full_text.lower())
@@ -1033,16 +1034,17 @@ def split_education_paragraph(para: Dict[str, Any]) -> List[Dict[str, Any]]:
         # Date détectée au début: splitter après
         date_end_pos = match_start.end()
         date_text = full_text[:date_end_pos].strip().replace('\t', ' ')
-        desc_text = full_text[date_end_pos:].lstrip(' :\u00a0\t-').strip().replace('\t', ' ')
+        desc_text = full_text[date_end_pos:].lstrip(' :\u00a0\t-—').strip().replace('\t', ' ')
         return _split_and_create_paragraphs(para, date_text, desc_text, first_run_props)
 
-    # Chercher date à la fin avec séparateur avant (cas: "Contenu | Date")
-    match_end = re.search(r'\s*[|,\-–]\s*' + date_pattern + r'\s*$', full_text.lower())
+    # Chercher date à la fin avec séparateur avant (cas: "Contenu | Date" ou "Contenu   Date" avec espaces multiples)
+    # Accepte: séparateurs [|,\-–] OU multiples espaces/tabs avant la date
+    match_end = re.search(r'(?:\s*[|,\-–]\s*|\s{2,}|\t+)' + date_pattern + r'\s*$', full_text.lower())
     if match_end:
         # Date détectée à la fin: splitter avant
         date_start_pos = match_end.start()
         desc_text = full_text[:date_start_pos].strip().replace('\t', ' ')
-        date_text = full_text[date_start_pos:].lstrip(' :\u00a0\t-|,–').strip().replace('\t', ' ')
+        date_text = full_text[date_start_pos:].lstrip(' :\u00a0\t-|,–—').strip().replace('\t', ' ')
         if desc_text and date_text:
             return _split_and_create_paragraphs(para, date_text, desc_text, first_run_props)
 
@@ -1095,7 +1097,7 @@ def split_paragraph_at_tabs(para: Dict[str, Any]) -> List[Dict[str, Any]]:
     # Nettoyer les séparateurs au début du premier texte non-vide
     for i in range(len(col2_texts)):
         if col2_texts[i].strip():
-            col2_texts[i] = col2_texts[i].lstrip(' :\u00a0\t-')
+            col2_texts[i] = col2_texts[i].lstrip(' :\u00a0\t-—')
             break
 
     col2_text = ' - '.join(text for text in col2_texts if text.strip())
