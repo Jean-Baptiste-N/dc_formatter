@@ -316,20 +316,48 @@
             color: #999;
         }
 
-        .output-file-download {
-            padding: 4px 4px;
-            background: #F69545;
+        .output-file-actions {
+            display: flex;
+            gap: 4px;
+            width: auto;
+            min-width: 160px;
+        }
+
+        .output-file-download,
+        .output-file-delete {
+            flex: 1;
+            padding: 4px 8px;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 12px;
+            font-weight: 500;
             transition: background 0.2s;
             white-space: nowrap;
+            text-align: center;
         }
 
-        .output-file-download:hover {
+        .output-file-download {
+            background: #F69545;
+        }
+
+        .output-file-download:hover:not(:disabled) {
             background: #e67d2b;
+        }
+
+        .output-file-delete {
+            background: #dc3545;
+        }
+
+        .output-file-delete:hover:not(:disabled) {
+            background: #c82333;
+        }
+
+        .output-file-download:disabled,
+        .output-file-delete:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         .download-link {
@@ -563,6 +591,9 @@
                 fileInfo.appendChild(fileName);
                 fileInfo.appendChild(fileDate);
                 
+                const actionsContainer = document.createElement('div');
+                actionsContainer.className = 'output-file-actions';
+                
                 const downloadBtn = document.createElement('button');
                 downloadBtn.className = 'output-file-download';
                 downloadBtn.textContent = 'Download';
@@ -572,18 +603,31 @@
                     downloadOutputFile(file.name, downloadBtn);
                 });
                 
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'output-file-delete';
+                deleteBtn.textContent = 'Delete';
+                deleteBtn.type = 'button';
+                
+                deleteBtn.addEventListener('click', async () => {
+                    deleteOutputFile(file.name, deleteBtn);
+                });
+                
                 fileName.addEventListener('click', async () => {
                     downloadOutputFile(file.name, downloadBtn);
                 });
                 
+                actionsContainer.appendChild(downloadBtn);
+                actionsContainer.appendChild(deleteBtn);
+                
                 fileItem.appendChild(fileInfo);
-                fileItem.appendChild(downloadBtn);
+                fileItem.appendChild(actionsContainer);
                 outputsList.appendChild(fileItem);
             });
         }
 
         async function downloadOutputFile(filename, button) {
             try {
+                const originalText = button.textContent;
                 button.disabled = true;
                 button.textContent = '⏳...';
 
@@ -608,6 +652,40 @@
             } catch (error) {
                 showMessage(`❌ Error: ${error.message}`, 'error');
             } finally {
+                button.disabled = false;
+                button.textContent = originalText;
+            }
+        }
+
+        async function deleteOutputFile(filename, button) {
+            // Ask for confirmation
+            const confirmed = confirm(`Are you sure you want to delete this file and all related versions from the output folders?\n\nFile: ${filename}`);
+            if (!confirmed) return;
+
+            try {
+                const originalText = button.textContent;
+                button.disabled = true;
+                button.textContent = '⏳...';
+
+                const response = await fetch(`${API_URL}/delete-output/${encodeURIComponent(filename)}`, {
+                    method: 'DELETE',
+                    mode: 'cors'
+                });
+
+                if (response.ok) {
+                    showMessage('✅ File deleted successfully', 'success');
+                    // Reload output files list
+                    setTimeout(() => {
+                        loadOutputFiles();
+                    }, 500);
+                } else {
+                    const errorData = await response.json();
+                    showMessage(`❌ Error: ${errorData.detail || 'Failed to delete file'}`, 'error');
+                    button.disabled = false;
+                    button.textContent = originalText;
+                }
+            } catch (error) {
+                showMessage(`❌ Error: ${error.message}`, 'error');
                 button.disabled = false;
                 button.textContent = originalText;
             }

@@ -191,6 +191,78 @@ async def download_output(filename: str):
         raise HTTPException(status_code=500, detail=f"Error downloading file: {str(e)}")
 
 
+@app.delete("/delete-output/{filename}")
+async def delete_output(filename: str):
+    """Delete a file and all its related versions from all output folders"""
+    try:
+        # Security: prevent directory traversal
+        if ".." in filename or "/" in filename or "\\" in filename:
+            raise HTTPException(status_code=400, detail="Invalid filename")
+        
+        # Extract base name (remove _formatted, _raw, _transformed, _GLOBAL, etc.)
+        # Handle both lowercase and uppercase variants
+        base_name = filename
+        suffixes = [
+            '_formatted', '_raw', '_transformed', '_generated',
+            '_GLOBAL_generated', '_GLOBAL_raw', '_GLOBAL_transformed', '_GLOBAL',
+            '_global_generated', '_global_raw', '_global_transformed', '_global'
+        ]
+        
+        for suffix in suffixes:
+            for ext in ['.docx', '.json', '.xml']:
+                full_suffix = suffix + ext
+                if base_name.endswith(full_suffix):
+                    base_name = base_name[:-len(full_suffix)]
+                    break
+            if base_name != filename:  # If we found a match, break the outer loop
+                break
+        
+        # Remove extension from base_name if still present (fallback)
+        for ext in ['.docx', '.json', '.xml']:
+            if base_name.endswith(ext):
+                base_name = base_name[:-len(ext)]
+                break
+        
+        logger.info(f"Deleting files with base name: {base_name}")
+        
+        deleted_files = []
+        output_dirs = [UPLOAD_DIR, OUTPUT1_XML_RAW, OUTPUT2_JSON_RAW, OUTPUT3_JSON_TRANSFORMED, OUTPUT4_DOCX_RESULT, OUTPUT_DIR]
+        
+        for output_dir in output_dirs:
+            if not output_dir.exists():
+                continue
+            
+            try:
+                # Search for files that match the base name
+                for file_path in output_dir.glob("*"):
+                    if file_path.is_file() and base_name in file_path.name:
+                        try:
+                            file_path.unlink()
+                            logger.info(f"Deleted: {file_path}")
+                            deleted_files.append(str(file_path))
+                        except Exception as e:
+                            logger.warning(f"Could not delete {file_path}: {e}")
+            except Exception as e:
+                logger.warning(f"Error searching in {output_dir}: {e}")
+        
+        if not deleted_files:
+            logger.warning(f"No files found with base name: {base_name}")
+            raise HTTPException(status_code=404, detail=f"No files found to delete")
+        
+        logger.info(f"Successfully deleted {len(deleted_files)} file(s)")
+        return {
+            "status": "success",
+            "message": f"Deleted {len(deleted_files)} file(s)",
+            "files": deleted_files
+        }
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting files: {e}")
+        raise HTTPException(status_code=500, detail=f"Error deleting files: {str(e)}")
+
+
 @app.post("/process")
 async def process_document(
     file: UploadFile = File(...)
