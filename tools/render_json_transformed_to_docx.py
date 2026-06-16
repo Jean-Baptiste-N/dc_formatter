@@ -106,6 +106,48 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
     if props.get('page_break'):
         run = para.add_run()
         run.add_break(WD_BREAK_TYPE.PAGE)
+        
+    # Numérotation et indentation (ilvl) - ajouter via XML
+    # Cela assure que les listes à puces et les niveaux d'indentation survivent aux cycles de retraitement
+    pPr = para._element.get_or_add_pPr()
+    
+    if 'ilvl' in props:
+        try:
+            ilvl_value = str(props['ilvl'])
+            
+            # Chercher/créer les éléments numPr
+            numPr = pPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}numPr')
+            if numPr is None:
+                # Créer un nouvel élément numPr avec ilvl par défaut (numId=0 est le plus commun)
+                numPr_xml = f'''<w:numPr {nsdecls('w')}>
+                    <w:ilvl w:val="{ilvl_value}"/>
+                    <w:numId w:val="0"/>
+                </w:numPr>'''
+                numPr = parse_xml(numPr_xml)
+                pPr.insert(0, numPr)  # Insérer au début de pPr
+            else:
+                # Mettre à jour l'ilvl existant
+                ilvl_elem = numPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ilvl')
+                if ilvl_elem is not None:
+                    ilvl_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val', ilvl_value)
+                else:
+                    ilvl_xml = f'<w:ilvl {nsdecls("w")} w:val="{ilvl_value}"/>'
+                    ilvl_elem = parse_xml(ilvl_xml)
+                    numPr.insert(0, ilvl_elem)
+            
+            # Appliquer numId si fourni dans les propriétés
+            if 'numId' in props:
+                numId_value = str(props['numId'])
+                numId_elem = numPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}numId')
+                if numId_elem is not None:
+                    numId_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val', numId_value)
+                else:
+                    numId_xml = f'<w:numId {nsdecls("w")} w:val="{numId_value}"/>'
+                    numId_elem = parse_xml(numId_xml)
+                    numPr.append(numId_elem)
+        except Exception as e:
+            # Silencieusement ignorer les erreurs de numérotation
+            pass
 
     # Section break (saut de section) - ajouter via XML
     if 'section_break' in props:
