@@ -8,6 +8,8 @@ Sortie: fichier _GLOBAL_transformed.json (après taggings et transformations)
 from argparse import ArgumentParser
 import zipfile
 from pathlib import Path
+import xml.etree.ElementTree as ET
+from zipfile import ZipFile
 
 # ===== NAMESPACES =====
 NS = {
@@ -113,12 +115,81 @@ def extract_page_dimensions_from_template(template_path: str) -> dict:
                 result.update(dimensions)
                 result['usable_width'] = result['page_width'] - result['left_margin'] - result['right_margin']
 
-                print(f"✅ Dimensions extraites du TEMPLATE:")
+                print(f"✅ Dimensions extraites du TEMPLATE: {result}")
                 return result
 
     except Exception as e:
         print(f"❌ Erreur lors de la lecture du template: {e}")
         return defaults
+
+def load_ilvl_indent_mapping(template_path: str, numId: str = '10') -> dict:
+    """
+    Charge les indentations pour chaque ilvl depuis le template DOCX.
+    
+    Args:
+        template_path: Chemin vers le fichier template DOCX
+        numId: Le numId à extraire (défaut: '10')
+    
+    Returns:
+        Dict {ilvl: {'left': value, 'hanging': value}, ...}
+        Exemple: {'0': {'left': '1081', 'hanging': '360'}, '1': {'left': '1921', 'hanging': '345'}, ...}
+    """
+    mapping = {}
+    
+    try:
+        with ZipFile(template_path) as z:
+            if 'word/numbering.xml' not in z.namelist():
+                print(f"Avertissement: word/numbering.xml non trouvé dans {template_path}")
+                return mapping
+            
+            numbering_xml = z.read('word/numbering.xml').decode('utf-8')
+            root = ET.fromstring(numbering_xml)
+            
+            w_ns = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
+            
+            # Trouver le num avec numId
+            for num in root.findall('{' + w_ns + '}num'):
+                if num.get('{' + w_ns + '}numId') == numId:
+                    abstractNumId = num.find('{' + w_ns + '}abstractNumId')
+                    if abstractNumId is not None:
+                        abstract_id = abstractNumId.get('{' + w_ns + '}val')
+                        
+                        # Trouver l'abstractNum correspondant
+                        for absNum in root.findall('{' + w_ns + '}abstractNum'):
+                            if absNum.get('{' + w_ns + '}abstractNumId') == abstract_id:
+                                # Extraire les indentations pour chaque level
+                                for lvl in absNum.findall('{' + w_ns + '}lvl'):
+                                    ilvl = lvl.get('{' + w_ns + '}ilvl')
+                                    pPr = lvl.find('{' + w_ns + '}pPr')
+                                    if pPr is not None:
+                                        ind = pPr.find('{' + w_ns + '}ind')
+                                        if ind is not None and ilvl is not None:
+                                            left = ind.get('{' + w_ns + '}left')
+                                            hanging = ind.get('{' + w_ns + '}hanging')
+                                            if left and hanging:
+                                                mapping[ilvl] = {
+                                                    'left': left,
+                                                    'hanging': hanging
+                                                }
+                        break
+    except Exception as e:
+        print(f"Avertissement: Impossible de charger les indentations du template: {e}")
+    
+    return mapping
+
+
+def get_template_ilvl_indents(template_path: str = 'TEMPLATE/TEMPLATE.docx') -> dict:
+    """
+    Convenience function pour obtenir le mapping d'indentations du template.
+    
+    Args:
+        template_path: Chemin vers le template (défaut: TEMPLATE/TEMPLATE.docx)
+    
+    Returns:
+        Dict {ilvl: {'left': value, 'hanging': value}, ...}
+    """
+    return load_ilvl_indent_mapping(template_path, numId='10')
+
 
 def main():
     parser = ArgumentParser(description="Extrait les dimensions de page du TEMPLATE.docx")
@@ -130,7 +201,9 @@ def main():
     args = parser.parse_args()
 
     dims = extract_page_dimensions_from_template(args.template)
+    ilvl_indents = get_template_ilvl_indents(args.template)
     print(f'✅ Template dimensions extraites: {dims}')
+    print(f'✅ Template indentations extraites: {ilvl_indents}')
 
 if __name__ == "__main__":
     main()

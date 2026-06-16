@@ -14,6 +14,8 @@ from docx.shared import Pt, RGBColor, Cm
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 
+from parse_template import get_template_ilvl_indents
+
 # # Approche template (2 lignes)
 # template_doc = Document('TEMPLATE/TEMPLATE.docx')
 
@@ -21,6 +23,9 @@ from docx.oxml.ns import nsdecls
 # KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence"]
 # KEYWORDS_EDUCATION = ["formation", "diplôme", "diplome", "certification", "langue", "langues", "certifications", "diplômes", "diplomes"]
 # KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
+
+# Charger les indentations du template au démarrage
+_ILVL_INDENT_MAPPING = get_template_ilvl_indents('TEMPLATE/TEMPLATE.docx')
 
 
 def parse_alignment(align_str: str):
@@ -106,7 +111,7 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
     if props.get('page_break'):
         run = para.add_run()
         run.add_break(WD_BREAK_TYPE.PAGE)
-        
+
     # Numérotation et indentation (ilvl) - ajouter via XML
     # Cela assure que les listes à puces et les niveaux d'indentation survivent aux cycles de retraitement
     pPr = para._element.get_or_add_pPr()
@@ -152,6 +157,28 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
                     numId_xml = f'<w:numId {nsdecls("w")} w:val="{numId_value}"/>'
                     numId_elem = parse_xml(numId_xml)
                     numPr.append(numId_elem)
+            
+            # Appliquer les indentations correctes du template pour chaque ilvl
+            # Ces indentations surcharge les indentations des styles personnalisés
+            # Les valeurs sont extraites dynamiquement depuis TEMPLATE/TEMPLATE.docx/word/numbering.xml
+            if ilvl_value in _ILVL_INDENT_MAPPING:
+                # Chercher ou créer l'élément ind (indentation)
+                ind_elem = pPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ind')
+                
+                indent_props = _ILVL_INDENT_MAPPING[ilvl_value]
+                left_val = indent_props['left']
+                hanging_val = indent_props['hanging']
+                
+                if ind_elem is not None:
+                    # Mettre à jour les indentations existantes
+                    ind_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left', left_val)
+                    ind_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hanging', hanging_val)
+                else:
+                    # Créer un nouvel élément ind après numPr
+                    ind_xml = f'<w:ind {nsdecls("w")} w:left="{left_val}" w:hanging="{hanging_val}"/>'
+                    ind_elem = parse_xml(ind_xml)
+                    # Insérer après numPr
+                    pPr.insert(1, ind_elem)
         except Exception as e:
             # Silencieusement ignorer les erreurs de numérotation
             pass
