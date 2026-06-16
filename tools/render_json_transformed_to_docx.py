@@ -118,10 +118,11 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
             # Chercher/créer les éléments numPr
             numPr = pPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}numPr')
             if numPr is None:
-                # Créer un nouvel élément numPr avec ilvl par défaut (numId=0 est le plus commun)
+                # Créer un nouvel élément numPr
+                # numId=10 correspond à abstractNumId=10 du template qui supporte les puces multi-niveaux
                 numPr_xml = f'''<w:numPr {nsdecls('w')}>
                     <w:ilvl w:val="{ilvl_value}"/>
-                    <w:numId w:val="0"/>
+                    <w:numId w:val="10"/>
                 </w:numPr>'''
                 numPr = parse_xml(numPr_xml)
                 pPr.insert(0, numPr)  # Insérer au début de pPr
@@ -136,8 +137,14 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
                     numPr.insert(0, ilvl_elem)
             
             # Appliquer numId si fourni dans les propriétés
+            # IMPORTANT: Remplacer les anciens numId (1-4 qui ne supportent qu'un seul niveau)
+            # par numId=10 qui supporte les 9 niveaux nécessaires pour la hiérarchie complète
             if 'numId' in props:
                 numId_value = str(props['numId'])
+                # Forcer les anciens numId sur le nouveau format multi-niveaux
+                if numId_value in ['1', '2', '3', '4']:
+                    numId_value = '10'
+                
                 numId_elem = numPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}numId')
                 if numId_elem is not None:
                     numId_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val', numId_value)
