@@ -5,6 +5,9 @@ Sortie: DOCX dans le dossier renders/
 """
 
 import json
+import zipfile
+import shutil
+import os
 from pathlib import Path
 from argparse import ArgumentParser
 
@@ -14,7 +17,7 @@ from docx.shared import Pt, RGBColor, Cm
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 
-from parse_template import get_template_ilvl_indents
+# from parse_template import get_template_ilvl_indents
 
 # # Approche template (2 lignes)
 # template_doc = Document('TEMPLATE/TEMPLATE.docx')
@@ -24,8 +27,70 @@ from parse_template import get_template_ilvl_indents
 # KEYWORDS_EDUCATION = ["formation", "diplôme", "diplome", "certification", "langue", "langues", "certifications", "diplômes", "diplomes"]
 # KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expériences professionnelles", "experience professionnelles"]
 
-# Charger les indentations du template au démarrage
-_ILVL_INDENT_MAPPING = get_template_ilvl_indents('TEMPLATE/TEMPLATE.docx')
+# # Charger les indentations du template au démarrage
+# _ILVL_INDENT_MAPPING = get_template_ilvl_indents('TEMPLATE/TEMPLATE.docx')
+
+
+def copy_template_styles_to_docx(output_docx_path: str, template_docx_path: str):
+    """
+    Copie les fichiers styles.xml et numbering.xml du template vers le DOCX généré.
+    
+    Python-docx régénère ces fichiers lors de la sauvegarde, perdant les styles personnalisés.
+    Cette fonction restaure les fichiers du template original en recréant le ZIP.
+    
+    Args:
+        output_docx_path: Chemin du DOCX généré
+        template_docx_path: Chemin du template DOCX source
+    """
+    import tempfile
+    
+    tmp_path = None
+    try:
+        # Créer un fichier temporaire
+        with tempfile.NamedTemporaryFile(suffix='.docx', delete=False) as tmp:
+            tmp_path = tmp.name
+        
+        # Extraire les données du template
+        template_data = {}
+        with zipfile.ZipFile(template_docx_path, 'r') as template_zip:
+            for filename in ['word/styles.xml', 'word/numbering.xml']:
+                try:
+                    # Lire les données ET les métadonnées de compression
+                    info = template_zip.getinfo(filename)
+                    template_data[filename] = {
+                        'data': template_zip.read(filename),
+                        'compress_type': info.compress_type
+                    }
+                except KeyError:
+                    pass
+        
+        # Recréer le ZIP en copiant tous les fichiers du DOCX généré,
+        # sauf styles.xml et numbering.xml qui viennent du template
+        with zipfile.ZipFile(output_docx_path, 'r') as src_zip:
+            with zipfile.ZipFile(tmp_path, 'w', zipfile.ZIP_DEFLATED) as dst_zip:
+                for item in src_zip.infolist():
+                    if item.filename in template_data:
+                        # Utiliser les données du template
+                        dst_zip.writestr(
+                            item, 
+                            template_data[item.filename]['data'],
+                            compress_type=template_data[item.filename]['compress_type']
+                        )
+                    else:
+                        # Copier le fichier original en préservant la compression
+                        data = src_zip.read(item.filename)
+                        dst_zip.writestr(item, data, compress_type=item.compress_type)
+        
+        # Remplacer le fichier original
+        shutil.move(tmp_path, output_docx_path)
+        
+        print(f"✓ Fichiers styles.xml et numbering.xml copiés du template")
+        
+    except Exception as e:
+        print(f"⚠ Impossible de copier les styles du template: {e}")
+        # Continuer même si ça échoue
+        if tmp_path and os.path.exists(tmp_path):
+            os.remove(tmp_path)
 
 
 def parse_alignment(align_str: str):
@@ -112,75 +177,41 @@ def add_paragraph_from_json(doc: Document, para_data: dict):
         run = para.add_run()
         run.add_break(WD_BREAK_TYPE.PAGE)
 
-    # Numérotation et indentation (ilvl) - ajouter via XML
-    # Cela assure que les listes à puces et les niveaux d'indentation survivent aux cycles de retraitement
+    # Numérotation et indentation (ilvl) - appliquer via les styles du template
+    # Les styles DC_1st_bullet, DC_2nd_bullet, etc. sont la source de vérité
+    # Ils contiennent déjà les puces, indentations et mise en forme correctes
     pPr = para._element.get_or_add_pPr()
     
     if 'ilvl' in props:
         try:
             ilvl_value = str(props['ilvl'])
             
-            # Chercher/créer les éléments numPr
-            numPr = pPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}numPr')
-            if numPr is None:
-                # Créer un nouvel élément numPr
-                # numId=10 correspond à abstractNumId=10 du template qui supporte les puces multi-niveaux
-                numPr_xml = f'''<w:numPr {nsdecls('w')}>
-                    <w:ilvl w:val="{ilvl_value}"/>
-                    <w:numId w:val="10"/>
-                </w:numPr>'''
-                numPr = parse_xml(numPr_xml)
-                pPr.insert(0, numPr)  # Insérer au début de pPr
-            else:
-                # Mettre à jour l'ilvl existant
-                ilvl_elem = numPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ilvl')
-                if ilvl_elem is not None:
-                    ilvl_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val', ilvl_value)
-                else:
-                    ilvl_xml = f'<w:ilvl {nsdecls("w")} w:val="{ilvl_value}"/>'
-                    ilvl_elem = parse_xml(ilvl_xml)
-                    numPr.insert(0, ilvl_elem)
+            # Mapping ilvl → style personnalisé du template
+            # Ces styles contiennent déjà numPr et indentations appropriées
+            ilvl_to_style = {
+                '0': 'DC_1st_bullet',
+                '1': 'DC_2nd_bullet',
+                '2': 'DC_3rd_bullet',
+                '3': 'DC_4th_bullet',
+            }
             
-            # Appliquer numId si fourni dans les propriétés
-            # IMPORTANT: Remplacer les anciens numId (1-4 qui ne supportent qu'un seul niveau)
-            # par numId=10 qui supporte les 9 niveaux nécessaires pour la hiérarchie complète
-            if 'numId' in props:
-                numId_value = str(props['numId'])
-                # Forcer les anciens numId sur le nouveau format multi-niveaux
-                if numId_value in ['1', '2', '3', '4']:
-                    numId_value = '10'
+            # Si le style n'est pas déjà appliqué, l'appliquer
+            if ilvl_value in ilvl_to_style:
+                target_style = ilvl_to_style[ilvl_value]
                 
-                numId_elem = numPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}numId')
-                if numId_elem is not None:
-                    numId_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}val', numId_value)
-                else:
-                    numId_xml = f'<w:numId {nsdecls("w")} w:val="{numId_value}"/>'
-                    numId_elem = parse_xml(numId_xml)
-                    numPr.append(numId_elem)
-            
-            # Appliquer les indentations correctes du template pour chaque ilvl
-            # Ces indentations surcharge les indentations des styles personnalisés
-            # Les valeurs sont extraites dynamiquement depuis TEMPLATE/TEMPLATE.docx/word/numbering.xml
-            if ilvl_value in _ILVL_INDENT_MAPPING:
-                # Chercher ou créer l'élément ind (indentation)
-                ind_elem = pPr.find('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}ind')
-                
-                indent_props = _ILVL_INDENT_MAPPING[ilvl_value]
-                left_val = indent_props['left']
-                hanging_val = indent_props['hanging']
-                
-                if ind_elem is not None:
-                    # Mettre à jour les indentations existantes
-                    ind_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}left', left_val)
-                    ind_elem.set('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}hanging', hanging_val)
-                else:
-                    # Créer un nouvel élément ind après numPr
-                    ind_xml = f'<w:ind {nsdecls("w")} w:left="{left_val}" w:hanging="{hanging_val}"/>'
-                    ind_elem = parse_xml(ind_xml)
-                    # Insérer après numPr
-                    pPr.insert(1, ind_elem)
+                # Vérifier si on doit changer le style
+                current_style = props.get('style')
+                if current_style != target_style:
+                    # Appliquer le style approprié pour ce niveau ilvl
+                    try:
+                        if target_style in doc.styles:
+                            para.style = doc.styles[target_style]
+                        else:
+                            para.style = target_style
+                    except:
+                        pass
         except Exception as e:
-            # Silencieusement ignorer les erreurs de numérotation
+            # Silencieusement ignorer les erreurs
             pass
 
     # Section break (saut de section) - ajouter via XML
@@ -532,6 +563,9 @@ def json_to_docx(json_file: str, template_file: str, output_dir: str) -> str:
         # Sauvegarder
         print(f"💾 Sauvegarde du fichier DOCX...")
         doc.save(str(output_file))
+
+        # Copier les styles et numbering du template pour préserver les styles personnalisés
+        copy_template_styles_to_docx(str(output_file), template_file)
 
         # Obtenir la taille du fichier
         file_size = output_file.stat().st_size / 1024  # En KB

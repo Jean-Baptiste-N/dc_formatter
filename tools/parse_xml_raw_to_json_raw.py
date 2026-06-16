@@ -61,7 +61,7 @@ def extract_paragraph_properties(paragraph, ns: Dict) -> Dict[str, Any]:
     """Extrait les propriétés d'un paragraphe"""
     props = {}
 
-    pPr = paragraph.find('.//w:pPr', ns)
+    pPr = paragraph.find('w:pPr', ns)
     if pPr is not None:
         # Style
         pStyle = pPr.find('w:pStyle', ns)
