@@ -2004,6 +2004,13 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
         if para.get('type') != 'Paragraph':
             continue
         
+        # IMPORTANT: Ne pas consolider les descriptions XP
+        # Une année/date dans une description ne doit jamais déclencher une consolidation
+        xp_metadata = para.get('xp_metadata', {})
+        if xp_metadata.get('detected_xp_description'):
+            consolidate()  # Finir la consolidation précédente avant de sauter
+            continue
+        
         tags = para.get('tags', [])
         if isinstance(tags, str):
             tags = [tags]
@@ -2191,6 +2198,13 @@ def apply_xp_entry_splits(data: Dict[str, Any]) -> None:
                 props = element.get('properties', {})
                 # Exclure les bullets (ilvl est défini)
                 if props.get('ilvl') is None:
+                    # Exclure les descriptions XP (déjà marquées)
+                    xp_metadata = element.get('xp_metadata', {})
+                    if xp_metadata.get('detected_xp_description'):
+                        new_content.append(element)
+                        i += 1
+                        continue
+                    
                     # Préparer le paragraphe suivant optionnel pour split_xp_entry
                     next_para = None
                     if i + 1 < len(content):
@@ -3698,15 +3712,15 @@ def apply_tags_and_styles(raw_json_file: str, output_dir: str, page_dimensions: 
     # Appliquer les tags de section
     apply_section_tags(data)
 
-    # Splitter les entrées d'expérience pro AVANT de marquer les headers
+    # Détecter les patterns XP sur tous les paragraphes AVANT la consolidation
+    # Cela marque detected_xp_description qui sera utilisé par _mark_xp_components_for_merge
+    detect_xp_patterns(data)
+
+    # Splitter les entrées d'expérience pro (après détection des descriptions)
     apply_xp_entry_splits(data)
 
     # Appliquer le style DC_T1_Sections aux headers de section
     apply_section_header_styles(data)
-
-    # Détecter les patterns XP sur tous les paragraphes (même ceux non-splittés)
-    # DOIT ÊTRE AVANT apply_xp_bullet_flags_and_levels car elle se sert de xp_entry_start
-    detect_xp_patterns(data)
 
     # Flagger les bullets des XP entries et ajuster les ilvl si nécessaire
     apply_xp_bullet_flags_and_levels(data)
