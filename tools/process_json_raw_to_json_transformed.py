@@ -54,8 +54,9 @@ KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certificatio
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "francais", "anglais", "espagnol", "allemand", "flamand", "néerlandais", "italien", "chinois", "japonais", "russe", "portugais"]
 KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expérience professionnelles", "experience professionnelles", "expériences professionnelles", "experiences professionnelles", "expériences professionnelle", "experiences professionnelle"]
 KEYWORDS_XP_POSTE = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Pilote', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti', 'Agent', 'Agente', 'Outilleur', 'Outilleuse', 'Ouvrier', 'Ouvrière', 'Opérateur', 'Opératrice', 'Operateur', 'Operatrice', 'Mécanicien', 'Mécanicienne', 'Mecanicien', 'Mecanicienne', 'Électricien', 'Électricienne', 'Electricien', 'Electricienne', 'Coordinateur', 'Coordinatrice', 'Supervisor', 'Superviseur', 'Team Leader', 'Coordinatrice']
-KEYWORDS_XP_COMPANY = ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'constructions', 'realisation', 'realisations', 'réalisation', 'réalisations', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these']
-KEYWORDS_XP_DESCRIPTION = ['contexte', 'projet', 'projets', 'mission', 'missions', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'réalisation', 'realisation', 'réalisations', 'realisations', 'conception', 'montage', 'montages', 'archtecte', 'architecture', 'environnement', 'environnements', 'technologies', 'technologie', 'outils', 'outil', 'méthodologie', 'methodologie', 'méthodes', 'methodes', 'logiciels', 'logiciel']
+KEYWORDS_XP_COMPANY = ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'constructions', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these']
+KEYWORDS_XP_BULLET_SECTION = ['contexte', 'projet', 'projets', 'mission', 'missions', 'réalisation', 'realisation', 'réalisations', 'realisations', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'conception', 'montage', 'montages', 'archtecte', 'architecture', 'environnement', 'environnements', 'technologies', 'technologie', 'outils', 'outil', 'méthodologie', 'methodologie', 'méthodes', 'methodes', 'logiciels', 'logiciel']
+KEYWORDS_XP_DESCRIPTION = KEYWORDS_XP_BULLET_SECTION
 KEYWORDS_TECHNICAL_SKILLS = ["techniques", "technique", "informatiques", "informatique", "numériques", "numeriques", "numérique", "numerique"]
 
 # Pattern pour reconnaître les mois en français (avec/sans accents)
@@ -1753,11 +1754,38 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
     text = get_raw_text_from_paragraph(para)
     
     # === FORMAT 0: DATE | COMPANY | POSTE (fusionné par _consolidate_xp_entry) ===
+    # IMPORTANT: Le FORMAT 0 doit aussi gérer les TABs qui peuvent être dans les parts!
     pipe_pattern = r'^\s*(.+?)\s*\|\s*(.+?)\s*\|\s*(.+?)\s*$'
     pipe_match = re.match(pipe_pattern, text)
     if pipe_match:
         # Extraire les 3 parties
         part1, part2, part3 = pipe_match.group(1).strip(), pipe_match.group(2).strip(), pipe_match.group(3).strip()
+        
+        # Si une partie contient un TAB, la traiter comme format TAB-séparé
+        # (par ex. part1 = "COMPANY\tDATE" ou "DATE\tCOMPANY")
+        parts_to_process = [part1, part2, part3]
+        for i, part in enumerate(parts_to_process):
+            if '\t' in part:
+                tab_idx = part.find('\t')
+                before_tab = part[:tab_idx].strip()
+                after_tab = part[tab_idx+1:].strip()
+                
+                # Chercher la DATE dans before_tab ou after_tab
+                before_has_date = match_xp_date(before_tab) is not None
+                after_has_date = match_xp_date(after_tab) is not None
+                
+                if before_has_date:
+                    # before_tab = DATE, after_tab = COMPANY
+                    parts_to_process[i] = f"{before_tab} | {after_tab}"
+                elif after_has_date:
+                    # before_tab = COMPANY, after_tab = DATE
+                    parts_to_process[i] = f"{after_tab} | {before_tab}"
+                else:
+                    # Pas de DATE trouvée, garder comme-est
+                    parts_to_process[i] = part.replace('\t', ' ')
+        
+        # Recombiner les parties
+        part1, part2, part3 = parts_to_process
         
         # Identifier lesquels sont DATE, COMPANY, POSTE
         # Accepter les dates même avec des préfixes (depuis, du, de, à partir de, etc.)
@@ -1790,10 +1818,11 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
     
 
     # Chercher d'abord un TAB qui pourrait séparer COMPANY de DATE (format tabulé)
+    # FORMAT 1: COMPANY [TAB] DATE ou COMPANY [TAB] DATE [TAB] POSTE
     tab_idx = text.find('\t')
 
     if tab_idx != -1:
-        # Format tabulé: COMPANY [TAB] DATE [TAB] ...
+        # Format tabulé: COMPANY [TAB] DATE ...
         company_text = text[:tab_idx].strip().replace('\t', ' ')
         remaining = text[tab_idx+1:].strip().replace('\t', ' ')
 
@@ -1813,12 +1842,15 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
             next_text = get_raw_text_from_paragraph(next_para).strip().replace('\t', ' ')
             # Vérifier que ce n'est pas vide et qu'il contient probablement un POSTE (mot-clé de poste)
             if next_text:
-                poste_keywords = ['Développeur', 'Ingénieur', 'Manager', 'Responsable', 'Chef', 'Lead', 'Engineer', 'Consultant', 'Architecte', 'Directeur', 'Senior', 'Scrum', 'DevOps', 'Administrateur', 'Product Owner', 'Technicien', 'Stagiaire', 'Alternance']
                 next_lower = next_text.lower()
-                for kw in poste_keywords:
+                # Utiliser KEYWORDS_XP_POSTE complète au lieu d'une liste hardcodée
+                for kw in KEYWORDS_XP_POSTE:
                     if kw.lower() in next_lower:
                         poste_text = next_text
                         break
+        elif after_date:
+            # Si du texte après la DATE, c'est probablement le POSTE
+            poste_text = after_date
 
         # Vérifier que COMPANY et DATE ont du contenu
         if not company_text or not date_text:
@@ -1993,9 +2025,31 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
         
         # Si le texte contient une DATE mais aussi beaucoup d'autre contenu (>50 chars avant la date),
         # c'est probablement COMPANY + DATE. Splitter le texte.
+        # IMPORTANT: Vérifier pour TAB en premier (format tabulé), avant la longueur
         date_component = None
         company_component = None
-        if is_date and len(text) > 50:
+        
+        # D'abord: check pour TAB qui sépare COMPANY et DATE
+        if is_date and '\t' in text:
+            tab_idx = text.find('\t')
+            before_tab = text[:tab_idx].strip()
+            after_tab = text[tab_idx+1:].strip()
+            
+            before_has_date = match_xp_date(before_tab) is not None
+            after_has_date = match_xp_date(after_tab) is not None
+            
+            if before_has_date and not after_has_date:
+                # Format: DATE [TAB] COMPANY
+                date_component = before_tab
+                company_component = after_tab
+            elif not before_has_date and after_has_date:
+                # Format: COMPANY [TAB] DATE
+                company_component = before_tab
+                date_component = after_tab
+            # else: both or neither has date - keep as-is
+        
+        # Sinon: check pour longueur et extraction manuelle
+        elif is_date and len(text) > 50 and '\t' not in text:
             # Trouver la position de la date dans le texte
             date_match = match_xp_date(text)
             if date_match:
@@ -2003,12 +2057,16 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
                 if date_start > 0:
                     # Il y a du texte avant la date → c'est le COMPANY
                     company_component = text[:date_start].strip()
-                    date_component = text[date_start:].strip()
-                    is_date = True
-                    is_poste = False
-        
-        # DEBUG
-        print(f"[DEBUG] Para[{idx}]: text={repr(text[:30])}, is_date={is_date}, is_poste={is_poste}")
+                    # Vérifier que ce n'est pas un mot-clé de bullet section
+                    is_bullet_keyword = any(kw.lower() in company_component.lower() for kw in KEYWORDS_XP_BULLET_SECTION)
+                    if not is_bullet_keyword:
+                        date_component = text[date_start:].strip()
+                        is_date = True
+                        is_poste = False
+                    else:
+                        # C'est un bullet keyword, ne pas splitter
+                        company_component = None
+                        date_component = None
         
         # Nouvelle DATE: finir l'entry précédente
         if is_date and state['xp_date'] is not None:
@@ -2020,17 +2078,14 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
                 state['xp_date'] = date_component if date_component else text
                 state['xp_date_idx'] = idx
                 state['xp_consumed_indices'].add(idx)
-                print(f"[DEBUG]   → Stored as DATE: {repr(state['xp_date'][:30])}")
             # Si on a aussi extrait un COMPANY du même para, le stocker maintenant
             if company_component and state['xp_company'] is None:
                 state['xp_company'] = company_component
-                print(f"[DEBUG]   → Stored as COMPANY (from DATE para): {repr(company_component[:30])}")
         elif is_poste and len(text) < 80:
             # Stocker POSTE seulement si on a déjà une DATE
             if state['xp_poste'] is None and state['xp_date'] is not None:
                 state['xp_poste'] = text
                 state['xp_consumed_indices'].add(idx)
-                print(f"[DEBUG]   → Stored as POSTE: {repr(text[:30])}")
         else:
             # Stocker COMPANY seulement si on a déjà une DATE
             if state['xp_company'] is None and len(text) < 50 and state['xp_date'] is not None:
@@ -2041,12 +2096,10 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
                 if not has_verbs and not is_date and not is_poste:
                     state['xp_company'] = text
                     state['xp_consumed_indices'].add(idx)
-                    print(f"[DEBUG]   → Stored as COMPANY: {repr(text[:30])}")
             # Si company_component est extrait du para DATE, l'ajouter
             elif company_component and state['xp_company'] is None and state['xp_date'] is not None:
                 state['xp_company'] = company_component
                 state['xp_consumed_indices'].add(idx)
-                print(f"[DEBUG]   → Stored as COMPANY (from DATE para)")
     
     # Consolider la dernière entry
     consolidate()
