@@ -2028,9 +2028,27 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
         # IMPORTANT: Vérifier pour TAB en premier (format tabulé), avant la longueur
         date_component = None
         company_component = None
+        poste_component = None
+        
+        # Format spécial: "DATE: COMPANY – POSTE"
+        if is_date and ': ' in text and ' – ' in text:
+            # Split "DATE: REST"
+            parts = text.split(': ', 1)
+            date_part = parts[0].strip()
+            rest = parts[1].strip()
+            
+            # Vérifier que date_part est bien une DATE
+            if match_xp_date(date_part):
+                date_component = date_part
+                # Split "COMPANY – POSTE"
+                company_poste = rest.split(' – ', 1)
+                company_component = company_poste[0].strip()
+                poste_component = company_poste[1].strip() if len(company_poste) > 1 else None
+                is_date = True
+                is_poste = bool(poste_component)
         
         # D'abord: check pour TAB qui sépare COMPANY et DATE
-        if is_date and '\t' in text:
+        elif is_date and '\t' in text:
             tab_idx = text.find('\t')
             before_tab = text[:tab_idx].strip()
             after_tab = text[tab_idx+1:].strip()
@@ -2072,6 +2090,20 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
         if is_date and state['xp_date'] is not None:
             consolidate()
         
+        # CASE SPÉCIAL: Si on a déjà les 3 composants extraits du même para,
+        # consolider immédiatement sans chercher plus loin
+        if is_date and date_component and company_component and poste_component:
+            # Stocker et consolider tout de suite
+            state['xp_date'] = date_component
+            state['xp_date_idx'] = idx
+            state['xp_company'] = company_component
+            state['xp_poste'] = poste_component
+            state['xp_consumed_indices'].add(idx)
+            consolidate()
+            continue  # ← IMPORTANT: Ne pas continuer à accumuler après consolidation
+            continue
+        
+        # CASE NORMALE: Accumulation sur plusieurs paragraphes
         # Accumuler
         if is_date:
             if state['xp_date'] is None:
@@ -2081,6 +2113,9 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
             # Si on a aussi extrait un COMPANY du même para, le stocker maintenant
             if company_component and state['xp_company'] is None:
                 state['xp_company'] = company_component
+            # Si on a aussi extrait un POSTE du même para, le stocker maintenant
+            if poste_component and state['xp_poste'] is None:
+                state['xp_poste'] = poste_component
         elif is_poste and len(text) < 80:
             # Stocker POSTE seulement si on a déjà une DATE
             if state['xp_poste'] is None and state['xp_date'] is not None:
@@ -2100,6 +2135,10 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
             elif company_component and state['xp_company'] is None and state['xp_date'] is not None:
                 state['xp_company'] = company_component
                 state['xp_consumed_indices'].add(idx)
+        
+        # Dès qu'on a les 3 composants, arrêter la consolidation
+        if state['xp_date'] and state['xp_company'] and state['xp_poste']:
+            consolidate()
     
     # Consolider la dernière entry
     consolidate()
