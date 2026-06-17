@@ -1629,7 +1629,9 @@ def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = F
         if not has_ilvl:
             # **PRIORITÉ 1**: Détection xp_description (texte long avec "contexte" ou "projet" ou "mission")
             # Faire AVANT détection xp_date pour éviter de marquer une description contenant une année
-            if len(text) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in KEYWORDS_XP_DESCRIPTION):
+            # IMPORTANT: Normaliser les espaces multiples pour éviter les faux positifs (ex: "COMPANY Mission [SPACES] DATE")
+            text_normalized = re.sub(r'\s+', ' ', text).strip()
+            if len(text_normalized) > MAX_XP_DESCRIPTION_LENGTH and any(keyword in text.lower() for keyword in KEYWORDS_XP_DESCRIPTION):
                 para['xp_metadata']['detected_xp_description'] = True
                 return  # Ne pas faire d'autres détections si c'est une description
 
@@ -2082,7 +2084,16 @@ def _mark_xp_components_for_merge(content: List[Dict[str, Any]]) -> None:
                 if date_start > 0:
                     # Il y a du texte avant la date → c'est le COMPANY
                     company_component = text[:date_start].strip()
-                    # Vérifier que ce n'est pas un mot-clé de bullet section
+                    
+                    # IMPORTANT: Si le company_component se termine par un keyword de section,
+                    # le trimmer car c'est probablement un artefact du parsing (ex: "CHADUP's (QUINOA group) Mission")
+                    for kw in KEYWORDS_XP_BULLET_SECTION:
+                        pattern = rf'\s+{re.escape(kw)}\s*$'
+                        if re.search(pattern, company_component, re.IGNORECASE):
+                            company_component = re.sub(pattern, '', company_component, flags=re.IGNORECASE).strip()
+                            break
+                    
+                    # Vérifier que ce n'est pas un mot-clé de bullet section (après trimming)
                     is_bullet_keyword = any(kw.lower() in company_component.lower() for kw in KEYWORDS_XP_BULLET_SECTION)
                     if not is_bullet_keyword:
                         date_component = text[date_start:].strip()
