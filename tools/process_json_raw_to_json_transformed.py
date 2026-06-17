@@ -52,7 +52,7 @@ KEYWORDS_HEADER_EXPERIENCE = ["expérience", "experience", "xp"]
 KEYWORDS_MAIN_SKILLS = ["domaine de compétence", "domaine de competence", "domaines de compétence", "domaines de competence", "compétences principales", "competences principales", "compétence", "competence", "compétences", "competences", "logiciels"]
 KEYWORDS_EDUCATION = ["formation", "formations", "certifications", "certification", "langue", "langues", "diplôme", "diplome", "diplômes", "diplomes", "habilitation", "habilitations", "scolarité", "scolarite", "parcours scolaire", "parcours scolaires", "parcours de formation", "parcours de formations"]
 KEYWORDS_LANGUAGES = ["langue", "langues", "français", "francais", "anglais", "espagnol", "allemand", "flamand", "néerlandais", "italien", "chinois", "japonais", "russe", "portugais"]
-KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expérience professionnelles", "experience professionnelles", "expériences professionnelles", "experiences professionnelles"]
+KEYWORDS_PROFESSIONAL_EXPERIENCE = ["expérience professionnelle", "experience professionnelle", "expérience professionnelles", "experience professionnelles", "expériences professionnelles", "experiences professionnelles", "expériences professionnelle", "experiences professionnelle"]
 KEYWORDS_XP_POSTE = ['Développeur', 'Développeuse', 'Developpeur', 'Developpeuse', 'Ingénieur', 'Ingénieure', 'Ingenieur', 'Ingenieure', 'Manager', 'Responsable', 'Chef', 'Cheffe', 'Lead', 'Tech Lead', 'Data Analyst', 'Data Engineer', 'Scientist', 'Pilote', 'Technicien', 'Technicienne', 'Consultant', 'Consultante', 'Architecte', 'Directeur', 'Directrice', 'Senior', 'Product Owner', 'Scrum', 'DevOps', 'Administrateur', 'Administratrice', 'Alternance', 'Thèse', 'Doctorat', 'Stagiaire', 'Apprenti']
 KEYWORDS_XP_COMPANY = ['recueil', 'etude', 'étude', 'communication', 'rédaction', 'redaction', 'construction', 'constructions', 'realisation', 'realisations', 'réalisation', 'réalisations', 'évolutions', 'évolution', 'evolutions', 'evolution', 'système', 'systeme', 'systèmes', 'systemes', 'gestion', 'traitement', 'traitements', 'stockage', 'sauvegarde', 'parsing', 'dashboard', 'thèse', 'these']
 KEYWORDS_XP_DESCRIPTION = ['contexte', 'projet', 'projets', 'mission', 'missions', 'développement', 'developpement', 'développements', 'developpements', 'objectif', 'objectifs', 'réalisation', 'realisation', 'réalisations', 'realisations', 'conception', 'montage', 'montages', 'archtecte', 'architecture', 'environnement', 'environnements', 'technologies', 'technologie', 'outils', 'outil', 'méthodologie', 'methodologie', 'méthodes', 'methodes', 'logiciels', 'logiciel']
@@ -65,12 +65,12 @@ MONTHS_FR = r'(?:janvier|février|fevrier|mars|avril|mai|juin|juillet|août|aout
 # - Dates en chiffres: 01/12/2016 ou 01-12-2016 ou 2016-2017
 # - Dates en français: Décembre 2016 ou Décembre 2016 – Février 2017
 # - Années seules: 2015, 2024
-# - Avec préfixes optionnels: depuis, du, de, à partir de
+# - Avec préfixes optionnels: depuis, du, de, a, à partir de
 # - Avec em-dash (—), en-dash (–), ou hyphen (-)
-XP_DATE_PATTERN = rf'(?:depuis\s+|du\s+|de\s+|à\s+partir\s+de\s+)?(?:' \
-    rf'\d{{1,2}}(?:\s*[/–—-]\s*\d{{1,2}})?\s*[/–—-]\s*\d{{2,4}}(?:\s*[–—à-]\s*\d{{1,2}}(?:\s*[/–—-]\s*\d{{1,2}})?\s*[/–—-]\s*\d{{2,4}})?' \
-    rf'|\d{{4}}\s*[–—à-]\s*\d{{4}}' \
-    rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–—à-]\s*{MONTHS_FR}\s+\d{{4}})?' \
+XP_DATE_PATTERN = rf'(?:depuis\s+|du\s+|de\s+|a\s+|à\s+partir\s+de\s+)?(?:' \
+    rf'\d{{1,2}}(?:\s*[/–—-]\s*\d{{1,2}})?\s*[/–—-]\s*\d{{2,4}}(?:\s*[–—\-aàAÀ]\s*\d{{1,2}}(?:\s*[/–—-]\s*\d{{1,2}})?\s*[/–—-]\s*\d{{2,4}})?' \
+    rf'|\d{{4}}\s*[–—\-aàAÀ]\s*\d{{4}}' \
+    rf'|{MONTHS_FR}\s+\d{{4}}(?:\s*[–—\-aàAÀ]\s*{MONTHS_FR}\s+\d{{4}})?' \
     rf'|\d{{4}}' \
     rf')'
 
