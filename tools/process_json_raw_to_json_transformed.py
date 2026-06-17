@@ -1891,14 +1891,14 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
 
     prefix = ""
     date_body = date_candidate
-    prefix_match = re.match(r'^\s*((?:depuis|du|de|à\s+partir\s+de)\s+)(.+)$', date_candidate, flags=re.IGNORECASE)
+    prefix_match = re.match(r'^\s*((?:depuis|du|de|à|a\s+partir\s+de)\s+)(.+)$', date_candidate, flags=re.IGNORECASE)
     if prefix_match:
         prefix = prefix_match.group(1)
         date_body = prefix_match.group(2).strip()
 
-    range_sep = re.search(r'\s+[–—à-]\s+', date_body)
+    range_sep = re.search(r'\s+[–—aà-]\s+', date_body)
     if range_sep:
-        left, right = re.split(r'\s+[–—à-]\s+', date_body, maxsplit=1)
+        left, right = re.split(r'\s+[–—aà-]\s+', date_body, maxsplit=1)
         if not is_single_xp_date(left) or not is_single_xp_date(right):
             return [para]
         left_norm = re.sub(r'\s*([/–—-])\s*', r'\1', left)
@@ -1910,7 +1910,7 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
             left = date_tokens[0].group(0)
             right = date_tokens[1].group(0)
             between = date_body[date_tokens[0].end():date_tokens[1].start()]
-            if not re.search(r'[–—à-]', between):
+            if not re.search(r'[–—aà-]', between):
                 return [para]
             if not is_single_xp_date(left) or not is_single_xp_date(right):
                 return [para]
@@ -1925,7 +1925,7 @@ def split_xp_entry(para: Dict[str, Any], next_para: Optional[Dict[str, Any]] = N
 
     # Extraire COMPANY (apres `:` et avant le prochain `- ` ou fin du texte)
     after_colon = remaining_after_date
-    dash_pattern = r'^(.+?)\s*[–—à-]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
+    dash_pattern = r'^(.+?)\s*[–—aà-]\s+(.+)$'  # Lazy match pour COMPANY, greedy pour le reste
     dash_match = re.match(dash_pattern, after_colon)
     if dash_match:
         company_text = dash_match.group(1).strip()
