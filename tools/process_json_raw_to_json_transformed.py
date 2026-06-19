@@ -572,7 +572,7 @@ def is_promotable_section_title(element: Dict[str, Any], keywords: List[str]) ->
     if style == 'Titre1' or style == 'Heading 1':
         return True
 
-    if style in {'DC_T1_Sections', 'DC_XP_Title', 'DC_H_DC', 'DC_H_XP', 'DC_H_Poste'}:
+    if style in {'DCT1Sections', 'DCXPTitle', 'DCHDC', 'DCHXP', 'DCHPoste'}:
         return True
 
     return any(keyword in text.lower() for keyword in keywords)
@@ -667,7 +667,7 @@ def apply_section_header_styles(data: Dict[str, Any]) -> None:
         if is_promotable_section_title(element, section_keywords):
             if 'properties' not in element:
                 element['properties'] = {}
-            element['properties']['style'] = 'DC_T1_Sections'
+            element['properties']['style'] = 'DCT1Sections'
 
 # MARK: SECTION HEADER
 # ===== 4. SECTION HEADER =====
@@ -713,7 +713,7 @@ def create_main_skills_table(data: Dict[str, Any]) -> Dict[str, Any]:
         if elem.get('type') == 'Paragraph':
             text = get_text_from_element(elem)
             style = elem.get('properties', {}).get('style', '')
-            is_section_header = style == 'DC_T1_Sections'
+            is_section_header = style == 'DCT1Sections'
 
             if any(keyword in text.lower() for keyword in KEYWORDS_MAIN_SKILLS) and is_section_header:
                 main_skills_header_idx = i
@@ -731,7 +731,7 @@ def create_main_skills_table(data: Dict[str, Any]) -> Dict[str, Any]:
             if elem.get('type') == 'Paragraph':
                 text = get_text_from_element(elem)
                 style = elem.get('properties', {}).get('style', '')
-                is_section_header = style == 'DC_T1_Sections'
+                is_section_header = style == 'DCT1Sections'
 
                 if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                     break
@@ -812,7 +812,7 @@ def insert_text_main_skills_table(data: Dict[str, Any], creation_result: Dict[st
                 if next_elem.get('type') == 'Paragraph':
                     text = get_text_from_element(next_elem)
                     style = next_elem.get('properties', {}).get('style', '')
-                    is_section_header = style == 'DC_T1_Sections'
+                    is_section_header = style == 'DCT1Sections'
 
                     if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                         break
@@ -885,7 +885,7 @@ def create_language_header(data: Dict[str, Any]) -> None:
             text = get_text_from_element(element).strip()
             style = element.get('properties', {}).get('style', '')
             # Check: c'est un vrai header "Langues" (pas "Français langue maternelle")
-            if style.startswith('Heading') or style.startswith('Titre') or style == 'DC_T1_Sections':
+            if style.startswith('Heading') or style.startswith('Titre') or style == 'DCT1Sections':
                 # Normaliser le texte: enlever les espaces et deux points pour la comparaison
                 normalized_text = text.lower().rstrip(':').strip()
                 if normalized_text == 'langues' or normalized_text == 'langue':
@@ -1191,7 +1191,7 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
         if elem.get('type') == 'Paragraph':
             text = get_text_from_element(elem)
             style = elem.get('properties', {}).get('style', '')
-            is_section_header = style == 'DC_T1_Sections'
+            is_section_header = style == 'DCT1Sections'
             is_auto_language_header = elem.get('auto_generated') and text.strip().lower() == 'langues'
 
             # Chercher si c'est un header éducation
@@ -1225,7 +1225,7 @@ def create_edu_table(data: Dict[str, Any]) -> Dict[str, Any]:
             if elem.get('type') == 'Paragraph':
                 text = get_text_from_element(elem)
                 style = elem.get('properties', {}).get('style', '')
-                is_section_header = style == 'DC_T1_Sections'
+                is_section_header = style == 'DCT1Sections'
 
                 if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                     break
@@ -1303,7 +1303,7 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                         if next_elem.get('type') == 'Paragraph':
                             text = get_text_from_element(next_elem)
                             style = next_elem.get('properties', {}).get('style', '')
-                            is_section_header = style == 'DC_T1_Sections'
+                            is_section_header = style == 'DCT1Sections'
 
                             if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                                 break
@@ -1394,13 +1394,13 @@ def insert_text_edu_table(data: Dict[str, Any], creation_result: Dict[str, Any],
                             if next_elem.get('type') == 'Paragraph':
                                 text = get_text_from_element(next_elem)
                                 style = next_elem.get('properties', {}).get('style', '')
-                                is_section_header = style == 'DC_T1_Sections'
+                                is_section_header = style == 'DCT1Sections'
 
                                 if is_section_header and any(keyword in text.lower() for keyword in KEYWORDS_EDUCATION + KEYWORDS_PROFESSIONAL_EXPERIENCE):
                                     break
 
                                 # Collecter les paragraphes non-vides
-                                if text.strip() and style != 'DC_T1_Sections':
+                                if text.strip() and style != 'DCT1Sections':
                                     source_paragraphs.append(next_elem)
                                     source_indices.append(j)
 
@@ -1609,7 +1609,7 @@ def _detect_and_tag_xp_content(para: Dict[str, Any], after_description: bool = F
     if not para.get('xp_split_part'):  # Ne pas retagger les paragraphes déjà splittés
         # Ne pas tagger les titres de section
         style = para.get('properties', {}).get('style', '')
-        if style in ['DC_T1_Sections']:
+        if style in ['DCT1Sections']:
             return
 
         text = get_raw_text_from_paragraph(para).strip()
@@ -1942,7 +1942,7 @@ def is_professional_section_header(element: Dict[str, Any]) -> bool:
     if element.get('type') != 'Paragraph':
         return False
     props = element.get('properties', {})
-    if props.get('style') != 'DC_T1_Sections':
+    if props.get('style') != 'DCT1Sections':
         return False
     text = get_text_from_element(element)
     return any(keyword in text for keyword in KEYWORDS_PROFESSIONAL_EXPERIENCE)
@@ -2200,7 +2200,7 @@ def apply_section_bullet_indentation_reduction(data: Dict[str, Any], section_tag
     - Si le premier paragraphe non-vide d'un groupe n'a pas d'ilvl, abaisser tous les ilvl du groupe de 1
     - OU si UN SEUL ilvl distinct est trouvé dans le groupe, abaisser tous les ilvl de 1
     - Les paragraphes sans ilvl se voient assigner ilvl = "0"
-    - EXCLUT les paragraphes avec le style 'DC_T1_Sections' (headers de sous-sections)
+    - EXCLUT les paragraphes avec le style 'DCT1Sections' (headers de sous-sections)
     
     Paramètres:
     - section_tag: Le tag de la section ('main_skills', 'education', etc.)
@@ -2208,7 +2208,7 @@ def apply_section_bullet_indentation_reduction(data: Dict[str, Any], section_tag
     content = data.get('document', {}).get('content', [])
     
     # Collecter les indices des paragraphes non-vides avec le tag de la section
-    # EXCLUSION: Ne pas modifier les paragraphes avec le style 'DC_T1_Sections'
+    # EXCLUSION: Ne pas modifier les paragraphes avec le style 'DCT1Sections'
     section_indices = []
     for idx, element in enumerate(content):
         if element.get('type') == 'Paragraph':
@@ -2216,7 +2216,7 @@ def apply_section_bullet_indentation_reduction(data: Dict[str, Any], section_tag
             if section_tag in tags:
                 if not is_empty_paragraph(element):
                     # Exclure les headers DC_T1_Sections
-                    if element.get('properties', {}).get('style') != 'DC_T1_Sections':
+                    if element.get('properties', {}).get('style') != 'DCT1Sections':
                         section_indices.append(idx)
     
     if not section_indices:
@@ -2976,7 +2976,7 @@ def add_page_breaks_after_xp_headers(data: Dict[str, Any]) -> None:
     #         props = element.get('properties', {})
     #         style = props.get('style')
 
-    #         if style == 'DC_H_XP':
+    #         if style == 'DCHXP':
     #             # Vérifier s'il y a déjà un saut de page dans cet élément
     #             has_page_break = props.get('page_break', False)
 
@@ -3024,7 +3024,7 @@ def add_page_breaks_after_xp_headers(data: Dict[str, Any]) -> None:
             props = element.get('properties', {})
             style = props.get('style')
 
-            if style == 'DC_H_XP':
+            if style == 'DCHXP':
                 # Ajouter un paragraphe avec saut de page après ce paragraphe
                 page_break_para = {
                     'type': 'Paragraph',
@@ -3106,10 +3106,11 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         data (Dict): Structure JSON à modifier
     """
     # Mapping style → outline_level pour Word navigation
+    # NOTE: Les noms doivent correspondre exactement aux styleIds dans le template TEMPLATE.docx
     STYLE_OUTLINE_MAPPING = {
-        'DC_T1_Sections': 0,  # niveau 1
-        'DC_XP_Title': 1,     # niveau 2
-        'DC_1st_bullet': 2,   # niveau 3
+        'DCT1Sections': 0,  # niveau 1
+        'DCXPTitle': 1,     # niveau 2
+        'DC1stbullet': 2,   # niveau 3
     }
 
     # Appliquer les styles des tables main skills, éducation et expérience professionnelle
@@ -3133,7 +3134,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         for para in cells[0].get('paragraphs', []):
                             if 'properties' not in para:
                                 para['properties'] = {}
-                            para['properties']['style'] = 'DC_Table_Skills_Title'
+                            para['properties']['style'] = 'DCTableSkillsTitle'
                 # Appliquer le style DC_Table_Skills_Content aux paragraphes dans cell[x][1..n] (colonnes 1 à n)
                 for row in rows:
                     cells = row.get('cells', [])
@@ -3142,7 +3143,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                             for para in cell.get('paragraphs', []):
                                 if 'properties' not in para:
                                     para['properties'] = {}
-                                para['properties']['style'] = 'DC_Table_Skills_Content'
+                                para['properties']['style'] = 'DCTableSkillsContent'
 
             if is_education:
                 rows = itable.get('rows', [])
@@ -3153,7 +3154,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         for para in cells[0].get('paragraphs', []):
                             if 'properties' not in para:
                                 para['properties'] = {}
-                            para['properties']['style'] = 'DC_Table_Year'
+                            para['properties']['style'] = 'DCTableYear'
                 # Appliquer le style DC_Table_Content aux paragraphes dans cell[x][1..n] (colonnes 1 à n)
                 for row in rows:
                     cells = row.get('cells', [])
@@ -3162,7 +3163,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                             for para in cell.get('paragraphs', []):
                                 if 'properties' not in para:
                                     para['properties'] = {}
-                                para['properties']['style'] = 'DC_Table_Content'
+                                para['properties']['style'] = 'DCTableContent'
 
             if is_professional:
                 rows = itable.get('rows', [])
@@ -3173,10 +3174,10 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         for para in cells[0].get('paragraphs', []):
                             if 'properties' not in para:
                                 para['properties'] = {}
-                            para['properties']['style'] = 'DC_XP_Title'
+                            para['properties']['style'] = 'DCXPTitle'
                             # Ajouter outline_level pour DC_XP_Title
-                            if 'DC_XP_Title' in STYLE_OUTLINE_MAPPING:
-                                para['properties']['outline_level'] = STYLE_OUTLINE_MAPPING['DC_XP_Title']
+                            if 'DCXPTitle' in STYLE_OUTLINE_MAPPING:
+                                para['properties']['outline_level'] = STYLE_OUTLINE_MAPPING['DCXPTitle']
                 # Appliquer le style DC_XP_Date aux paragraphes dans cell[0][1]
                 if len(rows) > 0:
                     cells = rows[0].get('cells', [])
@@ -3184,7 +3185,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         for para in cells[1].get('paragraphs', []):
                             if 'properties' not in para:
                                 para['properties'] = {}
-                            para['properties']['style'] = 'DC_XP_Date'
+                            para['properties']['style'] = 'DCXPDate'
                 # Appliquer le style DC_XP_Poste aux lignes suivantes (cell[1][0])
                 if len(rows) > 1:
                     cells = rows[1].get('cells', [])
@@ -3192,7 +3193,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         for para in cells[0].get('paragraphs', []):
                             if 'properties' not in para:
                                 para['properties'] = {}
-                            para['properties']['style'] = 'DC_XP_Poste'
+                            para['properties']['style'] = 'DCXPPoste'
                 # Appliquer le style DC_Normal à tous les paragraphes vides de textes restants
                 for row in rows:
                     for cell in row.get('cells', []):
@@ -3201,7 +3202,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                                 if 'properties' not in para:
                                     para['properties'] = {}
                                 if 'style' not in para['properties']:
-                                    para['properties']['style'] = 'DC_Table_Content'
+                                    para['properties']['style'] = 'DCTableContent'
 
     # Appliquer le highlight pour les compétences techniques
     for itag in data.get('document', {}).get('content', []):
@@ -3211,7 +3212,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         if 'professional_experience' in tags and is_technical_skills_header(itag):
             if 'properties' not in itag:
                 itag['properties'] = {}
-            itag['properties']['style'] = 'DC_XP_BlueContent'
+            itag['properties']['style'] = 'DCXPBlueContent'
 
     # Appliquer les styles des listes
     for ilist in data.get('document', {}).get('content', []):
@@ -3230,10 +3231,10 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             # Skip bullet styling for technical skills headers (they need DC_XP_BlueContent)
             if 'professional_experience' in ilist.get('tags', []) and is_technical_skills_header(ilist):
                 continue
-            props['style'] = 'DC_1st_bullet'
-            # Ajouter outline_level pour DC_1st_bullet
-            if 'DC_1st_bullet' in STYLE_OUTLINE_MAPPING:
-                props['outline_level'] = STYLE_OUTLINE_MAPPING['DC_1st_bullet']
+            props['style'] = 'DC1stbullet'  # Template uses PascalCase without underscores
+            # Ajouter outline_level pour DC1stbullet
+            if 'DC1stbullet' in STYLE_OUTLINE_MAPPING:
+                props['outline_level'] = STYLE_OUTLINE_MAPPING['DC1stbullet']
                 text = capitalize_preserve_case(text)
                 if 'runs' in ilist and ilist['runs']:
                     ilist['runs'][0]['text'] = text
@@ -3241,17 +3242,17 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                     if len(ilist['runs']) > 1:
                         ilist['runs'] = ilist['runs'][:1]
         elif ilvl == "1":
-            props['style'] = 'DC_2nd_bullet'
+            props['style'] = 'DC2ndbullet'
         elif ilvl == "2":
-            props['style'] = 'DC_3rd_bullet'
+            props['style'] = 'DC3rdbullet'
         elif ilvl == "3":
-            props['style'] = 'DC_4th_bullet'
+            props['style'] = 'DC4thbullet'
         elif ilvl == "4":
-            props['style'] = 'DC_4th_bullet'
+            props['style'] = 'DC4thbullet'
         elif ilvl == "5":
-            props['style'] = 'DC_4th_bullet'
+            props['style'] = 'DC4thbullet'
         else:
-            props['style'] = 'DC_Normal'  # fallback
+            props['style'] = 'DCNormal'  # fallback
 
     # Appliquer les styles des titres après les listes pour corriger les faux positifs liés à ilvl
     for itag in data.get('document', {}).get('content', []):
@@ -3262,36 +3263,36 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         props = itag.setdefault('properties', {})
 
         if 'header' in tags and any(keyword in text.lower() for keyword in KEYWORDS_HEADER_DOCUMENT):
-            props['style'] = 'DC_H_DC'
+            props['style'] = 'DCHDC'
             text = text.upper()
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
         elif 'main_skills' in tags and is_promotable_section_title(itag, KEYWORDS_MAIN_SKILLS):
-            props['style'] = 'DC_T1_Sections'
+            props['style'] = 'DCT1Sections'
             text = capitalize_preserve_case(text)
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
         elif 'education' in tags and is_promotable_section_title(itag, KEYWORDS_EDUCATION):
-            props['style'] = 'DC_T1_Sections'
+            props['style'] = 'DCT1Sections'
             text = capitalize_preserve_case(text)
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
         elif 'professional_experience' in tags and is_promotable_section_title(itag, KEYWORDS_PROFESSIONAL_EXPERIENCE):
-            props['style'] = 'DC_T1_Sections'
+            props['style'] = 'DCT1Sections'
             text = capitalize_preserve_case(text)
             if 'runs' in itag and itag['runs']:
                 itag['runs'][0]['text'] = text
 
         if 'header' in tags:
-            if len(text) > 0 and len(text) <= 5 and props.get('style') != 'DC_H_DC':
-                props['style'] = 'DC_H_Trigramme'
+            if len(text) > 0 and len(text) <= 5 and props.get('style') != 'DCHDC':
+                props['style'] = 'DCHTrigramme'
                 text = text.upper()
                 if 'runs' in itag and itag['runs']:
                     itag['runs'][0]['text'] = text
-            elif any(keyword in text.lower() for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5 and props.get('style') != 'DC_H_DC':
-                props['style'] = 'DC_H_XP'
-            elif len(text) > 5 and props.get('style') not in ('DC_H_DC', 'DC_H_XP'):
-                props['style'] = 'DC_H_Poste'
+            elif any(keyword in text.lower() for keyword in KEYWORDS_HEADER_EXPERIENCE) and len(text) > 5 and props.get('style') != 'DCHDC':
+                props['style'] = 'DCHXP'
+            elif len(text) > 5 and props.get('style') not in ('DCHDC', 'DCHXP'):
+                props['style'] = 'DCHPoste'
 
     # Appliquer le style Normal pour le reste et les éléments sans style
     for element in data.get('document', {}).get('content', []):
@@ -3301,12 +3302,12 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         is_empty_para = (not element.get('runs') or all(not run.get('text', '').strip() for run in element.get('runs', [])))
 
         if element.get('type') == 'Paragraph' and is_empty_para:
-            props['style'] = 'DC_Normal'
+            props['style'] = 'DCNormal'
         else:
             # Pour les paragraphes avec du texte: si le style n'est pas un style DC_* ou n'existe pas, appliquer DC_Normal
             current_style = props.get('style', '')
             if not current_style.startswith('DC_'):
-                props['style'] = 'DC_Normal'
+                props['style'] = 'DCNormal'
 
         # Ajouter outline_level si le style le nécessite
         if props.get('style') in STYLE_OUTLINE_MAPPING:
@@ -3349,7 +3350,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         is_empty = (not runs or all(not run.get('text', '').strip() for run in runs))
 
                         if is_empty:
-                            para_props['style'] = 'DC_Table_Content'
+                            para_props['style'] = 'DCTableContent'
 
                         # Ajouter outline_level si le style le nécessite
                         if para_props.get('style') in STYLE_OUTLINE_MAPPING:
