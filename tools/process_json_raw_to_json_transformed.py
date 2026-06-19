@@ -3215,6 +3215,7 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             itag['properties']['style'] = 'DCXPBlueContent'
 
     # Appliquer les styles des listes
+    # IMPORTANT: Préserver numId et ilvl du JSON brut pour la préservation XML en round-trip
     for ilist in data.get('document', {}).get('content', []):
         if 'properties' not in ilist:
             continue
@@ -3223,6 +3224,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
             continue
 
         ilvl = props.get('ilvl')
+        # Conserver le numId original pour réinjection XML plus tard
+        original_numId = props.get('numId')
+        
         # Utiliser get_raw_text_from_paragraph pour préserver la casse du texte original
         text = get_raw_text_from_paragraph(ilist) if ilist.get('type') == 'Paragraph' else get_text_from_element(ilist, lower=False)
         if not ilvl:
@@ -3243,14 +3247,19 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
                         ilist['runs'] = ilist['runs'][:1]
         elif ilvl == "1":
             props['style'] = 'DC2ndbullet'
+            props['numId'] = original_numId or 13  # Préserver ou utiliser valeur template
         elif ilvl == "2":
             props['style'] = 'DC3rdbullet'
+            props['numId'] = original_numId or 14  # Préserver ou utiliser valeur template
         elif ilvl == "3":
             props['style'] = 'DC4thbullet'
+            props['numId'] = original_numId or 15  # Préserver ou utiliser valeur template
         elif ilvl == "4":
             props['style'] = 'DC4thbullet'
+            props['numId'] = original_numId or 15  # Préserver ou utiliser valeur template
         elif ilvl == "5":
             props['style'] = 'DC4thbullet'
+            props['numId'] = original_numId or 15  # Préserver ou utiliser valeur template
         else:
             props['style'] = 'DCNormal'  # fallback
 
@@ -3304,9 +3313,9 @@ def apply_styles_in_json(data: Dict[str, Any]) -> None:
         if element.get('type') == 'Paragraph' and is_empty_para:
             props['style'] = 'DCNormal'
         else:
-            # Pour les paragraphes avec du texte: si le style n'est pas un style DC_* ou n'existe pas, appliquer DC_Normal
+            # Pour les paragraphes avec du texte: si le style n'est pas un style DC* ou n'existe pas, appliquer DC_Normal
             current_style = props.get('style', '')
-            if not current_style.startswith('DC_'):
+            if not current_style.startswith('DC'):
                 props['style'] = 'DCNormal'
 
         # Ajouter outline_level si le style le nécessite

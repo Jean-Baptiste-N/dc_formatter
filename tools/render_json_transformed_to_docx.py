@@ -8,6 +8,7 @@ import json
 import zipfile
 import shutil
 import os
+import sys
 from pathlib import Path
 from argparse import ArgumentParser
 
@@ -566,6 +567,18 @@ def json_to_docx(json_file: str, template_file: str, output_dir: str) -> str:
 
         # Copier les styles et numbering du template pour préserver les styles personnalisés
         copy_template_styles_to_docx(str(output_file), template_file)
+        
+        # Injecter les propriétés de numérotation XML basées sur le JSON transformé
+        # Cela garantit que la 2ème passe conserve les niveaux d'indentation
+        try:
+            import sys
+            from pathlib import Path as PathLib
+            tools_dir = PathLib(__file__).parent
+            sys.path.insert(0, str(tools_dir))
+            from preserve_xml_numbering import inject_numbering_properties
+            inject_numbering_properties(output_file, Path(json_file))
+        except Exception as e:
+            print(f"⚠️  Warning: Could not inject XML numbering: {e}")
 
         # Obtenir la taille du fichier
         file_size = output_file.stat().st_size / 1024  # En KB
